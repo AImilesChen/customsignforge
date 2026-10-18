@@ -5,6 +5,8 @@ import { publicData } from '../lib/db.mjs';
 import copy from '../data/copy.json';
 import {structuredData,serializeStructuredData} from '../lib/structured-data.mjs';
 import '../styles/site.css';
+import headingFont from '@fontsource/manrope/files/manrope-latin-700-normal.woff2?url';
+import bodyFont from '@fontsource/source-sans-3/files/source-sans-3-latin-400-normal.woff2?url';
 const path=Astro.url.pathname==='/'?'/':Astro.url.pathname.replace(/\/?$/,'/');
 const site=await publicData(env);
 const item=site.products.find((p:{slug:string;seoTitle?:string;seoDescription?:string;title:string;intro:string;indexable?:boolean})=>path===`/products/${p.slug}/`)||site.works.find((p:{slug:string;seoTitle?:string;seoDescription?:string;title:string;intro:string;indexable?:boolean})=>path===`/projects/${p.slug}/`)||site.pages.find((p:{slug:string;seoTitle?:string;seoDescription?:string;title:string;intro:string;indexable?:boolean})=>path===`/${p.slug}/`)||site.landings.find((p:{slug:string;seoTitle?:string;seoDescription?:string;title:string;intro:string;indexable?:boolean})=>path===`/landing/${p.slug}/`);
@@ -27,7 +29,7 @@ Astro.response.headers.set('Cache-Control','no-store');
 const schema=structuredData({base,path,title,description,settings:site.settings,item,found});
 ---
 <!doctype html><html lang="en"><head>
- <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+ <meta charset="UTF-8"/><link rel="preload" href={headingFont} as="font" type="font/woff2" crossorigin="anonymous"/><link rel="preload" href={bodyFont} as="font" type="font/woff2" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
  <title>{title}</title><meta name="description" content={description}/><meta name="robots" content={indexable?'index,follow':'noindex,follow'}/>
  <link rel="canonical" href={canonical}/><link rel="icon" type="image/svg+xml" href="/brand/icon.svg"/><link rel="icon" href="/brand/favicon.ico"/><link rel="apple-touch-icon" href="/brand/apple-touch-icon.png"/><link rel="manifest" href="/brand/site.webmanifest"/>
  <meta name="theme-color" content="#20272d"/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/><meta property="og:url" content={canonical}/><meta property="og:image" content={base+'/brand/og-image.png'}/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta name="twitter:card" content="summary_large_image"/>

@@ -18,7 +18,7 @@ export async function recordMeasurement(request,env,raw){
  return {ok:true};
 }
 async function knownPage(env,page){
- if(['/','/products/','/projects/','/get-a-quote/','/privacy/','/terms/','/cookies/','/returns-cancellations/','/shipping-installation/','/legal-notice/'].includes(page))return true;
+ if(['/','/products/','/projects/','/get-a-quote/','/privacy/','/terms/','/cookies/','/cancellations-returns/','/shipping-installation/','/legal-notice/'].includes(page))return true;
  const match=page.match(/^\/(products|projects|landing)\/([a-z0-9-]+)\/$/);const type=match?{products:'product',projects:'project',landing:'landing'}[match[1]]:'page';
  return !!await env.DB.prepare("SELECT id FROM content_items WHERE type=? AND slug=? AND status='published'").bind(type,match?match[2]:page.slice(1,-1)).first();
 }

@@ -1,8 +1,9 @@
 import {campaignSource,acquisition,publicPath,UTM_KEYS} from './acquisition.mjs';
 const CHOICE='csf-cookie-preferences',FIRST='csf-first-source',CURRENT='csf-current-source';
-export function hasPrivacyChoice(){try{const choice=JSON.parse(localStorage.getItem(CHOICE)||'null');return choice?.version===1&&Number.isFinite(Date.parse(choice.savedAt))&&Date.now()-Date.parse(choice.savedAt)<180*86400000}catch{return false}}
-export function savePrivacyChoice(analytics=false){try{localStorage.setItem(CHOICE,JSON.stringify({necessary:true,analytics,advertising:false,version:1,savedAt:new Date().toISOString()}))}catch{}if(!analytics)forgetAttribution();window.dispatchEvent(new Event('csf-consent-change'))}
-export function hasAnalyticsConsent(){try{const choice=JSON.parse(localStorage.getItem(CHOICE)||'null');return choice?.version===1&&choice.analytics===true&&Date.now()-Date.parse(choice.savedAt)<180*86400000}catch{return false}}
+export const CONSENT_VERSION=2;
+export function hasPrivacyChoice(){try{const choice=JSON.parse(localStorage.getItem(CHOICE)||'null');return choice?.version===CONSENT_VERSION&&Number.isFinite(Date.parse(choice.savedAt))&&Date.now()-Date.parse(choice.savedAt)<180*86400000}catch{return false}}
+export function savePrivacyChoice(analytics=false){try{localStorage.setItem(CHOICE,JSON.stringify({necessary:true,analytics,advertising:false,version:CONSENT_VERSION,savedAt:new Date().toISOString()}))}catch{}if(!analytics)forgetAttribution();window.dispatchEvent(new Event('csf-consent-change'))}
+export function hasAnalyticsConsent(){try{const choice=JSON.parse(localStorage.getItem(CHOICE)||'null');return choice?.version===CONSENT_VERSION&&choice.analytics===true&&Date.now()-Date.parse(choice.savedAt)<180*86400000}catch{return false}}
 export function captureAttribution(){
  const params=new URLSearchParams(location.search),current=campaignSource(Object.fromEntries(UTM_KEYS.map(k=>[k,params.get(k)])));
  const entry=publicPath(location.pathname);let first={source:current,entry},source=current;
@@ -19,6 +20,7 @@ export function measure(name,context={}){
  fetch('/api/measurement',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),keepalive:true}).catch(()=>{});
 }
 export function startMeasurement(){
+ if(!hasAnalyticsConsent())forgetAttribution();
  let viewed=false;const page=()=>{if(hasAnalyticsConsent()&&!viewed){viewed=true;measure('page_view');if(location.pathname==='/get-a-quote/')measure('quote_form_open')}};
  page();const choices=()=>{if(!hasAnalyticsConsent()){forgetAttribution();viewed=false}else page()};window.addEventListener('csf-consent-change',choices);
  const click=event=>{

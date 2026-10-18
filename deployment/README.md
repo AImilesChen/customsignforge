@@ -62,3 +62,12 @@ Custom Worker entry: https://docs.astro.build/en/guides/integrations-guide/cloud
 Create a deployment token restricted as far as Cloudflare permits to this account, Worker and database; store it using GitHub's protected secret interface. Confirm the `production` environment, then enable `CF_AUTO_DEPLOY`. No successful automated deployment is claimed until a run has passed. Existing Worker application secrets remain on Cloudflare and must not be included in source or build output.
 
 Google login is explicitly deferred by the operator. When resumed, use a web OAuth client with redirect URI `https://customsignforge.com/auth/google/callback`, authorised origin `https://customsignforge.com`, and only the `openid email` scopes. Configure the client secret through the protected Worker secret interface and test the allowlist, callback and logout. Do not add customer registration.
+
+
+### Verified automation status
+
+On 18 October 2026 the owner authorised a dedicated deployment token, saved as an encrypted `production` environment secret. Its permissions are Workers Scripts Edit and D1 Edit for the selected account. The repository variable `CF_AUTO_DEPLOY` is enabled. The workflow has successfully verified and deployed source commit `3c675059746b3c776abe4a2d304a38c8c5dd5e8f` (run 39131815433), including migrations, custom-domain deployment, scheduled maintenance configuration and public smoke checks. The token value was never committed. Treat future runs as independent releases and check their result.
+
+Production administrator email sign-in, draft/publication isolation, R2 publication privacy, manual entry and follow-up have now been tested. A backup was restored into an isolated temporary Cloudflare database; business-table counts matched the export, and the temporary database was removed. Production was not rolled back. Store backup exports privately; longer-term business retention, rotation and alert destinations are still pending operator confirmation.
+
+Consent version 2 deliberately asks for a fresh choice when analytics become active; version 1 preview preferences do not activate measurement. Source/date filters apply to events and lead cohorts; manually entered actual spend is an in-memory estimate, with no ad-account integration or claim of platform attribution.
