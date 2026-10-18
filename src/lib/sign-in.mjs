@@ -26,7 +26,7 @@ export async function googleCallback(request,env){
  const token=await issueSession(env,identity.email.toLowerCase(),'google');const headers=new Headers({Location:'/admin/','Cache-Control':'no-store','Referrer-Policy':'no-referrer'});headers.append('Set-Cookie',cookie(request,'csf_admin',token,28800,'Lax'));headers.append('Set-Cookie',cookie(request,'csf_oauth','',0,'Lax'));return new Response(null,{status:302,headers});
 }
 export async function emailStart(request,env,raw,send=sendEmail){
- sameOrigin(request);origin(request,env);key(env);if(!env.MAIL_API_KEY||!env.MAIL_FROM||!env.ADMIN_EMAILS)throw new HttpError(503,'Email sign-in is not configured yet.');
+ sameOrigin(request);origin(request,env);key(env);if(!emailConfigured(env))throw new HttpError(503,'Email sign-in is not configured yet.');
  const email=text(raw.email,150,true).toLowerCase();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))throw new HttpError(422,'Enter a valid email address.');
  await rateLimit(env,request,'email-login',5);await rateLimit(env,request,'email-address',3,await fingerprint(email));
  const id=crypto.randomUUID(),browser=crypto.randomUUID();const bytes=crypto.getRandomValues(new Uint32Array(1));const code=String(bytes[0]%100000000).padStart(8,'0');
@@ -44,4 +44,5 @@ export async function emailVerify(request,env,raw){
  const used=await env.DB.prepare('DELETE FROM email_challenges WHERE id=? RETURNING id').bind(id).first();if(!used)throw new HttpError(401,'The code has already been used.');
  return issueSession(env,row.email,'email');
 }
-async function sendEmail(env,email,code){const r=await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:'Bearer '+env.MAIL_API_KEY,'Content-Type':'application/json'},body:JSON.stringify({from:env.MAIL_FROM,to:[email],subject:'Your Custom Sign Forge administrator sign-in code',text:`Your one-time administrator sign-in code is ${code}. It expires in 10 minutes. If you did not request this, ignore this email.`}),signal:AbortSignal.timeout(10000)});if(!r.ok)throw new Error('Mail delivery rejected');}
+export function emailConfigured(env){return !!(env.MAIL_FROM&&env.ADMIN_EMAILS&&(typeof env.LOGIN_EMAIL?.send==='function'||env.MAIL_API_KEY));}
+async function sendEmail(env,email,code){const message={from:env.MAIL_FROM,to:[email],subject:'Your Custom Sign Forge administrator sign-in code',text:`Your one-time administrator sign-in code is ${code}. It expires in 10 minutes. If you did not request this, ignore this email.`};if(typeof env.LOGIN_EMAIL?.send==='function'){await env.LOGIN_EMAIL.send(message);return;}const r=await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:'Bearer '+env.MAIL_API_KEY,'Content-Type':'application/json'},body:JSON.stringify(message),signal:AbortSignal.timeout(10000)});if(!r.ok)throw new Error('Mail delivery rejected');}

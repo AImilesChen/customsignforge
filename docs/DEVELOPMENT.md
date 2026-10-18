@@ -1,5 +1,7 @@
 # 正式工程开发与运行
 
+> 当前状态（2026-10-18）：网站已部署至经营者的 Cloudflare 账户并绑定 https://customsignforge.com，www 跳转至主域名。正式配置和更新命令见 [deployment/README.md](../deployment/README.md)。以下本地开发和历史运行记录继续保留；其中“尚未部署”和联系方式待配置是早期状态，已由后续交付记录更新。
+
 正式源码目录为website，独立于UI设计原型。采用PRD指定的Astro、Workers、D1和R2。前台从数据库已发布快照服务端渲染，不把整个页面作为HTML字符串插入React。Markdown用React组件渲染并跳过原始HTML。前端手册的组件、SEO、移动端和Workers预览要求适用；其Next.js示例不覆盖本项目PRD技术选型。
 
 ## 本地运行
@@ -26,6 +28,8 @@
 
 - Google：创建OAuth Web客户端，设置回调`https://customsignforge.com/auth/google/callback`，在Worker secrets配置GOOGLE_CLIENT_ID、GOOGLE_CLIENT_SECRET、SESSION_SECRET；AUTH_ORIGIN固定为实际后台所在的HTTPS源。使用openid/email最小范围，状态、nonce、PKCE、令牌签名/issuer/audience/邮箱验证均校验。拒绝未列入ADMIN_EMAILS的账号。
 - 邮箱：8位一次性验证码，10分钟有效，最多5次尝试，绑定发起浏览器，并限制发送与验证频率。发送适配器当前使用Resend API；MAIL_API_KEY和MAIL_FROM未配置时入口禁用，不伪装邮件已发送。需要邮件服务账号和发送域验证后才能端到端联调；可以另行替换邮件适配器。
+
+正式环境更新：邮箱验证码优先通过 `LOGIN_EMAIL` Cloudflare 原生发件绑定发送，使用已验证的 hello@customsignforge.com。不需要另开 Resend 账号。`MAIL_FROM`、私有 `ADMIN_EMAILS` 和有效发送绑定齐备才启用入口；保留 Resend 兼容适配。Google OAuth 仍需自己的正式客户端资料，未配置时保持禁用。邮箱登录真实验证码往返未验证前，不把“适配和绑定就绪”报告成“真实登录验收通过”。
 - 两种方式成功后建立服务端可撤销会话，HttpOnly Cookie。退出删除服务端会话。生产HTTPS启用Secure；后台写请求另校验同源和CSRF。
 - 本机密码是开发辅助入口，不是正式的第三种用户登录方式。生产/非本机请求不能启用它。
 

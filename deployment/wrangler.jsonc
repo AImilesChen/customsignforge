@@ -1,0 +1,57 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "customsignforge",
+  "account_id": "77bc392d46985cd3425691358f5e8a77",
+  "main": "@astrojs/cloudflare/entrypoints/server",
+  "compatibility_date": "2026-10-18",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "workers_dev": false,
+  "preview_urls": false,
+  "assets": {
+    "directory": "../dist-production",
+    "binding": "ASSETS"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "customsignforge-production",
+      "database_id": "17e949f5-8d75-4021-b320-6cca6600f067",
+      "migrations_dir": "../migrations"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "MEDIA",
+      "bucket_name": "customsignforge-production-media"
+    }
+  ],
+  "send_email": [
+    {
+      "name": "LOGIN_EMAIL",
+      "allowed_sender_addresses": [
+        "hello@customsignforge.com"
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "pattern": "customsignforge.com",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.customsignforge.com",
+      "custom_domain": true
+    }
+  ],
+  "vars": {
+    "APP_ENV": "production",
+    "SITE_URL": "https://customsignforge.com",
+    "AUTH_ORIGIN": "https://customsignforge.com",
+    "LOCAL_ADMIN_ENABLED": "false",
+    "PUBLISH_READY": "false",
+    "MAIL_FROM": "hello@customsignforge.com",
+    "TURNSTILE_SITE_KEY": "0x4AAAAAAFZ_8lQUiumgPxVg"
+  }
+}

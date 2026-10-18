@@ -14,7 +14,9 @@
     "types": "node scripts/run.mjs wrangler types src/env.d.ts --strict-vars=false",
     "test:live": "node scripts/live-smoke.mjs",
     "preview:astro": "node scripts/run.mjs astro preview --host 127.0.0.1 --port 4321",
-    "init:local": "node scripts/init-local.mjs"
+    "init:local": "node scripts/init-local.mjs",
+    "build:production": "node scripts/build-production.mjs",
+    "deploy:production": "node scripts/run.mjs wrangler deploy --config dist-production/server/wrangler.json"
   },
   "dependencies": {
     "astro": "^7.4.0",
