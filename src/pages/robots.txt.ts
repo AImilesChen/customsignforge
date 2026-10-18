@@ -1,0 +1,2 @@
+import {env} from 'cloudflare:workers';
+export const GET=()=>new Response(env.APP_ENV==='production'&&env.PUBLISH_READY==='true'?`User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /api/\nDisallow: /auth/\nDisallow: /design-kit/\nDisallow: /review/\nSitemap: ${env.SITE_URL||'https://customsignforge.com'}/sitemap.xml\n`:'User-agent: *\nDisallow: /\n',{headers:{'Content-Type':'text/plain','Cache-Control':'no-store'}});

@@ -1,0 +1,11 @@
+import {spawn} from 'node:child_process';
+import {mkdirSync,readFileSync} from 'node:fs';
+import {fileURLToPath} from 'node:url';
+import path from 'node:path';
+const root=fileURLToPath(new URL('../',import.meta.url));
+const [tool,...args]=process.argv.slice(2);if(!['astro','wrangler'].includes(tool))throw new Error('Unsupported development command');
+const manifest=JSON.parse(readFileSync(path.join(root,'node_modules',tool,'package.json'),'utf8'));
+const bin=typeof manifest.bin==='string'?manifest.bin:manifest.bin[tool];
+const registry=path.join(root,'.wrangler','registry'),logs=path.join(root,'.wrangler','logs');mkdirSync(registry,{recursive:true});mkdirSync(logs,{recursive:true});
+const child=spawn(process.execPath,[path.join(root,'node_modules',tool,bin),...args],{cwd:root,stdio:'inherit',env:{...process.env,ASTRO_TELEMETRY_DISABLED:'1',CLOUDFLARE_SEND_METRICS:'false',XDG_CONFIG_HOME:path.join(root,'.runtime','config'),WRANGLER_REGISTRY_PATH:registry,WRANGLER_LOG_PATH:logs}});
+child.on('error',error=>{console.error(error.message);process.exitCode=1});child.on('exit',code=>process.exit(code??1));

@@ -1,0 +1,2 @@
+import {Button,PageIntro} from '../shared.jsx';
+export default function NotFound(){return <PageIntro eyebrow="404 · PAGE NOT FOUND" title="We Couldn’t Find That Page" text="The link may have changed, or the page may no longer be available. Explore our sign styles or contact us about your project."><div className="button-row"><Button to="/products/">Explore Products</Button><Button secondary/></div></PageIntro>}

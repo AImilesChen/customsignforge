@@ -1,0 +1,10 @@
+---
+import {env} from 'cloudflare:workers';
+import {actor,localMode} from '../../lib/auth.mjs';
+import AdminLogin from '../../components/AdminLogin.jsx';
+import '../../styles/site.css';
+import '../../styles/admin.css';
+let signedIn=false;try{await actor(Astro.request,env);signedIn=true;}catch{}
+if(signedIn)return Astro.redirect('/admin/');
+---
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="robots" content="noindex,nofollow"/><title>管理员登录 | Custom Sign Forge</title><link rel="icon" href="/brand/icon.svg"/></head><body><AdminLogin google={!!(env.GOOGLE_CLIENT_ID&&env.GOOGLE_CLIENT_SECRET&&env.ADMIN_EMAILS)} email={!!(env.MAIL_API_KEY&&env.MAIL_FROM&&env.ADMIN_EMAILS)} local={localMode(env,Astro.request.url)} error={Astro.url.searchParams.get('error')} client:load/></body></html>

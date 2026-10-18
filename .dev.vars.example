@@ -1,0 +1,13 @@
+# Copy to .dev.vars; never commit real values.
+SESSION_SECRET=
+LOCAL_ADMIN_PASSWORD=
+# Development fallback requires APP_ENV=development, LOCAL_ADMIN_ENABLED=true
+# and a loopback request hostname. It is disabled on public hosts.
+ADMIN_EMAILS=
+AUTH_ORIGIN=http://localhost:4321
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+MAIL_API_KEY=
+MAIL_FROM=
+TURNSTILE_SITE_KEY=
+TURNSTILE_SECRET=

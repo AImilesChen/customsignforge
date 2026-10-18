@@ -1,0 +1,10 @@
+---
+import {env} from 'cloudflare:workers';
+import {actor,csrfToken} from '../../lib/auth.mjs';
+import Admin from '../../components/Admin.jsx';
+import '../../styles/site.css';
+import '../../styles/admin.css';
+let user;try{user=await actor(Astro.request,env);}catch{return Astro.redirect('/admin/login/');}
+const session={user:user.id,mode:user.mode,csrf:await csrfToken(env,user)};
+---
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="robots" content="noindex,nofollow"/><title>管理后台 | Custom Sign Forge</title><link rel="icon" href="/brand/icon.svg"/></head><body><Admin session={session} client:load/></body></html>

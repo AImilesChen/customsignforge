@@ -1,0 +1,4 @@
+import {ArrowRightIcon as ArrowRight} from '@phosphor-icons/react';
+import {useSite} from '../site-context.jsx';
+import {nav,Link,PageIntro} from '../shared.jsx';
+export default function Kit(){const {products,works,copy}=useSite();return <><PageIntro eyebrow="DESIGN REVIEW" title="Page & State Index" text="Review the complete public page set, responsive layouts and enquiry states. Imagery is illustrative; no live integrations are connected."/><section className="section container kit-grid">{[['Home','/'],...nav,['Get a Quote','/get-a-quote/'],...products.map(p=>[p.title,'/products/'+p.slug+'/']),...works.map(w=>[w.title,'/projects/'+w.slug+'/']),['Business Landing','/landing/custom-logo-signs/'],['Trade Landing','/landing/sign-fabrication/'],...copy.policies.map(p=>[p.title,p.route]),['404','/not-found/']].map(([t,r])=><Link key={r} to={r}><span>{t}</span><ArrowRight size={20}/></Link>)}</section></>}

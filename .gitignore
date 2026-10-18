@@ -1,0 +1,23 @@
+node_modules/
+dist/
+.astro/
+.wrangler/
+.npm-cache/
+.dev.vars
+.env
+.env.*
+!.env.example
+coverage/
+
+.runtime/
+
+# Local QA output and historical scaffolding
+docs/*.log
+docs/evidence/
+docs/initial-scaffold-script.txt
+*.pem
+*.key
+*.p12
+*.sqlite
+*.sqlite3
+*.db
