@@ -32,3 +32,21 @@ test('scheduled maintenance expires measurement and authentication data without 
 test('structured data uses verified business values and cannot break out into executable markup',()=>{
  const data=structuredData({base:'https://customsignforge.com',path:'/products/backlit-letters/',title:'</script><script>alert(1)</script>',description:'Custom made',settings:{operatorName:'Example operator',email:'hello@example.test'},item:{type:'product',title:'Backlit letters',intro:'Made to order',image:'/assets/office-halo.webp'}});const serialized=serializeStructuredData(data);assert(!serialized.includes('</script>'));assert.equal(JSON.parse(serialized)['@graph'].find(x=>x['@type']==='Organization').legalName,'Example operator');assert(!serialized.includes('aggregateRating'));assert(!serialized.includes('offers'));assert.equal(structuredData({found:false}),null);
 });
+test('source-filtered funnel counts historical human outcomes once per enquiry',async()=>{
+ const f=fixture();try{const headers=await login(f.env);await handleAPI(request('api/enquiries','POST',{...enquiry(),source:{utm_source:'facebook'}}),f.env,'enquiries');const lead=f.sqlite.prepare('SELECT * FROM enquiries').get();
+ const follow={version:1,record:'chat_confirmed',stage:'quoted',quality:'qualified',amount:null,currency:'',reason:'',note:'Local fixture evidence only'};
+ assert.equal((await handleAPI(request('api/admin/enquiries/'+lead.id,'PATCH',follow,headers),f.env,'admin/enquiries/'+lead.id)).status,200);
+ assert.equal((await handleAPI(request('api/admin/enquiries/'+lead.id,'PATCH',{...follow,version:2,stage:'on_hold',quality:'needs_confirmation'},headers),f.env,'admin/enquiries/'+lead.id)).status,200);
+ let data=event();data.context.currentSource={utm_source:'facebook'};assert.equal((await handleAPI(request('api/measurement','POST',data),f.env,'measurement')).status,202);
+ const report=await(await handleAPI(request('api/admin/measurement?source=facebook','GET',undefined,headers),f.env,'admin/measurement')).json();assert.equal(report.events.page_view,1);assert.equal(report.leads.total,1);assert.equal(report.leads.qualified,1);assert.equal(report.leads.quoted,1);
+ const other=await(await handleAPI(request('api/admin/measurement?source=google','GET',undefined,headers),f.env,'admin/measurement')).json();assert.equal(other.events.page_view,0);assert.equal(other.leads.total,0);
+ }finally{f.close()}
+});
+test('browser measurement stays off before consent and after withdrawal, with no form text in event data',async()=>{
+ const saved=Object.fromEntries(['localStorage','sessionStorage','location','window','fetch'].map(key=>[key,globalThis[key]]));
+ const storage=()=>{const map=new Map();return {getItem:k=>map.get(k)||null,setItem:(k,v)=>map.set(k,v),removeItem:k=>map.delete(k)}};const sent=[];
+ try{globalThis.localStorage=storage();globalThis.sessionStorage=storage();globalThis.location=new URL('https://customsignforge.com/?utm_source=facebook&notes=PRIVATE-CUSTOMER-TEXT');globalThis.window=new EventTarget();globalThis.fetch=(_url,options)=>{sent.push(JSON.parse(options.body));return Promise.resolve({ok:true})};
+ const {measure,savePrivacyChoice,captureAttribution}=await import('../src/lib/browser-measurement.mjs');measure('page_view');assert.equal(sent.length,0);assert.equal(localStorage.getItem('csf-first-source'),null);
+ savePrivacyChoice(true);measure('page_view');assert.equal(sent.length,1);assert(!JSON.stringify(sent).includes('PRIVATE-CUSTOMER-TEXT'));assert.equal(sent[0].context.currentSource.utm_source,'facebook');assert(localStorage.getItem('csf-first-source'));savePrivacyChoice(false);measure('page_view');assert.equal(sent.length,1);assert.equal(localStorage.getItem('csf-first-source'),null);assert.equal(sessionStorage.getItem('csf-current-source'),null);assert.equal(captureAttribution().currentSource.utm_source,'facebook');assert.equal(localStorage.getItem('csf-first-source'),null);
+ }finally{for(const [key,value]of Object.entries(saved)){if(value===undefined)delete globalThis[key];else globalThis[key]=value}}
+});
