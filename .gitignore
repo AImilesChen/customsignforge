@@ -22,3 +22,5 @@ docs/initial-scaffold-script.txt
 *.sqlite
 *.sqlite3
 *.db
+
+dist-qa/

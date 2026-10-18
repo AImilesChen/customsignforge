@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "customsignforge",
-  "main": "@astrojs/cloudflare/entrypoints/server",
+  "main": "./src/worker.ts",
   "compatibility_date": "2026-10-18",
   "compatibility_flags": [
     "nodejs_compat"

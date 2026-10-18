@@ -1,3 +1,4 @@
+import {campaignSource,acquisition} from './acquisition.mjs';
 export class HttpError extends Error { constructor(status,message,fields={}) { super(message);this.status=status;this.fields=fields; } }
 export const USES=['Shop or storefront','Office or reception','Other commercial space','Multiple locations or projects','Other or not sure'];
 export const COUNTRIES=['United States','Canada','United Kingdom','France','Germany','Italy','Spain','Netherlands','Singapore','Malaysia','Thailand','Philippines','Indonesia','Vietnam','Australia','Other / discuss destination'];
@@ -15,9 +16,10 @@ export function validateEnquiry(raw,styles){
  const style=raw.style||'not-sure';if(style!=='not-sure'&&!styles.includes(style))throw new HttpError(422,'Please select an available sign style.',{style:'Please select an available sign style.'});
  if(!/^[0-9a-f]{8}-[0-9a-f-]{27,36}$/i.test(raw.idempotencyKey||''))throw new HttpError(422,'Please reload the form and try again.');
  const role=raw.role||'';if(!['','business','trade','other','My own business','A customer’s project','Other or not sure'].includes(role))throw new HttpError(422,'Invalid enquiry role.');
- const source={};for(const k of ['utm_source','utm_medium','utm_campaign','utm_content','utm_term']){const v=raw.source?.[k];if(v){const t=text(v,80);if(/^[\w .~\-]+$/.test(t))source[k]=t;}}
+ const source=campaignSource(raw.source);
  if(raw.website)throw new HttpError(422,'Unable to submit this form.');
- return {role,style,use:raw.use,country:raw.country,stage:raw.stage,city:text(raw.city||'',80),timing:text(raw.timing||'',100),notes:text(raw.notes||'',300),entry:path(raw.entry||''),project:raw.project?slug(raw.project):'',source,idempotencyKey:raw.idempotencyKey};
+ const attribution=acquisition(raw.acquisition);attribution.entryMode='form';
+ return {role,style,use:raw.use,country:raw.country,stage:raw.stage,city:text(raw.city||'',80),timing:text(raw.timing||'',100),notes:text(raw.notes||'',300),entry:path(raw.entry||''),project:raw.project?slug(raw.project):'',source,acquisition:attribution,idempotencyKey:raw.idempotencyKey};
 }
 export function validateContent(raw,type){
  if(!['product','project','landing','page'].includes(type))throw new HttpError(422,'Invalid content type.');

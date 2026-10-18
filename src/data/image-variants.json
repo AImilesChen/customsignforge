@@ -1,0 +1,334 @@
+{
+  "/assets/acrylic-sign.webp": {
+    "width": 1280,
+    "height": 960,
+    "variants": [
+      {
+        "src": "/assets/responsive/acrylic-sign-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/acrylic-sign-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/acrylic-sign-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/craft-details.webp": {
+    "width": 1280,
+    "height": 960,
+    "variants": [
+      {
+        "src": "/assets/responsive/craft-details-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/craft-details-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/craft-details-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/frontlit-form.webp": {
+    "width": 1280,
+    "height": 960,
+    "variants": [
+      {
+        "src": "/assets/responsive/frontlit-form-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/frontlit-form-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/frontlit-form-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/hero-cafe.webp": {
+    "width": 1122,
+    "height": 1402,
+    "variants": [
+      {
+        "src": "/assets/responsive/hero-cafe-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/hero-cafe-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "/assets/lightbox-sign.webp": {
+    "width": 1280,
+    "height": 960,
+    "variants": [
+      {
+        "src": "/assets/responsive/lightbox-sign-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/lightbox-sign-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/lightbox-sign-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/metal-studio-portrait.webp": {
+    "width": 1122,
+    "height": 1402,
+    "variants": [
+      {
+        "src": "/assets/responsive/metal-studio-portrait-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/metal-studio-portrait-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "/assets/metal-studio.webp": {
+    "width": 1280,
+    "height": 960,
+    "variants": [
+      {
+        "src": "/assets/responsive/metal-studio-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/metal-studio-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/metal-studio-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/office-halo.webp": {
+    "width": 1280,
+    "height": 960,
+    "variants": [
+      {
+        "src": "/assets/responsive/office-halo-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/office-halo-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/office-halo-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/specialty-sign.webp": {
+    "width": 1280,
+    "height": 960,
+    "variants": [
+      {
+        "src": "/assets/responsive/specialty-sign-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/specialty-sign-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/specialty-sign-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/storefront-wide.webp": {
+    "width": 1280,
+    "height": 960,
+    "variants": [
+      {
+        "src": "/assets/responsive/storefront-wide-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/storefront-wide-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/storefront-wide-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/supplier/exposed-light-letter.webp": {
+    "width": 1411,
+    "height": 816,
+    "variants": [
+      {
+        "src": "/assets/responsive/supplier/exposed-light-letter-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/supplier/exposed-light-letter-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/supplier/exposed-light-letter-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/supplier/formed-metal-letters.webp": {
+    "width": 1386,
+    "height": 752,
+    "variants": [
+      {
+        "src": "/assets/responsive/supplier/formed-metal-letters-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/supplier/formed-metal-letters-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/supplier/formed-metal-letters-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/supplier/halo-letter-samples.webp": {
+    "width": 1418,
+    "height": 951,
+    "variants": [
+      {
+        "src": "/assets/responsive/supplier/halo-letter-samples-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/supplier/halo-letter-samples-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/supplier/halo-letter-samples-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/supplier/layered-acrylic-letter.webp": {
+    "width": 853,
+    "height": 463,
+    "variants": [
+      {
+        "src": "/assets/responsive/supplier/layered-acrylic-letter-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/supplier/layered-acrylic-letter-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "/assets/supplier/led-layout-reference.webp": {
+    "width": 544,
+    "height": 750,
+    "variants": [
+      {
+        "src": "/assets/responsive/supplier/led-layout-reference-400.webp",
+        "width": 400
+      }
+    ]
+  },
+  "/assets/supplier/letter-edge-section.webp": {
+    "width": 739,
+    "height": 485,
+    "variants": [
+      {
+        "src": "/assets/responsive/supplier/letter-edge-section-400.webp",
+        "width": 400
+      }
+    ]
+  },
+  "/assets/supplier/letter-face-reference.webp": {
+    "width": 964,
+    "height": 585,
+    "variants": [
+      {
+        "src": "/assets/responsive/supplier/letter-face-reference-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/supplier/letter-face-reference-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "/assets/supplier/letter-return-detail.webp": {
+    "width": 746,
+    "height": 484,
+    "variants": [
+      {
+        "src": "/assets/responsive/supplier/letter-return-detail-400.webp",
+        "width": 400
+      }
+    ]
+  },
+  "/assets/supplier/neon-style-signs.webp": {
+    "width": 1434,
+    "height": 779,
+    "variants": [
+      {
+        "src": "/assets/responsive/supplier/neon-style-signs-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/supplier/neon-style-signs-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/supplier/neon-style-signs-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/supplier/supplier-cutting-bed.webp": {
+    "width": 456,
+    "height": 318,
+    "variants": [
+      {
+        "src": "/assets/responsive/supplier/supplier-cutting-bed-400.webp",
+        "width": 400
+      }
+    ]
+  },
+  "/assets/supplier/supplier-forming-equipment.webp": {
+    "width": 443,
+    "height": 252,
+    "variants": [
+      {
+        "src": "/assets/responsive/supplier/supplier-forming-equipment-400.webp",
+        "width": 400
+      }
+    ]
+  },
+  "/assets/supplier/supplier-laser-cutting.webp": {
+    "width": 456,
+    "height": 300,
+    "variants": [
+      {
+        "src": "/assets/responsive/supplier/supplier-laser-cutting-400.webp",
+        "width": 400
+      }
+    ]
+  }
+}

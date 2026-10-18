@@ -1,0 +1,6 @@
+import sharp from 'sharp';
+import {readdir,mkdir,writeFile} from 'node:fs/promises';
+import path from 'node:path';
+const manifest={};
+async function walk(directory){for(const item of await readdir(directory,{withFileTypes:true})){const file=path.join(directory,item.name);if(item.isDirectory()){if(item.name!=='responsive')await walk(file);continue;}if(!/\.(webp|png|jpe?g)$/i.test(file))continue;const image=sharp(file),meta=await image.metadata();const url='/'+file.replaceAll('\\','/').replace(/^public\//,'');const variants=[];for(const width of [400,800,1200]){if(width>=meta.width)continue;const dest=path.join('public/assets/responsive',path.relative('public/assets',file).replace(/\.[^.]+$/,`-${width}.webp`));await mkdir(path.dirname(dest),{recursive:true});await image.clone().resize({width,withoutEnlargement:true}).webp({quality:80}).toFile(dest);variants.push({src:'/assets/responsive/'+path.relative('public/assets/responsive',dest).replaceAll('\\','/'),width});}manifest[url]={width:meta.width,height:meta.height,variants};}}
+await walk('public/assets');await writeFile('src/data/image-variants.json',JSON.stringify(manifest,null,2)+'\n');console.log(`Prepared responsive variants for ${Object.keys(manifest).length} source images.`);

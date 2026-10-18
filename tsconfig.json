@@ -6,6 +6,7 @@
   ],
   "exclude": [
     "dist",
-    "dist-production"
+    "dist-production",
+    "dist-qa"
   ]
 }

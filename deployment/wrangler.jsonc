@@ -2,7 +2,7 @@
   "$schema": "../node_modules/wrangler/config-schema.json",
   "name": "customsignforge",
   "account_id": "77bc392d46985cd3425691358f5e8a77",
-  "main": "@astrojs/cloudflare/entrypoints/server",
+  "main": "../src/worker.ts",
   "compatibility_date": "2026-10-18",
   "compatibility_flags": [
     "nodejs_compat"
@@ -53,5 +53,17 @@
     "PUBLISH_READY": "false",
     "MAIL_FROM": "hello@customsignforge.com",
     "TURNSTILE_SITE_KEY": "0x4AAAAAAFZ_8lQUiumgPxVg"
+  },
+  "triggers": {
+    "crons": [
+      "17 3 * * *"
+    ]
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 0.1,
+    "logs": {
+      "invocation_logs": false
+    }
   }
 }

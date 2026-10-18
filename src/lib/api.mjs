@@ -1,4 +1,5 @@
 import {emailStart,emailVerify} from './sign-in.mjs';
+import {recordMeasurement,measurementReport,sqlDateRange} from './measurement.mjs';
 import { HttpError,text,slug,validateEnquiry,validateContent,validateSettings,imageType,RECORD_STATES,BUSINESS_STAGES,QUALITY } from './validation.mjs';
 import { actor,csrfToken,verifyCSRF,localLogin,sameOrigin,cookie,localMode } from './auth.mjs';
 import { published,siteSettings,contentItem,syncMedia,rateLimit,fingerprint,whatsapp } from './db.mjs';
@@ -17,7 +18,7 @@ async function createEnquiry(request,env){
  sameOrigin(request);const raw=await readJSON(request);const products=await published(env,'product');const details=validateEnquiry(raw,products.map(p=>p.slug));
  if(details.project&&!(await published(env,'project')).some(p=>p.slug===details.project))throw new HttpError(422,'This project reference is no longer available.');
  const hash=await fingerprint(details);let row=await env.DB.prepare('SELECT reference,payload_hash FROM enquiries WHERE idempotency_key=?').bind(details.idempotencyKey).first();
- const replay=!!row;if(row&&row.payload_hash!==hash)throw new HttpError(409,'These details changed. Start a new enquiry before submitting again.');
+ const legacyDetails={...details};delete legacyDetails.acquisition;const legacyHash=await fingerprint(legacyDetails);const replay=!!row;if(row&&row.payload_hash!==hash&&row.payload_hash!==legacyHash)throw new HttpError(409,'These details changed. Start a new enquiry before submitting again.');
  if(!row){await rateLimit(env,request,'enquiry');await verifyBot(env,request,raw.turnstileToken);const bytes=crypto.getRandomValues(new Uint8Array(10));const reference='CSF-'+[...bytes].map(b=>b.toString(16).padStart(2,'0')).join('').toUpperCase();
   await env.DB.prepare('INSERT INTO enquiries(id,reference,idempotency_key,payload_hash,details_json) VALUES(?,?,?,?,?) ON CONFLICT(idempotency_key) DO NOTHING').bind(crypto.randomUUID(),reference,details.idempotencyKey,hash,JSON.stringify(details)).run();
   row=await env.DB.prepare('SELECT reference,payload_hash FROM enquiries WHERE idempotency_key=?').bind(details.idempotencyKey).first();if(row.payload_hash!==hash)throw new HttpError(409,'This submission conflicts with an earlier attempt.');
@@ -27,6 +28,7 @@ async function createEnquiry(request,env){
 async function adminAPI(request,env,route){
  const user=await actor(request,env);const method=request.method;const url=new URL(request.url);
  if(route==='session'&&method==='GET')return json({user:user.id,csrf:await csrfToken(env,user),mode:user.mode});
+ if(route==='measurement'&&method==='GET')return json(await measurementReport(env,url.searchParams));
  if(method!=='GET')await verifyCSRF(request,env,user,request.headers.get('X-CSRF-Token'));
  if(route==='logout'&&method==='POST'){if(user.sessionId)await env.DB.prepare('DELETE FROM admin_sessions WHERE id=?').bind(user.sessionId).run();return json({ok:true},200,{'Set-Cookie':cookie(request,'csf_admin','',0)});}
  if(route==='content'&&method==='GET')return json({items:(await env.DB.prepare('SELECT id,type,slug,status,version,updated_at,draft_json FROM content_items ORDER BY type,sort_order,slug').all()).results.map(r=>({...r,draft:JSON.parse(r.draft_json),draft_json:undefined}))});
@@ -54,10 +56,24 @@ async function adminAPI(request,env,route){
  }
  if(route==='settings'&&method==='GET')return json(await siteSettings(env));
  if(route==='settings'&&method==='PUT'){const raw=await readJSON(request);const previous=await siteSettings(env);const data=validateSettings(raw);if(data.faq===undefined)data.faq=previous.faq;const r=await env.DB.prepare('UPDATE site_settings SET value_json=?,version=version+1 WHERE id=1 AND version=?').bind(JSON.stringify(data),raw.version).run();if(!r.meta.changes)throw new HttpError(409,'Settings changed. Reload before saving.');return json({ok:true,version:raw.version+1});}
+ if(route==='enquiries'&&method==='POST'){
+  const raw=await readJSON(request);const products=await published(env,'product');const details=validateEnquiry({...raw,entry:'',source:{},project:''},products.map(p=>p.slug));
+  if(!['whatsapp','email','offline','other'].includes(raw.channel))throw new HttpError(422,'Select the actual contact channel.');
+  const note=text(raw.note||'',1000,true);details.acquisition.entryMode='manual';details.channel=raw.channel;details.contact=text(raw.contact||'',150);details.source={};
+  const confirmed=raw.confirmed===true;const record=confirmed?'chat_confirmed':'web_recorded';const hash=await fingerprint({details,note,confirmed});
+  const previous=await env.DB.prepare('SELECT id,reference,payload_hash FROM enquiries WHERE idempotency_key=?').bind(details.idempotencyKey).first();
+  if(previous){if(previous.payload_hash!==hash)throw new HttpError(409,'These details changed. Start a new manual entry.');return json({id:previous.id,reference:previous.reference},200);}
+  const id=crypto.randomUUID(),reference='CSF-'+[...crypto.getRandomValues(new Uint8Array(10))].map(b=>b.toString(16).padStart(2,'0')).join('').toUpperCase();
+  await env.DB.batch([
+   env.DB.prepare("INSERT INTO enquiries(id,reference,idempotency_key,payload_hash,details_json,record_status,confirmed_at) VALUES(?,?,?,?,?,?,CASE WHEN ?='chat_confirmed' THEN CURRENT_TIMESTAMP ELSE NULL END)").bind(id,reference,details.idempotencyKey,hash,JSON.stringify(details),record,record),
+   env.DB.prepare('INSERT INTO followup_logs(id,enquiry_id,actor,change_json,note) VALUES(?,?,?,?,?)').bind(crypto.randomUUID(),id,user.id,JSON.stringify({record,stage:'needs_details',quality:'unreviewed',amount:null,currency:null,reason:'',action:'manual_created'}),note)
+  ]);return json({id,reference},201);
+ }
  if(route==='enquiries'&&method==='GET'){
   let where=[],args=[];for(const [key,column,options] of [['record','record_status',RECORD_STATES],['stage','business_stage',BUSINESS_STAGES],['quality','quality',QUALITY]]){const v=url.searchParams.get(key);if(v){if(!options.includes(v))throw new HttpError(422,'Invalid filter.');where.push(column+'=?');args.push(v);}}
   const search=text(url.searchParams.get('q')||'',80);if(search){where.push('reference LIKE ?');args.push('%'+search+'%');}const source=text(url.searchParams.get('source')||'',80);if(source){where.push("json_extract(details_json,'$.source.utm_source')=?");args.push(source);}
   const style=text(url.searchParams.get('style')||'',90);if(style){where.push("json_extract(details_json,'$.style')=?");args.push(style);}
+  const dates=sqlDateRange(url.searchParams);where.push(...dates.where);args.push(...dates.args);
   const sql=where.length?' WHERE '+where.join(' AND '):'';const offset=Math.max(0,Math.min(100000,Number(url.searchParams.get('offset'))||0));const total=await env.DB.prepare('SELECT count(*) total FROM enquiries'+sql).bind(...args).first();
   const rows=await env.DB.prepare('SELECT * FROM enquiries'+sql+' ORDER BY created_at DESC,id DESC LIMIT 25 OFFSET ?').bind(...args,offset).all();return json({total:total.total,offset,items:rows.results.map(r=>({...r,details:JSON.parse(r.details_json),details_json:undefined,payload_hash:undefined,idempotency_key:undefined}))});
  }
@@ -75,6 +91,11 @@ async function adminAPI(request,env,route){
  }
  if(route.startsWith('enquiries/')&&method==='DELETE'){const id=route.slice(10);const r=await env.DB.prepare('DELETE FROM enquiries WHERE id=?').bind(id).run();if(!r.meta.changes)throw new HttpError(404,'Enquiry not found.');return json({ok:true});}
  if(route==='media'&&method==='GET')return json({items:(await env.DB.prepare('SELECT * FROM media ORDER BY created_at DESC').all()).results});
+ if(route.startsWith('media/')&&method==='DELETE'){
+  const key=route.slice(6);const item=await env.DB.prepare('SELECT key,published FROM media WHERE key=?').bind(key).first();if(!item)throw new HttpError(404,'Image not found.');
+  const content=(await env.DB.prepare('SELECT draft_json,published_json FROM content_items').all()).results;if(content.some(row=>(row.draft_json+'\n'+(row.published_json||'')).includes('/media/'+key)))throw new HttpError(409,'Remove this image from saved drafts and published content before deleting it.');
+  await env.MEDIA.delete(key);await env.DB.prepare('DELETE FROM media WHERE key=?').bind(key).run();return json({ok:true});
+ }
  if(route==='media'&&method==='POST'){
   if(!env.MEDIA)throw new HttpError(503,'Image storage is not configured.');const alt=text(request.headers.get('X-Image-Alt')?decodeURIComponent(request.headers.get('X-Image-Alt')):'',200,true);const source=text(request.headers.get('X-Image-Source')?decodeURIComponent(request.headers.get('X-Image-Source')):'',1000,true);
   const bytes=await limitedBody(request,8*1024*1024);const [ext,mime]=imageType(bytes);const key=crypto.randomUUID()+'.'+ext;await env.MEDIA.put(key,bytes,{httpMetadata:{contentType:mime}});
@@ -87,6 +108,7 @@ export async function handleAPI(request,env,route){
   if(route==='auth/email/start'&&request.method==='POST'){const r=await emailStart(request,env,await readJSON(request));return json({challenge:r.challenge,message:'If this email is authorised, a sign-in code has been sent.'},202,{'Set-Cookie':r.cookie});}
   if(route==='auth/email/verify'&&request.method==='POST'){const token=await emailVerify(request,env,await readJSON(request));const headers={'Set-Cookie':cookie(request,'csf_admin',token,28800)};return json({ok:true},200,headers);}
   if(route==='enquiries'&&request.method==='POST')return await createEnquiry(request,env);
+  if(route==='measurement'&&request.method==='POST')return json(await recordMeasurement(request,env,await readJSON(request,4000)),202);
   if(route==='admin/login'&&request.method==='POST'){if(!localMode(env,request.url))throw new HttpError(404,'Not found.');sameOrigin(request);await rateLimit(env,request,'login',5);const raw=await readJSON(request);const token=await localLogin(request,env,raw.password);return json({ok:true},200,{'Set-Cookie':cookie(request,'csf_admin',token,28800)});}
   if(route.startsWith('admin/'))return await adminAPI(request,env,route.slice(6));
   throw new HttpError(404,'API route not found.');
