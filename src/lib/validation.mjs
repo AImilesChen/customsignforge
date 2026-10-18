@@ -46,7 +46,7 @@ export function validateContent(raw,type){
 export function validateSettings(raw){
  const phone=text(raw.whatsapp||'',16);if(phone&&!/^[1-9]\d{6,14}$/.test(phone))throw new HttpError(422,'Use an international WhatsApp number with digits only.');
  const email=text(raw.email||'',150);if(email&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))throw new HttpError(422,'Use a valid business email.');
- return {brand:'Custom Sign Forge',whatsapp:phone,email,businessDescription:text(raw.businessDescription||'',700),faq:raw.faq===undefined?undefined:validateFAQ(raw.faq)};
+ return {brand:'Custom Sign Forge',operatorName:text(raw.operatorName||'',160),operatorNameLocal:text(raw.operatorNameLocal||'',160),whatsapp:phone,email,businessDescription:text(raw.businessDescription||'',700),faq:raw.faq===undefined?undefined:validateFAQ(raw.faq)};
 }
 function validateFAQ(faq){if(!Array.isArray(faq)||faq.length>15)throw new HttpError(422,'Use at most 15 FAQ entries.');return faq.map(f=>[text(f[0],160,true),text(f[1],1500,true)]);}
 export function imageType(bytes){if(bytes[0]===0xff&&bytes[1]===0xd8&&bytes[2]===0xff)return ['jpg','image/jpeg'];if(bytes.slice(0,8).join(',')==='137,80,78,71,13,10,26,10')return ['png','image/png'];if(new TextDecoder().decode(bytes.slice(0,4))==='RIFF'&&new TextDecoder().decode(bytes.slice(8,12))==='WEBP')return ['webp','image/webp'];throw new HttpError(422,'Upload a JPEG, PNG or WebP image.');}
