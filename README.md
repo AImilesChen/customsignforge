@@ -11,7 +11,7 @@ npm run build
 npm run preview
 ```
 
-网站：http://localhost:4321/；后台：http://localhost:4321/admin/。
+网站：[本地预览](http://localhost:4321/)；后台：[管理后台](http://localhost:4321/admin/)。
 
 本机管理员密码在 `.dev.vars`，仅本地开发可用。Google 与邮箱验证码需要配置后才能真实使用。访客询价无需登录。
 

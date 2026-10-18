@@ -23,12 +23,24 @@ export function validateContent(raw,type){
  if(!['product','project','landing','page'].includes(type))throw new HttpError(422,'Invalid content type.');
  const d={title:text(raw.title,120,true),intro:text(raw.intro||'',500),cardDescription:text(raw.cardDescription||'',160),body:text(raw.body||'',18000),image:text(raw.image||'',250),imageAlt:text(raw.imageAlt||'',200),imageKind:raw.imageKind||'concept',seoTitle:text(raw.seoTitle||'',100),seoDescription:text(raw.seoDescription||'',200),indexable:raw.indexable===true,product:raw.product||'',setting:raw.setting||'Other',sort:Number(raw.sort)||0};
  if(d.image&&(!/^\/(?:assets|media)\/[a-zA-Z0-9/_ .-]+\.(?:webp|png|jpe?g)$/.test(d.image)||d.image.split('/').includes('..')))throw new HttpError(422,'Select a local promotional image.');
- if(!['concept','sample','finished_product','client_project'].includes(d.imageKind))throw new HttpError(422,'Invalid image classification.');
+ if(!['concept','sample','finished_product','client_project','supplier_reference'].includes(d.imageKind))throw new HttpError(422,'Invalid image classification.');
  if(d.image&&!d.imageAlt)throw new HttpError(422,'Add alternative text for the image.');
  if(d.imageKind!=='concept'&&!text(raw.sourceNote||'',1000).trim())throw new HttpError(422,'Record the source and permitted use for real photography.');
  d.sourceNote=text(raw.sourceNote||'',1000);if(d.product)d.product=slug(d.product);
  if(!['Office','Storefront','Other'].includes(d.setting))throw new HttpError(422,'Invalid setting.');
  if(!Number.isInteger(d.sort)||d.sort<0||d.sort>9999)throw new HttpError(422,'Invalid sort order.');
+ if(raw.gallery!==undefined&&!Array.isArray(raw.gallery))throw new HttpError(422,'Invalid image gallery.');
+ if((raw.gallery||[]).length>6)throw new HttpError(422,'Use no more than six gallery images.');
+ d.gallery=(raw.gallery||[]).map(item=>{
+  if(!item||typeof item!=='object')throw new HttpError(422,'Invalid gallery image.');
+  const src=text(item.src||'',250,true);
+  if(!/^\/(?:assets|media)\/[a-zA-Z0-9/_ .-]+\.(?:webp|png|jpe?g)$/.test(src)||src.split('/').includes('..'))throw new HttpError(422,'Select a local gallery image.');
+  return {src,alt:text(item.alt||'',200,true),caption:text(item.caption||'',400,true)};
+ });
+ for(const field of ['relatedProducts','relatedProjects']){
+  if(raw[field]!==undefined&&(!Array.isArray(raw[field])||raw[field].length>6))throw new HttpError(422,'Invalid related references.');
+  d[field]=[...new Set((raw[field]||[]).map(value=>slug(value)))];
+ }
  return d;
 }
 export function validateSettings(raw){

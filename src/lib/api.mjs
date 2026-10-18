@@ -42,7 +42,8 @@ async function adminAPI(request,env,route){
   if(raw.action==='publish'){
    if(['product','project','landing'].includes(current.type)&&!data.image)throw new HttpError(422,'Add a main image before publishing.');
    if(current.type==='project'&&(!data.product||!(await published(env,'product')).some(p=>p.slug===data.product)))throw new HttpError(422,'Link this project to a published product before publishing.');
-   if(data.image.startsWith('/media/')&&!await env.DB.prepare('SELECT key FROM media WHERE key=?').bind(data.image.slice(7)).first())throw new HttpError(422,'The selected uploaded image does not exist.');
+   for(const path of [data.image,...data.gallery.map(image=>image.src)])if(path.startsWith('/media/')&&!await env.DB.prepare('SELECT key FROM media WHERE key=?').bind(path.slice(7)).first())throw new HttpError(422,'A selected uploaded image does not exist.');
+   for(const [field,type] of [['relatedProducts','product'],['relatedProjects','project']]){const live=await published(env,type);if(data[field].some(slug=>!live.some(item=>item.slug===slug)))throw new HttpError(422,'Related references must be published before selecting them.');}
   }
   let publishedJSON=current.published_json,status=current.status;if(raw.action==='publish'){publishedJSON=JSON.stringify(data);status='published';}if(raw.action==='unpublish')status='draft';
   if(current.type==='product'&&raw.action==='unpublish'){

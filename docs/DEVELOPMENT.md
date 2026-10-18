@@ -47,3 +47,14 @@
 已通过7项自动化测试、9项真实本地Workers/D1流程检查、21个公开页面和11个图片资源巡检。桌面与手机页面有浏览器截图，保存在docs/evidence。Google令牌验证及真实邮件投递待账号配置，当前只有模拟发送和拒绝伪造回调测试。
 
 `npm run preview`直接使用Wrangler加载Astro生成的dist/server/wrangler.json，并复用本地.wrangler/state。原生Astro preview代理在本机重放退出会话时出现fetch failed，直接Wrangler运行同一构建产物通过检查。保留preview:astro供后续版本排查，不作为本次验收入口。修改后重新build前先停止预览，避免Windows锁住dist目录。dist包含开发构建拷贝的.dev.vars，不上传或打包dist；正式构建使用独立安全环境与Worker secrets。
+
+
+## 内页内容更新（2026-10-18）
+
+增加12张从用户授权供应商手册提取的WebP照片，来源页码见docs/supplier-assets.json。新增supplier_reference作品类型，明确不代表本品牌客户交付。六类产品补充定制范围、安装与报价准备、FAQ及补充图；作品现为2个概念+6个供应商产品参考。关于/B2B/流程和两类落地页重写，关于页不显示经营者和联系方式占位。政策草稿仍待真实业务资料与审核。
+
+后台新增最多6张补充图片（路径、替代文字、公开图注）和落地页推荐产品/作品选择。保存与发布保留这些字段，禁止外部/穿越路径，发布时核对上传图片和关联内容。产品页按关联款式推荐，首页精选作品保持2项。
+
+0003_enriched_content.sql仅升级正文仍为原始版本的初始内容；已编辑草稿不覆盖，SEO字段保留。新安装直接使用更新后的seed.sql。scripts/content-catalog.json是本次英文内容快照，不替代后台数据库。
+
+本轮通过10项自动化测试、9项实际Workers/D1流程检查、19个内容页完整性检查、27个链接页面及23个图片资源检查；浏览器确认桌面图册、390px供应商参考页无横向溢出、后台图片字段可读，未见浏览器错误。证据在docs/evidence。

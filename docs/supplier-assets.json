@@ -1,0 +1,110 @@
+[
+  {
+    "asset": "/assets/supplier/letter-face-reference.webp",
+    "source": "User-provided supplier brochure",
+    "pdfPage": 6,
+    "embeddedImageIndex": 0,
+    "classification": "supplier_reference",
+    "permission": "User authorised use of supplier brochure images in this project",
+    "limits": "Supplier reference only. Not evidence of a Custom Sign Forge client delivery, factory ownership, certification or product specification."
+  },
+  {
+    "asset": "/assets/supplier/letter-edge-section.webp",
+    "source": "User-provided supplier brochure",
+    "pdfPage": 3,
+    "embeddedImageIndex": 4,
+    "classification": "supplier_reference",
+    "permission": "User authorised use of supplier brochure images in this project",
+    "limits": "Supplier reference only. Not evidence of a Custom Sign Forge client delivery, factory ownership, certification or product specification."
+  },
+  {
+    "asset": "/assets/supplier/letter-return-detail.webp",
+    "source": "User-provided supplier brochure",
+    "pdfPage": 3,
+    "embeddedImageIndex": 5,
+    "classification": "supplier_reference",
+    "permission": "User authorised use of supplier brochure images in this project",
+    "limits": "Supplier reference only. Not evidence of a Custom Sign Forge client delivery, factory ownership, certification or product specification."
+  },
+  {
+    "asset": "/assets/supplier/halo-letter-samples.webp",
+    "source": "User-provided supplier brochure",
+    "pdfPage": 22,
+    "embeddedImageIndex": 1,
+    "classification": "supplier_reference",
+    "permission": "User authorised use of supplier brochure images in this project",
+    "limits": "Supplier reference only. Not evidence of a Custom Sign Forge client delivery, factory ownership, certification or product specification."
+  },
+  {
+    "asset": "/assets/supplier/formed-metal-letters.webp",
+    "source": "User-provided supplier brochure",
+    "pdfPage": 20,
+    "embeddedImageIndex": 0,
+    "classification": "supplier_reference",
+    "permission": "User authorised use of supplier brochure images in this project",
+    "limits": "Supplier reference only. Not evidence of a Custom Sign Forge client delivery, factory ownership, certification or product specification."
+  },
+  {
+    "asset": "/assets/supplier/layered-acrylic-letter.webp",
+    "source": "User-provided supplier brochure",
+    "pdfPage": 13,
+    "embeddedImageIndex": 1,
+    "classification": "supplier_reference",
+    "permission": "User authorised use of supplier brochure images in this project",
+    "limits": "Supplier reference only. Not evidence of a Custom Sign Forge client delivery, factory ownership, certification or product specification."
+  },
+  {
+    "asset": "/assets/supplier/neon-style-signs.webp",
+    "source": "User-provided supplier brochure",
+    "pdfPage": 9,
+    "embeddedImageIndex": 0,
+    "classification": "supplier_reference",
+    "permission": "User authorised use of supplier brochure images in this project",
+    "limits": "Supplier reference only. Not evidence of a Custom Sign Forge client delivery, factory ownership, certification or product specification."
+  },
+  {
+    "asset": "/assets/supplier/exposed-light-letter.webp",
+    "source": "User-provided supplier brochure",
+    "pdfPage": 14,
+    "embeddedImageIndex": 2,
+    "classification": "supplier_reference",
+    "permission": "User authorised use of supplier brochure images in this project",
+    "limits": "Supplier reference only. Not evidence of a Custom Sign Forge client delivery, factory ownership, certification or product specification."
+  },
+  {
+    "asset": "/assets/supplier/led-layout-reference.webp",
+    "source": "User-provided supplier brochure",
+    "pdfPage": 27,
+    "embeddedImageIndex": 0,
+    "classification": "supplier_reference",
+    "permission": "User authorised use of supplier brochure images in this project",
+    "limits": "Supplier reference only. Not evidence of a Custom Sign Forge client delivery, factory ownership, certification or product specification."
+  },
+  {
+    "asset": "/assets/supplier/supplier-laser-cutting.webp",
+    "source": "User-provided supplier brochure",
+    "pdfPage": 26,
+    "embeddedImageIndex": 0,
+    "classification": "supplier_reference",
+    "permission": "User authorised use of supplier brochure images in this project",
+    "limits": "Supplier reference only. Not evidence of a Custom Sign Forge client delivery, factory ownership, certification or product specification."
+  },
+  {
+    "asset": "/assets/supplier/supplier-cutting-bed.webp",
+    "source": "User-provided supplier brochure",
+    "pdfPage": 26,
+    "embeddedImageIndex": 16,
+    "classification": "supplier_reference",
+    "permission": "User authorised use of supplier brochure images in this project",
+    "limits": "Supplier reference only. Not evidence of a Custom Sign Forge client delivery, factory ownership, certification or product specification."
+  },
+  {
+    "asset": "/assets/supplier/supplier-forming-equipment.webp",
+    "source": "User-provided supplier brochure",
+    "pdfPage": 26,
+    "embeddedImageIndex": 19,
+    "classification": "supplier_reference",
+    "permission": "User authorised use of supplier brochure images in this project",
+    "limits": "Supplier reference only. Not evidence of a Custom Sign Forge client delivery, factory ownership, certification or product specification."
+  }
+]
