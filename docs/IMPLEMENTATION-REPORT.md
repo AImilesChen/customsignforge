@@ -68,3 +68,11 @@ Stitch原生项目按用户要求排除，不属于待交付项。没有自动�
 完整正向询价测试停在真人验证框。用户已允许完成验证和标记测试提交，但浏览器工具无法点击受保护的闭合Shadow DOM，已请用户在页面手动完成；未绕过或关闭验证。未获得有效验证和保存结果前，不将完整线上询价流程计为通过。真实邮箱登录验证码往返及Google登录也尚未完成端到端验收。
 
 网站已可公开访问，PUBLISH_READY=false 暂时禁止搜索收录，政策仍是待审核草稿；这不是访问保护。GitHub保存源码，本次通过Wrangler部署，尚未设置GitHub推送后自动发布。步骤、私有配置边界及更新方法见 deployment/README.md。截图与机器记录保留在忽略目录 docs/evidence/。
+
+### 正式询价正向提交已验证（2026-10-18）
+
+本节更新上文“等待真人验证”的状态。用户截图和实际页面均已显示Turnstile绿色成功，但原前端仅依赖回调ref，提交时仍误提示缺少验证。提交现在优先从原生FormData读取Cloudflare自动添加的cf-turnstile-response，再兼容回调值；验证成功同时清除旧错误提示。服务端真实Siteverify、hostname和action校验均保持执行，没有添加生产测试绕过。
+
+12项自动化测试、类型检查0错误0警告及生产构建扫描通过，更新已部署，Worker版本db89c4fd-8014-4b8d-851e-430d5ff7c51b。实际浏览器提交得到“PROJECT DETAILS SAVED”和咨询编号CSF-76FE6C48EB82E6E50392；生成的WhatsApp链接指向已确认业务号码，摘要包含同一编号及用途、国家和阶段。已通过正式D1读取到同一条记录，备注明确为DEPLOYMENT QA TEST；随后按该编号与测试备注精确匹配，将其标记为duplicate_or_spam并写审计说明，排除出真实线索。
+
+因此，正式域名下真人验证→询价入库→编号/摘要→WhatsApp预填链接的正向流程现已通过。未点击发送WhatsApp消息，不把生成联系链接或保存记录视为实际客户沟通。成功截图为docs/evidence/production-quote-success.png（不进入公开仓库）。Google OAuth、真实邮箱验证码登录往返和政策审核仍按原待办保留。
