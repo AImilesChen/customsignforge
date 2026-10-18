@@ -58,3 +58,4 @@ jobs:
         run: |
           curl --fail --silent --show-error https://customsignforge.com/ -o /dev/null
           curl --fail --silent --show-error https://customsignforge.com/get-a-quote/ -o /dev/null
+          node scripts/customer-public-smoke.mjs

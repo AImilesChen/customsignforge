@@ -3,27 +3,41 @@ import {recordMeasurement,measurementReport,sqlDateRange} from './measurement.mj
 import { HttpError,text,slug,validateEnquiry,validateContent,validateSettings,imageType,RECORD_STATES,BUSINESS_STAGES,QUALITY } from './validation.mjs';
 import { actor,csrfToken,verifyCSRF,localLogin,sameOrigin,cookie,localMode } from './auth.mjs';
 import { published,siteSettings,contentItem,syncMedia,rateLimit,fingerprint,whatsapp } from './db.mjs';
+import {customerActor,customerCSRF,verifyCustomerCSRF,customerEmailStart,customerEmailVerify,CUSTOMER_SESSION_SECONDS} from './customer-auth.mjs';
+import {verifyTurnstile} from './security.mjs';
 export const json=(value,status=200,headers={})=>new Response(JSON.stringify(value),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...headers}});
 async function limitedBody(request,max=24000){const reader=request.body?.getReader();if(!reader)return new Uint8Array();let parts=[],size=0;while(true){const {done,value}=await reader.read();if(done)break;size+=value.length;if(size>max){await reader.cancel();throw new HttpError(413,'The request is too large.');}parts.push(value);}const out=new Uint8Array(size);let offset=0;for(const p of parts){out.set(p,offset);offset+=p.length;}return out;}
 async function readJSON(request,max=24000){if(!request.headers.get('content-type')?.startsWith('application/json'))throw new HttpError(415,'Use JSON for this request.');try{return JSON.parse(new TextDecoder().decode(await limitedBody(request,max)));}catch(e){if(e instanceof HttpError)throw e;throw new HttpError(400,'Invalid JSON.');}}
 function summary(details,reference,products){return `Hi, I'd like a quote for a custom sign.\nStyle: ${products.find(p=>p.slug===details.style)?.title||'Not sure yet'}\nUse: ${details.use}\nDelivery country: ${details.country}\nProject stage: ${details.stage}\n${details.project?'Reference project: '+details.project+'\n':''}Enquiry ID: ${reference}`;}
-async function verifyBot(env,request,token){
- if(env.APP_ENV==='development'&&['localhost','127.0.0.1','[::1]'].includes(new URL(request.url).hostname))return;
- if(!env.TURNSTILE_SECRET||!env.TURNSTILE_SITE_KEY)throw new HttpError(503,'Enquiries are temporarily unavailable. Please use the contact details shown on this page.');
- if(typeof token!=='string'||!token||token.length>2048)throw new HttpError(422,'Please complete the security check.',{turnstile:'Complete the security check.'});
- let result;try{const r=await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify',{method:'POST',body:new URLSearchParams({secret:env.TURNSTILE_SECRET,response:token}),signal:AbortSignal.timeout(10000)});result=await r.json();}catch{throw new HttpError(503,'Security verification is unavailable. Please try again.');}
- if(!result.success||result.action!=='quote'||result.hostname!==new URL(request.url).hostname)throw new HttpError(422,'The security check expired. Please try again.',{turnstile:'Please repeat the security check.'});
-}
 async function createEnquiry(request,env){
- sameOrigin(request);const raw=await readJSON(request);const products=await published(env,'product');const details=validateEnquiry(raw,products.map(p=>p.slug));
+ sameOrigin(request);const customer=await customerActor(request,env);await verifyCustomerCSRF(request,env,customer);const raw=await readJSON(request);const products=await published(env,'product');const details=validateEnquiry(raw,products.map(p=>p.slug));
  if(details.project&&!(await published(env,'project')).some(p=>p.slug===details.project))throw new HttpError(422,'This project reference is no longer available.');
- const hash=await fingerprint(details);let row=await env.DB.prepare('SELECT reference,payload_hash FROM enquiries WHERE idempotency_key=?').bind(details.idempotencyKey).first();
+ const hash=await fingerprint(details);let row=await env.DB.prepare('SELECT reference,payload_hash,customer_id FROM enquiries WHERE idempotency_key=?').bind(details.idempotencyKey).first();
+ if(row&&row.customer_id!==customer.id)throw new HttpError(409,'Start a new enquiry before submitting again.');
  const legacyDetails={...details};delete legacyDetails.acquisition;const legacyHash=await fingerprint(legacyDetails);const replay=!!row;if(row&&row.payload_hash!==hash&&row.payload_hash!==legacyHash)throw new HttpError(409,'These details changed. Start a new enquiry before submitting again.');
- if(!row){await rateLimit(env,request,'enquiry');await verifyBot(env,request,raw.turnstileToken);const bytes=crypto.getRandomValues(new Uint8Array(10));const reference='CSF-'+[...bytes].map(b=>b.toString(16).padStart(2,'0')).join('').toUpperCase();
-  await env.DB.prepare('INSERT INTO enquiries(id,reference,idempotency_key,payload_hash,details_json) VALUES(?,?,?,?,?) ON CONFLICT(idempotency_key) DO NOTHING').bind(crypto.randomUUID(),reference,details.idempotencyKey,hash,JSON.stringify(details)).run();
-  row=await env.DB.prepare('SELECT reference,payload_hash FROM enquiries WHERE idempotency_key=?').bind(details.idempotencyKey).first();if(row.payload_hash!==hash)throw new HttpError(409,'This submission conflicts with an earlier attempt.');
+ if(!row){await rateLimit(env,request,'enquiry');await rateLimit(env,request,'customer-enquiry',12,customer.id);await verifyTurnstile(env,request,raw.turnstileToken);const bytes=crypto.getRandomValues(new Uint8Array(10));const reference='CSF-'+[...bytes].map(b=>b.toString(16).padStart(2,'0')).join('').toUpperCase();
+  await env.DB.prepare('INSERT INTO enquiries(id,reference,idempotency_key,payload_hash,details_json,customer_id) VALUES(?,?,?,?,?,?) ON CONFLICT(idempotency_key) DO NOTHING').bind(crypto.randomUUID(),reference,details.idempotencyKey,hash,JSON.stringify(details),customer.id).run();
+  row=await env.DB.prepare('SELECT reference,payload_hash,customer_id FROM enquiries WHERE idempotency_key=?').bind(details.idempotencyKey).first();if(row.customer_id!==customer.id||row.payload_hash!==hash)throw new HttpError(409,'This submission conflicts with an earlier attempt.');
  }
  const settings=await siteSettings(env);const message=summary(details,row.reference,products);return json({reference:row.reference,message,whatsappURL:whatsapp(settings,message),email:settings.email||null,recordStatus:'web_recorded'},replay?200:201);
+}
+async function customerAPI(request,env,route){
+ const method=request.method;
+ if(route==='email/start'&&method==='POST'){const r=await customerEmailStart(request,env,await readJSON(request,4000));return json({challenge:r.challenge,message:'Check your inbox for your 8-digit sign-in code.'},202,{'Set-Cookie':r.cookie});}
+ if(route==='email/verify'&&method==='POST'){const token=await customerEmailVerify(request,env,await readJSON(request,4000));const headers=new Headers();headers.append('Set-Cookie',cookie(request,'csf_customer',token,CUSTOMER_SESSION_SECONDS,'Lax'));headers.append('Set-Cookie',cookie(request,'csf_customer_email','',0));const response=json({ok:true});for(const [name,value] of response.headers)headers.set(name,value);return new Response(response.body,{status:200,headers});}
+ const user=await customerActor(request,env);
+ if(route==='session'&&method==='GET')return json({customer:{id:user.id,email:user.email},mode:user.mode,csrf:await customerCSRF(env,user)});
+ if(method!=='GET')await verifyCustomerCSRF(request,env,user);
+ if(route==='logout'&&method==='POST'){await env.DB.prepare('DELETE FROM customer_sessions WHERE id=? AND customer_id=?').bind(user.sessionId,user.id).run();return json({ok:true},200,{'Set-Cookie':cookie(request,'csf_customer','',0,'Lax')});}
+ if((route==='enquiries'||/^enquiries\/CSF-[A-F0-9]{20}$/.test(route))&&method==='GET'){
+  const reference=route==='enquiries'?null:route.slice(10);const offset=Math.max(0,Math.min(100000,Math.floor(Number(new URL(request.url).searchParams.get('offset'))||0)));
+  const rows=reference?{results:[await env.DB.prepare('SELECT reference,created_at,details_json FROM enquiries WHERE customer_id=? AND reference=?').bind(user.id,reference).first()].filter(Boolean)}:await env.DB.prepare('SELECT reference,created_at,details_json FROM enquiries WHERE customer_id=? ORDER BY created_at DESC,id DESC LIMIT 25 OFFSET ?').bind(user.id,offset).all();
+  if(reference&&!rows.results.length)throw new HttpError(404,'Enquiry not found.');
+  const products=await published(env,'product'),settings=await siteSettings(env);const items=rows.results.map(row=>{const d=JSON.parse(row.details_json);const details=Object.fromEntries(['style','use','country','city','stage','timing','notes'].map(k=>[k,d[k]||'']));const message=summary(d,row.reference,products);return {reference:row.reference,createdAt:row.created_at,details,styleName:products.find(p=>p.slug===d.style)?.title||'Not sure yet',message,whatsappURL:whatsapp(settings,message)};});
+  const total=reference?1:(await env.DB.prepare('SELECT count(*) total FROM enquiries WHERE customer_id=?').bind(user.id).first()).total;
+  return json({items,total,offset});
+ }
+ throw new HttpError(404,'Account route not found.');
 }
 async function adminAPI(request,env,route){
  const user=await actor(request,env);const method=request.method;const url=new URL(request.url);
@@ -75,10 +89,10 @@ async function adminAPI(request,env,route){
   const style=text(url.searchParams.get('style')||'',90);if(style){where.push("json_extract(details_json,'$.style')=?");args.push(style);}
   const dates=sqlDateRange(url.searchParams);where.push(...dates.where);args.push(...dates.args);
   const sql=where.length?' WHERE '+where.join(' AND '):'';const offset=Math.max(0,Math.min(100000,Number(url.searchParams.get('offset'))||0));const total=await env.DB.prepare('SELECT count(*) total FROM enquiries'+sql).bind(...args).first();
-  const rows=await env.DB.prepare('SELECT * FROM enquiries'+sql+' ORDER BY created_at DESC,id DESC LIMIT 25 OFFSET ?').bind(...args,offset).all();return json({total:total.total,offset,items:rows.results.map(r=>({...r,details:JSON.parse(r.details_json),details_json:undefined,payload_hash:undefined,idempotency_key:undefined}))});
+  const rows=await env.DB.prepare('SELECT enquiries.*,(SELECT email FROM customers WHERE id=customer_id) customer_email FROM enquiries'+sql+' ORDER BY created_at DESC,id DESC LIMIT 25 OFFSET ?').bind(...args,offset).all();return json({total:total.total,offset,items:rows.results.map(r=>({...r,details:JSON.parse(r.details_json),details_json:undefined,payload_hash:undefined,idempotency_key:undefined}))});
  }
  if(route.startsWith('enquiries/')&&method==='GET'){
-  const id=route.slice(10);const row=await env.DB.prepare('SELECT * FROM enquiries WHERE id=?').bind(id).first();if(!row)throw new HttpError(404,'Enquiry not found.');const logs=await env.DB.prepare('SELECT * FROM followup_logs WHERE enquiry_id=? ORDER BY created_at,id').bind(id).all();return json({...row,details:JSON.parse(row.details_json),details_json:undefined,payload_hash:undefined,idempotency_key:undefined,logs:logs.results.map(l=>({...l,change:JSON.parse(l.change_json),change_json:undefined}))});
+  const id=route.slice(10);const row=await env.DB.prepare('SELECT enquiries.*,(SELECT email FROM customers WHERE id=customer_id) customer_email FROM enquiries WHERE id=?').bind(id).first();if(!row)throw new HttpError(404,'Enquiry not found.');const logs=await env.DB.prepare('SELECT * FROM followup_logs WHERE enquiry_id=? ORDER BY created_at,id').bind(id).all();return json({...row,details:JSON.parse(row.details_json),details_json:undefined,payload_hash:undefined,idempotency_key:undefined,logs:logs.results.map(l=>({...l,change:JSON.parse(l.change_json),change_json:undefined}))});
  }
  if(route.startsWith('enquiries/')&&method==='PATCH'){
   const id=route.slice(10);const raw=await readJSON(request);if(!RECORD_STATES.includes(raw.record)||!BUSINESS_STAGES.includes(raw.stage)||!QUALITY.includes(raw.quality))throw new HttpError(422,'Invalid follow-up status.');
@@ -105,6 +119,7 @@ async function adminAPI(request,env,route){
 }
 export async function handleAPI(request,env,route){
  try{
+  if(route.startsWith('account/'))return await customerAPI(request,env,route.slice(8));
   if(route==='auth/email/start'&&request.method==='POST'){const r=await emailStart(request,env,await readJSON(request));return json({challenge:r.challenge,message:'If this email is authorised, a sign-in code has been sent.'},202,{'Set-Cookie':r.cookie});}
   if(route==='auth/email/verify'&&request.method==='POST'){const token=await emailVerify(request,env,await readJSON(request));const headers={'Set-Cookie':cookie(request,'csf_admin',token,28800)};return json({ok:true},200,headers);}
   if(route==='enquiries'&&request.method==='POST')return await createEnquiry(request,env);

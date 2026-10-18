@@ -9,7 +9,7 @@ Production uses `deployment/wrangler.jsonc` and a separate `dist-production/` ou
 - Private R2 bucket: `customsignforge-production-media`; uploaded images are served by the application only after publication.
 - Custom domains: `customsignforge.com`, `www.customsignforge.com`; www redirects to the apex over HTTPS.
 - Turnstile: the production enquiry widget accepts those two hostnames. Server verification checks the hostname and `quote` action.
-- Email: `LOGIN_EMAIL` can send from `hello@customsignforge.com`. The application restricts login mail to the private administrator allowlist. Google OAuth is independent and remains disabled until its credentials are configured.
+- Email: `LOGIN_EMAIL` can send from `hello@customsignforge.com`. Administrator login mail is restricted to the private administrator allowlist. Customer login codes are sent only after an explicit sign-in request, with Turnstile and IP/address/global send limits. Google OAuth is independent and becomes available when both credentials are configured.
 
 ## Build and update
 
@@ -61,7 +61,7 @@ Custom Worker entry: https://docs.astro.build/en/guides/integrations-guide/cloud
 
 Create a deployment token restricted as far as Cloudflare permits to this account, Worker and database; store it using GitHub's protected secret interface. Confirm the `production` environment, then enable `CF_AUTO_DEPLOY`. No successful automated deployment is claimed until a run has passed. Existing Worker application secrets remain on Cloudflare and must not be included in source or build output.
 
-Google login is explicitly deferred by the operator. When resumed, use a web OAuth client with redirect URI `https://customsignforge.com/auth/google/callback`, authorised origin `https://customsignforge.com`, and only the `openid email` scopes. Configure the client secret through the protected Worker secret interface and test the allowlist, callback and logout. Do not add customer registration.
+Customer Google login is now required by the operator. Use a web OAuth client with redirect URI `https://customsignforge.com/auth/google/callback`, authorised origin `https://customsignforge.com`, and only the `openid email` scopes. Configure the client secret through the protected Worker secret interface and test the allowlist, callback and logout. Customer sign-in starts at `/auth/customer/google`; administrator sign-in remains `/auth/google`. Both use the configured callback, with separate signed state audiences and cookies, and produce separate customer/admin sessions. A customer account does not grant administrative access.
 
 
 ### Verified automation status
@@ -71,3 +71,18 @@ On 18 October 2026 the owner authorised a dedicated deployment token, saved as a
 Production administrator email sign-in, draft/publication isolation, R2 publication privacy, manual entry and follow-up have now been tested. A backup was restored into an isolated temporary Cloudflare database; business-table counts matched the export, and the temporary database was removed. Production was not rolled back. Store backup exports privately; longer-term business retention, rotation and alert destinations are still pending operator confirmation.
 
 Consent version 2 deliberately asks for a fresh choice when analytics become active; version 1 preview preferences do not activate measurement. Source/date filters apply to events and lead cohorts; manually entered actual spend is an in-memory estimate, with no ad-account integration or claim of platform attribution.
+
+
+## Customer accounts and authenticated enquiries (18 October 2026)
+
+The owner explicitly changed the earlier no-customer-account scope. The public header now contains Sign In / My Account on desktop and mobile. Anonymous quote-page requests redirect to `/sign-in/` and retain the product, reference and campaign query in a bounded, allowlisted return path. Only authenticated customer sessions can submit `/api/enquiries`; admin sessions alone do not satisfy that gate. Browse-only pages and public business contact links remain available.
+
+Migration `0007_customer_accounts.sql` adds customer accounts, independent customer sessions and email challenges, plus a nullable enquiry owner. Existing enquiry records are retained without automatically assigning them to a customer. Do not grant ownership to old or manually entered records merely because someone knows an enquiry reference or an email address. The API always derives the owner from the verified server session, and checks ownership on retries and reads. Private staff notes and business classifications are not returned through the customer API.
+
+Customer email verification is browser-bound, single use, expires in ten minutes and allows five attempts per challenge. Requested code emails are rate-limited and require the customer-login Turnstile action in production. Customer sessions last up to seven days and are revoked on sign-out; session-bound customer CSRF tokens are required for writes. Daily maintenance expires both customer sessions and pending customer email challenges, without deleting accounts or enquiry records.
+
+Google customers are not restricted to the administrator allowlist. Google-managed verified emails (Gmail or Workspace) can sign in with verified OIDC claims and a stable subject; unmanaged third-party email addresses are directed to email verification to prove current mailbox control. The shared callback verifies signature/issuer/audience/nonce/PKCE/state and cannot upgrade customer identity to administrator access. Keep OAuth credentials as Worker secrets. The Google consent audience and any test-user restrictions must be validated in an actual customer sign-in; a valid redirect alone is not a full acceptance test.
+
+The local `send_email` binding simulates code delivery. Local browser QA may use the reserved `customer-qa@example.test` fixture and a controlled test challenge in the local database. That is not evidence of external email delivery and must never be copied to production. No production test-auth endpoint, dummy OTP or CAPTCHA bypass is included. The public release smoke script never sends emails or creates a customer account.
+
+Cookie/Privacy/Terms technical drafts now describe customer identity and login state; optional analytics exclude sign-in and account pages. Account retention/closure and other unresolved business-policy facts remain subject to review.

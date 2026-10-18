@@ -27,6 +27,15 @@
   "vars": {
     "APP_ENV": "development",
     "SITE_URL": "https://customsignforge.com",
-    "LOCAL_ADMIN_ENABLED": "true"
-  }
+    "LOCAL_ADMIN_ENABLED": "true",
+    "MAIL_FROM": "hello@customsignforge.com"
+  },
+  "send_email": [
+    {
+      "name": "LOGIN_EMAIL",
+      "allowed_sender_addresses": [
+        "hello@customsignforge.com"
+      ]
+    }
+  ]
 }

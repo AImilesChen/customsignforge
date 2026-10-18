@@ -7,15 +7,22 @@ import {structuredData,serializeStructuredData} from '../lib/structured-data.mjs
 import '../styles/site.css';
 import headingFont from '@fontsource/manrope/files/manrope-latin-700-normal.woff2?url';
 import bodyFont from '@fontsource/source-sans-3/files/source-sans-3-latin-400-normal.woff2?url';
+import {customerActor,customerMailConfigured,customerNext} from '../lib/customer-auth.mjs';
 const path=Astro.url.pathname==='/'?'/':Astro.url.pathname.replace(/\/?$/,'/');
 const site=await publicData(env);
+let customer=null;try{customer=await customerActor(Astro.request,env);}catch{}
+if(['/get-a-quote/','/account/'].includes(path)&&!customer)return Astro.redirect('/sign-in/?'+new URLSearchParams({next:customerNext(path+Astro.url.search)}),303);
+if(path==='/sign-in/'&&customer)return Astro.redirect(customerNext(Astro.url.searchParams.get('next')),303);
+const customerSite={...site,customer:customer?{id:customer.id,email:customer.email}:null,settings:{...site.settings,customerGoogleEnabled:!!(env.GOOGLE_CLIENT_ID&&env.GOOGLE_CLIENT_SECRET),customerEmailEnabled:customerMailConfigured(env)}};
 const item=site.products.find((p:{slug:string;seoTitle?:string;seoDescription?:string;title:string;intro:string;indexable?:boolean})=>path===`/products/${p.slug}/`)||site.works.find((p:{slug:string;seoTitle?:string;seoDescription?:string;title:string;intro:string;indexable?:boolean})=>path===`/projects/${p.slug}/`)||site.pages.find((p:{slug:string;seoTitle?:string;seoDescription?:string;title:string;intro:string;indexable?:boolean})=>path===`/${p.slug}/`)||site.landings.find((p:{slug:string;seoTitle?:string;seoDescription?:string;title:string;intro:string;indexable?:boolean})=>path===`/landing/${p.slug}/`);
 const policy=copy.policies.find(p=>p.route===path);
 const fixed:Record<string,[string,string]>={
  '/':['Custom Signs, Made for Your Business','Custom business signs, illuminated lettering and dimensional signage. Explore styles and discuss your custom project.'],
  '/products/':['Custom Sign Styles','Compare illuminated, metal, acrylic and specialty custom sign styles for your commercial space.'],
  '/projects/':['Sign Work & Design References','Explore clearly labelled commercial sign concepts and project references.'],
- '/get-a-quote/':['Get a Custom Sign Quote','Share a few project details to discuss your custom sign requirements and quote.']
+ '/get-a-quote/':['Get a Custom Sign Quote','Share a few project details to discuss your custom sign requirements and quote.'],
+ '/sign-in/':['Customer Sign In','Sign in with Google or verify your email to request a custom sign quote.'],
+ '/account/':['Your Sign Enquiries','Review the custom sign enquiries saved to your customer account.']
 };
 const designOnly=['/design-kit/','/review/products/','/review/work/'];
 const found=!!item||!!policy||!!fixed[path]||(env.APP_ENV!=='production'&&designOnly.includes(path));
@@ -24,7 +31,7 @@ const title=(item?.seoTitle||item?.title||policy?.title||fixed[path]?.[0]||'Page
 const description=item?.seoDescription||item?.intro||fixed[path]?.[1]||'Custom Sign Forge business signage information.';
 const base=String(env.SITE_URL||'https://customsignforge.com').replace(/\/$/,'');
 const canonical=base+path;
-const indexable=env.APP_ENV==='production'&&env.PUBLISH_READY==='true'&&found&&!policy&&!designOnly.includes(path)&&(item?item.indexable!==false:!['/projects/','/get-a-quote/'].includes(path));
+const indexable=env.APP_ENV==='production'&&env.PUBLISH_READY==='true'&&found&&!policy&&!designOnly.includes(path)&&(item?item.indexable!==false:!['/projects/','/get-a-quote/','/sign-in/','/account/'].includes(path));
 Astro.response.headers.set('Cache-Control','no-store');
 const schema=structuredData({base,path,title,description,settings:site.settings,item,found});
 ---
@@ -34,7 +41,7 @@ const schema=structuredData({base,path,title,description,settings:site.settings,
  <link rel="canonical" href={canonical}/><link rel="icon" type="image/svg+xml" href="/brand/icon.svg"/><link rel="icon" href="/brand/favicon.ico"/><link rel="apple-touch-icon" href="/brand/apple-touch-icon.png"/><link rel="manifest" href="/brand/site.webmanifest"/>
  <meta name="theme-color" content="#20272d"/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/><meta property="og:url" content={canonical}/><meta property="og:image" content={base+'/brand/og-image.png'}/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta name="twitter:card" content="summary_large_image"/>
 <script type="application/ld+json" set:html={schema?serializeStructuredData(schema):'null'}></script>
-</head><body><noscript><style>.quote-layout form{display:none}</style><p style="padding:20px;text-align:center">Enable JavaScript to submit the enquiry form, or use the available business contact details below.</p></noscript><App site={site} path={found?path:'/not-found/'} query={Astro.url.search} client:load/>
+</head><body><noscript><style>.quote-layout form,.customer-login-card form{display:none}</style><p style="padding:20px;text-align:center">Enable JavaScript to sign in and submit your enquiry, or use the business contact details below.</p></noscript><App site={customerSite} path={found?path:'/not-found/'} query={Astro.url.search} client:load/>
 <script>
  import {startMeasurement} from '../lib/browser-measurement.mjs';
  startMeasurement();
