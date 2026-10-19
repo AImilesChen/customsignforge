@@ -9,6 +9,7 @@ import headingFont from '@fontsource/manrope/files/manrope-latin-700-normal.woff
 import bodyFont from '@fontsource/source-sans-3/files/source-sans-3-latin-400-normal.woff2?url';
 import {customerActor,customerMailConfigured,customerNext} from '../lib/customer-auth.mjs';
 const path=Astro.url.pathname==='/'?'/':Astro.url.pathname.replace(/\/?$/,'/');
+if(path==='/legal-notice/')return Astro.redirect('/contact/#company-information',301);
 const site=await publicData(env);
 let customer=null;try{customer=await customerActor(Astro.request,env);}catch{}
 if(['/get-a-quote/','/account/'].includes(path)&&!customer)return Astro.redirect('/sign-in/?'+new URLSearchParams({next:customerNext(path+Astro.url.search)}),303);
