@@ -1032,5 +1032,41 @@
         "width": 1200
       }
     ]
+  },
+  "/assets/process-v2/project-brief.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/process-v2/project-brief-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/process-v2/project-brief-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/process-v2/project-brief-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/process-v2/specification-review.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/process-v2/specification-review-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/process-v2/specification-review-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/process-v2/specification-review-1200.webp",
+        "width": 1200
+      }
+    ]
   }
 }

@@ -1,0 +1,43 @@
+{
+  "title": "Your Idea. Made into a Sign.",
+  "intro": "A clear path from your first reference to an agreed specification, production and delivery. Start with the details you have.",
+  "hero": {"src":"/assets/product-depth/metal-cut.webp","alt":"Black dimensional ATELIER logo and lettering on a pale stone wall","caption":"Finished appearance · AI-generated design concept"},
+  "brief": {"src":"/assets/process-v2/project-brief.webp","alt":"ATELIER logo artwork, location photos and rough dimensions arranged on a design desk","caption":"Project preparation · AI-generated illustration"},
+  "specification": {"src":"/assets/process-v2/specification-review.webp","alt":"Illustrative ATELIER drawing with overall dimensions, finish samples and fixing details","caption":"Specification example · AI-generated illustration; dimensions are illustrative"},
+  "packing": {"src":"/assets/home-v2/process-packing.webp","alt":"Illustrative dimensional letters separated and protected by foam inside a carton","caption":"Packing approach · AI-generated illustration"},
+  "stages": [
+    {"id":"share-your-brief","short":"Share Your Brief","title":"Start with Your Idea.","intro":"A logo, a reference or a photo of the space is enough to begin the discussion.","input":"Sign in with Google or verify your email, then add your contact number, intended use and delivery destination.","work":"We review the starting information and clarify the style, size, quantity and any open requirements with you.","result":"A saved enquiry and a clear starting point for your project.","linkLabel":"Share Your Brief & Files"},
+    {"id":"specification-and-quote","short":"Specification & Quote","title":"Resolve the Details. Review Your Quote.","intro":"Bring the artwork, construction and supplied scope together before the order moves forward.","input":"Share available dimensions, site photos and colour or finish references. Tell us what is still provisional.","work":"We review the artwork, materials, lighting, fixing and delivery requirements, then prepare a project-based quote.","result":"Review the specification, price, inclusions and order terms. Approve the agreed requirements in writing before production.","linkLabel":"Discuss Your Specification"},
+    {"id":"production-and-checks","short":"Production & Checks","title":"Made to the Agreed Specification.","intro":"The approved details guide fabrication, finishing and the checks required for your sign.","input":"Confirm the inspection points and any photos, records or documentation required with your order.","work":"We make your sign to the confirmed requirements and carry out the agreed appearance, construction and lighting checks where applicable.","result":"Complete the agreed order checks and confirm the packing and dispatch arrangements.","linkLabel":"Discuss Your Order Requirements"},
+    {"id":"delivery-and-installation","short":"Delivery Preparation","title":"Protected for the Journey. Prepared for Your Site.","intro":"Plan the packing, shipment and local installation together, before dispatch.","input":"Confirm the delivery address, local installation arrangements and any access or documentation needs.","work":"We prepare the agreed protection and shipment arrangements, and confirm the supplied installation information.","result":"Know the shipping scope, timing and import responsibilities. Resolve local fixing, electrical work and approvals with your installer.","linkLabel":"Shipping & Installation"}
+  ],
+  "preparation": [
+    ["Artwork or inspiration","Your logo, sign text, sketch or a reference image."],
+    ["Size & quantity","Approximate overall dimensions and number of complete signs; choose not sure if needed."],
+    ["The installation space","A location photo, indoor or outdoor use and the mounting surface."],
+    ["Destination & timing","Delivery country and city, plus a target arrival or opening date if you have one."]
+  ],
+  "production": [
+    {"src":"/assets/supplier/formed-metal-letters.webp","alt":"Brushed metal letter samples showing faces and formed dimensional returns","caption":"Construction & surface · Fabrication sample","title":"Shape, Finish & Detail","text":"Review the artwork, dimensions, visible surfaces and construction against the agreed requirements."},
+    {"src":"/assets/supplier/led-layout-reference.webp","alt":"Illuminated LED arrangement inside a dimensional letter sample","caption":"Lighting arrangement · Fabrication reference","title":"Lighting Where Specified","text":"For illuminated signs, agree the lighting configuration, checks and any required records."},
+    {"src":"/assets/supplier/letter-edge-section.webp","alt":"Close view of a formed letter face, edge and return","caption":"Face & return · Construction detail","title":"The Supplied Assembly","text":"Confirm the returns, fixings, backing and other components included in your order."}
+  ],
+  "approval": [
+    ["Artwork & spelling","Logo, text, typeface, spacing and orientation."],
+    ["Dimensions & quantity","Overall size, depth and number of complete signs."],
+    ["Finish & lighting","Material, surface, colours and light where specified."],
+    ["Mounting & power","Wall conditions, fixing, cable exit and supplied parts."],
+    ["Price & order terms","Currency, payment arrangements, inclusions and exclusions."],
+    ["Delivery & responsibilities","Destination, schedule, shipping scope and local installation."]
+  ],
+  "faq": [
+    ["Can I start with only a logo or a reference photo?","Yes. Sign in and share what you have. A finished technical drawing is not required to begin the discussion; the final artwork and construction requirements must be confirmed before production."],
+    ["What if I do not know the size or sign style yet?","Choose not sure in the enquiry form. A photo of the space, the approximate available area and how the sign will be viewed help us discuss a suitable direction. Final dimensions must be confirmed for the order."],
+    ["How is the price confirmed?","We quote for the design, dimensions, materials, lighting, quantity and delivery scope. Review the currency, included components, shipping costs, assumptions, exclusions and validity conditions in your quotation."],
+    ["Can I enquire about one sign?","Tell us the number of complete signs you need, including a single sign. We will review the construction, feasibility and project price for your requirement."],
+    ["How long will production and shipping take?","Tell us your destination and any target arrival or opening date. Production and transit schedules are confirmed for the actual specification and shipping arrangement; an enquiry does not reserve a delivery date."],
+    ["Can I change the design after approval?","Contact us promptly with the requested change. We will confirm whether it is possible and whether price or timing changes at the current production stage. A requested change takes effect only when agreed."],
+    ["Who handles installation?","Confirm local installation, fixing, electrical connection and any permissions with your installer. Tell us which templates, drawings or other installation information you need so the available scope can be agreed before production."],
+    ["What should I do if something arrives damaged or incorrect?","Keep the packaging and photograph the issue. Contact us promptly with the order reference and relevant images so the issue can be reviewed under the agreed order and support arrangements."]
+  ]
+}

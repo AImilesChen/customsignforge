@@ -1,0 +1,20 @@
+[
+  {
+    "src": "/assets/process-v2/project-brief.webp",
+    "width": 1448,
+    "height": 1086,
+    "sha256": "375e8c8c02ab8edf28933431e83c6c23a296d2bf9ec8d54ccaadb67d98a65461",
+    "classification": "AI-generated process illustration",
+    "actual_order_or_inspection_record": false,
+    "source_png": "../design-assets/process-v2-sources/project-brief.png"
+  },
+  {
+    "src": "/assets/process-v2/specification-review.webp",
+    "width": 1448,
+    "height": 1086,
+    "sha256": "915aeb213d39fe4c5ff81e363feb930ceb82ec86190efcedf5b27a3ccdab7608",
+    "classification": "AI-generated process illustration",
+    "actual_order_or_inspection_record": false,
+    "source_png": "../design-assets/process-v2-sources/specification-review.png"
+  }
+]
