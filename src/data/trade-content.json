@@ -1,0 +1,63 @@
+{
+  "title": "Custom Sign Manufacturing for the Trade",
+  "intro": "Custom illuminated letters, metal logos and commercial signage, made to your artwork and project specifications.",
+  "body": "## Signs for Your Next Customer Project.\n\nWe make custom illuminated letters, metal lettering, acrylic logos and commercial signs around your artwork, dimensions and installation requirements.\n\n## From Artwork to an Agreed Specification\n\nShare your drawings, overall dimensions, quantities and destination. We review materials, finish, lighting, mounting and delivery before production approval. Preliminary files are welcome.\n\n## Production and Order Checks\n\nWe confirm the appearance, construction, lighting and packing check points for your order. Required inspection records, documentation and installation aids are included where agreed in your quotation.\n\n## Project and Repeat Orders\n\nFor repeat or multi-site requirements, identify the approved design reference, quantities by location and any differences in size or fixing. We review schedules, labelling and shipment arrangements for the project.\n\n## Start Your Trade Enquiry\n\nSign in to share your artwork, approximate dimensions, quantity, delivery destination and target date. We will follow up to clarify the details and prepare your project quote.",
+  "hero": {"src":"/assets/supplier/halo-letter-samples.webp","alt":"Brushed metal letters with illuminated acrylic backing on a work surface","caption":"Illuminated metal lettering · Fabrication sample"},
+  "products": [
+    {"slug":"led-channel-letters","title":"Front-Lit Letters","image":"/assets/home-v2/style-front-lit.webp","alt":"Front-lit letters on a commercial storefront, design concept","text":"Illuminated faces for storefronts and building identities."},
+    {"slug":"backlit-letters","title":"Halo-Lit Letters","image":"/assets/home-v2/style-halo-lit.webp","alt":"Warm halo-lit bronze letters on stone, design concept","text":"Rear illumination for reception walls and hospitality spaces."},
+    {"slug":"metal-letters","title":"Metal Lettering","image":"/assets/home-v2/style-metal.webp","alt":"Brushed metal dimensional lettering, design concept","text":"Material, depth and surface finish for architectural signage."},
+    {"slug":"acrylic-letters","title":"Acrylic & Logo Signs","image":"/assets/products-v2/acrylic-scene.webp","alt":"Custom acrylic logo sign in a commercial interior, design concept","text":"Cut shapes, layered logos and custom colour combinations."}
+  ],
+  "options": [
+    ["Artwork & Dimensions","Vector logos, lettering, overall size, individual letter depth and quantities."],
+    ["Material & Finish","Metal or acrylic construction, brushed or painted surfaces and colour references."],
+    ["Lighting & Electrical","Front-lit, halo-lit or unlit construction; light colour and destination requirements."],
+    ["Mounting & Installation","Fixing positions, wall clearance, cable access and the requirements of your installer."]
+  ],
+  "production": [
+    {"image":"/assets/supplier/supplier-laser-cutting.webp","alt":"Laser cutting a metal sheet for sign fabrication","title":"Cutting & Forming","text":"Artwork and dimensions guide the cut profile, return depth and assembled shape.","caption":"Laser-cutting process"},
+    {"image":"/assets/supplier/letter-return-detail.webp","alt":"Close-up of a brushed metal letter face and formed return","title":"Construction & Finish","text":"Review edges, joins, visible surfaces and finish against the approved reference.","caption":"Metal return and surface detail"},
+    {"image":"/assets/supplier/led-layout-reference.webp","alt":"LED modules and fixings visible inside an illuminated letter","title":"Lighting & Assembly","text":"Confirm the lighting layout, component configuration and illuminated appearance.","caption":"Internal LED construction detail"}
+  ],
+  "checks": ["Dimensions & quantity","Surface & visible edges","Lighting & connections","Fixings & supplied parts"],
+  "support": [
+    ["Drawing Review","We work through open dimensions, artwork and construction details before production approval."],
+    ["Installation Preparation","Discuss mounting templates, fixing details and documentation needed by your local team."],
+    ["Repeat & Multi-Site Orders","Keep an approved design reference and identify quantities, variations and destinations."],
+    ["Packing & Dispatch","Review protection, item identification and shipment grouping for the order."]
+  ],
+  "references": [
+    {"slug":"backlit-letters","image":"/assets/products-v2/halo-reception.webp","alt":"Halo-lit lettering in a reception, design concept","title":"Reception & Office Signage","text":"Coordinate the logo finish, wall clearance, lighting and fixing details.","meta":"Halo-lit lettering · Interior concept"},
+    {"slug":"led-channel-letters","image":"/assets/home-v2/scene-storefront.webp","alt":"Front-lit letters above a storefront, design concept","title":"Storefront Lettering","text":"Review the fascia proportions, letter depth, wiring access and installation position.","meta":"Front-lit channel letters · Storefront concept"}
+  ],
+  "steps": [
+    ["Share Your Brief","Sign in and send artwork, approximate dimensions, quantities and destination."],
+    ["Review Your Quote","Confirm the proposed construction, finish, price, supplied items and delivery scope."],
+    ["Approve for Production","Approve the drawings and outstanding details before fabrication begins."],
+    ["Check & Dispatch","Complete the agreed order checks, packing and shipment arrangements."]
+  ],
+  "faq": [
+    ["Can I start with a preliminary drawing?","Yes. Upload a logo, sketch or reference image and mark any dimensions that are still provisional. We will clarify the open points before production approval."],
+    ["Which files should I send?","PDF, AI, EPS, DWG, DXF, JPG, PNG and WebP are supported. Vector artwork is useful for lettering and logos. The enquiry form accepts up to 3 files, 10 MB each and 20 MB in total; export other formats such as CDR as PDF."],
+    ["Can I request one sign or a repeat order?","Tell us the quantity and whether this is a one-off, repeat or multi-site requirement. We review the construction, order size and schedule individually when preparing your quote."],
+    ["Can I request samples or a finish reference?","Include the finish, colour or lighting detail you need to review. We will confirm the available sample or approval options, cost and timing for your project."],
+    ["Can you provide neutral packaging or installation templates?","Tell us what your project needs. Neutral packaging, labels, mounting templates, fixing details and shipment grouping can be discussed before quoting. The items and services included are confirmed in the order scope."],
+    ["How are production time and shipping confirmed?","Share your destination and any fixed opening or installation date. We confirm production and transit arrangements with your quotation; these are separate parts of the schedule."],
+    ["Is local installation included?","Local site work and electrical connection are included only where expressly agreed. Tell us who will install the signs so we can review fixing details and any required installation information."],
+    ["Can you supply required certificates or inspection records?","Identify the destination, product requirements and documents you need at the enquiry stage. Availability and applicability are confirmed for the quoted configuration before order acceptance."]
+  ],
+  "businessDescription": "Custom business signs, illuminated letters and dimensional lettering, made to your project specifications. We welcome enquiries from Southeast Asia, Europe and North America. Pricing and delivery are confirmed for each order.",
+  "about": {
+    "title":"Custom Signs, Made Around Your Brand",
+    "intro":"Custom Sign Forge supplies custom illuminated letters, metal logos and commercial signage made to your artwork, space and project requirements.",
+    "body":"## Made Around Your Brand.\n\nWe turn logos, lettering and reference ideas into custom signs for shops, offices, hospitality spaces and commercial projects. Our focus is a clear specification, considered construction and a finished sign that fits its setting.\n\n## From Your Artwork to Production\n\nWe review your logo, dimensions, material, finish, lighting and mounting requirements with you. The quotation identifies the supplied items, price and delivery arrangements. Final drawings and open details are confirmed before production begins.\n\n## The Details Behind the Sign\n\nExplore metal construction, illuminated lettering and fabrication details. We review the appearance, order checks and packing requirements against the approved specification. Any requested inspection records, finish references or installation aids are confirmed for the order.\n\n## For Business Owners and the Trade\n\nWe welcome individual business projects, sign companies, installers and design teams. Share your intended use, quantity and destination so we can review the right fabrication approach for your project.\n\n## Start with What You Know\n\nA logo, a reference photo or approximate dimensions are enough to begin the conversation. Sign in to send your project details and files, then discuss the specification and quote with us.",
+    "image":"/assets/supplier/halo-letter-samples.webp",
+    "imageAlt":"Illuminated metal letter samples on a work surface",
+    "gallery":[
+      {"src":"/assets/supplier/supplier-laser-cutting.webp","alt":"Laser cutting metal sheet","caption":"Laser-cutting process"},
+      {"src":"/assets/supplier/letter-return-detail.webp","alt":"Formed metal letter return and surface detail","caption":"Metal construction and finish"},
+      {"src":"/assets/supplier/led-layout-reference.webp","alt":"Internal LED layout in a dimensional letter","caption":"Illuminated letter construction"}
+    ]
+  }
+}
