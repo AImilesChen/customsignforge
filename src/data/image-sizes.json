@@ -86,5 +86,45 @@
   "/assets/supplier/supplier-laser-cutting.webp": [
     456,
     300
+  ],
+  "/assets/home-v2/custom-arc.webp": [
+    1440,
+    1080
+  ],
+  "/assets/home-v2/process-fabrication.webp": [
+    1448,
+    1086
+  ],
+  "/assets/home-v2/process-lighting.webp": [
+    1448,
+    1086
+  ],
+  "/assets/home-v2/process-packing.webp": [
+    1448,
+    1086
+  ],
+  "/assets/home-v2/scene-hospitality.webp": [
+    1983,
+    793
+  ],
+  "/assets/home-v2/scene-reception.webp": [
+    1983,
+    793
+  ],
+  "/assets/home-v2/scene-storefront.webp": [
+    1536,
+    1024
+  ],
+  "/assets/home-v2/style-front-lit.webp": [
+    1448,
+    1086
+  ],
+  "/assets/home-v2/style-halo-lit.webp": [
+    1448,
+    1086
+  ],
+  "/assets/home-v2/style-metal.webp": [
+    1448,
+    1086
   ]
 }

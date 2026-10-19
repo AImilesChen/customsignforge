@@ -24,10 +24,11 @@ const fixed:Record<string,[string,string]>={
  '/sign-in/':['Customer Sign In','Sign in with Google or verify your email to request a custom sign quote.'],
  '/account/':['Your Sign Enquiries','Review the custom sign enquiries saved to your customer account.']
 };
-const designOnly=['/design-kit/','/review/products/','/review/work/'];
+const designOnly=['/design-kit/','/review/products/','/review/work/','/review/custom/'];
 const found=!!item||!!policy||!!fixed[path]||(env.APP_ENV!=='production'&&designOnly.includes(path));
 if(!found)Astro.response.status=404;
-const title=(item?.seoTitle||item?.title||policy?.title||fixed[path]?.[0]||'Page Not Found')+' | Custom Sign Forge';
+const reviewTitle=env.APP_ENV!=='production'&&designOnly.includes(path)?'Homepage Design Review':null;
+const title=(item?.seoTitle||item?.title||policy?.title||fixed[path]?.[0]||reviewTitle||'Page Not Found')+' | Custom Sign Forge';
 const description=item?.seoDescription||item?.intro||fixed[path]?.[1]||'Custom Sign Forge business signage information.';
 const base=String(env.SITE_URL||'https://customsignforge.com').replace(/\/$/,'');
 const canonical=base+path;

@@ -67,6 +67,186 @@
       }
     ]
   },
+  "/assets/home-v2/custom-arc.webp": {
+    "width": 1440,
+    "height": 1080,
+    "variants": [
+      {
+        "src": "/assets/responsive/home-v2/custom-arc-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/home-v2/custom-arc-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/home-v2/custom-arc-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/home-v2/process-fabrication.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/home-v2/process-fabrication-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/home-v2/process-fabrication-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/home-v2/process-fabrication-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/home-v2/process-lighting.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/home-v2/process-lighting-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/home-v2/process-lighting-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/home-v2/process-lighting-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/home-v2/process-packing.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/home-v2/process-packing-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/home-v2/process-packing-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/home-v2/process-packing-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/home-v2/scene-hospitality.webp": {
+    "width": 1983,
+    "height": 793,
+    "variants": [
+      {
+        "src": "/assets/responsive/home-v2/scene-hospitality-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/home-v2/scene-hospitality-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/home-v2/scene-hospitality-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/home-v2/scene-reception.webp": {
+    "width": 1983,
+    "height": 793,
+    "variants": [
+      {
+        "src": "/assets/responsive/home-v2/scene-reception-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/home-v2/scene-reception-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/home-v2/scene-reception-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/home-v2/scene-storefront.webp": {
+    "width": 1536,
+    "height": 1024,
+    "variants": [
+      {
+        "src": "/assets/responsive/home-v2/scene-storefront-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/home-v2/scene-storefront-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/home-v2/scene-storefront-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/home-v2/style-front-lit.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/home-v2/style-front-lit-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/home-v2/style-front-lit-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/home-v2/style-front-lit-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/home-v2/style-halo-lit.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/home-v2/style-halo-lit-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/home-v2/style-halo-lit-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/home-v2/style-halo-lit-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/home-v2/style-metal.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/home-v2/style-metal-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/home-v2/style-metal-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/home-v2/style-metal-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
   "/assets/lightbox-sign.webp": {
     "width": 1280,
     "height": 960,

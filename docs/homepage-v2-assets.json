@@ -1,0 +1,142 @@
+[
+  {
+    "asset": "/assets/home-v2/custom-arc.webp",
+    "classification": "ai_design_concept",
+    "source": "Built-in Image Gen; individual asset generated from the approved section mockups",
+    "reference": "Homepage section studies V2.0 (2026-10-18)",
+    "dimensions": [
+      1440,
+      1080
+    ],
+    "sha256": "a50bc07bf54d78013c36cade457c54a12a7ff8c6e5b3ff663e2d5abb438a9f25",
+    "evidence_of_client_or_production": false,
+    "limits": "Illustration only; no actual client delivery, factory ownership, quality test or certification claim.",
+    "local_source": "../首页分屏样板_V2.0/asset-sources/custom-arc.png"
+  },
+  {
+    "asset": "/assets/home-v2/process-fabrication.webp",
+    "classification": "ai_process_illustration",
+    "source": "Built-in Image Gen; individual asset generated from the approved section mockups",
+    "reference": "Homepage section studies V2.0 (2026-10-18)",
+    "dimensions": [
+      1448,
+      1086
+    ],
+    "sha256": "745279a1cb23e20b281147397def1ef6b400d1526d0f80bb0cd8cd3c284107c1",
+    "evidence_of_client_or_production": false,
+    "limits": "Illustration only; no actual client delivery, factory ownership, quality test or certification claim.",
+    "local_source": "../首页分屏样板_V2.0/asset-sources/process-fabrication-original.png"
+  },
+  {
+    "asset": "/assets/home-v2/process-lighting.webp",
+    "classification": "ai_process_illustration",
+    "source": "Built-in Image Gen; individual asset generated from the approved section mockups",
+    "reference": "Homepage section studies V2.0 (2026-10-18)",
+    "dimensions": [
+      1448,
+      1086
+    ],
+    "sha256": "19508b5de98b9c2fecbed68a0fc5ad22bb2978954108f41906895ca13cee642f",
+    "evidence_of_client_or_production": false,
+    "limits": "Illustration only; no actual client delivery, factory ownership, quality test or certification claim.",
+    "local_source": "../首页分屏样板_V2.0/asset-sources/process-lighting-original.png"
+  },
+  {
+    "asset": "/assets/home-v2/process-packing.webp",
+    "classification": "ai_process_illustration",
+    "source": "Built-in Image Gen; individual asset generated from the approved section mockups",
+    "reference": "Homepage section studies V2.0 (2026-10-18)",
+    "dimensions": [
+      1448,
+      1086
+    ],
+    "sha256": "8007a193d87ddf683f00060f1f13973d5c8f21beaa7dcf99e808591ec397e3ef",
+    "evidence_of_client_or_production": false,
+    "limits": "Illustration only; no actual client delivery, factory ownership, quality test or certification claim.",
+    "local_source": "../首页分屏样板_V2.0/asset-sources/process-packing-original.png"
+  },
+  {
+    "asset": "/assets/home-v2/scene-hospitality.webp",
+    "classification": "ai_design_concept",
+    "source": "Built-in Image Gen; individual asset generated from the approved section mockups",
+    "reference": "Homepage section studies V2.0 (2026-10-18)",
+    "dimensions": [
+      1983,
+      793
+    ],
+    "sha256": "c0fef962b14a15930edd019cbff41e74a271e9d5e5d241681ba306698c7a1551",
+    "evidence_of_client_or_production": false,
+    "limits": "Illustration only; no actual client delivery, factory ownership, quality test or certification claim.",
+    "local_source": "../首页分屏样板_V2.0/asset-sources/scene-hospitality-original.png"
+  },
+  {
+    "asset": "/assets/home-v2/scene-reception.webp",
+    "classification": "ai_design_concept",
+    "source": "Built-in Image Gen; individual asset generated from the approved section mockups",
+    "reference": "Homepage section studies V2.0 (2026-10-18)",
+    "dimensions": [
+      1983,
+      793
+    ],
+    "sha256": "fbe370a6b7335d132a4125f56f7391248ef0d42a9b2ebed615792b4e2f087c90",
+    "evidence_of_client_or_production": false,
+    "limits": "Illustration only; no actual client delivery, factory ownership, quality test or certification claim.",
+    "local_source": "../首页分屏样板_V2.0/asset-sources/scene-reception-original.png"
+  },
+  {
+    "asset": "/assets/home-v2/scene-storefront.webp",
+    "classification": "ai_design_concept",
+    "source": "Built-in Image Gen; individual asset generated from the approved section mockups",
+    "reference": "Homepage section studies V2.0 (2026-10-18)",
+    "dimensions": [
+      1536,
+      1024
+    ],
+    "sha256": "ec37a131584fcbec632b6f1d21a0ce4797ada48617a9756dd787ce0a067bdd35",
+    "evidence_of_client_or_production": false,
+    "limits": "Illustration only; no actual client delivery, factory ownership, quality test or certification claim.",
+    "local_source": "../首页分屏样板_V2.0/asset-sources/scene-storefront-original.png"
+  },
+  {
+    "asset": "/assets/home-v2/style-front-lit.webp",
+    "classification": "ai_design_concept",
+    "source": "Built-in Image Gen; individual asset generated from the approved section mockups",
+    "reference": "Homepage section studies V2.0 (2026-10-18)",
+    "dimensions": [
+      1448,
+      1086
+    ],
+    "sha256": "412ced4db658123502ef583a655150f965d1d52a6cccb580cf7d2af1e2678752",
+    "evidence_of_client_or_production": false,
+    "limits": "Illustration only; no actual client delivery, factory ownership, quality test or certification claim.",
+    "local_source": "../首页分屏样板_V2.0/asset-sources/style-front-lit-original.png"
+  },
+  {
+    "asset": "/assets/home-v2/style-halo-lit.webp",
+    "classification": "ai_design_concept",
+    "source": "Built-in Image Gen; individual asset generated from the approved section mockups",
+    "reference": "Homepage section studies V2.0 (2026-10-18)",
+    "dimensions": [
+      1448,
+      1086
+    ],
+    "sha256": "4a98f4c43ac6559da5218114103dfc21c64c9b87260f0b6090a18e016dea2188",
+    "evidence_of_client_or_production": false,
+    "limits": "Illustration only; no actual client delivery, factory ownership, quality test or certification claim.",
+    "local_source": "../首页分屏样板_V2.0/asset-sources/style-halo-lit-original.png"
+  },
+  {
+    "asset": "/assets/home-v2/style-metal.webp",
+    "classification": "ai_design_concept",
+    "source": "Built-in Image Gen; individual asset generated from the approved section mockups",
+    "reference": "Homepage section studies V2.0 (2026-10-18)",
+    "dimensions": [
+      1448,
+      1086
+    ],
+    "sha256": "5ee310a7dbde459bcc35a54809f3f9530d18597116026cd49e1e1575c20549c5",
+    "evidence_of_client_or_production": false,
+    "limits": "Illustration only; no actual client delivery, factory ownership, quality test or certification claim.",
+    "local_source": "../首页分屏样板_V2.0/asset-sources/style-metal-original.png"
+  }
+]
