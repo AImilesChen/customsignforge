@@ -1,0 +1,77 @@
+{
+  "title": "Built by People. Defined by Detail.",
+  "intro": "Custom Sign Forge brings design, technical knowledge and hands-on fabrication together to make signs around your brand.",
+  "hero": {
+    "src": "/assets/home-team/workshop-team.webp",
+    "alt": "Skilled fabricators working on custom metal lettering in the workshop",
+    "caption": "Hands-on lettering fabrication"
+  },
+  "team": {
+    "src": "/assets/about-v2/design-team.webp",
+    "alt": "Design and project staff reviewing artwork at their workstations",
+    "caption": "Artwork, technical details and project communication"
+  },
+  "teamIntro": "Designers, technical craftspeople and production staff bring different skills to the same project. Our senior technical craftspeople have more than a decade of sign-making experience.",
+  "roles": [
+    {
+      "title": "Design & Technical Planning",
+      "text": "We work through your artwork, proportions, material and lighting to develop the details for production."
+    },
+    {
+      "title": "Skilled Fabrication",
+      "text": "Cutting, forming, welding and surface finishing turn the approved design into physical lettering and logos."
+    },
+    {
+      "title": "Checks & Project Communication",
+      "text": "Our team follows the specification through assembly, appearance checks, packing and shipment preparation."
+    }
+  ],
+  "capabilities": [
+    {
+      "title": "Cut & Shape",
+      "text": "Laser cutting and engraving define the lettering, panels and details around your artwork.",
+      "src": "/assets/supplier/supplier-cutting-bed.webp",
+      "alt": "Cutting and engraving equipment used for sign components",
+      "caption": "Cutting & engraving"
+    },
+    {
+      "title": "Build & Finish",
+      "text": "Letter returns, joints and surface treatments give the sign its structure and visible character.",
+      "src": "/assets/supplier/letter-return-detail.webp",
+      "alt": "Metal letter return with formed edges and surface detail",
+      "caption": "Construction & surface detail"
+    },
+    {
+      "title": "Assemble & Illuminate",
+      "text": "Faces, returns, fixings and lighting are brought together for the agreed sign configuration.",
+      "src": "/assets/supplier/led-layout-reference.webp",
+      "alt": "LED modules arranged inside a dimensional metal letter",
+      "caption": "Lighting & assembly"
+    }
+  ],
+  "quality": [
+    {
+      "title": "Appearance & Assembly",
+      "text": "Check the dimensions, surfaces, edges and assembled details against the agreed specification."
+    },
+    {
+      "title": "Lighting & Function",
+      "text": "Review illumination and the applicable order checks for the selected configuration."
+    },
+    {
+      "title": "Protection for Shipment",
+      "text": "Prepare protective materials and packing around the sign components and shipment arrangements."
+    }
+  ],
+  "check": {
+    "src": "/assets/home-team/quality-check.webp",
+    "alt": "Gloved craftsperson examining a sign component",
+    "caption": "Surface and component checks"
+  },
+  "packing": {
+    "src": "/assets/home-team/packing.webp",
+    "alt": "Finished sign components being protected inside a shipment crate",
+    "caption": "Packing finished lettering"
+  },
+  "closing": "From a single shopfront to a coordinated commercial project, start with your logo, space and ideas. We will work through the sign style, specification and quote with you."
+}

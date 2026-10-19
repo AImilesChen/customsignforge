@@ -6,7 +6,7 @@ import {useSite} from './site-context.jsx';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 export const A='/assets/';
-export const nav=[['Products','/products/'],['Projects','/projects/'],['How It Works','/how-it-works/'],['For Trade','/for-sign-companies/'],['Contact Us','/contact/'],['About','/about/']];
+export const nav=[['Products','/products/'],['Projects','/projects/'],['How It Works','/how-it-works/'],['For Trade','/for-sign-companies/'],['About Us','/about/'],['Contact Us','/contact/']];
 export const faqs=[['Can I start without final dimensions?','Yes. Share the intended location and any approximate measurements you have. Final dimensions will need to be confirmed before production.'],['Can you work from my logo?','Send your logo on WhatsApp so we can review the artwork and discuss how it could be made into a sign.'],['How much will my sign cost?','Pricing depends on the design, dimensions, materials, lighting, quantity and delivery requirements. We quote after reviewing your project.'],['Can you ship to my country?','Tell us the destination country and city. We’ll confirm the available shipping arrangements as part of the enquiry.'],['Who handles installation?','Installation arrangements must be confirmed for your project. Please tell us whether you have a local installer and what support or documentation they require.']];
 export const steps=[['Share Your Project','Start with your intended use, delivery country and preferred style.'],['Confirm the Details','Continue on WhatsApp to discuss artwork, dimensions, materials and delivery requirements.'],['Review Your Quote','Receive a project-based quote with the agreed specifications and scope.'],['Production & Delivery','Fabrication, checks and shipping follow the confirmed order arrangements.']];
 export const quote=(params={})=>'/get-a-quote/?'+new URLSearchParams(params).toString();
@@ -34,7 +34,7 @@ export function Header({home=false}){
      <Link className="product-nav-help" to="/get-a-quote/">Not sure which style? Tell us about your project <ArrowRight size={18}/></Link>
     </div>
    </div>
-   {nav.filter(([,u])=>!['/products/','/about/'].includes(u)).map(([t,u])=><Link key={u} to={u} aria-current={path===u?'page':undefined}>{t}</Link>)}
+   {nav.filter(([,u])=>u!=='/products/').map(([t,u])=><Link key={u} to={u} aria-current={path===u?'page':undefined}>{t}</Link>)}
    <Link className="mobile-quote-link" to="/get-a-quote/">Request a Quote <ArrowRight size={18}/></Link>
   </nav>
   <div className="header-actions"><Link to={site.customer?'/account/':'/sign-in/'} className="customer-nav" aria-current={['/account/','/sign-in/'].includes(path)?'page':undefined}>{site.customer?'My Account':'Sign In'}</Link><Button to={path==='/for-sign-companies/'?quote({entry:path,cta:'header'}):'/get-a-quote/'}>Request a Quote</Button><button type="button" ref={menuTrigger} className="menu" onClick={()=>{setOpen(!open);setProductOpen(false)}} aria-controls="primary-navigation" aria-expanded={open} aria-label={open?'Close menu':'Open menu'}>{open?<X size={25}/>:<List size={25}/>}</button></div>

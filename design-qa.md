@@ -1,3 +1,43 @@
+# About page, manufacturing metrics and shared alignment QA - 2026-10-19
+
+Source visual truth: user-approved story/reference screenshot `C:/Users/NINGMEI/AppData/Local/Temp/codex-clipboard-45d1ac99-8777-435a-858b-342ba6f7a063.png` (1333x523); user-supplied homepage layout complaint `codex-clipboard-5ac24af4-3934-4089-95e8-f426c8223db0.png`; current-run wide-page evidence `docs/evidence/about-layout-audit/home-wide.png`. The user approved an About structure of introduction, numeric strengths, team, fabrication, quality/packing and enquiry; this is a scoped redesign, not a literal competitor clone.
+
+Implementation screenshots: `docs/evidence/about-v2/home-1920.png`, `about-desktop.png`, `team-initial.png`, `quality-initial.png`, `home-team-desktop.png`, `mobile-about.png`, `mobile-metrics.png`, `mobile-home-metrics.png`, `mobile-menu.png`. Desktop homepage CSS1920x1080, actual1905x1072; About/home-team CSS1280x900, actual1265x889. Mobile CSS360x800, actual345x767. Surface/scrollbar differences are not treated as layout drift.
+
+Comparison evidence: `compare-home-alignment.png` places the before/after1920 captures on the same canvas, and `compare-about-composition.png` places the approved story reference beside the actual About introduction/metrics. Both were opened and inspected together. The section-only reference is contained without stretching into a1280x900 cell; no pixel-exact typography claim is made. Native-size captures were separately inspected for figure visibility, menu labels, small copy, packing crop and numeric baselines.
+
+## Iteration history and fixes
+
+- P1 original wide layout: navigation left40px, hero text308.5px, section272.5px, hero image ending at1905px. The final header logo, hero copy and sections all start at272.5px; quote button, hero image and sections end at1632.5px in a1905px layout viewport. Equal272.5px outer margins; zero horizontal overflow.
+- P2 first revised hero crop clipped the top of the lettering. Changed image position to center top. Revised screenshot preserves the complete FORM COFFEE lettering and the contained right edge.
+- P2 initial strengths used a reversed flex column that shifted numeric baselines when labels wrapped. Replaced with a two-row grid. All four final metric tops are755.4375px in the About desktop capture.
+- P2 narrow-screen figure crowding: the years unit now uses a smaller type size beside10+, with its subject clearly labelled senior craftspeople. About figures use a responsive30-36px font; no figure overflows its metric cell at360px.
+- P2 excessive first-screen mobile copy: removed the redundant second hero paragraph; secondary desktop team anchor is omitted only on mobile. Final mobile photo begins at585px, so real workshop imagery appears within the first screen.
+- Fixed explicit spaces across heading line breaks so accessible text does not join words/sentences.
+
+## Fidelity surfaces
+
+- Typography: existing Manrope UI/Source Sans3 body with selective Georgia editorial headings and orange emphasis, consistent with the approved reference. About headings40-60px desktop/mobile responsive; body17-22px, figures30-46px with clearly associated labels.
+- Spacing/layout: shared1360px frame for navigation, homepage hero/sections and About. Header/page gutters56px desktop,48/32px intermediate,20px mobile. Six-link desktop nav remains legible and collapses under1180px. Empty Explore strip removed. About alternates split photographs and concise explanations, with a four-number band and no editorial utility sidebar.
+- Colour: existing graphite, warm paper and orange; figures use pale peach on graphite for contrast. No new gradients or decorative glow.
+- Imagery: original authorised workshop, office-team, equipment, component, inspection and packing references. New office image1259x692 has responsive400/800px variants. Existing hero concept remains labelled, no generated workers or altered equipment. Quality/packing montage keeps the source photography.
+- Copy: four manufacturing facts (100+ team,10+ design/development,30+ machines,3,000m2) plus more-than-a-decade senior craft experience, traced to page2 of the user-provided brochure. Brand age, certification, delivery guarantees and customer counts are not inferred. Experience and manufacturing figures are centralised for homepage/About consistency.
+
+## Behaviour and verification
+
+- Desktop product dropdown opens, stays within the viewport, and Escape dismisses it. About Us has aria-current on its page. Mobile menu exposes About Us and Request a Quote; activating About navigates and closes the menu.
+- Team anchor activation works. Exact About source survives customer sign-in/quotation redirect. Public checks verify all new section anchors and seven image resources, plus the six-family homepage.
+- Responsive DOM measurements at360/390/900/1280/1366/1440/1920px show clientWidth=scrollWidth; desktop nav does not overlap account/quote actions. Header and About left edges match at each measured width. Browser error log is empty.
+- 59 tests pass, including migration repeatability, CRLF, draft/unpublished/custom field/SEO/gallery preservation and metric/media meaning. Production build/private-value scan and final Astro check are required before release; deployment completion is recorded separately.
+
+No actionable P0/P1/P2 findings remain within this scope. Brochure photos retain their source resolution; no claim of higher-resolution original photography is made.
+
+final result: passed
+
+---
+
+# Earlier QA records
+
 # Homepage team and advantages QA - 2026-10-19
 
 Source visual truth: the two user-selected screenshots, `C:/Users/NINGMEI/AppData/Local/Temp/codex-clipboard-45d1ac99-8777-435a-858b-342ba6f7a063.png` (1333 x 523) and `codex-clipboard-b913615f-3e02-45b7-a869-b77479167e25.png` (1402 x 605). These are composition/density references, not a request to copy competitor claims or branding.

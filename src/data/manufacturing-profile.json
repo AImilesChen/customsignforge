@@ -1,0 +1,36 @@
+{
+  "metrics": {
+    "experience": {
+      "value": "10+",
+      "label": "Senior craftspeople’s experience",
+      "unit": "years"
+    },
+    "team": {
+      "value": "100+",
+      "label": "Production team"
+    },
+    "design": {
+      "value": "10+",
+      "label": "Design & development specialists"
+    },
+    "equipment": {
+      "value": "30+",
+      "label": "Production machines"
+    },
+    "space": {
+      "value": "3,000 m²",
+      "label": "Production space"
+    }
+  },
+  "homeMetrics": [
+    "experience",
+    "team",
+    "equipment"
+  ],
+  "aboutMetrics": [
+    "team",
+    "design",
+    "equipment",
+    "space"
+  ]
+}

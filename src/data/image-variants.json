@@ -1102,5 +1102,19 @@
         "width": 400
       }
     ]
+  },
+  "/assets/about-v2/design-team.webp": {
+    "width": 1259,
+    "height": 692,
+    "variants": [
+      {
+        "src": "/assets/responsive/about-v2/design-team-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/about-v2/design-team-800.webp",
+        "width": 800
+      }
+    ]
   }
 }

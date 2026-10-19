@@ -121,20 +121,6 @@
   "team": {
     "intro": "Experienced designers and skilled fabricators turn your artwork into custom signs for commercial spaces.",
     "detail": "From cutting and welding to finishing and final checks, we bring practical care to each detail of your sign.",
-    "qualities": [
-      {
-        "title": "Skilled hands",
-        "label": "Experienced craftsmanship"
-      },
-      {
-        "title": "Your design",
-        "label": "Custom-built details"
-      },
-      {
-        "title": "Final checks",
-        "label": "Finish, light & packing"
-      }
-    ],
     "photos": [
       {
         "src": "/assets/home-team/workshop-team.webp",

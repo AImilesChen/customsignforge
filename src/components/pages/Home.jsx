@@ -1,9 +1,10 @@
 import {useEffect,useRef,useState} from 'react';
-import {ArrowDownIcon as ArrowDown,UsersThreeIcon,PencilRulerIcon,WrenchIcon,StackIcon,SealCheckIcon,ChatCircleDotsIcon} from '@phosphor-icons/react';
+import {UsersThreeIcon,PencilRulerIcon,WrenchIcon,StackIcon,SealCheckIcon,ChatCircleDotsIcon} from '@phosphor-icons/react';
 import {Button,TextLink,Eyebrow,Figure,FAQs,Link,quote} from '../shared.jsx';
 import Image from '../Image.jsx';
 import {useSite} from '../site-context.jsx';
 import content from '../../data/home-content.json';
+import profile from '../../data/manufacturing-profile.json';
 import '../../styles/home.css';
 
 const asset=name=>name.startsWith('/')?name:'/assets/home-v2/'+name;
@@ -62,9 +63,9 @@ export function HomeProof(){
   const [selected,setSelected]=useState(0),photo=content.team.photos[selected];
   return <>
     <section id="behind-the-sign" className="home-section home-container home-story" aria-labelledby="home-story-title">
-      <div className="home-story-copy" data-home-reveal><Eyebrow>THE PEOPLE BEHIND YOUR SIGN</Eyebrow><h2 id="home-story-title">Precision Craft.<br/>Built Around <em>Your Brand.</em></h2><p>{content.team.intro}</p><p>{content.team.detail}</p>
-        <ul className="home-story-qualities">{content.team.qualities.map(item=><li key={item.title}><strong>{item.title}</strong><span>{item.label}</span></li>)}</ul>
-        <TextLink to="/about/">Meet the Making Process</TextLink>
+      <div className="home-story-copy" data-home-reveal><Eyebrow>THE PEOPLE BEHIND YOUR SIGN</Eyebrow><h2 id="home-story-title">Precision Craft.<br/>{' '}Built Around <em>Your Brand.</em></h2><p>{content.team.intro}</p><p>{content.team.detail}</p>
+        <ul className="home-story-qualities home-story-numbers">{profile.homeMetrics.map(key=>{const item=profile.metrics[key];return <li key={key}><strong>{item.value}{item.unit&&<small>{' '}{item.unit}</small>}</strong><span>{item.label}</span></li>})}</ul>
+        <TextLink to="/about/">About Our Team & Craft</TextLink>
       </div>
       <figure className="home-story-figure" data-home-reveal><div className={'home-story-photo '+(photo.position||'')}><Image src={photo.src} alt={photo.alt} loading="lazy"/></div>
         <div className="home-story-photo-options" role="group" aria-label="View production photographs">{content.team.photos.map((item,i)=><button key={item.src} type="button" aria-pressed={selected===i} onClick={()=>setSelected(i)}>{item.label}</button>)}</div>
@@ -81,8 +82,7 @@ export function HomeProof(){
 function HomeTrade(){return <section className="home-trade" aria-labelledby="home-trade-title"><div className="home-container"><div><Eyebrow>FOR THE TRADE</Eyebrow><h2 id="home-trade-title">Custom Fabrication for Your Next Project.</h2><p>Sign companies, installers and procurement teams: share your drawings, quantities and supply requirements for a project-based discussion.</p></div><Button secondary to="/for-sign-companies/">For Sign Companies & Installers</Button></div></section>;}
 
 export default function Home(){const root=useRef(null);useHomeReveal(root);return <div className="home-redesign" ref={root}>
-  <section className="hero"><div className="hero-copy"><Eyebrow>CUSTOM BUSINESS SIGNAGE</Eyebrow><h1>Custom Signs,<br/>Made for Your Business</h1><p>Bring your logo, lettering or reference idea to life. Explore illuminated signs, dimensional letters and custom finishes.</p><div className="button-row"><Button/><Button secondary to="/projects/">Explore Our Work</Button></div><p className="hero-helper">Not sure about the size or style? Start with your idea or a reference photo.</p></div><Figure src="hero-cafe.webp" alt="Warm illuminated lettering on a contemporary café facade — illustrative concept" className="hero-figure"/></section>
-  <div className="explore-strip"><a href="#sign-styles">Explore sign styles<ArrowDown size={22}/></a></div>
+  <section className="hero"><div className="home-container home-hero-inner"><div className="hero-copy"><Eyebrow>CUSTOM BUSINESS SIGNAGE</Eyebrow><h1>Custom Signs,<br/>{' '}Made for Your Business</h1><p>Bring your logo, lettering or reference idea to life. Explore illuminated signs, dimensional letters and custom finishes.</p><div className="button-row"><Button/><Button secondary to="/projects/">Explore Our Work</Button></div><p className="hero-helper">Not sure about the size or style? Start with your idea or a reference photo.</p></div><Figure src="hero-cafe.webp" alt="Warm illuminated lettering on a contemporary café facade — illustrative concept" className="hero-figure"/></div></section>
   <HomeProducts/><HomeWork/><HomeCustom/><HomeProof/><HomeProcess/><HomeTrade/>
   <section className="home-section home-container home-faq" aria-labelledby="home-faq-title"><div><Eyebrow>A FEW THINGS TO KNOW</Eyebrow><h2 id="home-faq-title">Start with<br/>What You Know.</h2><p>No final dimensions or drawing yet? Share the idea and we can discuss what comes next.</p><TextLink to={quote({source:'homepage-faq'})}>Ask About Your Project</TextLink></div><FAQs/></section>
   <section className="home-section home-final" aria-labelledby="home-final-title"><div className="home-container"><Eyebrow>LET’S TALK ABOUT YOUR SIGN</Eyebrow><h2 id="home-final-title">Tell Us About Your Sign.</h2><p>Sign in, share a few details and continue on WhatsApp. We’ll discuss the specification and quote for your project.</p><Button/><p className="home-final-helper">Custom-made to your requirements. Quoted individually.</p></div></section>

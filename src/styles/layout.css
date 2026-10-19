@@ -1,0 +1,30 @@
+/* Shared page edges use the layout viewport (not 100vw, which includes scrollbars). */
+:root{--content-max:1360px;--content-gutter:56px}
+header.header.site-header{padding-inline:max(var(--content-gutter),calc((100% - var(--content-max))/2));gap:22px}
+header.header.site-header .wordmark img{width:230px}
+header.header.site-header .nav{gap:20px;font-size:15px}
+header.header.site-header .header-actions{gap:18px}
+header.header.site-header .customer-nav{font-size:15px}
+header.header.site-header .header-actions>.button{font-size:15px;padding-inline:20px}
+.home-container,.about-container{width:calc(100% - var(--content-gutter)*2);max-width:var(--content-max);margin-inline:auto}
+.home-redesign .hero{display:block;padding:48px 0 56px;min-height:0}
+.home-hero-inner{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:64px;align-items:center}
+.home-redesign .hero-copy{max-width:none;padding:36px 0;min-width:0}
+.home-redesign .hero h1{font-size:clamp(44px,3.8vw,62px);line-height:1.13;letter-spacing:-1.8px}
+.home-redesign .hero-copy>p:not(.eyebrow){max-width:520px;font-size:21px;line-height:1.55;margin-top:26px}
+.home-redesign .hero .eyebrow{margin-bottom:24px}
+.home-redesign .hero .button-row{margin-top:32px;gap:14px}
+.home-redesign .hero .button{min-width:0;min-height:54px;padding:15px 22px;font-size:15px}
+.home-redesign .hero-copy>p.hero-helper{font-size:15px;line-height:1.55;margin-top:28px;max-width:470px}
+.home-redesign .hero-figure{height:auto;align-self:center;margin:0;min-width:0}
+.home-redesign .hero-figure img{width:100%;height:auto;aspect-ratio:1.08/1;object-fit:cover;object-position:center top;border-radius:8px}
+.home-redesign .hero-figure figcaption{margin-top:12px;font-size:13px}
+.home-story-numbers strong{font-size:32px;white-space:nowrap;letter-spacing:-.8px}
+.home-story-numbers strong small{font-size:16px;letter-spacing:0}
+.home-story-numbers span{font-size:14px}
+@media(max-width:1400px){header.header.site-header{gap:18px}header.header.site-header .wordmark img{width:200px}header.header.site-header .nav{gap:14px}header.header.site-header .header-actions{gap:12px}header.header.site-header .header-actions>.button{padding-inline:16px}.home-hero-inner{gap:44px}.home-redesign .hero h1{font-size:52px}.home-redesign .hero-copy>p:not(.eyebrow){font-size:20px}}
+@media(max-width:1200px){:root{--content-gutter:48px}}
+@media(max-width:1180px){header.header.site-header{padding-inline:var(--content-gutter)}header.header.site-header .nav{padding-inline:var(--content-gutter)}header.header.site-header .nav.open{font-size:18px;gap:2px}.home-hero-inner{gap:36px}.home-redesign .hero h1{font-size:46px}.home-redesign .hero-copy{padding-block:20px}.home-redesign .hero-figure img{aspect-ratio:1/1.15}}
+@media(max-width:900px){:root{--content-gutter:32px}.home-hero-inner{grid-template-columns:1fr 1fr;gap:30px}.home-redesign .hero h1{font-size:40px}.home-redesign .hero-copy>p:not(.eyebrow){font-size:19px}.home-redesign .hero .button{font-size:14px;padding-inline:16px}.home-redesign .hero-figure img{aspect-ratio:1/1.4}}
+@media(max-width:700px){:root{--content-gutter:20px}header.header.site-header{padding:12px var(--content-gutter)}header.header.site-header .wordmark img{width:160px}header.header.site-header .nav{padding:16px var(--content-gutter) 24px}.home-redesign .hero{padding:36px 0}.home-hero-inner{grid-template-columns:1fr;gap:30px}.home-redesign .hero-copy{padding:0}.home-redesign .hero h1{font-size:40px;letter-spacing:-1px;line-height:1.15}.home-redesign .hero-copy>p:not(.eyebrow){font-size:19px;margin-top:22px}.home-redesign .hero .button-row{margin-top:26px;gap:12px}.home-redesign .hero .button{font-size:14px;min-height:52px;flex:1;padding-inline:12px}.home-redesign .hero-copy>p.hero-helper{font-size:14px;margin-top:22px}.home-redesign .hero-figure img{aspect-ratio:4/3}.home-story-numbers strong{font-size:28px}.home-story-numbers span{font-size:13px}}
+@media(max-width:700px){.home-story-numbers strong small{font-size:14px}}
