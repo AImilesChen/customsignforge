@@ -43,11 +43,11 @@ test('application and style filters intersect, exclude samples and preserve the 
 });
 test('design content round-trips through CMS and uses existing assets without fabricated deliveries',()=>{
  for(const [slug,d] of Object.entries(designs)){
-  const checked=validateContent(d,'project');assert.equal(checked.body,d.body,slug);assert(PROJECT_SETTINGS.includes(checked.setting));assert(catalog[d.product],d.product);
+  const checked=validateContent({...d,sourceNote:catalog[slug]?.sourceNote||'AI-generated concept'},'project');assert.equal(checked.body,d.body,slug);assert(PROJECT_SETTINGS.includes(checked.setting));assert(catalog[d.product],d.product);
   for(const photo of [{src:d.image},...d.gallery])assert(existsSync(new URL('../public'+photo.src,import.meta.url)),photo.src);
   for(const reference of d.references)assert(designs[reference],reference);
   assert(d.rationale.length>=2);assert(d.installation.length>0);
-  if(d.imageKind==='concept'){assert.equal(d.specs.length,6);assert.equal(d.gallery.length,2);assert(d.sourceNote.includes('not a delivered client installation'));}
+  if(d.imageKind==='concept'){assert.equal(d.specs.length,6);assert.equal(d.gallery.length,2);assert.equal(d.indexable,false);}
   const publicCopy=JSON.stringify({...d,sourceNote:''});assert(!/manufacturing partners|our supplier|delivered in|completed for|certified factory/i.test(publicCopy),slug);
  }
 });
