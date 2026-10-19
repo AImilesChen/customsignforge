@@ -8,7 +8,7 @@ header.header.site-header .customer-nav{font-size:15px}
 header.header.site-header .header-actions>.button{font-size:15px;padding-inline:20px}
 .home-container,.about-container{width:calc(100% - var(--content-gutter)*2);max-width:var(--content-max);margin-inline:auto}
 .home-redesign .hero{display:block;padding:48px 0 56px;min-height:0}
-.home-hero-inner{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:64px;align-items:center}
+.home-hero-inner{display:grid;max-width:1680px;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:64px;align-items:center}
 .home-redesign .hero-copy{max-width:none;padding:36px 0;min-width:0}
 .home-redesign .hero h1{font-size:clamp(44px,3.8vw,62px);line-height:1.13;letter-spacing:-1.8px}
 .home-redesign .hero-copy>p:not(.eyebrow){max-width:520px;font-size:21px;line-height:1.55;margin-top:26px}
@@ -17,7 +17,7 @@ header.header.site-header .header-actions>.button{font-size:15px;padding-inline:
 .home-redesign .hero .button{min-width:0;min-height:54px;padding:15px 22px;font-size:15px}
 .home-redesign .hero-copy>p.hero-helper{font-size:15px;line-height:1.55;margin-top:28px;max-width:470px}
 .home-redesign .hero-figure{height:auto;align-self:center;margin:0;min-width:0}
-.home-redesign .hero-figure img{width:100%;height:auto;aspect-ratio:1.08/1;object-fit:cover;object-position:center top;border-radius:8px}
+.home-redesign .hero-figure img{width:100%;height:auto;max-height:710px;aspect-ratio:1.08/1;object-fit:cover;object-position:center top;border-radius:8px}
 .home-redesign .hero-figure figcaption{margin-top:12px;font-size:13px}
 .home-story-numbers strong{font-size:32px;white-space:nowrap;letter-spacing:-.8px}
 .home-story-numbers strong small{font-size:16px;letter-spacing:0}

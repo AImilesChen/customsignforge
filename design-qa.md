@@ -1,3 +1,15 @@
+# Homepage hero size restoration - 2026-10-19
+
+User requested restoring the larger homepage hero image after the shared alignment change reduced it. Scope: hero layout only; original hero-cafe.webp, navigation, About and manufacturing content remain unchanged.
+
+The hero now has its own centred1680px maximum frame, a45/55 text/image split after the64px gap, and a710px image-height cap. The rest of the site retains the1360px frame. Top-aligned image cropping preserves the complete sign lettering.
+
+Local1920px viewport:1680px hero frame, equal112.5px margins in the1905px layout viewport; image888.8125x710px. Compared with the previous1360px frame, image width increases from699.84px by27%. Current-run screenshots: docs/evidence/hero-restore/local-1920.png, local-1440.png, local-1280.png and local-390.png. Desktop and mobile screenshots inspected; widths1920/1440/1280/390 show no horizontal overflow and quote/project buttons remain within the viewport. Mobile retains the stacked layout. No image assets were changed.
+
+Production build and private-value scan passed. Existing homepage and About public smokes passed against the local build. CI and production verification are recorded in the release log after deployment.
+
+---
+
 # About page, manufacturing metrics and shared alignment QA - 2026-10-19
 
 Source visual truth: user-approved story/reference screenshot `C:/Users/NINGMEI/AppData/Local/Temp/codex-clipboard-45d1ac99-8777-435a-858b-342ba6f7a063.png` (1333x523); user-supplied homepage layout complaint `codex-clipboard-5ac24af4-3934-4089-95e8-f426c8223db0.png`; current-run wide-page evidence `docs/evidence/about-layout-audit/home-wide.png`. The user approved an About structure of introduction, numeric strengths, team, fabrication, quality/packing and enquiry; this is a scoped redesign, not a literal competitor clone.
