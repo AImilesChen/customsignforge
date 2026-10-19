@@ -1,0 +1,21 @@
+.contact-layout{display:grid;grid-template-columns:1.25fr 1fr;gap:100px;align-items:start}
+.contact-project h2{font-size:38px;line-height:1.25;letter-spacing:-1px}
+.contact-project>p{font-size:19px;line-height:1.65;margin-top:24px;max-width:650px}
+.contact-project ul{padding-left:22px;margin:26px 0 32px;color:var(--muted);font-size:18px;line-height:1.7}
+.contact-project li{margin-top:8px;padding-left:6px}
+.contact-project .contact-sign-in-note{font-size:16px;line-height:1.6;margin-top:18px}
+.contact-project .contact-quote-note{font-size:17px;border-top:1px solid var(--line);padding-top:24px;margin-top:28px}
+.contact-channels{background:var(--paper);padding:36px;min-width:0}
+.contact-channels>h2{font-size:27px;line-height:1.35;letter-spacing:-.7px;margin-bottom:28px}
+.contact-channel{display:flex;align-items:start;gap:18px;padding:24px 0;border-top:1px solid var(--line)}
+.contact-channel>svg{flex-shrink:0;margin-top:4px;color:var(--orange)}
+.contact-channel>div{min-width:0}
+.contact-channel h3{font-size:20px;margin-bottom:8px}
+.contact-channel a{font-size:19px;font-weight:600;overflow-wrap:anywhere;text-decoration:underline;text-underline-offset:4px;display:inline-block;min-height:36px}
+.contact-channel p{font-size:17px;line-height:1.5;margin-top:8px}
+.contact-operator{border-top:1px solid var(--line);padding-top:24px;font-size:17px}
+.contact-operator>span{color:var(--muted);font-size:15px}
+.contact-operator p{margin-top:6px;color:var(--ink)}
+.contact-operator>a{display:inline-flex;align-items:center;gap:10px;min-height:44px;margin-top:10px;text-decoration:underline;text-underline-offset:4px}
+@media(max-width:1000px){.contact-layout{gap:48px}.contact-channels{padding:28px}.contact-project h2{font-size:32px}}
+@media(max-width:700px){.contact-layout{grid-template-columns:1fr;gap:40px}.contact-project h2{font-size:30px}.contact-project>.button{width:100%}.contact-channels{padding:24px}.contact-channels>h2{font-size:25px}}

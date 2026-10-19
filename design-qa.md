@@ -40,3 +40,7 @@ Accepted comparison canvases: `docs/evidence/home-v2/comparison-products-final.p
 Implementation checklist: assets placed; semantic sections and links implemented; source references compared alongside rendered captures; P2 findings fixed and rechecked; mobile menu/FAQ and anonymous quote handoff checked; no actionable P0/P1/P2 findings remain in the scoped visual review.
 
 final result: passed
+
+## Navigation and contact release — 2026-10-19
+
+Result: passed. Desktop 1440/1366 and mobile 390/360 checked in browser. Header navigation and quote CTA are 16px; desktop header is 88px. All six published product links appear in the disclosure. Escape closes it and returns focus; mobile menu open/close works. Contact form CTA redirects to customer sign-in with its return path. No horizontal overflow at the checked sizes. Local screenshots: docs/evidence/navigation-desktop-local.png and navigation-mobile-local.png (ignored). User explicitly authorized production publication.
