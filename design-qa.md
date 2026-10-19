@@ -1,3 +1,23 @@
+# Homepage closing CTA and footer alignment - 2026-10-19
+
+Source visual truth: the user's current homepage screenshot `C:/Users/NINGMEI/AppData/Local/Temp/codex-clipboard-3f10d4d6-7546-4679-b037-350501d7c03a.png`, plus current production capture `docs/evidence/home-alignment-fix/before-1440.png`. Scope is a correction of the existing centred closing CTA and homepage frame; no redesign of the hero, content or typography.
+
+At CSS1440x1000, the layout viewport is1425px. Before: closing container centre712.5px; heading centre556px; body/button centre712.5px. The generic1000px heading cap had no automatic horizontal margins. Homepage container edges56/1369px and old footer edges80/1345px also disagreed. P2 findings: heading156.5px left of the intended centre, and footer24px in from each page edge.
+
+Fix: centre the closing heading box with scoped automatic inline margins; give only the homepage footer its own class and apply the existing1360px frame/gutter tokens to its two container rows. Inner-page footers retain their existing layout. No font, colour, image, wording, navigation, quote target or interaction changes.
+
+Post-fix browser evidence: `after-1440.png`, `mobile-360.png`, `geometry.json`. Source and implementation desktop captures both1425x990 actual pixels at CSS1440x1000. `comparison.png` places both captures on equal1425x989 contained cells (1px height normalization) and was opened and inspected. Native-size captures were also opened; text, buttons and edges are readable, so a further focused crop was not needed for this bounded spacing correction. The production capture has no preview ribbon; the local capture includes one at the bottom, which is excluded from layout findings.
+
+After: heading, body and button centre712.5px; CTA and footer share56/1369px edges. At widths1920/1280/900/390/360, heading centre error and both footer edge errors are0px, with no horizontal overflow. Existing left-aligned section headings remain intentionally left aligned; a production DOM pass found all11 homepage content frames on the same edges.
+
+Required surfaces: typography, colour tokens, imagery and copy are unchanged from the accepted design; spacing/layout now uses the existing centred CTA and common homepage edges. Mobile title wrapping and full-width quote button were inspected. No new assets or interactions introduced. Existing homepage and hero public smokes pass locally, including authenticated quote return and preserved inner-page header. Production build/private-value scan passed. This is not a full accessibility audit; no new accessibility claim is made.
+
+Comparison history: initial P2 heading/footer deviations are recorded above, the scoped CSS/footer-class fixes were applied, and fresh browser geometry/screenshots show no remaining P0/P1/P2 issue. No further visual fixes after the final comparison.
+
+final result: passed
+
+---
+
 # Immersive homepage hero QA - 2026-10-19
 
 Source visual truth: user-selected competitor composition, captured at `docs/evidence/hero-competitor-review/signs-inc-1920.png`, plus the user-supplied Signs.inc screenshot. The accepted brief adapts its integrated dark navigation, manufacturing background, left benefit-led copy, portrait scene carousel and bottom proof strip to Custom Sign Forge. This is not a pixel-for-pixel clone: orange branding, customer sign-in, existing product taxonomy, accurate manufacturing metrics and AI concept labels are intentional differences.

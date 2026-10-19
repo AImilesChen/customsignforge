@@ -6,7 +6,8 @@ header.header.site-header .nav{gap:20px;font-size:15px}
 header.header.site-header .header-actions{gap:18px}
 header.header.site-header .customer-nav{font-size:15px}
 header.header.site-header .header-actions>.button{font-size:15px;padding-inline:20px}
-.home-container,.about-container{width:calc(100% - var(--content-gutter)*2);max-width:var(--content-max);margin-inline:auto}
+.home-container,.about-container,footer.home-footer>.container{width:calc(100% - var(--content-gutter)*2);max-width:var(--content-max);margin-inline:auto}
+.home-redesign .home-final h2{margin-inline:auto}
 .home-redesign .hero{display:block;padding:48px 0 56px;min-height:0}
 .home-hero-inner{display:grid;max-width:1680px;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:64px;align-items:center}
 .home-redesign .hero-copy{max-width:none;padding:36px 0;min-width:0}
