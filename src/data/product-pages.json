@@ -65,16 +65,79 @@
     ],
     "contexts": [
       {
-        "src": "/assets/products-v2/halo-reception.webp",
-        "alt": "AEON halo-lit letters in an imagined office reception",
-        "caption": "Reception & office",
-        "kind": "concept"
+        "id": "wellness-halo",
+        "src": "/assets/product-depth/halo-brand.webp",
+        "alt": "Bronze petal logo and two levels of rear-lit wellness lettering on textured travertine",
+        "caption": "A Sculpted Wellness Identity",
+        "kind": "concept",
+        "space": "Beauty & wellness",
+        "description": "A petal emblem and two levels of bronze lettering use a warm halo to separate the identity from the textured stone. Fine lettering and logo gaps need review at the intended size.",
+        "tags": [
+          "Warm rear halo",
+          "Bronze appearance"
+        ],
+        "prepare": "Review the wall texture, emblem proportions and cable exits.",
+        "variant": ""
       },
       {
+        "id": "corporate-halo",
+        "src": "/assets/product-depth/halo-corporate.webp",
+        "alt": "Brushed metal STUDIO letters with cool white rear halo in a grey office reception",
+        "caption": "Cool Light, Clear Contrast",
+        "kind": "concept",
+        "space": "Office reception",
+        "description": "Brushed silver faces and cool-white rear light create a sharper look against charcoal. The darker wall and brighter room give a different result from warm lighting on pale stone.",
+        "tags": [
+          "Cool-white halo",
+          "Brushed silver appearance"
+        ],
+        "prepare": "Compare the proposed light colour with the room lighting and wall finish.",
+        "variant": ""
+      },
+      {
+        "id": "reception-halo",
+        "src": "/assets/products-v2/halo-reception.webp",
+        "alt": "Warm rear-lit AEON logo above a contemporary reception desk",
+        "caption": "A Calm Reception Focal Point",
+        "kind": "concept",
+        "space": "Office & reception",
+        "description": "A dimensional logo becomes the arrival point behind the desk. Logo width, viewing distance and the clear wall area guide the layout.",
+        "tags": [
+          "Dimensional identity",
+          "Reception wall"
+        ],
+        "prepare": "Send a straight-on wall photo and the desk and wall dimensions.",
+        "variant": ""
+      },
+      {
+        "id": "hospitality-halo",
         "src": "/assets/products-v2/halo-hospitality.webp",
-        "alt": "THE LANE halo lettering in an imagined hospitality interior",
-        "caption": "Hospitality & interiors",
-        "kind": "concept"
+        "alt": "Warm halo-lit THE LANE lettering in a hospitality interior",
+        "caption": "A Warmer Hospitality Setting",
+        "kind": "concept",
+        "space": "Dining & hospitality",
+        "description": "Warm rear illumination works with darker finishes and low ambient light. The letter spacing keeps the wording readable while the halo adds depth.",
+        "tags": [
+          "Warm light",
+          "Low-light interior"
+        ],
+        "prepare": "Review brightness and mounting distance in relation to the surrounding lighting.",
+        "variant": ""
+      },
+      {
+        "id": "stone-halo",
+        "src": "/assets/home-v2/scene-reception.webp",
+        "alt": "Warm illuminated AVEN reception logo on a pale stone wall",
+        "caption": "Metal and Light on Stone",
+        "kind": "concept",
+        "space": "Brand feature wall",
+        "description": "A metal logo and secondary lettering create a balanced feature on a textured wall. The material and the light are both part of the composition.",
+        "tags": [
+          "Logo + lettering",
+          "Textured background"
+        ],
+        "prepare": "Confirm the mark, smallest lettering and wall stand-off in the approval drawing.",
+        "variant": ""
       }
     ],
     "faq": [
@@ -89,12 +152,38 @@
       [
         "How is my sign quoted?",
         "We review the artwork, dimensions, finish, lighting, quantity and delivery requirements. Final specifications and installation responsibilities are agreed for your project."
+      ],
+      [
+        "Can I choose warm or cool halo lighting?",
+        "Tell us your preferred light colour and send wall and room photos. We review the appearance with the selected finish and confirm the actual lighting configuration before production."
+      ],
+      [
+        "Why can the halo look different on another wall?",
+        "Wall colour, texture, reflectivity, letter spacing and stand-off distance affect the visible glow. A concept photo does not establish the halo for an unreviewed wall."
+      ],
+      [
+        "Where do the cables and power supply go?",
+        "Plan cable exits and an accessible power-supply position with your installer. The fixing, cable route and supplied components are confirmed in the project scope."
       ]
     ],
     "faqTitle": "Questions About Backlit Letters?",
     "detailTitleLines": [
       "See the Glow.",
       "See the Detail."
+    ],
+    "technicalNotes": [
+      [
+        "Choose the light",
+        "Compare warm, neutral or cool white against the wall and surrounding lighting. Agree the actual light colour for your order."
+      ],
+      [
+        "Choose the visible finish",
+        "Brushed, painted or plated appearances change the character of the same logo. Confirm the face and side finish with an approved reference."
+      ],
+      [
+        "Plan the halo & wiring",
+        "Wall texture, stand-off distance and letter spacing affect light spread. Resolve cable exits, driver location and maintenance access before the wall is finished."
+      ]
     ]
   },
   "led-channel-letters": {
@@ -127,13 +216,13 @@
       {
         "src": "/assets/supplier/letter-face-reference.webp",
         "alt": "Individual letter faces from supplier reference material",
-        "caption": "Letter face reference",
+        "caption": "Fabrication sample · Letter face reference",
         "kind": "supplier_reference"
       },
       {
         "src": "/assets/supplier/led-layout-reference.webp",
         "alt": "Internal lighting from supplier reference material",
-        "caption": "Lighting layout reference",
+        "caption": "Fabrication sample · Lighting layout reference",
         "kind": "supplier_reference"
       }
     ],
@@ -163,10 +252,64 @@
     ],
     "contexts": [
       {
+        "id": "food-front",
+        "src": "/assets/product-depth/front-brand.webp",
+        "alt": "Green leaf-and-fork logo and white GREEN TABLE channel letters on a dark restaurant fascia",
+        "caption": "A Brand with Appetite",
+        "kind": "concept",
+        "space": "Restaurant frontage",
+        "description": "A leaf-and-fork emblem, two face colours and a secondary line give the frontage a complete identity. The close angle shows the visible returns and dimensional depth.",
+        "tags": [
+          "Two-colour faces",
+          "Logo lockup"
+        ],
+        "prepare": "Review brand colour references, small lettering and the available fascia depth.",
+        "variant": ""
+      },
+      {
+        "id": "retail-front",
+        "src": "/assets/product-depth/front-retail.webp",
+        "alt": "Blue front-lit MARKET lettering above a glazed retail entrance in daylight",
+        "caption": "Colour in Daylight",
+        "kind": "concept",
+        "space": "Retail storefront",
+        "description": "Blue illuminated faces contrast with pale masonry. The full façade view helps judge the name against the entrance, glazing and approach distance.",
+        "tags": [
+          "Coloured faces",
+          "Daytime presence"
+        ],
+        "prepare": "Include a site photo, the available sign area and the main viewing direction.",
+        "variant": ""
+      },
+      {
+        "id": "bakery-front",
+        "src": "/assets/product-depth/front-bakery.webp",
+        "alt": "White front-lit BAKERY lettering on a green fascia above a warmly lit shop",
+        "caption": "An Evening Welcome",
+        "kind": "concept",
+        "space": "Bakery frontage",
+        "description": "White front-lit letters keep a simple name clear above a warm interior. Dark returns and a deep green fascia frame the illuminated faces.",
+        "tags": [
+          "White faces",
+          "Dark fascia"
+        ],
+        "prepare": "Plan cable penetrations and accessible power-supply locations with your installer.",
+        "variant": ""
+      },
+      {
+        "id": "shop-front",
         "src": "/assets/home-v2/scene-storefront.webp",
-        "alt": "MORROW bakery facade with illuminated letters — design concept",
-        "caption": "Retail & storefronts",
-        "kind": "concept"
+        "alt": "Individual MORROW storefront letters framed by commercial glazing and fascia",
+        "caption": "Lettering within the Architecture",
+        "kind": "concept",
+        "space": "Neighbourhood storefront",
+        "description": "Individual letters sit within a defined fascia band rather than filling its edges. The relationship to the door and windows establishes a considered scale.",
+        "tags": [
+          "Individual letters",
+          "Fascia proportions"
+        ],
+        "prepare": "Confirm property constraints and the local installation scope before approval.",
+        "variant": ""
       }
     ],
     "faq": [
@@ -181,6 +324,32 @@
       [
         "What determines the price?",
         "Design, dimensions, materials, lighting, quantity and delivery requirements are reviewed together for your quote."
+      ],
+      [
+        "Can the faces match my brand colour?",
+        "Share a colour reference and artwork. We review the material and illuminated appearance; colour matching and any approval sample are confirmed for your quoted configuration."
+      ],
+      [
+        "Do I need individual fixings or a raceway?",
+        "This depends on the fascia, cable access, local installation requirements and desired appearance. Send site photos and substrate details so the mounting approach can be reviewed."
+      ],
+      [
+        "Is exterior suitability the same for every letter?",
+        "No. Tell us the site exposure and destination. Materials, components, required documentation and the electrical and mounting scope are reviewed for the order."
+      ]
+    ],
+    "technicalNotes": [
+      [
+        "Face, returns & depth",
+        "The light-transmitting face and formed side work as one letter. Review the face colour, depth, edges and the smallest artwork details."
+      ],
+      [
+        "Day and evening appearance",
+        "Compare the face colour in daylight with its illuminated appearance. Viewing distance and nearby lighting inform the brightness review."
+      ],
+      [
+        "Fascia, fixings & power",
+        "Identify the substrate, any carrier or raceway requirement, cable penetrations and access for the power supply. Site and destination requirements must be agreed."
       ]
     ]
   },
@@ -206,21 +375,15 @@
     "detailIntro": "Explore the face, edges and finish that give the lettering its character.",
     "detail": [
       {
-        "src": "/assets/metal-studio.webp",
-        "alt": "STUDIO dimensional metal letters in natural light",
-        "caption": "Depth & natural light",
-        "kind": "concept"
-      },
-      {
         "src": "/assets/supplier/formed-metal-letters.webp",
         "alt": "Individual formed metal letters from supplier material",
-        "caption": "Formed letter reference",
+        "caption": "Fabrication sample · Formed letter reference",
         "kind": "supplier_reference"
       },
       {
         "src": "/assets/supplier/letter-edge-section.webp",
         "alt": "Metal edge and return from supplier reference material",
-        "caption": "Edge & return reference",
+        "caption": "Fabrication sample · Edge & return reference",
         "kind": "supplier_reference"
       }
     ],
@@ -250,10 +413,64 @@
     ],
     "contexts": [
       {
+        "id": "studio-metal",
+        "src": "/assets/product-depth/metal-cut.webp",
+        "alt": "Black cut-metal geometric monogram and ATELIER lettering casting daylight shadows on stone",
+        "caption": "A Graphic Identity in Shadow",
+        "kind": "concept",
+        "space": "Design studio entrance",
+        "description": "A geometric monogram, main name and fine secondary lettering form one unlit metal identity. The dark finish and natural shadows keep the design crisp on pale stone.",
+        "tags": [
+          "Matte dark finish",
+          "Graphic monogram"
+        ],
+        "prepare": "Review cut detail, fixing positions and the smallest strokes at actual size.",
+        "variant": ""
+      },
+      {
+        "id": "lounge-metal",
+        "src": "/assets/product-depth/metal-bronze.webp",
+        "alt": "Bronze crest and serif THE LOUNGE hotel lettering on dark stone without integral lighting",
+        "caption": "Warm Metal, Refined Lettering",
+        "kind": "concept",
+        "space": "Hospitality entrance",
+        "description": "A simple crest and serif lettering use material and dimensional edges for character. Ambient light reveals the brushed surface without integral lighting.",
+        "tags": [
+          "Bronze appearance",
+          "Unlit lettering"
+        ],
+        "prepare": "Identify the site exposure and approve a real finish reference where required.",
+        "variant": ""
+      },
+      {
+        "id": "architectural-metal",
         "src": "/assets/home-v2/scene-hospitality.webp",
-        "alt": "SABLE hospitality entrance with dimensional metal lettering",
-        "caption": "Hospitality & interiors",
-        "kind": "concept"
+        "alt": "Dimensional SABLE entrance lettering set into a refined architectural frontage",
+        "caption": "An Identity that Belongs to the Entrance",
+        "kind": "concept",
+        "space": "Hotel & commercial entry",
+        "description": "Raised lettering sits quietly within the entrance architecture. Wall joints, door height and sightlines help set the final positioning.",
+        "tags": [
+          "Architectural scale",
+          "Dimensional depth"
+        ],
+        "prepare": "Provide the wall or cladding construction so fixing and access can be reviewed.",
+        "variant": ""
+      },
+      {
+        "id": "interior-metal",
+        "src": "/assets/metal-studio.webp",
+        "alt": "Unlit metal STUDIO letters with visible depth and natural shadows on a pale wall",
+        "caption": "Material in Natural Light",
+        "kind": "concept",
+        "space": "Interior brand wall",
+        "description": "Metal faces and returns catch changing room light. The design can be developed through surface sheen, thickness and the distance from the wall.",
+        "tags": [
+          "Surface texture",
+          "Natural shadows"
+        ],
+        "prepare": "Compare finish samples under the lighting available at the installation.",
+        "variant": ""
       }
     ],
     "faq": [
@@ -268,6 +485,32 @@
       [
         "How are the letters mounted?",
         "The fixing method depends on the lettering, wall and installation arrangements. Supplied parts and local site work are agreed in the order scope."
+      ],
+      [
+        "Can I choose a thin cut letter or a deeper built-up letter?",
+        "Yes, these are different construction directions. Share the artwork, size and desired depth so we can review feasibility, edge detail and fixing."
+      ],
+      [
+        "Will the metal finish look exactly like a screen image?",
+        "Lighting, viewing angle and screen settings change perceived colour and sheen. Request a finish reference or approval option when matching the surface is important."
+      ],
+      [
+        "Can unlit metal lettering be used outside?",
+        "Identify the environment and fixing surface first. The actual metal, finish and attachment method must be selected for the agreed location and exposure."
+      ]
+    ],
+    "technicalNotes": [
+      [
+        "Cut or built-up",
+        "Artwork and required depth guide the choice between cut material and a formed dimensional construction. Small strokes and fixing details need review at size."
+      ],
+      [
+        "Surface & environment",
+        "Compare sheen, brushing direction and colour with a finish reference. Identify outdoor, coastal or other exposure before choosing the actual metal and surface treatment."
+      ],
+      [
+        "Shadow & attachment",
+        "Unlit letters depend on daylight or site lighting. Review wall clearance, stud positions and attachment to the actual wall or cladding with your installer."
       ]
     ]
   },
@@ -293,12 +536,6 @@
     "detailIntro": "Explore colour, edge appearance and the relationship between the pieces.",
     "detail": [
       {
-        "src": "/assets/products-v2/acrylic-scene.webp",
-        "alt": "Custom acrylic RAE lettering in an imagined reception",
-        "caption": "Colour in context",
-        "kind": "concept"
-      },
-      {
         "src": "/assets/products-v2/acrylic-edge.webp",
         "alt": "Close-up coloured acrylic letter edge — appearance study",
         "caption": "Edges & depth",
@@ -307,7 +544,7 @@
       {
         "src": "/assets/supplier/layered-acrylic-letter.webp",
         "alt": "Layered acrylic character from supplier reference material",
-        "caption": "Layered letter reference",
+        "caption": "Fabrication sample · Layered letter reference",
         "kind": "supplier_reference"
       }
     ],
@@ -335,7 +572,68 @@
         "Confirm the intended space and fixing arrangements."
       ]
     ],
-    "contexts": [],
+    "contexts": [
+      {
+        "id": "layered-acrylic",
+        "src": "/assets/product-depth/acrylic-layered.webp",
+        "alt": "Blue and clear layered CREATE learning studio logo showing translucent edges",
+        "caption": "Colour with a Clear Edge",
+        "kind": "concept",
+        "space": "Learning & creative studio",
+        "description": "Blue faces, transparent layers and a geometric emblem make the edge part of the identity. The two-level lockup balances a bold mark with smaller lettering.",
+        "tags": [
+          "Layered acrylic",
+          "Clear + opaque"
+        ],
+        "prepare": "Confirm layer thickness, colour references and registration of the cut shapes.",
+        "variant": ""
+      },
+      {
+        "id": "salon-acrylic",
+        "src": "/assets/product-depth/acrylic-salon.webp",
+        "alt": "White acrylic hair silhouette and script salon lettering on walnut slats",
+        "caption": "An Expressive Salon Signature",
+        "kind": "concept",
+        "space": "Salon reception",
+        "description": "A flowing emblem and white script lettering contrast with warm timber. The unlit faces rely on daylight and surface finish to reveal the curves.",
+        "tags": [
+          "White dimensional faces",
+          "Script + emblem"
+        ],
+        "prepare": "Review fine strokes and the wall fixing method before approving the artwork.",
+        "variant": ""
+      },
+      {
+        "id": "office-acrylic",
+        "src": "/assets/product-depth/acrylic-office.webp",
+        "alt": "Peach, terracotta and black layered COLLECTIVE logo on a light office wall",
+        "caption": "A Composed Colour Palette",
+        "kind": "concept",
+        "space": "Co-working & office",
+        "description": "Layered geometric shapes and dark lettering create a distinctive identity without integrated lighting. Different colours help organise the logo and its supporting line.",
+        "tags": [
+          "Layered colour",
+          "Unlit construction"
+        ],
+        "prepare": "Send vector artwork, the colour references and the required overall width.",
+        "variant": ""
+      },
+      {
+        "id": "reception-acrylic",
+        "src": "/assets/products-v2/acrylic-scene.webp",
+        "alt": "Orange dimensional RAE acrylic logo in a bright reception interior",
+        "caption": "Bold Colour in a Bright Space",
+        "kind": "concept",
+        "space": "Reception wall",
+        "description": "A saturated single colour turns straightforward lettering into a focal point. The wall and furniture establish scale while daylight defines the depth.",
+        "tags": [
+          "Solid colour",
+          "Dimensional letters"
+        ],
+        "prepare": "Review the surface sheen, thickness and any restrictions on wall drilling.",
+        "variant": ""
+      }
+    ],
     "faq": [
       [
         "Are acrylic letters always illuminated?",
@@ -348,6 +646,32 @@
       [
         "Can I choose the colour and thickness?",
         "Share your preferences. Available material colours, thicknesses and the final design are confirmed for your project."
+      ],
+      [
+        "Can a logo combine clear and solid-colour layers?",
+        "Share the artwork and a side-view or layering reference. We review layer thickness, alignment, visible edges and assembly before confirming the design."
+      ],
+      [
+        "Can acrylic lettering also be illuminated?",
+        "Yes, an illuminated direction can be reviewed, but it requires an appropriate construction. Tell us whether you want an unlit, front-lit, edge-lit or other effect."
+      ],
+      [
+        "Can the sign be fixed without drilling?",
+        "Tell us about the surface and fixing restrictions. Any adhesive, stud or backing solution must be reviewed for the material, weight and local installation conditions."
+      ]
+    ],
+    "technicalNotes": [
+      [
+        "Colour & transparency",
+        "Identify opaque, clear and translucent areas in the artwork. Approve the material or painted colour reference rather than relying only on a screen image."
+      ],
+      [
+        "Thickness & layers",
+        "Review overall thickness, layer alignment, fine details and exposed edge treatment. Clear layers and visible edges can be deliberate parts of the design."
+      ],
+      [
+        "Wall & fixing limits",
+        "Tell us if drilling is restricted. Studs, adhesives and backing options must be selected for the sign, surface and local installation conditions."
       ]
     ]
   },
@@ -419,7 +743,68 @@
         "Review the actual light source, materials and mounting scope."
       ]
     ],
-    "contexts": [],
+    "contexts": [
+      {
+        "id": "dental-lightbox",
+        "src": "/assets/product-depth/lightbox-dental.webp",
+        "alt": "Cyan tooth logo and white DENTAL STUDIO lettering within a black illuminated sign cabinet",
+        "caption": "A Complete Illuminated Identity",
+        "kind": "concept",
+        "space": "Clinic storefront",
+        "description": "A smile emblem, main name and secondary service line share one cabinet face. Colour and typographic hierarchy make the panel a complete graphic composition.",
+        "tags": [
+          "Lit cabinet face",
+          "Logo + secondary text"
+        ],
+        "prepare": "Review the face artwork, cabinet depth and wall fixing arrangement.",
+        "variant": "lightbox"
+      },
+      {
+        "id": "projecting-lightbox",
+        "src": "/assets/products-v2/lightbox-scene.webp",
+        "alt": "Illuminated LUME cabinet sign projecting from a commercial façade",
+        "caption": "Seen Along the Street",
+        "kind": "concept",
+        "space": "Shop entrance",
+        "description": "A projecting circular face addresses people approaching from the side. Shape, bracket and viewing direction belong to the same installation decision.",
+        "tags": [
+          "Projecting format",
+          "Round cabinet"
+        ],
+        "prepare": "Confirm the bracket location, site permissions and mounting substrate.",
+        "variant": "lightbox"
+      },
+      {
+        "id": "cafe-neon",
+        "src": "/assets/product-depth/neon-social.webp",
+        "alt": "Coral Good Company script and a white coffee cup outline on a clear-backed light sign",
+        "caption": "Light as a Brand Signature",
+        "kind": "concept",
+        "space": "Café lounge",
+        "description": "Script lettering and a coffee-cup outline create an expressive line-based composition. The shaped clear backing keeps the individual illuminated elements together.",
+        "tags": [
+          "Illuminated lines",
+          "Shaped backing"
+        ],
+        "prepare": "Review the line paths, backing outline, fixings and cable exit.",
+        "variant": "neon-style"
+      },
+      {
+        "id": "window-neon",
+        "src": "/assets/products-v2/neon-scene.webp",
+        "alt": "Illuminated OPEN line lettering displayed against a shop window",
+        "caption": "A Window Welcome",
+        "kind": "concept",
+        "space": "Interior shop window",
+        "description": "Warm illuminated script sits within the glazing while preserving views into the space. Reflections and the background affect how the sign reads.",
+        "tags": [
+          "Warm line effect",
+          "Window installation"
+        ],
+        "prepare": "Provide the window dimensions and the proposed hanging or fixing points.",
+        "variant": "neon-style"
+      }
+    ],
     "faq": [
       [
         "Can you make my logo in either style?",
@@ -432,6 +817,32 @@
       [
         "Can a projecting lightbox be installed at my site?",
         "Tell us about the facade, access and local installation arrangements. Structural fixing and electrical requirements must be reviewed for the project."
+      ],
+      [
+        "How do I choose between a lightbox and a neon-style sign?",
+        "Choose a lightbox direction for an illuminated graphic panel, or a neon-style direction for visible light lines and lettering. Share the viewing position and artwork if you are unsure."
+      ],
+      [
+        "Can a lightbox be viewed from both sides?",
+        "Request the required viewing directions in your enquiry. The face arrangement, bracket, cabinet and fixing need to be designed together for the location."
+      ],
+      [
+        "Can the light colour or brightness be changed?",
+        "State the light colour and any dimming or control needs before quoting. Availability depends on the selected system and the agreed power and component configuration."
+      ]
+    ],
+    "technicalNotes": [
+      [
+        "Panel or illuminated line",
+        "A lightbox displays graphics through a lit face. A neon-style sign follows the strokes in the artwork. These effects use different construction approaches."
+      ],
+      [
+        "Backing, cabinet & viewing",
+        "For a lightbox, review face count, cabinet depth and viewing direction. For a line sign, review backing shape, bend detail and visible fixings."
+      ],
+      [
+        "Power & site conditions",
+        "Confirm cable exit, accessible power-supply location and indoor or outdoor use. Any dimming, control or documentation requirement belongs in the quoted configuration."
       ]
     ]
   },
@@ -473,7 +884,7 @@
         "photo": {
           "src": "/assets/supplier/exposed-light-letter.webp",
           "alt": "Large exposed-light character from supplier reference material",
-          "caption": "Supplier reference",
+          "caption": "Fabrication sample · Construction detail",
           "kind": "supplier_reference"
         },
         "anchor": "exposed-light"
@@ -497,7 +908,68 @@
         "Confirm the wall, setting and installation scope."
       ]
     ],
-    "contexts": [],
+    "contexts": [
+      {
+        "id": "cinema-special",
+        "src": "/assets/product-depth/specialty-cinema.webp",
+        "alt": "Red CINEMA marquee lettering with warm bulbs and an Art Deco crest above an entrance",
+        "caption": "A Marquee with Character",
+        "kind": "concept",
+        "space": "Cinema & entertainment",
+        "description": "An Art Deco crest, sculpted letters and rows of visible bulbs form a complete entrance identity. Depth and the light-point pattern need to be designed together.",
+        "tags": [
+          "Marquee lettering",
+          "Visible bulbs"
+        ],
+        "prepare": "Approve a layout showing light-point positions and the required service access.",
+        "variant": "marquee"
+      },
+      {
+        "id": "social-special",
+        "src": "/assets/product-depth/specialty-play.webp",
+        "alt": "Navy PLAY dimensional letters and a star with exposed light points on an orange wall",
+        "caption": "A Playful Dimensional Identity",
+        "kind": "concept",
+        "space": "Entertainment entrance",
+        "description": "Bold dark letters, visible light points and a star emblem bring energy to a coloured architectural wall. The arrangement balances the name and a smaller secondary line.",
+        "tags": [
+          "Light-point rhythm",
+          "Letter + symbol"
+        ],
+        "prepare": "Review component access, brightness and fixing positions for the site.",
+        "variant": "exposed-light"
+      },
+      {
+        "id": "restaurant-special",
+        "src": "/assets/product-depth/specialty-restaurant.webp",
+        "alt": "Copper flame emblem, white lit FIRE AND GRAIN letters and a secondary line on a shaped backing",
+        "caption": "Materials Working Together",
+        "kind": "concept",
+        "space": "Restaurant frontage",
+        "description": "A sculpted flame, illuminated faces and unlit secondary lettering share a shaped backing. The assembly combines different visual effects within one identity.",
+        "tags": [
+          "Mixed-material concept",
+          "Custom backing"
+        ],
+        "prepare": "Clarify each component, its finish, lighting and supporting structure.",
+        "variant": ""
+      },
+      {
+        "id": "evening-special",
+        "src": "/assets/products-v2/marquee-scene.webp",
+        "alt": "Illuminated ECHO marquee lettering creating an evening entrance feature",
+        "caption": "An Entrance with Evening Presence",
+        "kind": "concept",
+        "space": "Dining & hospitality",
+        "description": "Warm visible lights bring character to deep dimensional letters. The building façade provides the scale and frame for the lettering.",
+        "tags": [
+          "Warm light points",
+          "Deep lettering"
+        ],
+        "prepare": "Tell us the destination, exposure and intended maintenance access.",
+        "variant": "marquee"
+      }
+    ],
     "faq": [
       [
         "Can you work from a reference photo?",
@@ -510,6 +982,32 @@
       [
         "What should I send for a feasibility review?",
         "Share a reference, the important visual details, approximate size, quantity, intended location and destination."
+      ],
+      [
+        "Can one sign combine an emblem, illuminated text and unlit lettering?",
+        "Share the full visual reference and indicate the desired effect for each part. We review the construction, finishes, support and electrical scope as one proposed assembly."
+      ],
+      [
+        "Can the exposed light points be replaced later?",
+        "Identify the maintenance requirement at the enquiry stage. Component selection and service access need to be incorporated into the approved construction."
+      ],
+      [
+        "Can you manufacture directly from a photograph?",
+        "A photo is useful for discussing the direction, but dimensions, artwork, construction and supplied items still need to be resolved and approved before production."
+      ]
+    ],
+    "technicalNotes": [
+      [
+        "Resolve the visual idea",
+        "Start with artwork or a reference and identify which parts need depth, illumination or a particular surface. The drawing must define the proposed combination."
+      ],
+      [
+        "Component layout & access",
+        "For exposed lighting, review point spacing, component choice and replacement access. For mixed constructions, identify how the individual parts connect and are supported."
+      ],
+      [
+        "Confirm the supplied scope",
+        "Review overall size, fixing, electrical arrangement, exposure and destination requirements. Approve the drawings and required components before production."
       ]
     ]
   }

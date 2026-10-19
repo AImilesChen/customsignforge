@@ -9,10 +9,12 @@ import {useSite} from './site-context.jsx';
 import {USES,COUNTRIES,STAGES} from '../lib/validation.mjs';
 import {captureAttribution,measure} from '../lib/browser-measurement.mjs';
 import productPresentations from '../data/product-pages.json';
+import {selectedScene} from '../lib/product-scenes.mjs';
 export default function Quote(){
  const {products,works,query,settings,site}=useSite();const params=new URLSearchParams(query);
  const direction=productPresentations[params.get('style')]?.directions?.find(item=>item.anchor===params.get('variant'));
- const [form,setForm]=useState({contactName:'',businessName:'',businessWebsite:'',quantity:'',dimensionsStatus:'',width:'',height:'',dimensionUnit:'',environment:'',deliveryWindow:'',targetDate:'',budget:'',role:ROLES.some(([key])=>key===params.get('role'))?params.get('role'):'',style:products.some(p=>p.slug===params.get('style'))?params.get('style'):'not-sure',use:'',country:'',stage:'',city:'',timing:'',notes:direction?'Interested in: '+direction.title+'.':'',website:'',contactMethod:'',phone:'',drawings:''});
+ const concept=selectedScene(productPresentations,params.get('style'),params.get('concept'));
+ const [form,setForm]=useState({contactName:'',businessName:'',businessWebsite:'',quantity:'',dimensionsStatus:'',width:'',height:'',dimensionUnit:'',environment:'',deliveryWindow:'',targetDate:'',budget:'',role:ROLES.some(([key])=>key===params.get('role'))?params.get('role'):'',style:products.some(p=>p.slug===params.get('style'))?params.get('style'):'not-sure',use:'',country:'',stage:'',city:'',timing:'',notes:concept?'Interested in design concept: '+concept.caption+'.':direction?'Interested in: '+direction.title+'.':'',website:'',contactMethod:'',phone:'',drawings:''});
  const [state,setState]=useState('form'),[errors,setErrors]=useState({}),[result,setResult]=useState(null),[message,setMessage]=useState(''),[copied,setCopied]=useState(false),[contact,setContact]=useState(false),[numberCopied,setNumberCopied]=useState(false);
  const [step,setStep]=useState(0);const stepTitle=useRef(null);
  const [files,setFiles]=useState([]),[uploadBusy,setUploadBusy]=useState(false);

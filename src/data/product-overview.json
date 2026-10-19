@@ -1,6 +1,6 @@
 {
-  "title": "Find Your Sign Style.",
-  "intro": "Compare the light, material and character of each sign direction. Every sign is made around your artwork, space and project requirements.",
+  "title": "Custom Signs. Made for Your Space.",
+  "intro": "From a distinctive logo to the finished installation. Explore the light, material and character of your next sign.",
   "sections": [
     {
       "id": "led-channel-letters",
@@ -30,8 +30,8 @@
       ],
       "custom": "Logo, overall size, face colour, return finish and light colour.",
       "image": {
-        "src": "/assets/home-v2/style-front-lit.webp",
-        "alt": "Front-lit LUMA lettering above a commercial storefront, design concept",
+        "src": "/assets/product-depth/front-brand.webp",
+        "alt": "Green leaf-and-fork logo and white GREEN TABLE channel letters on a dark restaurant fascia",
         "caption": "AI-generated design concept"
       },
       "detail": {
@@ -71,8 +71,8 @@
       ],
       "custom": "Logo proportions, metal appearance, light colour and wall clearance.",
       "image": {
-        "src": "/assets/home-v2/style-halo-lit.webp",
-        "alt": "Bronze NOVA lettering with rear illumination on stone, design concept",
+        "src": "/assets/product-depth/halo-brand.webp",
+        "alt": "Bronze petal logo and two levels of rear-lit wellness lettering on textured travertine",
         "caption": "AI-generated design concept"
       },
       "detail": {
@@ -112,8 +112,8 @@
       ],
       "custom": "Metal direction, surface finish, letter depth, size and fixing approach.",
       "image": {
-        "src": "/assets/home-v2/style-metal.webp",
-        "alt": "Brushed FORMA metal lettering on a pale interior wall, design concept",
+        "src": "/assets/product-depth/metal-bronze.webp",
+        "alt": "Bronze crest and serif THE LOUNGE hotel lettering on dark stone without integral lighting",
         "caption": "AI-generated design concept"
       },
       "detail": {
@@ -153,8 +153,8 @@
       ],
       "custom": "Logo shape, colour reference, material thickness, layers and mounting.",
       "image": {
-        "src": "/assets/products-v2/acrylic-scene.webp",
-        "alt": "Orange RAE dimensional lettering in a reception, design concept",
+        "src": "/assets/product-depth/acrylic-layered.webp",
+        "alt": "Blue and clear layered CREATE learning studio logo showing translucent edges",
         "caption": "AI-generated design concept"
       },
       "detail": {
@@ -194,8 +194,8 @@
       ],
       "custom": "Face shape, graphics, cabinet finish, overall size and mounting arrangement.",
       "image": {
-        "src": "/assets/products-v2/lightbox-scene.webp",
-        "alt": "Round LUME projecting lightbox at a storefront, design concept",
+        "src": "/assets/product-depth/lightbox-dental.webp",
+        "alt": "Cyan tooth logo and white DENTAL STUDIO lettering within a black illuminated sign cabinet",
         "caption": "AI-generated design concept"
       },
       "detail": {
@@ -235,8 +235,8 @@
       ],
       "custom": "Wording, logo outline, light colour, backing shape and hanging or fixing method.",
       "image": {
-        "src": "/assets/products-v2/neon-scene.webp",
-        "alt": "Warm OPEN line sign in a café window, design concept",
+        "src": "/assets/product-depth/neon-social.webp",
+        "alt": "Coral Good Company script and a white coffee cup outline on a clear-backed light sign",
         "caption": "AI-generated design concept"
       },
       "detail": {
@@ -276,8 +276,8 @@
       ],
       "custom": "Letter form, visible light layout, finish, depth and supporting structure.",
       "image": {
-        "src": "/assets/products-v2/marquee-scene.webp",
-        "alt": "ECHO dimensional marquee lettering above a restaurant entrance, design concept",
+        "src": "/assets/product-depth/specialty-cinema.webp",
+        "alt": "Red CINEMA marquee lettering with warm bulbs and an Art Deco crest above an entrance",
         "caption": "AI-generated design concept"
       },
       "detail": {
@@ -321,5 +321,10 @@
       "Review your quote",
       "Confirm the project price, delivery arrangements and drawings before production."
     ]
-  ]
+  ],
+  "hero": {
+    "src": "/assets/product-depth/overview-hero.webp",
+    "alt": "Illuminated custom lettering on a contemporary commercial entrance, design concept",
+    "caption": "AI-generated design concept"
+  }
 }

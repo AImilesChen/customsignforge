@@ -744,5 +744,293 @@
         "width": 1200
       }
     ]
+  },
+  "/assets/product-depth/overview-hero.webp": {
+    "width": 1920,
+    "height": 768,
+    "variants": [
+      {
+        "src": "/assets/responsive/product-depth/overview-hero-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/product-depth/overview-hero-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/product-depth/overview-hero-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-depth/front-retail.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/product-depth/front-retail-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/product-depth/front-retail-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/product-depth/front-retail-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-depth/front-bakery.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/product-depth/front-bakery-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/product-depth/front-bakery-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/product-depth/front-bakery-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-depth/front-brand.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/product-depth/front-brand-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/product-depth/front-brand-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/product-depth/front-brand-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-depth/halo-corporate.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/product-depth/halo-corporate-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/product-depth/halo-corporate-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/product-depth/halo-corporate-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-depth/halo-brand.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/product-depth/halo-brand-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/product-depth/halo-brand-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/product-depth/halo-brand-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-depth/metal-cut.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/product-depth/metal-cut-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/product-depth/metal-cut-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/product-depth/metal-cut-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-depth/metal-bronze.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/product-depth/metal-bronze-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/product-depth/metal-bronze-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/product-depth/metal-bronze-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-depth/acrylic-layered.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/product-depth/acrylic-layered-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/product-depth/acrylic-layered-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/product-depth/acrylic-layered-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-depth/acrylic-salon.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/product-depth/acrylic-salon-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/product-depth/acrylic-salon-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/product-depth/acrylic-salon-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-depth/acrylic-office.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/product-depth/acrylic-office-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/product-depth/acrylic-office-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/product-depth/acrylic-office-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-depth/lightbox-dental.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/product-depth/lightbox-dental-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/product-depth/lightbox-dental-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/product-depth/lightbox-dental-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-depth/neon-social.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/product-depth/neon-social-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/product-depth/neon-social-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/product-depth/neon-social-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-depth/specialty-cinema.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/product-depth/specialty-cinema-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/product-depth/specialty-cinema-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/product-depth/specialty-cinema-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-depth/specialty-play.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/product-depth/specialty-play-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/product-depth/specialty-play-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/product-depth/specialty-play-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-depth/specialty-restaurant.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/product-depth/specialty-restaurant-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/product-depth/specialty-restaurant-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/product-depth/specialty-restaurant-1200.webp",
+        "width": 1200
+      }
+    ]
   }
 }
