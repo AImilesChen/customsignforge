@@ -4,9 +4,11 @@ import {ArrowRightIcon as ArrowRight,CheckCircleIcon as CheckCircle,WarningCircl
 import {useSite} from './site-context.jsx';
 import {USES,COUNTRIES,STAGES} from '../lib/validation.mjs';
 import {captureAttribution,measure} from '../lib/browser-measurement.mjs';
+import productPresentations from '../data/product-pages.json';
 export default function Quote(){
  const {products,works,query,settings,site}=useSite();const params=new URLSearchParams(query);
- const [form,setForm]=useState({role:params.get('role')||'',style:products.some(p=>p.slug===params.get('style'))?params.get('style'):'not-sure',use:'',country:'',stage:'',city:'',timing:'',notes:'',website:''});
+ const direction=productPresentations[params.get('style')]?.directions?.find(item=>item.anchor===params.get('variant'));
+ const [form,setForm]=useState({role:params.get('role')||'',style:products.some(p=>p.slug===params.get('style'))?params.get('style'):'not-sure',use:'',country:'',stage:'',city:'',timing:'',notes:direction?'Interested in: '+direction.title+'.':'',website:''});
  const [state,setState]=useState('form'),[errors,setErrors]=useState({}),[result,setResult]=useState(null),[message,setMessage]=useState(''),[copied,setCopied]=useState(false),[contact,setContact]=useState(false),[numberCopied,setNumberCopied]=useState(false);
  const key=useRef(null),outcome=useRef(null),widget=useRef(null),widgetId=useRef(null),token=useRef('');
  const project=works.find(p=>p.slug===params.get('project'));

@@ -126,5 +126,57 @@
   "/assets/home-v2/style-metal.webp": [
     1448,
     1086
+  ],
+  "/assets/products-v2/acrylic-edge.webp": [
+    1448,
+    1086
+  ],
+  "/assets/products-v2/acrylic-material.webp": [
+    1355,
+    1161
+  ],
+  "/assets/products-v2/acrylic-scene.webp": [
+    1512,
+    1040
+  ],
+  "/assets/products-v2/halo-custom.webp": [
+    1355,
+    1161
+  ],
+  "/assets/products-v2/halo-edge.webp": [
+    1600,
+    933
+  ],
+  "/assets/products-v2/halo-face.webp": [
+    1600,
+    932
+  ],
+  "/assets/products-v2/halo-hospitality.webp": [
+    1600,
+    900
+  ],
+  "/assets/products-v2/halo-reception.webp": [
+    1600,
+    900
+  ],
+  "/assets/products-v2/lightbox-detail.webp": [
+    1355,
+    1161
+  ],
+  "/assets/products-v2/lightbox-scene.webp": [
+    1514,
+    1039
+  ],
+  "/assets/products-v2/marquee-scene.webp": [
+    1513,
+    1040
+  ],
+  "/assets/products-v2/neon-scene.webp": [
+    1513,
+    1039
+  ],
+  "/assets/products-v2/lightbox-dual-hero.webp": [
+    1448,
+    1086
   ]
 }

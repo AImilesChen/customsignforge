@@ -1,0 +1,119 @@
+[
+  {
+    "src": "/assets/products-v2/acrylic-edge.webp",
+    "source_png": "../产品详情页样板_V2.0/asset-sources/acrylic-edge.png",
+    "width": 1448,
+    "height": 1086,
+    "sha256": "d2dd23499b3d6eb5df733cd615f402dc92e2c7d9ca32b75c7166d0f1d455e6ad",
+    "classification": "AI-generated appearance concept",
+    "real_project_or_production_evidence": false
+  },
+  {
+    "src": "/assets/products-v2/acrylic-material.webp",
+    "source_png": "../产品详情页样板_V2.0/asset-sources/acrylic-material.png",
+    "width": 1355,
+    "height": 1161,
+    "sha256": "25efcd4d882de02082544ded4d2fd92648a47bdc49668379b92a88949a065c34",
+    "classification": "AI-generated appearance concept",
+    "real_project_or_production_evidence": false
+  },
+  {
+    "src": "/assets/products-v2/acrylic-scene.webp",
+    "source_png": "../产品详情页样板_V2.0/asset-sources/acrylic-scene.png",
+    "width": 1512,
+    "height": 1040,
+    "sha256": "a7c52bdd59b8c78514f4cf11d94672daa1996ba74bcd15934cebb525ea87650d",
+    "classification": "AI-generated appearance concept",
+    "real_project_or_production_evidence": false
+  },
+  {
+    "src": "/assets/products-v2/halo-custom.webp",
+    "source_png": "../产品详情页样板_V2.0/asset-sources/halo-custom.png",
+    "width": 1355,
+    "height": 1161,
+    "sha256": "f15a0cb2e5ac42618f600f2f7122ee460009c787d2796c8a29e62c7748a05b89",
+    "classification": "AI-generated appearance concept",
+    "real_project_or_production_evidence": false
+  },
+  {
+    "src": "/assets/products-v2/halo-edge.webp",
+    "source_png": "../产品详情页样板_V2.0/asset-sources/halo-edge.png",
+    "width": 1600,
+    "height": 933,
+    "sha256": "50dd1c22b1fe7aebee6acdf5bb2a3ad49136382263cdf304277a8e0b171905fa",
+    "classification": "AI-generated appearance concept",
+    "real_project_or_production_evidence": false
+  },
+  {
+    "src": "/assets/products-v2/halo-face.webp",
+    "source_png": "../产品详情页样板_V2.0/asset-sources/halo-face.png",
+    "width": 1600,
+    "height": 932,
+    "sha256": "e3681739ae6e14cff330591a51d5b0c49d72348302129ee876e96ac52a47eb16",
+    "classification": "AI-generated appearance concept",
+    "real_project_or_production_evidence": false
+  },
+  {
+    "src": "/assets/products-v2/halo-hospitality.webp",
+    "source_png": "../产品详情页样板_V2.0/asset-sources/halo-hospitality.png",
+    "width": 1600,
+    "height": 900,
+    "sha256": "d59d48742d49f14cc475a9246242d11fd052bfb586960c11e0c47aec82fd8018",
+    "classification": "AI-generated appearance concept",
+    "real_project_or_production_evidence": false
+  },
+  {
+    "src": "/assets/products-v2/halo-reception.webp",
+    "source_png": "../产品详情页样板_V2.0/asset-sources/halo-reception.png",
+    "width": 1600,
+    "height": 900,
+    "sha256": "97c9f20f9ef8ef4f0770d7735263042974abf5e3f5d66815bd214d0ba44d64a5",
+    "classification": "AI-generated appearance concept",
+    "real_project_or_production_evidence": false
+  },
+  {
+    "src": "/assets/products-v2/lightbox-detail.webp",
+    "source_png": "../产品详情页样板_V2.0/asset-sources/lightbox-detail.png",
+    "width": 1355,
+    "height": 1161,
+    "sha256": "9c24be2bf6b70f8a6ac651711768de6863224fc030d2ec39c7b1b5729ce3546b",
+    "classification": "AI-generated appearance concept",
+    "real_project_or_production_evidence": false
+  },
+  {
+    "src": "/assets/products-v2/lightbox-scene.webp",
+    "source_png": "../产品详情页样板_V2.0/asset-sources/lightbox-scene.png",
+    "width": 1514,
+    "height": 1039,
+    "sha256": "dc49f6e49aad633b36c1883f9750c6a53b09d3af4eaa7cb771179dd979ade552",
+    "classification": "AI-generated appearance concept",
+    "real_project_or_production_evidence": false
+  },
+  {
+    "src": "/assets/products-v2/marquee-scene.webp",
+    "source_png": "../产品详情页样板_V2.0/asset-sources/marquee-scene.png",
+    "width": 1513,
+    "height": 1040,
+    "sha256": "4f361c7dea4adfdf29d0ce2b23a79621ed0c09b845e4c887414272f58508b922",
+    "classification": "AI-generated appearance concept",
+    "real_project_or_production_evidence": false
+  },
+  {
+    "src": "/assets/products-v2/neon-scene.webp",
+    "source_png": "../产品详情页样板_V2.0/asset-sources/neon-scene.png",
+    "width": 1513,
+    "height": 1039,
+    "sha256": "117410f5cafb8c165adabaef9d246e853d85bf804855221ff8d43eacdadc6774",
+    "classification": "AI-generated appearance concept",
+    "real_project_or_production_evidence": false
+  },
+  {
+    "src": "/assets/products-v2/lightbox-dual-hero.webp",
+    "source_png": "../产品详情页样板_V2.0/asset-sources/lightbox-dual-hero.png",
+    "width": 1448,
+    "height": 1086,
+    "sha256": "d8660945a3c52e5b73b139e2e650ec36f2c7e4404df0b22fbec453925d654a1d",
+    "classification": "AI-generated appearance concept",
+    "real_project_or_production_evidence": false
+  }
+]

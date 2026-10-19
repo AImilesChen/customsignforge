@@ -510,5 +510,239 @@
         "width": 400
       }
     ]
+  },
+  "/assets/products-v2/acrylic-edge.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/products-v2/acrylic-edge-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/products-v2/acrylic-edge-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/products-v2/acrylic-edge-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/products-v2/acrylic-material.webp": {
+    "width": 1355,
+    "height": 1161,
+    "variants": [
+      {
+        "src": "/assets/responsive/products-v2/acrylic-material-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/products-v2/acrylic-material-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/products-v2/acrylic-material-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/products-v2/acrylic-scene.webp": {
+    "width": 1512,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/responsive/products-v2/acrylic-scene-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/products-v2/acrylic-scene-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/products-v2/acrylic-scene-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/products-v2/halo-custom.webp": {
+    "width": 1355,
+    "height": 1161,
+    "variants": [
+      {
+        "src": "/assets/responsive/products-v2/halo-custom-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/products-v2/halo-custom-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/products-v2/halo-custom-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/products-v2/halo-edge.webp": {
+    "width": 1600,
+    "height": 933,
+    "variants": [
+      {
+        "src": "/assets/responsive/products-v2/halo-edge-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/products-v2/halo-edge-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/products-v2/halo-edge-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/products-v2/halo-face.webp": {
+    "width": 1600,
+    "height": 932,
+    "variants": [
+      {
+        "src": "/assets/responsive/products-v2/halo-face-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/products-v2/halo-face-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/products-v2/halo-face-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/products-v2/halo-hospitality.webp": {
+    "width": 1600,
+    "height": 900,
+    "variants": [
+      {
+        "src": "/assets/responsive/products-v2/halo-hospitality-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/products-v2/halo-hospitality-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/products-v2/halo-hospitality-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/products-v2/halo-reception.webp": {
+    "width": 1600,
+    "height": 900,
+    "variants": [
+      {
+        "src": "/assets/responsive/products-v2/halo-reception-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/products-v2/halo-reception-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/products-v2/halo-reception-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/products-v2/lightbox-detail.webp": {
+    "width": 1355,
+    "height": 1161,
+    "variants": [
+      {
+        "src": "/assets/responsive/products-v2/lightbox-detail-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/products-v2/lightbox-detail-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/products-v2/lightbox-detail-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/products-v2/lightbox-scene.webp": {
+    "width": 1514,
+    "height": 1039,
+    "variants": [
+      {
+        "src": "/assets/responsive/products-v2/lightbox-scene-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/products-v2/lightbox-scene-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/products-v2/lightbox-scene-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/products-v2/marquee-scene.webp": {
+    "width": 1513,
+    "height": 1040,
+    "variants": [
+      {
+        "src": "/assets/responsive/products-v2/marquee-scene-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/products-v2/marquee-scene-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/products-v2/marquee-scene-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/products-v2/neon-scene.webp": {
+    "width": 1513,
+    "height": 1039,
+    "variants": [
+      {
+        "src": "/assets/responsive/products-v2/neon-scene-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/products-v2/neon-scene-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/products-v2/neon-scene-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/products-v2/lightbox-dual-hero.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/products-v2/lightbox-dual-hero-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/products-v2/lightbox-dual-hero-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/products-v2/lightbox-dual-hero-1200.webp",
+        "width": 1200
+      }
+    ]
   }
 }

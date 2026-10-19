@@ -1,0 +1,516 @@
+{
+  "backlit-letters": {
+    "headline": [
+      "Your Brand.",
+      "In a Different Light."
+    ],
+    "intro": "Custom lettering with a soft glow behind the face.",
+    "benefits": [
+      "Your logo",
+      "Your finish",
+      "Your space"
+    ],
+    "oldHero": "/assets/office-halo.webp",
+    "hero": {
+      "src": "/assets/home-v2/style-halo-lit.webp",
+      "alt": "Bronze NOVA letters with warm rear illumination on stone",
+      "caption": "AI-generated design concept",
+      "kind": "concept"
+    },
+    "detailTitle": "See the Glow. See the Detail.",
+    "detailIntro": "Explore the look before we confirm the specification.",
+    "detail": [
+      {
+        "src": "/assets/office-halo.webp",
+        "alt": "NORTH STUDIO halo-lit lettering on a stone reception wall",
+        "caption": "Halo & wall effect",
+        "kind": "concept"
+      },
+      {
+        "src": "/assets/products-v2/halo-face.webp",
+        "alt": "Brushed bronze letter face with a warm halo — appearance concept",
+        "caption": "Face & finish",
+        "kind": "concept"
+      },
+      {
+        "src": "/assets/products-v2/halo-edge.webp",
+        "alt": "Oblique bronze letter edge and soft rear light — appearance concept",
+        "caption": "Letter depth",
+        "kind": "concept"
+      }
+    ],
+    "custom": {
+      "src": "/assets/products-v2/halo-custom.webp",
+      "alt": "Angled bronze A showing an opaque face and warm halo — appearance concept",
+      "caption": "AI-generated appearance study",
+      "kind": "concept"
+    },
+    "options": [
+      [
+        "Logo & lettering",
+        "Start with your artwork or reference."
+      ],
+      [
+        "Size & layout",
+        "Proportions to suit your space."
+      ],
+      [
+        "Finish & light",
+        "Discuss the surface and lighting effect."
+      ],
+      [
+        "Wall & mounting",
+        "Review the location and installation scope."
+      ]
+    ],
+    "contexts": [
+      {
+        "src": "/assets/products-v2/halo-reception.webp",
+        "alt": "AEON halo-lit letters in an imagined office reception",
+        "caption": "Reception & office",
+        "kind": "concept"
+      },
+      {
+        "src": "/assets/products-v2/halo-hospitality.webp",
+        "alt": "THE LANE halo lettering in an imagined hospitality interior",
+        "caption": "Hospitality & interiors",
+        "kind": "concept"
+      }
+    ],
+    "faq": [
+      [
+        "Can you work from my logo?",
+        "Yes. Share your artwork and intended size. Fine strokes and small spaces need review before we confirm the construction."
+      ],
+      [
+        "What affects the halo on my wall?",
+        "Wall colour and texture, spacing, surrounding light and viewing angle affect the visible glow. Share close and wider photos of the location."
+      ],
+      [
+        "How is my sign quoted?",
+        "We review the artwork, dimensions, finish, lighting, quantity and delivery requirements. Final specifications and installation responsibilities are agreed for your project."
+      ]
+    ],
+    "faqTitle": "Questions About Backlit Letters?",
+    "detailTitleLines": [
+      "See the Glow.",
+      "See the Detail."
+    ]
+  },
+  "led-channel-letters": {
+    "headline": [
+      "A Clear Name.",
+      "A Bright Presence."
+    ],
+    "intro": "Custom illuminated lettering that brings your business name into view.",
+    "benefits": [
+      "Your lettering",
+      "Your light",
+      "Your storefront"
+    ],
+    "oldHero": "/assets/frontlit-form.webp",
+    "hero": {
+      "src": "/assets/home-v2/style-front-lit.webp",
+      "alt": "LUMA front-lit channel letters on a dark storefront",
+      "caption": "AI-generated design concept",
+      "kind": "concept"
+    },
+    "detailTitle": "A Bright Face. Defined Edges.",
+    "detailIntro": "Look at the lettering, the return and the lighting arrangement.",
+    "detail": [
+      {
+        "src": "/assets/frontlit-form.webp",
+        "alt": "FORM front-lit letters on a commercial facade",
+        "caption": "Face & street presence",
+        "kind": "concept"
+      },
+      {
+        "src": "/assets/supplier/letter-face-reference.webp",
+        "alt": "Individual letter faces from supplier reference material",
+        "caption": "Letter face reference",
+        "kind": "supplier_reference"
+      },
+      {
+        "src": "/assets/supplier/led-layout-reference.webp",
+        "alt": "Internal lighting from supplier reference material",
+        "caption": "Lighting layout reference",
+        "kind": "supplier_reference"
+      }
+    ],
+    "custom": {
+      "src": "/assets/storefront-wide.webp",
+      "alt": "Wide FORM COFFEE storefront showing sign proportions",
+      "caption": "AI-generated design concept",
+      "kind": "concept"
+    },
+    "options": [
+      [
+        "Logo & letter shape",
+        "Share your font, artwork and brand references."
+      ],
+      [
+        "Dimensions & depth",
+        "Review the overall size and construction."
+      ],
+      [
+        "Face, sides & light",
+        "Discuss face colour, return finish and the lighting effect."
+      ],
+      [
+        "Site & power",
+        "Confirm mounting surface, cable route and destination needs."
+      ]
+    ],
+    "contexts": [
+      {
+        "src": "/assets/home-v2/scene-storefront.webp",
+        "alt": "MORROW bakery facade with illuminated letters — design concept",
+        "caption": "Retail & storefronts",
+        "kind": "concept"
+      }
+    ],
+    "faq": [
+      [
+        "Can I use my own logo or typeface?",
+        "Share the artwork and intended dimensions so the strokes, spacing and construction can be reviewed."
+      ],
+      [
+        "Can this style be used outdoors?",
+        "Suitability depends on the specific construction, components and site conditions. Tell us the location before the specification is confirmed."
+      ],
+      [
+        "What determines the price?",
+        "Design, dimensions, materials, lighting, quantity and delivery requirements are reviewed together for your quote."
+      ]
+    ]
+  },
+  "metal-letters": {
+    "headline": [
+      "Let the Material",
+      "Make Its Mark."
+    ],
+    "intro": "Dimensional lettering with depth, natural shadow and a considered finish.",
+    "benefits": [
+      "Your shape",
+      "Your surface",
+      "Your space"
+    ],
+    "oldHero": "/assets/metal-studio-portrait.webp",
+    "hero": {
+      "src": "/assets/home-v2/style-metal.webp",
+      "alt": "Non-lit brushed metal FORMA letters in a bright interior",
+      "caption": "AI-generated design concept",
+      "kind": "concept"
+    },
+    "detailTitle": "Shape. Surface. Shadow.",
+    "detailIntro": "Explore the face, edges and finish that give the lettering its character.",
+    "detail": [
+      {
+        "src": "/assets/metal-studio.webp",
+        "alt": "STUDIO dimensional metal letters in natural light",
+        "caption": "Depth & natural light",
+        "kind": "concept"
+      },
+      {
+        "src": "/assets/supplier/formed-metal-letters.webp",
+        "alt": "Individual formed metal letters from supplier material",
+        "caption": "Formed letter reference",
+        "kind": "supplier_reference"
+      },
+      {
+        "src": "/assets/supplier/letter-edge-section.webp",
+        "alt": "Metal edge and return from supplier reference material",
+        "caption": "Edge & return reference",
+        "kind": "supplier_reference"
+      }
+    ],
+    "custom": {
+      "src": "/assets/home-v2/custom-arc.webp",
+      "alt": "ARC metal lettering with finish samples — appearance study",
+      "caption": "AI-generated material study",
+      "kind": "concept"
+    },
+    "options": [
+      [
+        "Shape & size",
+        "Review your logo, dimensions and letter proportions."
+      ],
+      [
+        "Surface finish",
+        "Discuss brushed, polished or other available finishes."
+      ],
+      [
+        "Depth & fixing",
+        "Confirm the construction and supplied mounting scope."
+      ],
+      [
+        "Space & lighting",
+        "Tell us about the wall, viewing distance and surrounding light."
+      ]
+    ],
+    "contexts": [
+      {
+        "src": "/assets/home-v2/scene-hospitality.webp",
+        "alt": "SABLE hospitality entrance with dimensional metal lettering",
+        "caption": "Hospitality & interiors",
+        "kind": "concept"
+      }
+    ],
+    "faq": [
+      [
+        "Are metal letters always illuminated?",
+        "No. This direction can use natural light and shadow. Any illumination is a separate construction choice to review."
+      ],
+      [
+        "Can you match a finish reference?",
+        "Send a finish or colour reference. Material, coating availability and sample requirements need confirmation."
+      ],
+      [
+        "How are the letters mounted?",
+        "The fixing method depends on the lettering, wall and installation arrangements. Supplied parts and local site work are agreed in the order scope."
+      ]
+    ]
+  },
+  "acrylic-letters": {
+    "headline": [
+      "Colour with Depth.",
+      "Shaped for You."
+    ],
+    "intro": "Custom acrylic lettering, logo shapes and layered sign designs.",
+    "benefits": [
+      "Your colour",
+      "Your logo",
+      "Your layers"
+    ],
+    "oldHero": "/assets/acrylic-sign.webp",
+    "hero": {
+      "src": "/assets/acrylic-sign.webp",
+      "alt": "Orange bright lettering in a commercial interior",
+      "caption": "AI-generated design concept",
+      "kind": "concept"
+    },
+    "detailTitle": "Look Closer at the Layers.",
+    "detailIntro": "Explore colour, edge appearance and the relationship between the pieces.",
+    "detail": [
+      {
+        "src": "/assets/products-v2/acrylic-scene.webp",
+        "alt": "Custom acrylic RAE lettering in an imagined reception",
+        "caption": "Colour in context",
+        "kind": "concept"
+      },
+      {
+        "src": "/assets/products-v2/acrylic-edge.webp",
+        "alt": "Close-up coloured acrylic letter edge — appearance study",
+        "caption": "Edges & depth",
+        "kind": "concept"
+      },
+      {
+        "src": "/assets/supplier/layered-acrylic-letter.webp",
+        "alt": "Layered acrylic character from supplier reference material",
+        "caption": "Layered letter reference",
+        "kind": "supplier_reference"
+      }
+    ],
+    "custom": {
+      "src": "/assets/products-v2/acrylic-material.webp",
+      "alt": "Coloured acrylic lettering and material samples — appearance study",
+      "caption": "AI-generated material study",
+      "kind": "concept"
+    },
+    "options": [
+      [
+        "Logo & shape",
+        "Start with your artwork, letters or cut-shape idea."
+      ],
+      [
+        "Colour & appearance",
+        "Discuss the colour and material direction."
+      ],
+      [
+        "Depth & layers",
+        "Review thickness, layers and small artwork details."
+      ],
+      [
+        "Fixing & location",
+        "Confirm the intended space and fixing arrangements."
+      ]
+    ],
+    "contexts": [],
+    "faq": [
+      [
+        "Are acrylic letters always illuminated?",
+        "No. Acrylic can be used in non-illuminated lettering or in an illuminated construction. Tell us the effect you want."
+      ],
+      [
+        "Can you reproduce fine logo details?",
+        "Send the artwork and intended size. Small features, thin strokes and layer alignment need review."
+      ],
+      [
+        "Can I choose the colour and thickness?",
+        "Share your preferences. Available material colours, thicknesses and the final design are confirmed for your project."
+      ]
+    ]
+  },
+  "lightbox-neon": {
+    "headline": [
+      "Two Ways",
+      "to Light Your Brand."
+    ],
+    "intro": "Explore illuminated sign faces or line-based lighting for your own design.",
+    "benefits": [
+      "Lightbox faces",
+      "Neon-style lines",
+      "Your artwork"
+    ],
+    "oldHero": "/assets/lightbox-sign.webp",
+    "hero": {
+      "src": "/assets/products-v2/lightbox-dual-hero.webp",
+      "alt": "Round LUME lightbox and OPEN line-based lettering together in an imagined cafe storefront",
+      "caption": "AI-generated design concept",
+      "kind": "concept"
+    },
+    "detailTitle": "Choose Your Lighting Direction.",
+    "detailIntro": "Start with the visual effect, then review the construction for your project.",
+    "directions": [
+      {
+        "title": "Lightbox Signs",
+        "text": "An illuminated face for a logo, message or graphic.",
+        "photo": {
+          "src": "/assets/products-v2/lightbox-scene.webp",
+          "alt": "Imagined round projecting LUME lightbox sign at a storefront",
+          "caption": "Lightbox design concept",
+          "kind": "concept"
+        },
+        "anchor": "lightbox"
+      },
+      {
+        "title": "Neon-style Signs",
+        "text": "Light expressed through lines, lettering and graphic shapes.",
+        "photo": {
+          "src": "/assets/products-v2/neon-scene.webp",
+          "alt": "Warm neon-style OPEN lettering in an imagined cafe",
+          "caption": "Neon-style design concept",
+          "kind": "concept"
+        },
+        "anchor": "neon-style"
+      }
+    ],
+    "custom": {
+      "src": "/assets/products-v2/lightbox-detail.webp",
+      "alt": "Close exterior corner of a projecting lightbox — appearance study",
+      "caption": "AI-generated appearance study",
+      "kind": "concept"
+    },
+    "options": [
+      [
+        "Artwork & shape",
+        "Share the logo, lettering or graphic direction."
+      ],
+      [
+        "Face or line effect",
+        "Choose a starting point: a lit panel or illuminated lines."
+      ],
+      [
+        "Size & location",
+        "Tell us the dimensions and intended indoor or outdoor setting."
+      ],
+      [
+        "Construction & fixing",
+        "Review the actual light source, materials and mounting scope."
+      ]
+    ],
+    "contexts": [],
+    "faq": [
+      [
+        "Can you make my logo in either style?",
+        "Share the artwork and intended size. Fine details, stroke spacing and the preferred effect need review."
+      ],
+      [
+        "Does neon-style mean glass neon?",
+        "Neon-style describes the visual direction here. Confirm the actual light source, backing and construction for your chosen product."
+      ],
+      [
+        "Can a projecting lightbox be installed at my site?",
+        "Tell us about the facade, access and local installation arrangements. Structural fixing and electrical requirements must be reviewed for the project."
+      ]
+    ]
+  },
+  "specialty-signs": {
+    "headline": [
+      "Your Reference.",
+      "A New Possibility."
+    ],
+    "intro": "Discuss distinctive lighting, finishes and lettering beyond a standard look.",
+    "benefits": [
+      "Your reference",
+      "A reviewed design",
+      "A clear scope"
+    ],
+    "oldHero": "/assets/specialty-sign.webp",
+    "hero": {
+      "src": "/assets/specialty-sign.webp",
+      "alt": "BAR bulb-lettering in an imagined hospitality space",
+      "caption": "AI-generated design concept",
+      "kind": "concept"
+    },
+    "detailTitle": "Different Ideas. A Project Review.",
+    "detailIntro": "These references show starting points for discussion, not a fixed catalogue of specifications.",
+    "directions": [
+      {
+        "title": "Bulb & Marquee Effects",
+        "text": "Discuss the character, letter shape and intended lighting appearance.",
+        "photo": {
+          "src": "/assets/products-v2/marquee-scene.webp",
+          "alt": "Warm bulb-lit ECHO letters in an imagined hospitality setting",
+          "caption": "Marquee design concept",
+          "kind": "concept"
+        },
+        "anchor": "marquee"
+      },
+      {
+        "title": "Exposed-Light Lettering",
+        "text": "Review your reference, the intended viewing distance and the construction.",
+        "photo": {
+          "src": "/assets/supplier/exposed-light-letter.webp",
+          "alt": "Large exposed-light character from supplier reference material",
+          "caption": "Supplier reference",
+          "kind": "supplier_reference"
+        },
+        "anchor": "exposed-light"
+      }
+    ],
+    "options": [
+      [
+        "Logo & lettering",
+        "Start with your artwork, text or a reference."
+      ],
+      [
+        "Size & layout",
+        "Review the proportions for the available space."
+      ],
+      [
+        "Finish & colour",
+        "Discuss the surface and colour direction."
+      ],
+      [
+        "Location & fixing",
+        "Confirm the wall, setting and installation scope."
+      ]
+    ],
+    "contexts": [],
+    "faq": [
+      [
+        "Can you work from a reference photo?",
+        "Yes. A photo explains the look, but may not show its materials or construction. We review the design and scope before confirming what can be made."
+      ],
+      [
+        "Can you copy a design exactly?",
+        "An exact match cannot be assumed from a photograph. Artwork rights, materials, dimensions and construction all need review."
+      ],
+      [
+        "What should I send for a feasibility review?",
+        "Share a reference, the important visual details, approximate size, quantity, intended location and destination."
+      ]
+    ]
+  }
+}
