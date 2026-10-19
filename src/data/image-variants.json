@@ -1116,5 +1116,33 @@
         "width": 800
       }
     ]
+  },
+  "/assets/home-hero-v3/reception-portrait.webp": {
+    "width": 1113,
+    "height": 1413,
+    "variants": [
+      {
+        "src": "/assets/responsive/home-hero-v3/reception-portrait-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/home-hero-v3/reception-portrait-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "/assets/home-hero-v3/hospitality-portrait.webp": {
+    "width": 1040,
+    "height": 1300,
+    "variants": [
+      {
+        "src": "/assets/responsive/home-hero-v3/hospitality-portrait-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/home-hero-v3/hospitality-portrait-800.webp",
+        "width": 800
+      }
+    ]
   }
 }

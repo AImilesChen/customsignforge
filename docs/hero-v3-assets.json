@@ -1,0 +1,36 @@
+{
+  "generated": [
+    {
+      "asset": "/assets/home-hero-v3/reception-portrait.webp",
+      "width": 1113,
+      "height": 1413,
+      "type": "AI-generated design concept",
+      "tool": "Built-in image generation",
+      "reference": "/assets/home-v2/scene-reception.webp",
+      "prompt": "Use case: precise-object-edit\nAsset type: premium website carousel photograph, portrait 4:5 aspect ratio, ideally 1040x1300 pixels.\nInput images: Image 1 is the edit target and material/identity reference. Recompose this reception scene for a portrait frame.\nPrimary request: Create one photorealistic portrait architectural photograph of this sophisticated reception with AVEN as the dominant focal subject. Preserve the exact opaque bronze dimensional halo-lit lettering, warm travertine wall, refined walnut desk and restrained office setting.\nComposition/framing: Recompose, do not simply crop the landscape reference. Straight-on, eye-level architectural camera, realistic scale and perspective. All four letters A V E N must be fully visible together as one centered word in the central 80% of image width. Lettering entirely in upper 65% of frame, centered around 35% image height, generous wall breathing room above and around. Reception desk occupies lower portion. Bottom 25% is visually quiet dark walnut desk/front suitable for a later website caption overlay, but add no overlay or caption. A subtle part of olive foliage can appear at one edge without touching the letters; retain restrained glass office context only if it fits.\nLighting/mood: Premium editorial interior photography, warm controlled architectural lighting with soft natural fill, realistic bronze reflections, gentle warm halos behind opaque unlit metal letter faces, detailed natural travertine texture. Balanced tonal range, sophisticated, calm, believable.\nText (verbatim): \"AVEN\". Exactly four uppercase letters, A V E N. No other text.\nConstraints: Portrait 4:5 final composition. No cropped letters. No people. No UI, watermarks, new brands, captions, signage labels, excessive bloom, luminous/translucent letter faces, warped architecture, artificial CGI look. Keep entire word unobscured and make lettering more important than furniture.",
+      "placement": "Homepage scene carousel; whole portrait shown with object-fit:contain; caption overlays lower image area",
+      "publicClaim": "Illustrative concept, not a completed customer project"
+    },
+    {
+      "asset": "/assets/home-hero-v3/hospitality-portrait.webp",
+      "width": 1040,
+      "height": 1300,
+      "type": "AI-generated design concept",
+      "tool": "Built-in image generation",
+      "reference": "/assets/home-v2/scene-hospitality.webp",
+      "prompt": "Use case: compositing\nAsset type: premium hospitality signage website carousel photo, portrait 4:5, intended display 520x650.\nInput image 1: reference and edit target, existing SABLE hotel entrance photograph.\nPrimary request: Recompose the reference into ONE realistic portrait 4:5 architectural photograph of this boutique hotel entrance at dusk. Preserve the complete exact name \"SABLE\" (S A B L E) in large refined dimensional bronze serif metal letters on a textured charcoal wall, the warm modern entrance with timber soffit and black-framed glass doorway, subtle planting and warm interior light.\nComposition: portrait 4:5 frame, step camera back and reframe architecture to fit portrait. Put the entire five-letter SABLE sign prominently in the upper-middle area, all letter edges fully within central 80% of image width and upper 65% of image height, generous clear margin left and right of full sign. Wall sign may occupy upper-left to center with doorway to right/lower right. Leave lower 25% as quieter entrance paving and dark low planting, suitable for later website caption overlay, with no generated caption. Keep realistic architectural proportions and straight verticals.\nMaterials: authentic solid bronze metal letters with clear brushed/patinated surface detail, visible dimensional thickness and real physical cast shadows on matte charcoal plaster wall. Lettering is NOT illuminated, NOT glowing, no halo, no LEDs; warmth comes only from recessed hotel lighting, timber ceiling and interior pendants.\nStyle: high-end real architectural photography, natural material texture, restrained atmospheric dusk, realistic exposure and crisp detail. No people, no UI, no watermark, no added words or other brands. Full-bleed photograph, no borders. Output exactly one portrait image.",
+      "placement": "Homepage scene carousel; whole portrait shown with object-fit:contain; caption overlays lower image area",
+      "publicClaim": "Illustrative concept, not a completed customer project"
+    }
+  ],
+  "background": {
+    "asset": "/assets/home-team/workshop-team.webp",
+    "type": "Existing real workshop photograph",
+    "treatment": "Grayscale, dark opacity overlay; original preserved"
+  },
+  "storefront": {
+    "asset": "/assets/hero-cafe.webp",
+    "type": "Existing AI-generated design concept",
+    "treatment": "Original preserved; whole portrait shown"
+  }
+}

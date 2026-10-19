@@ -21,11 +21,12 @@ export const mdHeadings=md=>blocks(md).slice(2).join('\n\n').replace(/^.*(?:å®žæ
 export const Markdown=({text})=><div className="prose"><ReactMarkdown remarkPlugins={[remarkGfm]} skipHtml components={{img:({src,alt})=>/^\/(assets|media)\//.test(src||'')?<Image src={src} alt={alt||''} loading="lazy"/>:<span>{alt}</span>,h2:({children})=><h2 id={String(children).toLowerCase().replace(/[^a-z0-9]+/g,'-')}>{children}</h2>}}>{text.replace(/<h2 id="[^"]+">([^<]+)<\/h2>/g,'## $1').replace(/<aside class="review-note">([\s\S]*?)<\/aside>/g,'> $1')}</ReactMarkdown></div>;
 export function Header({home=false}){
  const {path,site,products}=useSite();const[open,setOpen]=useState(false),[productOpen,setProductOpen]=useState(false);
+ const immersive=home&&path==='/';
  const header=useRef(null),productTrigger=useRef(null),menuTrigger=useRef(null);
  useEffect(()=>{const dismiss=e=>{if(!header.current?.contains(e.target)){setOpen(false);setProductOpen(false)}};document.addEventListener('pointerdown',dismiss);return()=>document.removeEventListener('pointerdown',dismiss)},[]);
  function escape(e){if(e.key!=='Escape')return;if(productOpen){setProductOpen(false);productTrigger.current?.focus()}else if(open){setOpen(false);menuTrigger.current?.focus()}}
- return <><a className="skip" href="#main">Skip to content</a><header ref={header} onKeyDown={escape} className={'header site-header'+(home?' home-header':'')}>
-  <Link to="/" className="wordmark"><Image src="/brand/horizontal-graphite.svg" alt="Custom Sign Forge" width="437" height="64"/></Link>
+ return <><a className="skip" href="#main">Skip to content</a><header ref={header} onKeyDown={escape} className={'header site-header'+(home?' home-header':'')+(immersive?' home-immersive-header':'')+(open?' is-menu-open':'')}>
+  <Link to="/" className="wordmark"><Image src={immersive?'/brand/horizontal-white.svg':'/brand/horizontal-graphite.svg'} alt="Custom Sign Forge" width="437" height="64"/></Link>
   <nav id="primary-navigation" className={open?'nav open':'nav'} aria-label="Main navigation">
    <div className="product-navigation"><div className="product-nav-entry"><Link className="product-nav-link" to="/products/" aria-current={path==='/products/'?'page':undefined}><span className="desktop-products-label">Products</span><span className="mobile-products-label">All Products</span></Link><button type="button" ref={productTrigger} className="product-nav-trigger" aria-label={productOpen?'Hide product categories':'Show product categories'} aria-expanded={productOpen} aria-controls="product-navigation-panel" onClick={()=>setProductOpen(!productOpen)}><CaretDown size={18} aria-hidden="true"/></button></div>
     <div id="product-navigation-panel" className="product-nav-panel" hidden={!productOpen}>

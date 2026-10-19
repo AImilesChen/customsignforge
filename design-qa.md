@@ -1,3 +1,46 @@
+# Immersive homepage hero QA - 2026-10-19
+
+Source visual truth: user-selected competitor composition, captured at `docs/evidence/hero-competitor-review/signs-inc-1920.png`, plus the user-supplied Signs.inc screenshot. The accepted brief adapts its integrated dark navigation, manufacturing background, left benefit-led copy, portrait scene carousel and bottom proof strip to Custom Sign Forge. This is not a pixel-for-pixel clone: orange branding, customer sign-in, existing product taxonomy, accurate manufacturing metrics and AI concept labels are intentional differences.
+
+Implementation evidence: `docs/evidence/hero-immersive/desktop-1920.png`, `reception-1920.png`, `hospitality-1920.png`, `mobile-390.png`, `mobile-menu.png`, and `geometry.json`. Source and implementation desktop CSS viewport1920x1080; actual saved pixels1905x1072, with the same IAB density/surface differences. `compare-full.png` places both captures on an equal1905x1072 canvas with24px separation, without stretching; it was opened and inspected. Focused `compare-typography.png` compares the actual title/copy/action regions with disclosed different crop widths, not as a pixel overlay. Full/native-size screenshots were also inspected for sign text, image sharpness and small labels. Mobile CSS390x844 gives375x812 actual pixels.
+
+## Comparison history and findings
+
+- P2 mobile title initially left “Out.” isolated on its own line. Added a nonbreaking “Stand Out.” span, keeping an intentional balanced four-line mobile title. Shortened supporting copy. The opened `compare-mobile-copy.png` shows the actual before/after at equal375x812. Scene selection differs in that comparison, but copy/layout assessment is confined to the left/mobile copy region.
+- P2 mobile menu initially inherited dark orange quotation text on a dark panel. Overrode this scoped homepage link to light peach rgb(243,178,141). The opened `compare-mobile-menu.png` shows the corrected text beside the initial capture; other navigation remains white, and focused product category controls retain their Escape behaviour.
+- P2 landscape reception/hospitality sources could not preserve complete sign wording in a portrait panel. Generated dedicated portrait compositions from those references, inspected both source assets and browser scenes, and used object-fit:contain with a4:5 image area. AVEN and SABLE remain fully visible. New sources1113x1413 and1040x1300; no source image was hard-cropped. Desktop card scales with available height while retaining its portrait ratio.
+- P2 the first desktop height calculation placed the proof-band labels at the viewport/ribbon boundary. Reduced stage minimum/padding and fitted the portrait width to available height. Final1920 DOM hero height1045px leaves the full proof band visible before the local preview ribbon; header logo and copy both start at272.5px. No horizontal overflow at360/390/900/1280/1440/1920.
+- The quotation browser check exposed that a custom CTA category would be normalised by existing attribution code. The hero now emits the existing schema directly: `/get-a-quote/?source=homepage-hero&entry=%2F&cta=content`. Final browser activation preserves that exact target inside the sign-in return. No global attribution or auth rules were modified.
+
+## Five fidelity surfaces
+
+- Fonts/typography: Georgia regular/italic editorial headline, orange benefit emphasis; existing Manrope for navigation/buttons and Source Sans3 for body. Intentional adaptation of the competitor's DM Serif Display treatment. Desktop headline44-64px, mobile39-43px, supporting copy18-21px, controls14-16px, with nonbreaking final phrase to avoid an isolated word.
+- Spacing/layout: shared1360px navigation/hero alignment, responsive56/48/32/20px gutters; right520px maximum portrait card, numbered controls and a separate proof band. White navigation is integrated into the background on the homepage only. Mobile stacks content and offers full-width CTAs and a dark disclosure menu.
+- Colours/tokens: original brand orange for primary action and peach emphasis for dark surfaces, white logo/text and muted pale supporting text. A real workshop photograph is subdued with grayscale/opacity and a solid dark overlay. No artificial manufacturing imagery or CSS-drawn assets.
+- Image fidelity: original cafe preserved, two individually generated portrait concepts plus400/800px variants; complete word shapes and proper halo/non-lit effects inspected. Whole portraits contained in their slots; lower captions cover planned quiet space. Existing logo assets and Phosphor icons retained. Provenance/prompts in `docs/hero-v3-assets.json`.
+- Copy/content: concise benefit headline, specific custom options, three labelled illustrative concepts, product links, account/quote actions, and manufacturing metrics from the central profile. Experience is attributed to senior craftspeople rather than company age; competitor ratings, certification and service promises were not adopted.
+
+## Functional verification and limits
+
+- Browser: three numbered scenes, previous/next, autoplay advancement observed from hotel to storefront, explicit pause/start, product menu and six category links, Escape, phone menu, quotation login gate/exact return and product overview link. No browser console errors observed. Asset containment and responsive geometry checked across the listed widths.
+- Reduced motion and hidden-document guards were reviewed in code; OS preference switching and a screen reader were not exercised. This is not a full accessibility audit. Alternate source photography and less prominent utility controls are intentional brand/product differences, not unresolved clone drift.
+- Existing59 tests passed. Astro check94 files,0 errors/warnings/hints after the unused import cleanup. Development and production builds/private-value scan passed. Local homepage, About and new hero public smoke checks passed; production validation is recorded separately after deployment.
+
+## Implementation checklist
+
+- [x] Integrated home-only navigation and preserved inner-page header.
+- [x] Complete photographic background, copy, carousel and proof strip.
+- [x] Portrait assets, responsive variants and accurate provenance.
+- [x] Fixed mobile wrapping/menu contrast and desktop proof-band fit.
+- [x] Compared actual source/implementation and inspected focused regions.
+- [x] Verified main browser interactions and exact quotation return.
+
+Remaining P3: assess conversion after receiving real visitor data; replacing illustrative concepts with future photographed deliveries is an editorial option. No actionable P0/P1/P2 visual or functional findings remain in this scoped implementation.
+
+final result: passed
+
+---
+
 # Homepage hero size restoration - 2026-10-19
 
 User requested restoring the larger homepage hero image after the shared alignment change reduced it. Scope: hero layout only; original hero-cafe.webp, navigation, About and manufacturing content remain unchanged.
