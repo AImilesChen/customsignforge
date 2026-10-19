@@ -1,0 +1,11 @@
+# Product overview and navigation
+
+The header separates the product overview link from the category disclosure button. Desktop visitors click Products to open `/products/`; the adjacent arrow opens the product panel. The compact menu labels the overview link All Products. Disclosure remains keyboard accessible, closes on Escape and outside click, and restores focus to the arrow on Escape. Desktop navigation is visible from 1181px, with compact spacing up to 1400px.
+
+The overview uses seven image/text sections within the existing six published product families. Lightboxes and neon-style signs are explained separately, with exact direction links into the combined detail page and enquiry form. Sections include a scene image, relevant detail image, three characteristics, application tags, custom options and detail/enquiry links. A comparison table, customisation summary and three-step enquiry guide complete the page.
+
+The published product list controls visibility; removing the combined lightbox product hides both its directions. Additional published products remain discoverable through a fallback section. Existing CMS hero overrides are respected for the primary family section. The seven baseline sections use approved assets already recorded in the homepage, product and fabrication asset ledgers. Images distinguish AI-generated concepts from fabrication samples. No new media or supplier source records are exposed by this change.
+
+Copy and layout are in `src/data/product-overview.json`, `src/components/pages/Products.jsx` and `src/styles/product-overview.css`. No database migration or product URL change is required. Enquiry links retain `/products/` as the source and the exact style; neon, lightbox and marquee choices retain the existing variant that initializes the quote notes.
+
+Verification: published-family and direction-context tests, existing security tests, Astro check and production build. `scripts/overview-public-smoke.mjs` checks navigation markup, seven sections, six detail routes, the comparison table, image assets and the customer sign-in handoff without sending email or submitting enquiries. Browser review covers desktop/mobile, direct overview navigation, disclosure, Escape focus restoration and responsive layout. Local evidence lives under ignored `docs/evidence/product-overview/`.

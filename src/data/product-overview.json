@@ -1,0 +1,325 @@
+{
+  "title": "Find Your Sign Style.",
+  "intro": "Compare the light, material and character of each sign direction. Every sign is made around your artwork, space and project requirements.",
+  "sections": [
+    {
+      "id": "led-channel-letters",
+      "slug": "led-channel-letters",
+      "short": "Front-Lit Letters",
+      "title": "Front-Lit Channel Letters",
+      "kicker": "LIGHT THROUGH THE FACE",
+      "intro": "A defined illuminated face brings your business name into view. A starting point for shopfronts and commercial façades where the lettering needs a clear presence.",
+      "features": [
+        [
+          "Illuminated letter faces",
+          "Light is directed through the face, with the sides giving each letter its depth."
+        ],
+        [
+          "Face & return finishes",
+          "Review the face colour, side finish and letter depth around your logo."
+        ],
+        [
+          "Mounting to suit the frontage",
+          "Discuss individual fixings or a carrier with your installer, along with power and cable access."
+        ]
+      ],
+      "uses": [
+        "Storefronts",
+        "Commercial façades",
+        "Retail entrances"
+      ],
+      "custom": "Logo, overall size, face colour, return finish and light colour.",
+      "image": {
+        "src": "/assets/home-v2/style-front-lit.webp",
+        "alt": "Front-lit LUMA lettering above a commercial storefront, design concept",
+        "caption": "AI-generated design concept"
+      },
+      "detail": {
+        "src": "/assets/supplier/letter-face-reference.webp",
+        "alt": "Letter face and metal return shown before illumination",
+        "caption": "Fabrication sample · Face and return construction"
+      },
+      "appearance": "Light through the face",
+      "check": "Fascia construction, cable route and viewing distance",
+      "variant": ""
+    },
+    {
+      "id": "backlit-letters",
+      "slug": "backlit-letters",
+      "short": "Halo-Lit Letters",
+      "title": "Backlit & Halo-Lit Letters",
+      "kicker": "A GLOW BEHIND THE LETTERING",
+      "intro": "An opaque face and a halo of light create a softer dimensional effect. The wall becomes part of the appearance, making this a considered choice for brand feature walls.",
+      "features": [
+        [
+          "Rear illumination",
+          "Light spreads behind the letters while the visible faces remain visually calm."
+        ],
+        [
+          "Metal face & finish",
+          "Explore brushed, painted or plated appearances against your brand and interior palette."
+        ],
+        [
+          "The wall shapes the halo",
+          "Wall texture, colour and stand-off distance affect how the glow is seen."
+        ]
+      ],
+      "uses": [
+        "Office receptions",
+        "Hotel interiors",
+        "Brand feature walls"
+      ],
+      "custom": "Logo proportions, metal appearance, light colour and wall clearance.",
+      "image": {
+        "src": "/assets/home-v2/style-halo-lit.webp",
+        "alt": "Bronze NOVA lettering with rear illumination on stone, design concept",
+        "caption": "AI-generated design concept"
+      },
+      "detail": {
+        "src": "/assets/products-v2/halo-edge.webp",
+        "alt": "Angled metal letter return and warm light behind the face, appearance concept",
+        "caption": "AI-generated detail · Letter depth and rear halo"
+      },
+      "appearance": "Light behind an opaque face",
+      "check": "Wall finish, stand-off distance and power access",
+      "variant": ""
+    },
+    {
+      "id": "metal-letters",
+      "slug": "metal-letters",
+      "short": "Metal Lettering",
+      "title": "Metal & Dimensional Letters",
+      "kicker": "MATERIAL, DEPTH & SHADOW",
+      "intro": "Let the material do the work. Unlit dimensional lettering brings texture and definition to a wall, with an appearance that changes with the surrounding light.",
+      "features": [
+        [
+          "Cut or built-up construction",
+          "The artwork and required depth guide the fabrication approach."
+        ],
+        [
+          "A finish with character",
+          "Discuss brushed, polished, painted or other available surfaces using a finish reference."
+        ],
+        [
+          "Dimension without integral light",
+          "The sides and shadows reveal depth; daylight and site lighting remain part of the design."
+        ]
+      ],
+      "uses": [
+        "Architectural entrances",
+        "Office identities",
+        "Hospitality spaces"
+      ],
+      "custom": "Metal direction, surface finish, letter depth, size and fixing approach.",
+      "image": {
+        "src": "/assets/home-v2/style-metal.webp",
+        "alt": "Brushed FORMA metal lettering on a pale interior wall, design concept",
+        "caption": "AI-generated design concept"
+      },
+      "detail": {
+        "src": "/assets/supplier/letter-edge-section.webp",
+        "alt": "Close view of a formed metal face and edge",
+        "caption": "Construction detail · Face edge and return"
+      },
+      "appearance": "Unlit material and shadow",
+      "check": "Substrate, exposure, finish and available site light",
+      "variant": ""
+    },
+    {
+      "id": "acrylic-letters",
+      "slug": "acrylic-letters",
+      "short": "Acrylic & Logos",
+      "title": "Acrylic Letters & Logo Signs",
+      "kicker": "COLOUR, SHAPE & LAYERS",
+      "intro": "A clean outline and a deliberate use of colour turn your artwork into a dimensional sign. Explore solid, clear or layered appearances for a distinctive brand wall.",
+      "features": [
+        [
+          "Colour & transparency",
+          "Review opaque, translucent or clear material directions for the intended effect."
+        ],
+        [
+          "Depth & layered details",
+          "Thickness, stacked shapes and visible edges give the logo its dimensional character."
+        ],
+        [
+          "Lighting is a separate choice",
+          "This concept is unlit. If you want illumination, we review a construction designed for that effect."
+        ]
+      ],
+      "uses": [
+        "Reception walls",
+        "Retail interiors",
+        "Studios & offices"
+      ],
+      "custom": "Logo shape, colour reference, material thickness, layers and mounting.",
+      "image": {
+        "src": "/assets/products-v2/acrylic-scene.webp",
+        "alt": "Orange RAE dimensional lettering in a reception, design concept",
+        "caption": "AI-generated design concept"
+      },
+      "detail": {
+        "src": "/assets/products-v2/acrylic-edge.webp",
+        "alt": "Orange acrylic letter showing thickness and visible edge, appearance concept",
+        "caption": "AI-generated detail · Acrylic edge and depth"
+      },
+      "appearance": "Colour, transparency and layers",
+      "check": "Artwork details, thickness, colour and fixing limits",
+      "variant": ""
+    },
+    {
+      "id": "lightbox-neon",
+      "slug": "lightbox-neon",
+      "short": "Lightboxes",
+      "title": "Lightbox Signs",
+      "kicker": "ONE ILLUMINATED FACE",
+      "intro": "An illuminated panel carries your logo or graphic inside a defined housing. Use the face, shape and viewing direction together when planning a storefront or projecting sign.",
+      "features": [
+        [
+          "A panel for logos & graphics",
+          "The illuminated face gives the design a continuous display area."
+        ],
+        [
+          "Single or double-sided direction",
+          "Compare wall-facing and projecting arrangements for the directions people approach from."
+        ],
+        [
+          "Housing & support",
+          "Review the cabinet depth, frame finish, bracket and local fixing requirements as one assembly."
+        ]
+      ],
+      "uses": [
+        "Shop entrances",
+        "Projecting signs",
+        "Commercial frontages"
+      ],
+      "custom": "Face shape, graphics, cabinet finish, overall size and mounting arrangement.",
+      "image": {
+        "src": "/assets/products-v2/lightbox-scene.webp",
+        "alt": "Round LUME projecting lightbox at a storefront, design concept",
+        "caption": "AI-generated design concept"
+      },
+      "detail": {
+        "src": "/assets/products-v2/lightbox-detail.webp",
+        "alt": "Corner and support detail of an illuminated cabinet, design concept",
+        "caption": "AI-generated detail · Cabinet, face and support"
+      },
+      "appearance": "A lit panel within a housing",
+      "check": "Viewing direction, bracket, exposure and power",
+      "variant": "lightbox"
+    },
+    {
+      "id": "neon-style",
+      "slug": "lightbox-neon",
+      "short": "Neon-Style",
+      "title": "Neon-Style Light Signs",
+      "kicker": "LIGHT DRAWN IN LINES",
+      "intro": "Illuminated lines follow your lettering or graphic to create a focal point. A different direction from a lit panel, suited to expressive wording and simple logo outlines.",
+      "features": [
+        [
+          "Line-based artwork",
+          "Curves, stroke spacing and small details are reviewed at the intended sign size."
+        ],
+        [
+          "Light colour & visual rhythm",
+          "Choose the illuminated colour and discuss how separate lines or sections work together."
+        ],
+        [
+          "Backing & cable arrangement",
+          "Review a clear or coloured backing, visible fixings and the power-supply location."
+        ]
+      ],
+      "uses": [
+        "Cafés & restaurants",
+        "Interior windows",
+        "Brand feature walls"
+      ],
+      "custom": "Wording, logo outline, light colour, backing shape and hanging or fixing method.",
+      "image": {
+        "src": "/assets/products-v2/neon-scene.webp",
+        "alt": "Warm OPEN line sign in a café window, design concept",
+        "caption": "AI-generated design concept"
+      },
+      "detail": {
+        "src": "/assets/supplier/neon-style-signs.webp",
+        "alt": "Illuminated lettering and line graphic samples",
+        "caption": "Fabrication sample · Illuminated line graphics"
+      },
+      "appearance": "Visible illuminated lines",
+      "check": "Line geometry, backing, cable exit and location",
+      "variant": "neon-style"
+    },
+    {
+      "id": "specialty-signs",
+      "slug": "specialty-signs",
+      "short": "Specialty Signs",
+      "title": "Specialty Custom Signs",
+      "kicker": "A DIFFERENT KIND OF PRESENCE",
+      "intro": "For a reference that does not fit a standard letter style, start with the effect you want. Explore marquee lettering, visible light points and combinations of shape, material and light.",
+      "features": [
+        [
+          "A design-led construction",
+          "The artwork, scale and intended effect guide the fabrication review."
+        ],
+        [
+          "Light points or mixed materials",
+          "Discuss the spacing of exposed lights, dimensional forms and surface combinations."
+        ],
+        [
+          "Resolve the details early",
+          "Confirm fixing, component access, location and the supplied scope before production approval."
+        ]
+      ],
+      "uses": [
+        "Restaurant entrances",
+        "Entertainment spaces",
+        "Distinctive brand features"
+      ],
+      "custom": "Letter form, visible light layout, finish, depth and supporting structure.",
+      "image": {
+        "src": "/assets/products-v2/marquee-scene.webp",
+        "alt": "ECHO dimensional marquee lettering above a restaurant entrance, design concept",
+        "caption": "AI-generated design concept"
+      },
+      "detail": {
+        "src": "/assets/supplier/exposed-light-letter.webp",
+        "alt": "Dimensional letter sample with visible light points",
+        "caption": "Fabrication sample · Exposed light-point lettering"
+      },
+      "appearance": "Visible light points or a custom combination",
+      "check": "Construction feasibility, component access and fixing",
+      "variant": "marquee"
+    }
+  ],
+  "customOptions": [
+    [
+      "Your artwork",
+      "Logo, font, shapes and letter spacing."
+    ],
+    [
+      "Your proportions",
+      "Overall dimensions, letter depth and layout."
+    ],
+    [
+      "Your finish & light",
+      "Colour, surface appearance and lighting direction."
+    ],
+    [
+      "Your installation",
+      "Wall, fixings, cable route and delivery destination."
+    ]
+  ],
+  "preparation": [
+    [
+      "Share your idea",
+      "Sign in and send your logo, a reference or a photo of the space."
+    ],
+    [
+      "Build the specification",
+      "Review dimensions, finish, lighting, mounting and required supplied items."
+    ],
+    [
+      "Review your quote",
+      "Confirm the project price, delivery arrangements and drawings before production."
+    ]
+  ]
+}

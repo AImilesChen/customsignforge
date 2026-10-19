@@ -4,7 +4,10 @@ header.header.site-header .wordmark{flex-shrink:0}
 header.header.site-header .wordmark img{width:245px}
 header.header.site-header .nav{display:flex;position:static;align-items:center;gap:26px;padding:0;border:0;background:transparent;font-family:var(--font-heading);font-size:16px;font-weight:600}
 header.header.site-header .nav>a,.product-nav-trigger{min-height:48px;display:inline-flex;align-items:center;white-space:nowrap}
-.product-nav-trigger{gap:8px;padding:10px 0;font:inherit;color:var(--ink);background:transparent;border:0;cursor:pointer}
+.product-nav-entry{display:flex;align-items:center;gap:2px}
+header.header.site-header .product-nav-link{display:inline-flex;align-items:center;min-height:48px;padding:10px 0;font:inherit;white-space:nowrap}
+.mobile-products-label{display:none}
+.product-nav-trigger{width:44px;min-width:44px;justify-content:center;padding:10px;font:inherit;color:var(--ink);background:transparent;border:0;cursor:pointer}
 .product-nav-trigger:hover,.product-nav-trigger[aria-expanded=true]{color:var(--orange)}
 .product-nav-trigger svg{transition:transform .15s}
 .product-nav-trigger[aria-expanded=true] svg{transform:rotate(180deg)}
@@ -29,12 +32,23 @@ header.header.site-header .product-nav-help{display:flex;align-items:center;just
 /* Button labels and form helper text keep the same readable scale across pages. */
 .button{font-size:16px}
 .field label span{font-size:14px}
-@media(max-width:1350px){
+@media(max-width:1400px){
+ header.header.site-header{padding-inline:24px;gap:20px}
+ header.header.site-header .wordmark img{width:220px}
+ header.header.site-header .nav{gap:18px;font-size:15px}
+ header.header.site-header .header-actions{gap:14px}
+ header.header.site-header .customer-nav{font-size:15px}
+ header.header.site-header .header-actions>.button{font-size:15px;padding-inline:17px}
+}
+@media(max-width:1180px){
  header.header.site-header{min-height:88px;padding-inline:32px}
  header.header.site-header .nav{display:none;position:absolute;top:100%;left:0;right:0;padding:20px 32px 28px;background:#fff;border-top:1px solid var(--line);box-shadow:0 12px 24px #20252b0d;max-height:calc(100dvh - 88px);overflow-y:auto}
  header.header.site-header .nav.open{display:flex;flex-direction:column;align-items:stretch;gap:2px;font-size:18px}
- header.header.site-header .nav>a,.product-nav-trigger{width:100%;padding:12px 0;min-height:48px}
- .product-nav-trigger{justify-content:space-between}
+ header.header.site-header .nav>a{width:100%;padding:12px 0;min-height:48px}
+ header.header.site-header .product-nav-link{flex:1;padding:12px 0}
+ .product-nav-trigger{width:48px;min-width:48px;min-height:48px;justify-content:center}
+ .desktop-products-label{display:none}
+ .mobile-products-label{display:inline}
  header.header.site-header .menu{display:inline-flex;align-items:center;justify-content:center;width:44px;height:48px;padding:8px}
  .product-nav-panel{position:static;transform:none;width:100%;max-width:none;padding:12px 18px 20px;border:0;border-left:2px solid var(--line);box-shadow:none;margin:2px 0 16px}
  .product-nav-heading{padding-bottom:8px}
