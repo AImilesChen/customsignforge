@@ -1,0 +1,24 @@
+.quote-contact-help,.quote-file-help{font-size:16px;line-height:1.55;margin-top:10px}
+.quote-email-verified{display:inline-block;color:#296449;font-size:14px;font-weight:600;margin-top:8px}
+.quote-contact-email{overflow-wrap:anywhere;background:var(--paper);color:var(--ink)}
+.quote-files{margin-top:42px;padding-top:32px;border-top:1px solid var(--line)}
+.quote-files .form-heading{margin-bottom:28px;padding-bottom:0;border:0}
+.quote-files .field{margin-bottom:24px}
+.quote-file-picker{padding:22px;border:1px dashed #929da6;background:var(--paper)}
+.quote-file-picker input[type=file]{border:0;padding:0;min-height:44px;width:100%;background:transparent;font-size:16px}
+.quote-file-picker input[type=file]::file-selector-button{background:#fff;border:1px solid #929da6;border-radius:3px;padding:10px 14px;margin-right:14px;color:var(--ink);font:inherit;cursor:pointer}
+.quote-file-list{list-style:none;padding:0;margin:18px 0 0}
+.quote-file-list li{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid var(--line)}
+.quote-file-list a,.quote-file-list span{overflow-wrap:anywhere;min-width:0;font-size:17px}
+.quote-file-list a{text-decoration:underline;text-underline-offset:3px}
+.quote-file-list small{display:block;color:var(--muted);font-size:14px;margin-top:4px}
+.quote-file-list button{flex-shrink:0;min-width:56px;min-height:44px;font-size:16px;text-decoration:underline;text-underline-offset:4px}
+.quote-file-status{margin-top:16px;font-size:16px}
+.quote-files .field-error{margin-top:12px}
+.quote-project-heading{margin-top:42px}
+.quote-saved-files{margin:24px 0}
+.quote-saved-files h3{font-size:22px}
+.quote-saved-files ul,.customer-enquiry-files{list-style:none;padding:0;margin-top:14px}
+.quote-saved-files li,.customer-enquiry-files li{padding:10px 0;overflow-wrap:anywhere}
+.quote-saved-files a,.customer-enquiry-files a{text-decoration:underline;text-underline-offset:3px;font-size:17px;display:inline-flex;align-items:center;min-height:44px}
+@media(max-width:700px){.quote-files{margin-top:32px;padding-top:28px}.quote-project-heading{margin-top:32px}.quote-file-picker{padding:18px}.quote-file-list li{gap:12px}.quote-contact-help,.quote-file-help{font-size:16px}.quote-file-list span,.quote-file-list a{font-size:16px}}

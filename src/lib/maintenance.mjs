@@ -1,3 +1,4 @@
+import {cleanupPendingFiles} from './enquiry-files.mjs';
 export async function maintenance(env){
  const now=Math.floor(Date.now()/1000);
  await env.DB.batch([
@@ -9,5 +10,6 @@ export async function maintenance(env){
   env.DB.prepare('DELETE FROM oauth_states WHERE expires_at<?').bind(now),
   env.DB.prepare('DELETE FROM rate_limits WHERE bucket<?').bind(Math.floor(Date.now()/300000)-2)
  ]);
+ await cleanupPendingFiles(env);
  return {ok:true};
 }

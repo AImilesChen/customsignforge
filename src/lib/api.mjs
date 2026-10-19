@@ -1,6 +1,7 @@
+import {uploadEnquiryFile,removePendingFile,downloadEnquiryFile,enquiryFiles,assertPendingFiles,deleteEnquiryFiles,pendingEnquiryFiles} from './enquiry-files.mjs';
 import {emailStart,emailVerify} from './sign-in.mjs';
 import {recordMeasurement,measurementReport,sqlDateRange} from './measurement.mjs';
-import { HttpError,text,slug,validateEnquiry,validateContent,validateSettings,imageType,RECORD_STATES,BUSINESS_STAGES,QUALITY } from './validation.mjs';
+import { HttpError,text,slug,validateEnquiry,validateContent,validateSettings,imageType,RECORD_STATES,BUSINESS_STAGES,QUALITY,requireEnquiryContact } from './validation.mjs';
 import { actor,csrfToken,verifyCSRF,localLogin,sameOrigin,cookie,localMode } from './auth.mjs';
 import { published,siteSettings,contentItem,syncMedia,rateLimit,fingerprint,whatsapp } from './db.mjs';
 import {customerActor,customerCSRF,verifyCustomerCSRF,customerEmailStart,customerEmailVerify,CUSTOMER_SESSION_SECONDS} from './customer-auth.mjs';
@@ -8,18 +9,33 @@ import {verifyTurnstile} from './security.mjs';
 export const json=(value,status=200,headers={})=>new Response(JSON.stringify(value),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...headers}});
 async function limitedBody(request,max=24000){const reader=request.body?.getReader();if(!reader)return new Uint8Array();let parts=[],size=0;while(true){const {done,value}=await reader.read();if(done)break;size+=value.length;if(size>max){await reader.cancel();throw new HttpError(413,'The request is too large.');}parts.push(value);}const out=new Uint8Array(size);let offset=0;for(const p of parts){out.set(p,offset);offset+=p.length;}return out;}
 async function readJSON(request,max=24000){if(!request.headers.get('content-type')?.startsWith('application/json'))throw new HttpError(415,'Use JSON for this request.');try{return JSON.parse(new TextDecoder().decode(await limitedBody(request,max)));}catch(e){if(e instanceof HttpError)throw e;throw new HttpError(400,'Invalid JSON.');}}
-function summary(details,reference,products){return `Hi, I'd like a quote for a custom sign.\nStyle: ${products.find(p=>p.slug===details.style)?.title||'Not sure yet'}\nUse: ${details.use}\nDelivery country: ${details.country}\nProject stage: ${details.stage}\n${details.project?'Reference project: '+details.project+'\n':''}Enquiry ID: ${reference}`;}
+function summary(details,reference,products){return `Hi, I'd like a quote for a custom sign.\nStyle: ${products.find(p=>p.slug===details.style)?.title||'Not sure yet'}\nUse: ${details.use}\nDelivery country: ${details.country}\nProject stage: ${details.stage}\n${details.contactEmail?'Contact email: '+details.contactEmail+'\n':''}${details.phone?(details.contactMethod==='whatsapp'?'WhatsApp: ':'Phone: ')+details.phone+' (not verified)\n':''}${details.drawings?'Drawings: '+({ready:'Files supplied with website enquiry',none:'No drawings yet',later:'Files to follow'}[details.drawings]||details.drawings)+'\n':''}${details.project?'Reference project: '+details.project+'\n':''}Enquiry ID: ${reference}`;}
 async function createEnquiry(request,env){
- sameOrigin(request);const customer=await customerActor(request,env);await verifyCustomerCSRF(request,env,customer);const raw=await readJSON(request);const products=await published(env,'product');const details=validateEnquiry(raw,products.map(p=>p.slug));
- if(details.project&&!(await published(env,'project')).some(p=>p.slug===details.project))throw new HttpError(422,'This project reference is no longer available.');
- const hash=await fingerprint(details);let row=await env.DB.prepare('SELECT reference,payload_hash,customer_id FROM enquiries WHERE idempotency_key=?').bind(details.idempotencyKey).first();
+ sameOrigin(request);const customer=await customerActor(request,env);await verifyCustomerCSRF(request,env,customer);const raw=await readJSON(request);const products=await published(env,'product');const submitted=validateEnquiry(raw,products.map(p=>p.slug));
+ if(submitted.project&&!(await published(env,'project')).some(p=>p.slug===submitted.project))throw new HttpError(422,'This project reference is no longer available.');
+ let row=await env.DB.prepare('SELECT id,reference,payload_hash,customer_id,details_json FROM enquiries WHERE idempotency_key=?').bind(submitted.idempotencyKey).first();
  if(row&&row.customer_id!==customer.id)throw new HttpError(409,'Start a new enquiry before submitting again.');
- const legacyDetails={...details};delete legacyDetails.acquisition;const legacyHash=await fingerprint(legacyDetails);const replay=!!row;if(row&&row.payload_hash!==hash&&row.payload_hash!==legacyHash)throw new HttpError(409,'These details changed. Start a new enquiry before submitting again.');
- if(!row){await rateLimit(env,request,'enquiry');await rateLimit(env,request,'customer-enquiry',12,customer.id);await verifyTurnstile(env,request,raw.turnstileToken);const bytes=crypto.getRandomValues(new Uint8Array(10));const reference='CSF-'+[...bytes].map(b=>b.toString(16).padStart(2,'0')).join('').toUpperCase();
-  await env.DB.prepare('INSERT INTO enquiries(id,reference,idempotency_key,payload_hash,details_json,customer_id) VALUES(?,?,?,?,?,?) ON CONFLICT(idempotency_key) DO NOTHING').bind(crypto.randomUUID(),reference,details.idempotencyKey,hash,JSON.stringify(details),customer.id).run();
-  row=await env.DB.prepare('SELECT reference,payload_hash,customer_id FROM enquiries WHERE idempotency_key=?').bind(details.idempotencyKey).first();if(row.customer_id!==customer.id||row.payload_hash!==hash)throw new HttpError(409,'This submission conflicts with an earlier attempt.');
+ const saved=row?JSON.parse(row.details_json):null;
+ const details={...submitted,contactEmail:saved?.contactEmail||customer.email,emailVerified:true,phoneVerified:false};
+ const hash=await fingerprint(details),replay=!!row;
+ if(row){
+  const previousFormat={...submitted};delete previousFormat.acquisition;
+  const legacyAllowed=!saved.contactEmail&&(row.payload_hash===await fingerprint(submitted)||row.payload_hash===await fingerprint(previousFormat));
+  if(row.payload_hash!==hash&&!legacyAllowed)throw new HttpError(409,'These details changed. Start a new enquiry before submitting again.');
+ }else{
+  requireEnquiryContact(details);const ids=details.attachments||[];await assertPendingFiles(env,ids,customer.id);
+  await rateLimit(env,request,'enquiry');await rateLimit(env,request,'customer-enquiry',12,customer.id);await verifyTurnstile(env,request,raw.turnstileToken);
+  const reference='CSF-'+[...crypto.getRandomValues(new Uint8Array(10))].map(b=>b.toString(16).padStart(2,'0')).join('').toUpperCase();
+  const validFiles=ids.length?" WHERE (SELECT count(*) FROM enquiry_files WHERE id IN ("+ids.map(()=>'?').join(',')+") AND customer_id=? AND enquiry_id IS NULL AND state='ready' AND expires_at>?)=?":'';
+  const insert=env.DB.prepare('INSERT INTO enquiries(id,reference,idempotency_key,payload_hash,details_json,customer_id) SELECT ?,?,?,?,?,?'+validFiles+' ON CONFLICT(idempotency_key) DO NOTHING').bind(crypto.randomUUID(),reference,details.idempotencyKey,hash,JSON.stringify(details),customer.id,...(ids.length?[...ids,customer.id,Math.floor(Date.now()/1000),ids.length]:[]));
+  const batch=[insert];
+  if(ids.length)batch.push(env.DB.prepare("UPDATE enquiry_files SET enquiry_id=(SELECT id FROM enquiries WHERE idempotency_key=? AND customer_id=? AND payload_hash=?),expires_at=NULL WHERE id IN ("+ids.map(()=>'?').join(',')+") AND customer_id=? AND enquiry_id IS NULL AND state='ready' AND EXISTS(SELECT 1 FROM enquiries WHERE idempotency_key=? AND customer_id=? AND payload_hash=?)").bind(details.idempotencyKey,customer.id,hash,...ids,customer.id,details.idempotencyKey,customer.id,hash));
+  await env.DB.batch(batch);
+  row=await env.DB.prepare('SELECT id,reference,payload_hash,customer_id,details_json FROM enquiries WHERE idempotency_key=?').bind(details.idempotencyKey).first();
+  if(!row||row.customer_id!==customer.id||row.payload_hash!==hash)throw new HttpError(409,'This submission conflicts with an earlier attempt. Please check your files and try again.');
  }
- const settings=await siteSettings(env);const message=summary(details,row.reference,products);return json({reference:row.reference,message,whatsappURL:whatsapp(settings,message),email:settings.email||null,recordStatus:'web_recorded'},replay?200:201);
+ const settings=await siteSettings(env),message=summary(JSON.parse(row.details_json),row.reference,products);
+ return json({reference:row.reference,message,whatsappURL:whatsapp(settings,message),email:settings.email||null,recordStatus:'web_recorded',files:await enquiryFiles(env,row.id,customer.id)},replay?200:201);
 }
 async function customerAPI(request,env,route){
  const method=request.method;
@@ -27,13 +43,17 @@ async function customerAPI(request,env,route){
  if(route==='email/verify'&&method==='POST'){const token=await customerEmailVerify(request,env,await readJSON(request,4000));const headers=new Headers();headers.append('Set-Cookie',cookie(request,'csf_customer',token,CUSTOMER_SESSION_SECONDS,'Lax'));headers.append('Set-Cookie',cookie(request,'csf_customer_email','',0));const response=json({ok:true});for(const [name,value] of response.headers)headers.set(name,value);return new Response(response.body,{status:200,headers});}
  const user=await customerActor(request,env);
  if(route==='session'&&method==='GET')return json({customer:{id:user.id,email:user.email},mode:user.mode,csrf:await customerCSRF(env,user)});
+ if(route.startsWith('attachments/')&&method==='GET')return downloadEnquiryFile(env,route.slice(12),user);
  if(method!=='GET')await verifyCustomerCSRF(request,env,user);
+ if(route==='attachments'&&method==='GET')return json({files:await pendingEnquiryFiles(env,user.id)});
+ if(route==='attachments'&&method==='POST')return json(await uploadEnquiryFile(request,env,user,limitedBody),201);
+ if(route.startsWith('attachments/')&&method==='DELETE')return json(await removePendingFile(env,user,route.slice(12)));
  if(route==='logout'&&method==='POST'){await env.DB.prepare('DELETE FROM customer_sessions WHERE id=? AND customer_id=?').bind(user.sessionId,user.id).run();return json({ok:true},200,{'Set-Cookie':cookie(request,'csf_customer','',0,'Lax')});}
  if((route==='enquiries'||/^enquiries\/CSF-[A-F0-9]{20}$/.test(route))&&method==='GET'){
   const reference=route==='enquiries'?null:route.slice(10);const offset=Math.max(0,Math.min(100000,Math.floor(Number(new URL(request.url).searchParams.get('offset'))||0)));
-  const rows=reference?{results:[await env.DB.prepare('SELECT reference,created_at,details_json FROM enquiries WHERE customer_id=? AND reference=?').bind(user.id,reference).first()].filter(Boolean)}:await env.DB.prepare('SELECT reference,created_at,details_json FROM enquiries WHERE customer_id=? ORDER BY created_at DESC,id DESC LIMIT 25 OFFSET ?').bind(user.id,offset).all();
+  const rows=reference?{results:[await env.DB.prepare('SELECT id,reference,created_at,details_json FROM enquiries WHERE customer_id=? AND reference=?').bind(user.id,reference).first()].filter(Boolean)}:await env.DB.prepare('SELECT id,reference,created_at,details_json FROM enquiries WHERE customer_id=? ORDER BY created_at DESC,id DESC LIMIT 25 OFFSET ?').bind(user.id,offset).all();
   if(reference&&!rows.results.length)throw new HttpError(404,'Enquiry not found.');
-  const products=await published(env,'product'),settings=await siteSettings(env);const items=rows.results.map(row=>{const d=JSON.parse(row.details_json);const details=Object.fromEntries(['style','use','country','city','stage','timing','notes'].map(k=>[k,d[k]||'']));const message=summary(d,row.reference,products);return {reference:row.reference,createdAt:row.created_at,details,styleName:products.find(p=>p.slug===d.style)?.title||'Not sure yet',message,whatsappURL:whatsapp(settings,message)};});
+  const products=await published(env,'product'),settings=await siteSettings(env);const items=await Promise.all(rows.results.map(async row=>{const d=JSON.parse(row.details_json);const details=Object.fromEntries(['style','use','country','city','stage','timing','notes','contactEmail','contactMethod','phone','drawings'].map(k=>[k,d[k]||'']));const message=summary(d,row.reference,products);return {reference:row.reference,createdAt:row.created_at,details,styleName:products.find(p=>p.slug===d.style)?.title||'Not sure yet',message,whatsappURL:whatsapp(settings,message),files:await enquiryFiles(env,row.id,user.id)};}));
   const total=reference?1:(await env.DB.prepare('SELECT count(*) total FROM enquiries WHERE customer_id=?').bind(user.id).first()).total;
   return json({items,total,offset});
  }
@@ -42,6 +62,7 @@ async function customerAPI(request,env,route){
 async function adminAPI(request,env,route){
  const user=await actor(request,env);const method=request.method;const url=new URL(request.url);
  if(route==='session'&&method==='GET')return json({user:user.id,csrf:await csrfToken(env,user),mode:user.mode});
+ if(route.startsWith('attachments/')&&method==='GET')return downloadEnquiryFile(env,route.slice(12));
  if(route==='measurement'&&method==='GET')return json(await measurementReport(env,url.searchParams));
  if(method!=='GET')await verifyCSRF(request,env,user,request.headers.get('X-CSRF-Token'));
  if(route==='logout'&&method==='POST'){if(user.sessionId)await env.DB.prepare('DELETE FROM admin_sessions WHERE id=?').bind(user.sessionId).run();return json({ok:true},200,{'Set-Cookie':cookie(request,'csf_admin','',0)});}
@@ -92,7 +113,7 @@ async function adminAPI(request,env,route){
   const rows=await env.DB.prepare('SELECT enquiries.*,(SELECT email FROM customers WHERE id=customer_id) customer_email FROM enquiries'+sql+' ORDER BY created_at DESC,id DESC LIMIT 25 OFFSET ?').bind(...args,offset).all();return json({total:total.total,offset,items:rows.results.map(r=>({...r,details:JSON.parse(r.details_json),details_json:undefined,payload_hash:undefined,idempotency_key:undefined}))});
  }
  if(route.startsWith('enquiries/')&&method==='GET'){
-  const id=route.slice(10);const row=await env.DB.prepare('SELECT enquiries.*,(SELECT email FROM customers WHERE id=customer_id) customer_email FROM enquiries WHERE id=?').bind(id).first();if(!row)throw new HttpError(404,'Enquiry not found.');const logs=await env.DB.prepare('SELECT * FROM followup_logs WHERE enquiry_id=? ORDER BY created_at,id').bind(id).all();return json({...row,details:JSON.parse(row.details_json),details_json:undefined,payload_hash:undefined,idempotency_key:undefined,logs:logs.results.map(l=>({...l,change:JSON.parse(l.change_json),change_json:undefined}))});
+  const id=route.slice(10);const row=await env.DB.prepare('SELECT enquiries.*,(SELECT email FROM customers WHERE id=customer_id) customer_email FROM enquiries WHERE id=?').bind(id).first();if(!row)throw new HttpError(404,'Enquiry not found.');const logs=await env.DB.prepare('SELECT * FROM followup_logs WHERE enquiry_id=? ORDER BY created_at,id').bind(id).all();return json({...row,details:JSON.parse(row.details_json),details_json:undefined,payload_hash:undefined,idempotency_key:undefined,files:await enquiryFiles(env,row.id),logs:logs.results.map(l=>({...l,change:JSON.parse(l.change_json),change_json:undefined}))});
  }
  if(route.startsWith('enquiries/')&&method==='PATCH'){
   const id=route.slice(10);const raw=await readJSON(request);if(!RECORD_STATES.includes(raw.record)||!BUSINESS_STAGES.includes(raw.stage)||!QUALITY.includes(raw.quality))throw new HttpError(422,'Invalid follow-up status.');
@@ -103,7 +124,7 @@ async function adminAPI(request,env,route){
    env.DB.prepare('INSERT INTO followup_logs(id,enquiry_id,actor,change_json,note) SELECT ?,id,?,?,? FROM enquiries WHERE id=? AND last_write=?').bind(crypto.randomUUID(),user.id,JSON.stringify(change),note,id,write)
   ]);if(!batch[0].meta.changes)throw new HttpError(409,'This record changed. Reload before saving.');return json({ok:true});
  }
- if(route.startsWith('enquiries/')&&method==='DELETE'){const id=route.slice(10);const r=await env.DB.prepare('DELETE FROM enquiries WHERE id=?').bind(id).run();if(!r.meta.changes)throw new HttpError(404,'Enquiry not found.');return json({ok:true});}
+ if(route.startsWith('enquiries/')&&method==='DELETE'){const id=route.slice(10);await deleteEnquiryFiles(env,id);const r=await env.DB.prepare('DELETE FROM enquiries WHERE id=?').bind(id).run();if(!r.meta.changes)throw new HttpError(404,'Enquiry not found.');return json({ok:true});}
  if(route==='media'&&method==='GET')return json({items:(await env.DB.prepare('SELECT * FROM media ORDER BY created_at DESC').all()).results});
  if(route.startsWith('media/')&&method==='DELETE'){
   const key=route.slice(6);const item=await env.DB.prepare('SELECT key,published FROM media WHERE key=?').bind(key).first();if(!item)throw new HttpError(404,'Image not found.');

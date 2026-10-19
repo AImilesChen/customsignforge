@@ -1,3 +1,4 @@
+import {CONTACT_METHODS,DRAWING_STATES,FILE_COUNT_LIMIT,internationalPhone,attachmentId} from './enquiry-fields.mjs';
 import {campaignSource,acquisition} from './acquisition.mjs';
 export class HttpError extends Error { constructor(status,message,fields={}) { super(message);this.status=status;this.fields=fields; } }
 export const USES=['Shop or storefront','Office or reception','Other commercial space','Multiple locations or projects','Other or not sure'];
@@ -16,10 +17,15 @@ export function validateEnquiry(raw,styles){
  const style=raw.style||'not-sure';if(style!=='not-sure'&&!styles.includes(style))throw new HttpError(422,'Please select an available sign style.',{style:'Please select an available sign style.'});
  if(!/^[0-9a-f]{8}-[0-9a-f-]{27,36}$/i.test(raw.idempotencyKey||''))throw new HttpError(422,'Please reload the form and try again.');
  const role=raw.role||'';if(!['','business','trade','other','My own business','A customer’s project','Other or not sure'].includes(role))throw new HttpError(422,'Invalid enquiry role.');
+ const contact={};
+ if(raw.contactMethod!==undefined){if(!CONTACT_METHODS.some(([key])=>key===raw.contactMethod))throw new HttpError(422,'Choose WhatsApp or phone.',{contactMethod:'Choose how we can reach you.'});contact.contactMethod=raw.contactMethod;}
+ if(raw.phone!==undefined){const phone=internationalPhone(raw.phone);if(!phone)throw new HttpError(422,'Enter a valid international number including + and the country code.',{phone:'Include the country code, for example +1, +44 or +60.'});contact.phone=phone;}
+ if(raw.drawings!==undefined){if(!DRAWING_STATES.some(([key])=>key===raw.drawings))throw new HttpError(422,'Tell us whether you have drawings.',{drawings:'Choose an option.'});contact.drawings=raw.drawings;}
+ if(raw.attachments!==undefined){if(!Array.isArray(raw.attachments)||raw.attachments.length>FILE_COUNT_LIMIT||raw.attachments.some(id=>!attachmentId(id))||new Set(raw.attachments).size!==raw.attachments.length)throw new HttpError(422,'Use up to 3 distinct uploaded files.',{attachments:'Please check your uploaded files.'});contact.attachments=[...raw.attachments].sort();}
  const source=campaignSource(raw.source);
  if(raw.website)throw new HttpError(422,'Unable to submit this form.');
  const attribution=acquisition(raw.acquisition);attribution.entryMode='form';
- return {role,style,use:raw.use,country:raw.country,stage:raw.stage,city:text(raw.city||'',80),timing:text(raw.timing||'',100),notes:text(raw.notes||'',300),entry:path(raw.entry||''),project:raw.project?slug(raw.project):'',source,acquisition:attribution,idempotencyKey:raw.idempotencyKey};
+ return {...contact,role,style,use:raw.use,country:raw.country,stage:raw.stage,city:text(raw.city||'',80),timing:text(raw.timing||'',100),notes:text(raw.notes||'',300),entry:path(raw.entry==='contact'?'/contact/':raw.entry||''),project:raw.project?slug(raw.project):'',source,acquisition:attribution,idempotencyKey:raw.idempotencyKey};
 }
 export function validateContent(raw,type){
  if(!['product','project','landing','page'].includes(type))throw new HttpError(422,'Invalid content type.');
@@ -52,3 +58,13 @@ export function validateSettings(raw){
 }
 function validateFAQ(faq){if(!Array.isArray(faq)||faq.length>15)throw new HttpError(422,'Use at most 15 FAQ entries.');return faq.map(f=>[text(f[0],160,true),text(f[1],1500,true)]);}
 export function imageType(bytes){if(bytes[0]===0xff&&bytes[1]===0xd8&&bytes[2]===0xff)return ['jpg','image/jpeg'];if(bytes.slice(0,8).join(',')==='137,80,78,71,13,10,26,10')return ['png','image/png'];if(new TextDecoder().decode(bytes.slice(0,4))==='RIFF'&&new TextDecoder().decode(bytes.slice(8,12))==='WEBP')return ['webp','image/webp'];throw new HttpError(422,'Upload a JPEG, PNG or WebP image.');}
+
+export function requireEnquiryContact(details){
+ const fields={};
+ if(!details.contactMethod)fields.contactMethod='Choose WhatsApp or phone.';
+ if(!details.phone)fields.phone='A contact number with country code is required.';
+ if(!details.drawings)fields.drawings='Tell us whether you have drawings.';
+ if(details.drawings==='ready'&&!details.attachments?.length)fields.attachments='Upload at least one file, or choose to provide files later.';
+ if(details.drawings!=='ready'&&details.attachments?.length)fields.attachments='Remove uploaded files before changing your drawing status.';
+ if(Object.keys(fields).length)throw new HttpError(422,'Please check your contact details and drawing selection.',fields);
+}

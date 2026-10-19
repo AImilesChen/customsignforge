@@ -10,7 +10,7 @@ export default function Contact(){
   <section className="section container contact-layout" aria-labelledby="contact-project-title">
    <div className="contact-project"><Eyebrow>START YOUR PROJECT</Eyebrow><h2 id="contact-project-title">Tell Us What You Have in Mind.</h2><p>Use our project form to share the sign style, intended location and delivery country. Rough dimensions, a logo or a reference idea are enough to begin.</p>
     <ul><li>Your preferred sign style or lighting effect</li><li>Where the sign will be used</li><li>Delivery country and any timing requirements</li></ul>
-    <Button to="/get-a-quote/?entry=contact">Fill In the Project Form <ArrowRight size={20}/></Button>
+    <Button to="/get-a-quote/?entry=%2Fcontact%2F">Fill In the Project Form <ArrowRight size={20}/></Button>
     <p className="contact-sign-in-note">{site.customer?'You’re signed in. Go straight to the form and save your project details.':'Sign in with Google or verify your email first. You’ll then return directly to the project form.'}</p>
     <p className="contact-quote-note">Every sign is made to order. Pricing and delivery arrangements are confirmed after we review your requirements.</p>
    </div>
