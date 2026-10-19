@@ -9,8 +9,8 @@ export default function Contact(){
   <section className="contact-container contact-layout" aria-labelledby="contact-project-title">
    <div className="contact-project"><Eyebrow>CONTACT CUSTOM SIGN FORGE</Eyebrow><h1 id="contact-project-title">Let’s Talk About<br/>Your Sign.</h1><p>Share your idea or ask about a sign style. A logo, rough dimensions or a reference photo is enough to start.</p>
     <Button to={quote({entry:'/contact/',cta:'content'})}>Start a Project Enquiry <ArrowRight size={20}/></Button>
-    <p className="contact-sign-in-note">{site.customer?'You’re signed in. Continue to your project form.':'Sign in with Google or verify your email to share project details and files.'}</p>
-    <p className="contact-quote-note">Made to your requirements. Quoted for your project.</p>
+    <p className="contact-sign-in-note">{site.customer?'You’re signed in. Continue to your project form.':'Sign in to send your brief and files.'}</p>
+
    </div>
    <aside className="contact-channels" aria-label="Business contact details"><h2>Email or WhatsApp</h2>
     {settings.email&&<div className="contact-channel"><Envelope size={28}/><div><h3>Email</h3><a href={'mailto:'+settings.email}>{settings.email}</a><p>Send your questions, logo or project brief.</p></div></div>}

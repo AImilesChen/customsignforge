@@ -1,13 +1,14 @@
 import assert from 'node:assert/strict';
 import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
 import {sceneQuoteParams} from '../src/lib/product-scenes.mjs';
+import {DESIGN_NOTE} from '../src/lib/image-copy.mjs';
 const base=(process.env.TEST_ORIGIN||'https://customsignforge.com').replace(/\/$/,'');
 const pages=JSON.parse(readFileSync(new URL('../src/data/product-pages.json',import.meta.url),'utf8'));
 const get=path=>fetch(base+path,{redirect:'manual',headers:{'User-Agent':'CustomSignForge-Product-Depth-QA'}});
 let count=0;const assets=new Set();
 for(const [slug,page] of Object.entries(pages)){
  const response=await get('/products/'+slug+'/');assert.equal(response.status,200,slug);const html=await response.text();
- assert.equal((html.match(/<h1[\s>]/g)||[]).length,1);assert(html.includes('id="product-design-gallery"'));assert(html.includes('id="product-technical-title"'));assert(html.includes('AI-generated design concepts'));
+ assert.equal((html.match(/<h1[\s>]/g)||[]).length,1);assert(html.includes('id="product-design-gallery"'));assert(html.includes('id="product-technical-title"'));assert(html.includes(DESIGN_NOTE));assert.equal((html.match(/class="product-source-note"/g)||[]).length,1);
  assert.equal((html.match(/Request a Similar Look/g)||[]).length,page.contexts.length,slug);
  for(const scene of page.contexts){
   count++;assert(html.includes('id="'+scene.id+'"'));assert(html.includes(scene.src),scene.src);assets.add(scene.src);

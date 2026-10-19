@@ -6,6 +6,7 @@ import {useSite} from '../site-context.jsx';
 import content from '../../data/home-content.json';
 import profile from '../../data/manufacturing-profile.json';
 import HomeHero from './HomeHero.jsx';
+import {DESIGN_NOTE} from '../../lib/image-copy.mjs';
 import '../../styles/home.css';
 
 const asset=name=>name.startsWith('/')?name:'/assets/home-v2/'+name;
@@ -27,13 +28,13 @@ export function HomeProducts(){
   const {products}=useSite();
   const selected=content.products.filter(item=>products.some(p=>p.slug===item.slug));
   return <section id="sign-styles" className="home-section home-container home-products" aria-labelledby="home-styles-title">
-    <div className="home-section-heading"><div><Eyebrow>SIGN STYLES</Eyebrow><h2 id="home-styles-title">Find the Right Sign for Your Brand</h2><p>Compare the look. We’ll help confirm the specification.</p></div><TextLink to="/products/">Explore All Styles</TextLink></div>
+    <div className="home-section-heading"><div><Eyebrow>SIGN STYLES</Eyebrow><h2 id="home-styles-title">Find the Right Sign for Your Brand</h2><p>Compare the light, material and finished effect.</p></div><TextLink to="/products/">Explore All Styles</TextLink></div>
     <div className="home-product-grid">{selected.map(item=><article key={item.slug}>
       <Link to={'/products/'+item.slug+'/'} aria-label={'Explore '+item.title}><HomePhoto image={item.image} alt={item.alt}/></Link>
       <h3><Link to={'/products/'+item.slug+'/'}>{item.title}</Link></h3>
       <p className="home-product-description">{item.description}</p><p className="home-product-use">{item.use}</p><TextLink to={'/products/'+item.slug+'/'}>{item.action}</TextLink>
     </article>)}</div>
-    <p className="home-image-note">AI-generated design concepts · Final details are confirmed for your project.</p>
+
   </section>;
 }
 
@@ -45,12 +46,12 @@ export function HomeWork(){
       <Link className="home-scene-image" to={quote({style:item.style,source:'homepage-'+item.id})} aria-label={'Plan a sign inspired by this '+item.id+' concept'}><HomePhoto image={item.image} alt={item.alt}/></Link>
       <div className="home-scene-caption"><h3>{item.title}</h3><TextLink to={quote({style:item.style,source:'homepage-'+item.id})}>Plan a Similar Sign</TextLink><p>{item.meta}</p></div>
     </article>)}</div>
-    <p className="home-image-note">AI-generated design concepts · Shown for inspiration, not as completed client projects.</p>
+    <p className="home-image-note">{DESIGN_NOTE}</p>
   </div></section>;
 }
 
 export function HomeCustom(){return <section id="make-it-yours" className="home-section home-container home-custom" aria-labelledby="home-custom-title">
-  <figure><HomePhoto image="custom-arc.webp" alt="ARC dimensional letters with physical finish samples — AI-generated material study"/><figcaption>AI-generated material and lettering study</figcaption></figure>
+  <figure><HomePhoto image="custom-arc.webp" alt="ARC dimensional letters with physical finish samples — AI-generated material study"/><figcaption>Lettering, proportions & finish options</figcaption></figure>
   <div><Eyebrow>MADE TO YOUR PROJECT</Eyebrow><h2 id="home-custom-title">Your Brand.<br/>Your Specification.</h2><p className="home-custom-intro">Start with your logo or an idea. We’ll work through the details with you.</p><dl className="home-custom-options">{content.customOptions.map(item=><div key={item.title}><dt>{item.title}</dt><dd>{item.text}</dd></div>)}</dl><TextLink to={quote({source:'homepage-custom'})}>Discuss Your Custom Sign</TextLink></div>
 </section>;}
 
@@ -86,5 +87,5 @@ export default function Home(){const root=useRef(null);useHomeReveal(root);retur
   <HomeHero/>
   <HomeProducts/><HomeWork/><HomeCustom/><HomeProof/><HomeProcess/><HomeTrade/>
   <section className="home-section home-container home-faq" aria-labelledby="home-faq-title"><div><Eyebrow>A FEW THINGS TO KNOW</Eyebrow><h2 id="home-faq-title">Start with<br/>What You Know.</h2><p>No final dimensions or drawing yet? Share the idea and we can discuss what comes next.</p><TextLink to={quote({source:'homepage-faq'})}>Ask About Your Project</TextLink></div><FAQs/></section>
-  <section className="home-section home-final" aria-labelledby="home-final-title"><div className="home-container"><Eyebrow>LET’S TALK ABOUT YOUR SIGN</Eyebrow><h2 id="home-final-title">Tell Us About Your Sign.</h2><p>Sign in, share a few details and continue on WhatsApp. We’ll discuss the specification and quote for your project.</p><Button/><p className="home-final-helper">Custom-made to your requirements. Quoted individually.</p></div></section>
+  <section className="home-section home-final" aria-labelledby="home-final-title"><div className="home-container"><Eyebrow>LET’S TALK ABOUT YOUR SIGN</Eyebrow><h2 id="home-final-title">Tell Us About Your Sign.</h2><p>Share your logo, approximate size and delivery destination. We’ll help shape the details.</p><Button/></div></section>
 </div>;}

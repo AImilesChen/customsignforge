@@ -1,3 +1,19 @@
+# Concise image captions and marketing microcopy - 2026-10-19
+
+Source visual truth: the user's homepage screenshot showing the small AI-generation caption, and the current production capture `docs/evidence/microcopy/before-home-1280.png`. This is a scoped editorial cleanup of the existing design. Original images, provenance records, fonts, colours, layout tokens, carousel behaviour and quotation/authentication rules are preserved.
+
+Removed repeated image-generation footnotes from the hero, product photos, detail dialogs, overview, projects and process/trade references. Useful material, lighting, construction and scenario captions remain. Relevant galleries use one short design-inspiration note; project details retain their Design Concept or Fabrication Sample identity. Repeated sign-in and specification reminders were shortened. Privacy/terms links, mandatory form data, error guidance and company contact information remain.
+
+Comparison: `before-home-1280.png` and `after-home-1280.png` are both1265x712 actual pixels at CSS1280x720. `comparison.png` places these actual captures side by side with24px separation and was opened and inspected, alongside native-size desktop product/process and mobile product captures. Both show the hotel scene; production was rotating while local selection was paused, and the local preview ribbon is excluded from findings. The missing tiny caption is intentional; image dimensions and meaningful scene description are preserved. The previously fixed closing heading/footer CSS is unchanged.
+
+Five surfaces: typography retains the existing readable hierarchy; spacing removes empty/generic figcaptions without changing grid tokens; colours retain brand orange/graphite; imagery uses the same assets and stored provenance; copy removes production jargon and duplicate instructions while retaining design-reference identity and useful product detail. Browser product enlargement opens with a meaningful accessible title and closes correctly. Local phone CSS390x844 has375px client/scroll width with no horizontal overflow; actual screenshot375x812. Desktop actual product/process captures1265x712. No actionable P0/P1/P2 visual finding remains in this scope; this is not a full accessibility audit.
+
+Verification:59 tests passed; Astro check96files with0 errors/warnings/hints; development and production builds/private-value scan passed. New rendered-copy smoke passes28 routes. Existing hero,6-family product/gallery, overview,12-project/filter, process and trade smokes pass, including quotation return context. Auth/mail/WhatsApp delivery was not re-exercised because this change does not alter those systems. Publication and live verification are recorded in the project release log after deployment.
+
+final result: passed
+
+---
+
 # Homepage closing CTA and footer alignment - 2026-10-19
 
 Source visual truth: the user's current homepage screenshot `C:/Users/NINGMEI/AppData/Local/Temp/codex-clipboard-3f10d4d6-7546-4679-b037-350501d7c03a.png`, plus current production capture `docs/evidence/home-alignment-fix/before-1440.png`. Scope is a correction of the existing centred closing CTA and homepage frame; no redesign of the hero, content or typography.

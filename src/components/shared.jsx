@@ -1,4 +1,5 @@
 import Image from './Image.jsx';
+import {displayCaption} from '../lib/image-copy.mjs';
 import {useState,useRef,useEffect} from 'react';
 import {ArrowRightIcon as ArrowRight,ListIcon as List,XIcon as X,PlusIcon as Plus,CaretDownIcon as CaretDown} from '@phosphor-icons/react';
 import '../styles/navigation.css';
@@ -14,8 +15,8 @@ export const Link=({to,children,...props})=><a href={to} {...props}>{children}</
 export const Button=({to='/get-a-quote/',children='Get a Custom Quote',secondary=false})=><Link to={to} className={'button '+(secondary?'secondary':'')}>{children}</Link>;
 export const TextLink=({to,children})=><Link to={to} className="text-link">{children}<ArrowRight size={20}/></Link>;
 export const Eyebrow=({children})=><p className="eyebrow">{children}</p>;
-export const imageCaption=kind=>({concept:'Design concept · Illustrative imagery',sample:'Sample',finished_product:'Finished product',client_project:'Client project',supplier_reference:'Supplier reference · Not a Custom Sign Forge client project'}[kind]||'Design concept · Illustrative imagery');
-export const Figure=({src,alt,caption='Design concept · Illustrative imagery',className=''})=><figure className={className}><Image src={src.startsWith('/')?src:A+src} alt={alt} loading={className.includes('hero-figure')?'eager':'lazy'} fetchPriority={className.includes('hero-figure')?'high':'auto'}/><figcaption>{caption}</figcaption></figure>;
+export const imageCaption=kind=>({concept:'Design inspiration',sample:'Fabrication sample',finished_product:'Finished product',client_project:'Client project',supplier_reference:'Fabrication sample'}[kind]||'Design inspiration');
+export const Figure=({src,alt,caption='Design inspiration',className=''})=><figure className={className}><Image src={src.startsWith('/')?src:A+src} alt={alt} loading={className.includes('hero-figure')?'eager':'lazy'} fetchPriority={className.includes('hero-figure')?'high':'auto'}/><figcaption>{displayCaption(caption)}</figcaption></figure>;
 export const blocks=md=>md.split(/\n\n+/).map(s=>s.trim()).filter(Boolean);
 export const mdHeadings=md=>blocks(md).slice(2).join('\n\n').replace(/^.*(?:实施说明|按钮|六类卡片沿用|仅展示已核实).*$/gm,'').replace(/\*\*([^*\n]*[\u4e00-\u9fff][^*\n]*)\*\*：(.+)/g,(_,label,text)=>label.includes('标题')?'### '+text:text).replace(/^\*\*([^*\n]+)\*\*$/gm,'### $1').replace(/^### .*?[\u4e00-\u9fff].*$/gm,'');
 export const Markdown=({text})=><div className="prose"><ReactMarkdown remarkPlugins={[remarkGfm]} skipHtml components={{img:({src,alt})=>/^\/(assets|media)\//.test(src||'')?<Image src={src} alt={alt||''} loading="lazy"/>:<span>{alt}</span>,h2:({children})=><h2 id={String(children).toLowerCase().replace(/[^a-z0-9]+/g,'-')}>{children}</h2>}}>{text.replace(/<h2 id="[^"]+">([^<]+)<\/h2>/g,'## $1').replace(/<aside class="review-note">([\s\S]*?)<\/aside>/g,'> $1')}</ReactMarkdown></div>;

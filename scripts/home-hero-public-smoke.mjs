@@ -8,7 +8,7 @@ assert.equal((html.match(/<h1[\s>]/g)||[]).length,1);
 for(const label of ['Sign design ideas','Show storefront signs concept','Show reception &amp; office concept','Show hotel &amp; hospitality concept','Pause scene rotation','Next sign scene','Previous sign scene'])assert(html.includes(label),label);
 const images=['/assets/hero-cafe.webp','/assets/home-team/workshop-team.webp','/assets/home-hero-v3/reception-portrait.webp','/assets/home-hero-v3/hospitality-portrait.webp'];
 for(const path of images){assert(html.includes(path),path);const response=await get(path);assert.equal(response.status,200,path);assert(response.headers.get('content-type').startsWith('image/'));assert((await response.arrayBuffer()).byteLength>1000)}
-assert(html.includes('AI-generated design concept'));assert(html.includes('Senior craftspeople’s experience'));
+assert(html.includes('Design concepts for inspiration.'));assert(!/<small>AI-generated/.test(html));assert(html.includes('Senior craftspeople’s experience'));
 const target='/get-a-quote/?source=homepage-hero&entry=%2F&cta=content';assert(html.includes(target.replaceAll('&','&amp;')));
 const gate=await get(target);assert.equal(gate.status,303);assert.equal(new URL(gate.headers.get('location'),base).searchParams.get('next'),target);await gate.arrayBuffer();
 const about=await get('/about/');assert.equal(about.status,200);const aboutHtml=await about.text();assert(!/<header[^>]*class="[^"]*home-immersive-header/.test(aboutHtml));assert(aboutHtml.includes('/brand/horizontal-graphite.svg'));
