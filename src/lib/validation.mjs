@@ -1,3 +1,4 @@
+import {PROJECT_SETTINGS} from './project-library.mjs';
 import {CONTACT_METHODS,DRAWING_STATES,FILE_COUNT_LIMIT,internationalPhone,attachmentId} from './enquiry-fields.mjs';
 import {campaignSource,acquisition} from './acquisition.mjs';
 import {PROJECT_KEYS,ROLES,projectErrors} from './enquiry-project.mjs';
@@ -40,7 +41,7 @@ export function validateContent(raw,type){
  if(d.image&&!d.imageAlt)throw new HttpError(422,'Add alternative text for the image.');
  if(d.imageKind!=='concept'&&!text(raw.sourceNote||'',1000).trim())throw new HttpError(422,'Record the source and permitted use for real photography.');
  d.sourceNote=text(raw.sourceNote||'',1000);if(d.product)d.product=slug(d.product);
- if(!['Office','Storefront','Other'].includes(d.setting))throw new HttpError(422,'Invalid setting.');
+ if(!PROJECT_SETTINGS.includes(d.setting))throw new HttpError(422,'Invalid setting.');
  if(!Number.isInteger(d.sort)||d.sort<0||d.sort>9999)throw new HttpError(422,'Invalid sort order.');
  if(raw.gallery!==undefined&&!Array.isArray(raw.gallery))throw new HttpError(422,'Invalid image gallery.');
  if((raw.gallery||[]).length>6)throw new HttpError(422,'Use no more than six gallery images.');
