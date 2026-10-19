@@ -1,28 +1,187 @@
 {
   "products": [
-    {"slug":"led-channel-letters","title":"LED Channel Letters","image":"style-front-lit.webp","alt":"LUMA front-lit channel letters on a charcoal storefront — AI-generated design concept","description":"A bright face. A clear street presence.","use":"For storefronts and building signs","action":"Explore Front-Lit Letters"},
-    {"slug":"backlit-letters","title":"Backlit & Halo Lit Letters","image":"style-halo-lit.webp","alt":"Opaque bronze NOVA letters with warm rear lighting — AI-generated design concept","description":"A soft glow that frames your lettering.","use":"For receptions and hospitality spaces","action":"Explore Halo-Lit Letters"},
-    {"slug":"metal-letters","title":"Metal & Dimensional Letters","image":"style-metal.webp","alt":"Brushed metal FORMA lettering in daylight — AI-generated design concept","description":"Depth, texture and a crisp natural finish.","use":"For offices and architectural interiors","action":"Explore Metal Letters"}
+    {
+      "slug": "led-channel-letters",
+      "title": "LED Channel Letters",
+      "image": "style-front-lit.webp",
+      "alt": "LUMA front-lit channel letters on a charcoal storefront — AI-generated design concept",
+      "description": "A bright face. A clear street presence.",
+      "use": "For storefronts and building signs",
+      "action": "Explore Front-Lit Letters"
+    },
+    {
+      "slug": "backlit-letters",
+      "title": "Backlit & Halo Lit Letters",
+      "image": "style-halo-lit.webp",
+      "alt": "Opaque bronze NOVA letters with warm rear lighting — AI-generated design concept",
+      "description": "A soft glow that frames your lettering.",
+      "use": "For receptions and hospitality spaces",
+      "action": "Explore Halo-Lit Letters"
+    },
+    {
+      "slug": "metal-letters",
+      "title": "Metal & Dimensional Letters",
+      "image": "style-metal.webp",
+      "alt": "Brushed metal FORMA lettering in daylight — AI-generated design concept",
+      "description": "Depth, texture and a crisp natural finish.",
+      "use": "For offices and architectural interiors",
+      "action": "Explore Metal Letters"
+    },
+    {
+      "slug": "acrylic-letters",
+      "title": "Acrylic Letters & Logos",
+      "image": "/assets/product-depth/acrylic-layered.webp",
+      "alt": "Layered acrylic lettering in a commercial interior, AI-generated design concept",
+      "description": "Colour and layers, shaped around your identity.",
+      "use": "For reception walls and retail interiors",
+      "action": "Explore Acrylic Signs"
+    },
+    {
+      "slug": "lightbox-neon",
+      "title": "Lightboxes & Neon",
+      "image": "/assets/products-v2/lightbox-dual-hero.webp",
+      "alt": "Round cafe lightbox with OPEN neon-style lettering, AI-generated design concept",
+      "description": "A lit panel or a flowing line of light.",
+      "use": "For storefronts, windows and hospitality",
+      "action": "Explore Lightboxes & Neon"
+    },
+    {
+      "slug": "specialty-signs",
+      "title": "Specialty Signs",
+      "image": "/assets/specialty-sign.webp",
+      "alt": "Dimensional BAR lettering with exposed lights, AI-generated design concept",
+      "description": "Distinctive shapes. A character of their own.",
+      "use": "For statement features and custom concepts",
+      "action": "Explore Specialty Signs"
+    }
   ],
   "scenes": [
-    {"id":"storefront","style":"led-channel-letters","image":"scene-storefront.webp","alt":"MORROW bakery facade with front-lit lettering — AI-generated design concept","title":"A stronger street presence","meta":"Storefront concept · Front-lit channel letters","feature":true},
-    {"id":"reception","style":"backlit-letters","image":"scene-reception.webp","alt":"AVEN reception lettering with a warm halo — AI-generated design concept","title":"A considered first impression","meta":"Reception concept · Halo-lit lettering"},
-    {"id":"hospitality","style":"metal-letters","image":"scene-hospitality.webp","alt":"SABLE hospitality entrance with brass letters — AI-generated design concept","title":"Details that belong to the space","meta":"Hospitality concept · Dimensional metal letters"}
+    {
+      "id": "storefront",
+      "style": "led-channel-letters",
+      "image": "scene-storefront.webp",
+      "alt": "MORROW bakery facade with front-lit lettering — AI-generated design concept",
+      "title": "A stronger street presence",
+      "meta": "Storefront concept · Front-lit channel letters",
+      "feature": true
+    },
+    {
+      "id": "reception",
+      "style": "backlit-letters",
+      "image": "scene-reception.webp",
+      "alt": "AVEN reception lettering with a warm halo — AI-generated design concept",
+      "title": "A considered first impression",
+      "meta": "Reception concept · Halo-lit lettering"
+    },
+    {
+      "id": "hospitality",
+      "style": "metal-letters",
+      "image": "scene-hospitality.webp",
+      "alt": "SABLE hospitality entrance with brass letters — AI-generated design concept",
+      "title": "Details that belong to the space",
+      "meta": "Hospitality concept · Dimensional metal letters"
+    }
   ],
   "customOptions": [
-    {"title":"Logo, Lettering & Size","text":"Your artwork, overall dimensions and proportions. Start with a logo, rough measurements or a reference."},
-    {"title":"Light & Finish","text":"Explore front-lit, halo-lit or non-lit effects, then discuss materials, colour and surface finish."},
-    {"title":"Space & Mounting","text":"Tell us about indoor or outdoor use, the wall surface and your local installation arrangements."}
+    {
+      "title": "Logo, Lettering & Size",
+      "text": "Your artwork, overall dimensions and proportions. Start with a logo, rough measurements or a reference."
+    },
+    {
+      "title": "Light & Finish",
+      "text": "Explore front-lit, halo-lit or non-lit effects, then discuss materials, colour and surface finish."
+    },
+    {
+      "title": "Space & Mounting",
+      "text": "Tell us about indoor or outdoor use, the wall surface and your local installation arrangements."
+    }
   ],
   "steps": [
-    {"title":"Sign In & Share Your Idea","text":"Use Google or verify your email, then tell us the style, intended use and delivery country.","result":"Start with what you know."},
-    {"title":"Discuss the Details & Quote","text":"Continue on WhatsApp to review artwork, dimensions, lighting, quantity and delivery needs.","result":"A quote for your project."},
-    {"title":"Confirm the Specification","text":"Review the agreed design, scope, price and delivery arrangements before the order proceeds.","result":"Clear details before production."},
-    {"title":"Production, Checks & Delivery","text":"We make your sign to the confirmed specification, complete the agreed checks and prepare it for delivery.","result":"Delivery follows your agreement."}
+    {
+      "title": "Sign In & Share Your Idea",
+      "text": "Use Google or verify your email, then tell us the style, intended use and delivery country.",
+      "result": "Start with what you know."
+    },
+    {
+      "title": "Discuss the Details & Quote",
+      "text": "Continue on WhatsApp to review artwork, dimensions, lighting, quantity and delivery needs.",
+      "result": "A quote for your project."
+    },
+    {
+      "title": "Confirm the Specification",
+      "text": "Review the agreed design, scope, price and delivery arrangements before the order proceeds.",
+      "result": "Clear details before production."
+    },
+    {
+      "title": "Production, Checks & Delivery",
+      "text": "We make your sign to the confirmed specification, complete the agreed checks and prepare it for delivery.",
+      "result": "Delivery follows your agreement."
+    }
   ],
-  "proof": [
-    {"image":"process-fabrication.webp","alt":"Metal letter construction detail — AI-generated process illustration","title":"Construction & Finish","text":"Discuss material, return depth, face details and the finish that suits your design."},
-    {"image":"process-lighting.webp","alt":"Channel letters lit on a bench — AI-generated process illustration","title":"Lighting & Order Checks","text":"Confirm the lighting configuration and the checks or documentation needed for your order."},
-    {"image":"process-packing.webp","alt":"Letters protected by fitted foam in a carton — AI-generated packing illustration","title":"Packing & Delivery","text":"Agree protection, shipment arrangements and the information your local installer needs."}
+  "team": {
+    "intro": "Experienced designers and skilled fabricators turn your artwork into custom signs for commercial spaces.",
+    "detail": "From cutting and welding to finishing and final checks, we bring practical care to each detail of your sign.",
+    "qualities": [
+      {
+        "title": "Skilled hands",
+        "label": "Experienced craftsmanship"
+      },
+      {
+        "title": "Your design",
+        "label": "Custom-built details"
+      },
+      {
+        "title": "Final checks",
+        "label": "Finish, light & packing"
+      }
+    ],
+    "photos": [
+      {
+        "src": "/assets/home-team/workshop-team.webp",
+        "label": "Workshop & Team",
+        "alt": "Fabrication team working on metal lettering at benches in the workshop",
+        "caption": "Hands-on fabrication, from individual letters to custom logo details."
+      },
+      {
+        "src": "/assets/home-team/quality-check.webp",
+        "label": "Quality Checks",
+        "alt": "Gloved worker inspecting a sign component before assembly",
+        "caption": "Attention to the surface, assembly and finish before shipment.",
+        "position": "home-photo-inspection"
+      },
+      {
+        "src": "/assets/home-team/packing.webp",
+        "label": "Packing",
+        "alt": "Finished sign letters being checked and protected for packing",
+        "caption": "Finished lettering checked and protected for the journey.",
+        "position": "home-photo-packing"
+      }
+    ]
+  },
+  "advantages": [
+    {
+      "title": "Experienced Craftsmanship",
+      "text": "Skilled designers and fabricators bring practical knowledge to every sign."
+    },
+    {
+      "title": "Made for Your Design",
+      "text": "Your logo, lettering and dimensions, developed around your space."
+    },
+    {
+      "title": "From Cutting to Finishing",
+      "text": "Cutting, forming, welding and polishing for considered construction."
+    },
+    {
+      "title": "Materials & Light",
+      "text": "Explore metal, acrylic, surface finishes and lighting effects."
+    },
+    {
+      "title": "Care in Every Detail",
+      "text": "Dimensions, finish, assembly and lighting checked as your sign takes shape."
+    },
+    {
+      "title": "Clear Project Communication",
+      "text": "Work through drawings, specifications and shipment details with our team."
+    }
   ]
 }

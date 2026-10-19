@@ -9,3 +9,49 @@
 @media(max-width:1200px){.home-header.header{padding-inline:40px}.home-header .wordmark img{width:245px}.home-header .nav{font-size:12px;gap:18px}}
 @media(max-width:700px){.home-header.header{padding:16px 20px;min-height:76px;gap:10px}.home-header .wordmark img{width:160px}.home-header .nav{font-size:16px;gap:5px}.home-review .home-section{padding-block:48px}}
 @media(prefers-reduced-motion:reduce){.home-photo img{transition:none}.home-redesign a:hover .home-photo img{transform:none}}
+
+/* A quiet editorial story and concise benefit cards, using the approved reference. */
+.home-redesign .home-section h2{font-size:clamp(32px,3.6vw,50px);line-height:1.15;letter-spacing:-1.6px;max-width:1000px}
+.home-redesign .home-section-heading>div>p:not(.eyebrow){font-size:21px;max-width:850px}
+.home-redesign .home-product-grid{row-gap:48px}
+.home-redesign .home-product-grid h3{font-size:24px;line-height:1.3}
+.home-redesign .home-product-description{font-size:20px}
+.home-redesign .home-product-use{font-size:18px}
+.home-story{display:grid;grid-template-columns:1fr 1.08fr;gap:72px;align-items:center}
+.home-story-copy h2,.home-advantages h2{font-family:Georgia,'Times New Roman',serif;font-weight:400;letter-spacing:-1.1px!important}
+.home-story-copy h2 em,.home-advantages h2 em{color:var(--orange);font-weight:400}
+.home-story-copy>p:not(.eyebrow){font-size:20px;line-height:1.65;margin-top:22px;max-width:560px}
+.home-story-qualities{list-style:none;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin:30px 0 22px}
+.home-story-qualities li{border-left:1px solid var(--line);padding-left:17px}
+.home-story-qualities li:first-child{border:0;padding-left:0}
+.home-story-qualities strong{display:block;font-family:Georgia,'Times New Roman',serif;font-weight:400;font-size:23px;line-height:1.3;color:var(--orange)}
+.home-story-qualities span{display:block;font-size:14px;line-height:1.45;margin-top:8px;color:var(--muted)}
+.home-story-figure{min-width:0}
+.home-story-photo{height:400px;overflow:hidden;border-radius:14px;background:var(--paper)}
+.home-story-photo img{width:100%;height:100%;object-fit:cover;object-position:center}
+.home-story-photo.home-photo-inspection img{object-position:50% 30%}
+.home-story-photo.home-photo-packing img{object-position:50% 100%}
+.home-story-photo-options{display:flex;gap:4px;flex-wrap:wrap;margin-top:14px}
+.home-story-photo-options button{font-size:16px;min-height:44px;padding:8px 13px;border:1px solid transparent;border-radius:5px;color:var(--muted);transition:color .2s,background .2s}
+.home-story-photo-options button:hover{color:var(--orange)}
+.home-story-photo-options button[aria-pressed=true]{color:var(--orange);background:#fbefe8;border-color:#e9c8b7}
+.home-story-figure figcaption{min-height:22px;margin-top:8px;font-size:14px}
+.home-advantages{background:var(--paper);padding-block:64px}
+.home-advantages-heading{text-align:center;max-width:1000px;margin:0 auto 30px}
+.home-redesign .home-advantages-heading h2{margin-inline:auto;font-size:42px}
+.home-advantages-heading>p:not(.eyebrow){font-size:20px;margin-top:18px}
+.home-mobile-break{display:none}
+.home-advantage-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.home-advantage-grid article{border:1px solid var(--line);border-radius:12px;background:white;padding:24px;min-width:0}
+.home-advantage-icon{display:flex;align-items:center;justify-content:center;width:40px;height:40px;background:#fbefe8;border-radius:10px;color:var(--orange);margin-bottom:16px}
+.home-advantage-grid h3{font-size:19px;line-height:1.4;letter-spacing:-.4px}
+.home-advantage-grid p{font-size:17px;line-height:1.5;margin-top:8px;max-width:340px}
+.home-will-reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.home-will-reveal.home-revealed{opacity:1;transform:none}
+.home-advantage-grid article:nth-child(3n+2){transition-delay:.07s}
+.home-advantage-grid article:nth-child(3n+3){transition-delay:.14s}
+@media(max-width:1100px){.home-story{gap:38px}.home-story-photo{height:370px}.home-story-qualities{gap:12px}.home-story-qualities strong{font-size:21px}.home-story-copy>p:not(.eyebrow){font-size:19px}.home-advantage-grid article{padding:24px}.home-advantage-grid h3{font-size:18px}}
+@media(max-width:900px){.home-story{grid-template-columns:1fr;gap:36px}.home-story-copy>p:not(.eyebrow){max-width:720px}.home-story-qualities{max-width:650px}.home-story-photo{height:auto;aspect-ratio:1.8/1}.home-advantage-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.home-advantage-grid article{transition-delay:0s}.home-advantages-heading{text-align:left}.home-advantages-heading h2{margin:0}.home-advantages-heading>p:not(.eyebrow){max-width:650px}}
+@media(max-width:700px){.home-redesign .home-section h2{font-size:34px;line-height:1.18;letter-spacing:-1px}.home-redesign .home-section-heading>div>p:not(.eyebrow){font-size:19px}.home-redesign .home-product-grid{row-gap:38px}.home-redesign .home-product-grid h3{font-size:23px}.home-redesign .home-product-description{font-size:19px}.home-redesign .home-product-use{font-size:17px}.home-story{gap:30px}.home-story-copy>p:not(.eyebrow){font-size:18px;margin-top:20px}.home-story-qualities{gap:12px;margin-top:26px}.home-story-qualities li{padding-left:12px}.home-story-qualities strong{font-size:20px}.home-story-qualities span{font-size:13px}.home-story-photo{aspect-ratio:4/3;border-radius:10px}.home-story-photo-options{gap:2px}.home-story-photo-options button{padding-inline:9px;font-size:15px}.home-story-figure figcaption{min-height:42px}.home-advantages-heading{margin-bottom:30px}.home-advantages-heading>p:not(.eyebrow){font-size:18px}.home-mobile-break{display:block}.home-advantage-grid{grid-template-columns:1fr;gap:14px}.home-advantage-grid article{padding:24px;display:grid;grid-template-columns:44px 1fr;column-gap:18px}.home-advantage-icon{grid-row:span 2;width:44px;height:44px;margin:0}.home-advantage-grid h3{font-size:18px}.home-advantage-grid p{grid-column:2;font-size:17px;margin-top:7px;max-width:none}}
+@media(prefers-reduced-motion:reduce){.home-will-reveal,.home-will-reveal.home-revealed{opacity:1;transform:none;transition:none}.home-story-photo-options button{transition:none}}
+@media(max-width:700px){.home-redesign .home-advantages-heading h2{font-size:34px}}

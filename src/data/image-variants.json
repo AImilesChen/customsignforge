@@ -1068,5 +1068,39 @@
         "width": 1200
       }
     ]
+  },
+  "/assets/home-team/workshop-team.webp": {
+    "width": 1255,
+    "height": 691,
+    "variants": [
+      {
+        "src": "/assets/responsive/home-team/workshop-team-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/home-team/workshop-team-800.webp",
+        "width": 800
+      }
+    ]
+  },
+  "/assets/home-team/quality-check.webp": {
+    "width": 543,
+    "height": 749,
+    "variants": [
+      {
+        "src": "/assets/responsive/home-team/quality-check-400.webp",
+        "width": 400
+      }
+    ]
+  },
+  "/assets/home-team/packing.webp": {
+    "width": 543,
+    "height": 749,
+    "variants": [
+      {
+        "src": "/assets/responsive/home-team/packing-400.webp",
+        "width": 400
+      }
+    ]
   }
 }

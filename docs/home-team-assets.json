@@ -1,0 +1,32 @@
+[
+  {
+    "asset": "/assets/home-team/workshop-team.webp",
+    "source": "User-provided manufacturing brochure",
+    "pdfPage": 26,
+    "embeddedImageIndex": 13,
+    "classification": "manufacturing_reference",
+    "permission": "User authorised brochure photographs for this project",
+    "processing": "Original embedded photograph encoded as WebP, no generated people or altered equipment. Packing uses the original two-photo image with a CSS crop.",
+    "limits": "Documents fabrication activity in the provided material; no numeric headcount, ownership, capacity, warranty, certification or customer-delivery claim."
+  },
+  {
+    "asset": "/assets/home-team/quality-check.webp",
+    "source": "User-provided manufacturing brochure",
+    "pdfPage": 27,
+    "embeddedImageIndex": 1,
+    "classification": "manufacturing_reference",
+    "permission": "User authorised brochure photographs for this project",
+    "processing": "Original embedded photograph encoded as WebP, no generated people or altered equipment. Packing uses the original two-photo image with a CSS crop.",
+    "limits": "Documents fabrication activity in the provided material; no numeric headcount, ownership, capacity, warranty, certification or customer-delivery claim."
+  },
+  {
+    "asset": "/assets/home-team/packing.webp",
+    "source": "User-provided manufacturing brochure",
+    "pdfPage": 27,
+    "embeddedImageIndex": 4,
+    "classification": "manufacturing_reference",
+    "permission": "User authorised brochure photographs for this project",
+    "processing": "Original embedded photograph encoded as WebP, no generated people or altered equipment. Packing uses the original two-photo image with a CSS crop.",
+    "limits": "Documents fabrication activity in the provided material; no numeric headcount, ownership, capacity, warranty, certification or customer-delivery claim."
+  }
+]

@@ -1,3 +1,36 @@
+# Homepage team and advantages QA - 2026-10-19
+
+Source visual truth: the two user-selected screenshots, `C:/Users/NINGMEI/AppData/Local/Temp/codex-clipboard-45d1ac99-8777-435a-858b-342ba6f7a063.png` (1333 x 523) and `codex-clipboard-b913615f-3e02-45b7-a869-b77479167e25.png` (1402 x 605). These are composition/density references, not a request to copy competitor claims or branding.
+
+Implementation: `docs/evidence/home-team/desktop-story.png`, `desktop-advantages.png`, `desktop-products.png`, `mobile-story.png`, `mobile-packing.png`, `mobile-advantages.png`. Story and advantages captured at CSS1280 x720; actual PNG1265 x712 excludes the scrollbar/surface edge. Products captured at1280 x900. Mobile CSS390 x844, actual screenshot375 x812; DOM width and scroll width both375. Density not treated as a layout mismatch.
+
+Full-view comparisons: `compare-story.png` and `compare-advantages.png` place the supplied reference and actual browser capture together in one2560 x760 canvas. References fitted into1280 x720 cells without stretching; section-only source crops do not include browser chrome. These comparisons were opened and reviewed. Separate full-resolution captures were inspected for small copy, image crop and mobile controls; no additional focused composite was necessary because the text and controls are clearly readable in the native captures.
+
+## Iteration history
+
+- P2 initial advantages: long headline and tall cards pushed the second row beyond a normal720px view. Shortened the headline to “Custom Signs. Made Around You.”, reduced card padding/icon size, retained17px descriptions, and recaptured. Both rows now appear in the normal desktop view.
+- P2 initial story: third qualitative strength wrapped asymmetrically and two paragraphs were unnecessarily long. Shortened the copy and strength to “Final checks”; replaced a cluttered assembly photograph with the clearer hands-on fabrication photo. Revised story comparison passes.
+
+## Required fidelity surfaces
+
+- Typography: selective Georgia editorial titles and orange italic emphasis reproduce the reference hierarchy while Manrope/Source Sans3 remain for UI and body. Desktop story uses a two-line heading, advantages42px, body17-20px. Mobile headings34px and body17-18px remain readable.
+- Spacing: left text/right single photograph, balanced white space, rounded image, restrained three-strength row. Six3-column cards replace the reference's eight4-column cards intentionally. Mobile becomes a single column with compact icon/copy alignment; no horizontal overflow.
+- Colour: existing graphite, warm paper and orange remain. Competitor blue and unsupported badges/counters are intentionally omitted.
+- Imagery: original brochure workshop, inspection and packing photographs replace the illustrative process assets. Main source1255 x691; portrait inspection/packing sources543px wide are not enlarged in generated files. CSS crops were visually checked, including the lower packing photograph. Product entries reuse existing concept assets with their concept note retained.
+- Copy: two brief story paragraphs, three qualitative strengths and six title/sentence benefits. No employee total, years, certification, customer count, installation network or warranty copied from the reference.
+
+## Behaviour and checks
+
+Photo buttons activate with click and keyboard Enter, expose aria-pressed and update image/caption. Packing was checked on mobile; quality selection checked on desktop. Server-rendered text stays visible before hydration; only off-screen items enter the single reveal effect. Reduced-motion CSS and preference listener were reviewed; system-level preference toggling was not exercised in the browser. All six product routes, nine unique image assets and the customer sign-in quotation return context pass the dedicated public smoke check. Browser error log is empty. No real enquiry or email was submitted.
+
+No actionable P0/P1/P2 findings remain within this scope.
+
+final result: passed
+
+---
+
+# Earlier homepage QA record
+
 # Homepage V2 design QA
 
 Status: revised comparison passed within the homepage scope. User approved this version for production release on 2026-10-19; deployment outcome is tracked in the repository Actions and project control record.
