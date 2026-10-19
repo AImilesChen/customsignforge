@@ -1144,5 +1144,95 @@
         "width": 800
       }
     ]
+  },
+  "/assets/gallery-v2/clinic-front.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/gallery-v2/clinic-front-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/gallery-v2/clinic-front-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/gallery-v2/clinic-front-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/gallery-v2/fieldwork-metal.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/gallery-v2/fieldwork-metal-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/gallery-v2/fieldwork-metal-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/gallery-v2/fieldwork-metal-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/gallery-v2/library-hero.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/gallery-v2/library-hero-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/gallery-v2/library-hero-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/gallery-v2/library-hero-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/gallery-v2/meridian-halo.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/gallery-v2/meridian-halo-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/gallery-v2/meridian-halo-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/gallery-v2/meridian-halo-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/gallery-v2/lane-halo.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/gallery-v2/lane-halo-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/gallery-v2/lane-halo-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/gallery-v2/lane-halo-1200.webp",
+        "width": 1200
+      }
+    ]
   }
 }

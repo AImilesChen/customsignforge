@@ -77,7 +77,8 @@
           "Bronze appearance"
         ],
         "prepare": "Review the wall texture, emblem proportions and cable exits.",
-        "variant": ""
+        "variant": "",
+        "projectSlug": "wellness-halo-design"
       },
       {
         "id": "corporate-halo",
@@ -92,26 +93,28 @@
           "Brushed silver appearance"
         ],
         "prepare": "Compare the proposed light colour with the room lighting and wall finish.",
-        "variant": ""
+        "variant": "",
+        "projectSlug": "corporate-halo-design"
       },
       {
         "id": "reception-halo",
-        "src": "/assets/products-v2/halo-reception.webp",
-        "alt": "Warm rear-lit AEON logo above a contemporary reception desk",
-        "caption": "A Calm Reception Focal Point",
+        "src": "/assets/gallery-v2/meridian-halo.webp",
+        "alt": "Opaque MERIDIAN metal letters with neutral-white rear halo on a deep teal reception wall",
+        "caption": "A Distinctive Reception Identity",
         "kind": "concept",
         "space": "Office & reception",
-        "description": "A dimensional logo becomes the arrival point behind the desk. Logo width, viewing distance and the clear wall area guide the layout.",
+        "description": "Charcoal metal faces and a neutral-white rear halo create a clear identity on a deep teal wall. A pale stone desk and side daylight give the reception a lighter, more contemporary character.",
         "tags": [
-          "Dimensional identity",
-          "Reception wall"
+          "Neutral-white halo",
+          "Teal reception wall"
         ],
         "prepare": "Send a straight-on wall photo and the desk and wall dimensions.",
-        "variant": ""
+        "variant": "",
+        "projectSlug": "office-logo-concept"
       },
       {
         "id": "hospitality-halo",
-        "src": "/assets/products-v2/halo-hospitality.webp",
+        "src": "/assets/gallery-v2/lane-halo.webp",
         "alt": "Warm halo-lit THE LANE lettering in a hospitality interior",
         "caption": "A Warmer Hospitality Setting",
         "kind": "concept",
@@ -122,22 +125,8 @@
           "Low-light interior"
         ],
         "prepare": "Review brightness and mounting distance in relation to the surrounding lighting.",
-        "variant": ""
-      },
-      {
-        "id": "stone-halo",
-        "src": "/assets/home-v2/scene-reception.webp",
-        "alt": "Warm illuminated AVEN reception logo on a pale stone wall",
-        "caption": "Metal and Light on Stone",
-        "kind": "concept",
-        "space": "Brand feature wall",
-        "description": "A metal logo and secondary lettering create a balanced feature on a textured wall. The material and the light are both part of the composition.",
-        "tags": [
-          "Logo + lettering",
-          "Textured background"
-        ],
-        "prepare": "Confirm the mark, smallest lettering and wall stand-off in the approval drawing.",
-        "variant": ""
+        "variant": "",
+        "projectSlug": "hospitality-halo-design"
       }
     ],
     "faq": [
@@ -264,7 +253,8 @@
           "Logo lockup"
         ],
         "prepare": "Review brand colour references, small lettering and the available fascia depth.",
-        "variant": ""
+        "variant": "",
+        "projectSlug": "food-front-design"
       },
       {
         "id": "retail-front",
@@ -279,7 +269,8 @@
           "Daytime presence"
         ],
         "prepare": "Include a site photo, the available sign area and the main viewing direction.",
-        "variant": ""
+        "variant": "",
+        "projectSlug": "retail-front-design"
       },
       {
         "id": "bakery-front",
@@ -294,22 +285,24 @@
           "Dark fascia"
         ],
         "prepare": "Plan cable penetrations and accessible power-supply locations with your installer.",
-        "variant": ""
+        "variant": "",
+        "projectSlug": "bakery-front-design"
       },
       {
         "id": "shop-front",
-        "src": "/assets/home-v2/scene-storefront.webp",
-        "alt": "Individual MORROW storefront letters framed by commercial glazing and fascia",
-        "caption": "Lettering within the Architecture",
+        "src": "/assets/gallery-v2/clinic-front.webp",
+        "alt": "NORTHSIDE DENTAL individual front-lit letters on a limestone clinic frontage",
+        "caption": "A Clear Identity for a Clinic",
         "kind": "concept",
-        "space": "Neighbourhood storefront",
-        "description": "Individual letters sit within a defined fascia band rather than filling its edges. The relationship to the door and windows establishes a considered scale.",
+        "space": "Clinic frontage",
+        "description": "White and teal illuminated letter faces give a pale stone frontage a distinct identity. The separate cross symbol and secondary wording establish a clear hierarchy.",
         "tags": [
-          "Individual letters",
-          "Fascia proportions"
+          "Front-lit letters",
+          "Clinic identity"
         ],
-        "prepare": "Confirm property constraints and the local installation scope before approval.",
-        "variant": ""
+        "prepare": "Send the full frontage width, logo artwork and a straight-on site photo.",
+        "variant": "",
+        "projectSlug": "storefront-concept"
       }
     ],
     "faq": [
@@ -425,7 +418,8 @@
           "Graphic monogram"
         ],
         "prepare": "Review cut detail, fixing positions and the smallest strokes at actual size.",
-        "variant": ""
+        "variant": "",
+        "projectSlug": "studio-metal-design"
       },
       {
         "id": "lounge-metal",
@@ -440,22 +434,24 @@
           "Unlit lettering"
         ],
         "prepare": "Identify the site exposure and approve a real finish reference where required.",
-        "variant": ""
+        "variant": "",
+        "projectSlug": "hospitality-metal-concept"
       },
       {
         "id": "architectural-metal",
-        "src": "/assets/home-v2/scene-hospitality.webp",
-        "alt": "Dimensional SABLE entrance lettering set into a refined architectural frontage",
-        "caption": "An Identity that Belongs to the Entrance",
+        "src": "/assets/gallery-v2/fieldwork-metal.webp",
+        "alt": "Unlit bronze FIELDWORK ARCHITECTURE lettering with natural shadows on a concrete entrance",
+        "caption": "Depth Defined by Daylight",
         "kind": "concept",
-        "space": "Hotel & commercial entry",
-        "description": "Raised lettering sits quietly within the entrance architecture. Wall joints, door height and sightlines help set the final positioning.",
+        "space": "Architecture office entrance",
+        "description": "Unlit bronze lettering takes its character from material, depth and cast shadow. A restrained concrete entrance keeps the identity clear without added illumination.",
         "tags": [
-          "Architectural scale",
-          "Dimensional depth"
+          "Non-illuminated metal",
+          "Architectural entrance"
         ],
-        "prepare": "Provide the wall or cladding construction so fixing and access can be reviewed.",
-        "variant": ""
+        "prepare": "Confirm the viewing distance, wall construction and proposed lettering size.",
+        "variant": "",
+        "projectSlug": "architectural-metal-design"
       },
       {
         "id": "interior-metal",
@@ -470,7 +466,8 @@
           "Natural shadows"
         ],
         "prepare": "Compare finish samples under the lighting available at the installation.",
-        "variant": ""
+        "variant": "",
+        "projectSlug": "interior-metal-design"
       }
     ],
     "faq": [
@@ -586,7 +583,8 @@
           "Clear + opaque"
         ],
         "prepare": "Confirm layer thickness, colour references and registration of the cut shapes.",
-        "variant": ""
+        "variant": "",
+        "projectSlug": "layered-acrylic-design"
       },
       {
         "id": "salon-acrylic",
@@ -601,7 +599,8 @@
           "Script + emblem"
         ],
         "prepare": "Review fine strokes and the wall fixing method before approving the artwork.",
-        "variant": ""
+        "variant": "",
+        "projectSlug": "salon-acrylic-design"
       },
       {
         "id": "office-acrylic",
@@ -616,7 +615,8 @@
           "Unlit construction"
         ],
         "prepare": "Send vector artwork, the colour references and the required overall width.",
-        "variant": ""
+        "variant": "",
+        "projectSlug": "office-acrylic-design"
       },
       {
         "id": "reception-acrylic",
@@ -631,7 +631,8 @@
           "Dimensional letters"
         ],
         "prepare": "Review the surface sheen, thickness and any restrictions on wall drilling.",
-        "variant": ""
+        "variant": "",
+        "projectSlug": "acrylic-reception-concept"
       }
     ],
     "faq": [
@@ -757,7 +758,8 @@
           "Logo + secondary text"
         ],
         "prepare": "Review the face artwork, cabinet depth and wall fixing arrangement.",
-        "variant": "lightbox"
+        "variant": "lightbox",
+        "projectSlug": "dental-lightbox-design"
       },
       {
         "id": "projecting-lightbox",
@@ -772,7 +774,8 @@
           "Round cabinet"
         ],
         "prepare": "Confirm the bracket location, site permissions and mounting substrate.",
-        "variant": "lightbox"
+        "variant": "lightbox",
+        "projectSlug": "projecting-lightbox-design"
       },
       {
         "id": "cafe-neon",
@@ -787,7 +790,8 @@
           "Shaped backing"
         ],
         "prepare": "Review the line paths, backing outline, fixings and cable exit.",
-        "variant": "neon-style"
+        "variant": "neon-style",
+        "projectSlug": "cafe-neon-design"
       },
       {
         "id": "window-neon",
@@ -802,7 +806,8 @@
           "Window installation"
         ],
         "prepare": "Provide the window dimensions and the proposed hanging or fixing points.",
-        "variant": "neon-style"
+        "variant": "neon-style",
+        "projectSlug": "cafe-neon-concept"
       }
     ],
     "faq": [
@@ -922,7 +927,8 @@
           "Visible bulbs"
         ],
         "prepare": "Approve a layout showing light-point positions and the required service access.",
-        "variant": "marquee"
+        "variant": "marquee",
+        "projectSlug": "cinema-special-design"
       },
       {
         "id": "social-special",
@@ -937,7 +943,8 @@
           "Letter + symbol"
         ],
         "prepare": "Review component access, brightness and fixing positions for the site.",
-        "variant": "exposed-light"
+        "variant": "exposed-light",
+        "projectSlug": "social-special-design"
       },
       {
         "id": "restaurant-special",
@@ -952,7 +959,8 @@
           "Custom backing"
         ],
         "prepare": "Clarify each component, its finish, lighting and supporting structure.",
-        "variant": ""
+        "variant": "",
+        "projectSlug": "restaurant-special-design"
       },
       {
         "id": "evening-special",
@@ -967,7 +975,8 @@
           "Deep lettering"
         ],
         "prepare": "Tell us the destination, exposure and intended maintenance access.",
-        "variant": "marquee"
+        "variant": "marquee",
+        "projectSlug": "marquee-entrance-concept"
       }
     ],
     "faq": [

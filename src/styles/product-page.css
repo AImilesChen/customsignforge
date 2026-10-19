@@ -101,3 +101,19 @@
 @media(max-width:850px){.product-scene-featured{grid-template-columns:1fr;gap:28px;margin-bottom:44px}.product-scene-featured>div{max-width:650px;padding:0}.product-gallery-heading{grid-template-columns:1fr;gap:22px}.product-gallery-heading>p{max-width:650px}.product-scene-wide{display:block}.product-scene-wide>div{padding-top:26px}}
 @media(max-width:700px){.product-technical{padding-block:40px 44px}.product-technical-grid{grid-template-columns:1fr;gap:28px}.product-technical-grid>div{padding-top:20px}.product-technical-grid h3{font-size:22px}.product-technical-grid h3::before{margin-bottom:12px}.product-technical-grid p{font-size:18px;margin-top:12px}.product-gallery-heading{margin-bottom:28px}.product-gallery-heading>p{font-size:18px}.product-scene-grid{grid-template-columns:1fr;gap:40px}.product-scene-card>div{padding-top:22px}.product-scene-section h3{font-size:26px}.product-scene-description{font-size:18px;margin-top:16px}.product-scene-meta{font-size:11px;letter-spacing:1px;margin-bottom:12px}.product-scene-tags{margin-block:18px}.product-scene-prep{font-size:16px}.product-scene-featured{gap:22px;margin-bottom:40px}.product-scene-wide{grid-column:auto;padding-top:40px}.product-scene-section .text-link{font-size:16px;margin-top:16px}.product-scene-section>.product-container>.product-source-note{margin-top:32px}}
 @media(max-width:700px){.product-detail-pair{grid-template-columns:1fr}.product-detail-pair .product-detail-main{grid-column:auto}}
+.product-case-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:52px 36px}
+.product-case-card{min-width:0}
+.product-case-card>div{padding-top:22px}
+.product-case-card .product-photo-control{aspect-ratio:4/3;background:#fff}
+.product-case-card .product-photo-control img{object-fit:contain}
+.product-case-card .product-scene-meta{margin-bottom:10px}
+.product-gallery-v3 h3{font-size:25px;line-height:1.3;max-width:560px}
+.product-case-effect{font-size:17px;line-height:1.5;margin-top:12px}
+.product-case-actions{display:flex;align-items:center;flex-wrap:wrap;gap:14px 26px;margin-top:18px}
+.product-case-actions .text-link{margin:0}
+.product-case-actions>a:not(.text-link){font-size:16px;text-decoration:underline;text-underline-offset:5px;min-height:44px;display:inline-flex;align-items:center}
+.product-gallery-footer{display:flex;gap:32px;align-items:center;justify-content:space-between;margin-top:40px}
+.product-gallery-footer .product-source-note{margin:0;max-width:650px}
+.product-gallery-footer .text-link{margin:0;flex-shrink:0}
+@media(max-width:850px){.product-gallery-footer{align-items:flex-start;flex-direction:column;gap:20px}.product-case-grid{gap:40px 26px}}
+@media(max-width:700px){.product-case-grid{grid-template-columns:1fr;gap:40px}.product-gallery-v3 h3{font-size:25px}.product-case-actions{gap:8px 22px}.product-gallery-footer .text-link{font-size:16px}}

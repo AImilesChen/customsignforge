@@ -22,7 +22,7 @@ test('each product has a distinct, explained gallery and valid scene enquiry con
    for(const other of Object.keys(pages).filter(s=>s!==slug))assert.equal(selectedScene(pages,other,scene.id),null);
   }
  }
- assert.equal(count,25);assert.equal(selectedScene(pages,'unknown','unknown'),null);assert.equal(selectedScene(pages,'backlit-letters','untrusted free text'),null);
+ assert.equal(count,24);assert.equal(selectedScene(pages,'unknown','unknown'),null);assert.equal(selectedScene(pages,'backlit-letters','untrusted free text'),null);
 });
 test('new concept media matches the provenance ledger and responsive image index',()=>{
  const ledger=read('../docs/product-depth-assets.json'),sizes=read('../src/data/image-sizes.json'),responsive=read('../src/data/image-variants.json');assert.equal(ledger.length,16);

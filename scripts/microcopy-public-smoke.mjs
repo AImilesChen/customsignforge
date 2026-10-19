@@ -3,7 +3,7 @@ import {readFileSync,mkdirSync,writeFileSync} from 'node:fs';
 import {DESIGN_NOTE} from '../src/lib/image-copy.mjs';
 const base=(process.env.TEST_ORIGIN||'https://customsignforge.com').replace(/\/$/,'');
 const products=JSON.parse(readFileSync(new URL('../src/data/product-pages.json',import.meta.url),'utf8'));
-const projects=JSON.parse(readFileSync(new URL('../src/data/project-presentations.json',import.meta.url),'utf8'));
+const projects={...JSON.parse(readFileSync(new URL('../src/data/project-presentations.json',import.meta.url),'utf8')),...JSON.parse(readFileSync(new URL('../src/data/project-gallery.json',import.meta.url),'utf8'))};
 const routes=['/','/products/','/projects/','/how-it-works/','/for-sign-companies/','/about/','/contact/','/sign-in/','/landing/custom-logo-signs/','/landing/sign-fabrication/',...Object.keys(products).map(s=>'/products/'+s+'/'),...Object.keys(projects).map(s=>'/projects/'+s+'/')];
 const result=[];
 for(const route of routes){

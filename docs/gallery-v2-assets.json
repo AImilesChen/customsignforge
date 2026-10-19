@@ -1,0 +1,62 @@
+[
+  {
+    "src": "/assets/gallery-v2/clinic-front.webp",
+    "width": 1448,
+    "height": 1086,
+    "sha256": "b247028919373ee28216a8be266673afc64edd8c0f2df64278172cec219526b6",
+    "source": "../design-assets/gallery-v2-sources/clinic-front-source.png",
+    "promptBrief": "A complete premium NORTHSIDE DENTAL frontage with white and teal front-lit individual channel letters on pale limestone. Blue-hour architectural photography, complete readable sign,4:3 composition. No rear halo or lightbox.",
+    "generation": "built-in image_gen",
+    "classification": "AI-generated illustrative design concept",
+    "real_project_or_production_evidence": false,
+    "prompt": "Use case: product-mockup. Create one photorealistic premium architectural photograph for a custom signage design inspiration gallery. Landscape 4:3 composition, intended 1200x900 website display. A refined contemporary dental CLINIC storefront at blue hour, pale warm limestone fascia, precise charcoal aluminium glazing, full glass entrance and discreet clinical reception inside, a little sidewalk and street context, no people. Main focus: separate three-dimensional FRONT-LIT LED CHANNEL LETTERS, with clearly luminous acrylic front faces, solid charcoal side returns, flush mounted with NO rear halo. Exact sign lettering, carefully spelled: large white 'NORTHSIDE' on the top line, smaller teal 'DENTAL' beneath, a simple teal medical cross icon to the left. Every word readable and correctly spelled; no other wording. Photograph from slightly to the side with corrected verticals, whole sign and full entrance framed with generous margins. Physically convincing illumination of individual letter faces, refined white/teal palette, natural limestone grain and realistic glass reflections. Distinct from bakery/restaurant imagery: calm, clean contemporary clinical architecture. No people, watermarks, UI, lightbox cabinet, neon tubing, halo-lit rear glow or exaggerated bloom.\n"
+  },
+  {
+    "src": "/assets/gallery-v2/fieldwork-metal.webp",
+    "width": 1448,
+    "height": 1086,
+    "sha256": "8bedbb721e33531f0d078666ff243ae45807fc52d439c5fdd2bc7bec3d60c2bf",
+    "source": "../design-assets/gallery-v2-sources/fieldwork-metal-source.png",
+    "promptBrief": "FIELDWORK ARCHITECTURE unlit brushed dark bronze dimensional letters on light concrete entrance, natural cast shadows and restrained planting, premium daylight architecture photograph,4:3. No illumination or glow.",
+    "generation": "built-in image_gen",
+    "classification": "AI-generated illustrative design concept",
+    "real_project_or_production_evidence": false,
+    "prompt": "Use case: photorealistic-natural. Asset type: architectural signage design gallery photograph, a new and independent design concept. Create a premium editorial architectural photograph in 4:3 landscape framing, intended 1200 by 900. A contemporary creative architecture office entrance in clear daylight. The complete main sign reads exactly 'FIELDWORK', with smaller 'ARCHITECTURE' beneath it. Dark brushed bronze three-dimensional solid metal letters fixed to a light warm concrete wall. The metal lettering is completely unlit: no glowing face, no rear halo, no lighting. Crisp natural sun cast shadows visibly reveal the letters' depth and satin brushed metal faces. Use a distinctive sculptural architectural doorway to one side, restrained planting, enough whole entry context and generous margins around every letter. Straight architectural verticals, realistic natural material texture, balanced composition, quiet confident high-end aesthetic. Sign and entry look designed as one integrated brand environment. Entire sign visible and readable. Not an extreme closeup. Avoid extra text, watermark, people, interface, halos, LED strips, illumination, overly glossy CGI surfaces, cropped lettering. This is a brand-new design; do not reproduce THE LOUNGE signage or its dark wall.\n"
+  },
+  {
+    "src": "/assets/gallery-v2/library-hero.webp",
+    "width": 1448,
+    "height": 1086,
+    "sha256": "dfa6c78ab7c5fab7aa46540b841eb52f8ce12beb47a9a90ea11be15a99ba8a23",
+    "source": "../design-assets/gallery-v2-sources/library-hero-source.png",
+    "promptBrief": "A premium signage showroom in one architectural composition: NOVA bronze halo-lit lettering, FORM white front-lit letters and a layered blue acrylic logomark on stone, graphite and oak.4:3 editorial photograph, no UI or delivered-project claim.",
+    "generation": "built-in image_gen",
+    "classification": "AI-generated illustrative design concept",
+    "real_project_or_production_evidence": false,
+    "prompt": "Use case: product-mockup. Asset type: premium custom sign website Projects library introductory hero, intended to display at 560x420. Generate ONE photorealistic horizontal 4:3 editorial architectural photograph, not a UI. Scene: an elegantly designed small signage material showroom with adjacent full-height architectural panels in pale travertine stone, graphite and natural oak. On the pale stone panel at left, a short opaque brushed bronze dimensional word NOVA (spell N O V A) with precise warm halo backlighting and metal faces. On the graphite panel at center-right, the short word FORM (F O R M) in crisp white face-illuminated channel letters, realistic dimensional side returns. A small sophisticated layered cobalt-blue acrylic abstract geometric logomark on oak at far right. Carefully composed as one coherent real three-dimensional showroom space seen from a slightly angled architectural camera, not a collage or triptych. All three sign treatments have adequate breathing room and remain complete in frame, no text cropping. Restrained natural daylight, warm accent lighting, convincing brushed metal machining, acrylic depth, clean edges, physical mounts, elegant quiet composition, design magazine quality. Preserve realistic sign construction and premium material quality. No people, no reception desk, no fake client project evidence, no factory evidence, no UI, no infographic, no watermark, no badges, no collage borders. This is an illustrative showroom photograph, with no explanatory text in the image. Output a horizontal 4:3 image.\r\n"
+  },
+  {
+    "src": "/assets/gallery-v2/meridian-halo.webp",
+    "width": 1448,
+    "height": 1086,
+    "sha256": "b7a23faf058c4b0b08bd979abdd5023de3ec251f2cb733f515ece518b404edad",
+    "source": "../design-assets/gallery-v2-sources/meridian-halo-source.png",
+    "promptBrief": "MERIDIAN opaque charcoal metal lettering with soft neutral-white rear halo on a muted teal office reception wall, pale stone desk and side daylight, complete lettering,4:3 photographic composition.",
+    "generation": "built-in image_gen",
+    "classification": "AI-generated illustrative design concept",
+    "real_project_or_production_evidence": false,
+    "prompt": "Use case: product-mockup. Asset: new photoreal architectural photograph for a custom signage website design gallery, exactly landscape 4:3 (1448x1086). Premium light modern OFFICE RECEPTION. A muted deep teal fine plaster feature wall, pale honed stone reception desk fully visible beneath, daylight entering through tall side windows. The exact word 'MERIDIAN' (M E R I D I A N) is the sole sign text, all eight letters individually readable and fully contained with generous margins. Medium charcoal opaque dimensional metal letters, spaced off wall, with subtle soft neutral-white REAR HALO light washing the teal wall around each letter. Letter FACES must be dark opaque matte metal, never internally face-lit. Restrained halo, no neon appearance, realistic fabrication. Refined commercial architecture, pale floor, one minimal indoor plant, professionally corrected verticals and natural shadows. Frame whole reception scene with sign large enough to study but comfortable upper/side margins, desk and ground visible, carefully balanced editorial composition. Deliberately distinct from beige oak/AVEN/AEON reception imagery: deep muted teal feature wall and cool neutral-white halo. Premium architectural photograph, realistic materials and glass, no people, no UI, no watermarks, no extra text.\n"
+  },
+  {
+    "src": "/assets/gallery-v2/lane-halo.webp",
+    "width": 1448,
+    "height": 1086,
+    "sha256": "2f72bd5f93bcb52145eb6dea93e814b37c34566bc452d19d89a3bd8dfa6ff247",
+    "source": "../design-assets/gallery-v2-sources/lane-halo-source.png",
+    "promptBrief": "THE LANE opaque bronze letters with warm rear halo on a dark clay restaurant wall, dining banquette, table and ambient pendants; complete readable sign in a4:3 editorial interior photograph.",
+    "generation": "built-in image_gen",
+    "classification": "AI-generated illustrative design concept",
+    "real_project_or_production_evidence": false,
+    "prompt": "Use case: photorealistic-natural. Asset: NEW restaurant architectural signage design concept gallery photo. Exact 4:3 landscape canvas, target1448x1086. Premium editorial interior photograph of a restaurant and lounge dining space in the evening. Composition deliberately designed for 4:3; do not imitate a cropped wide banner. A complete feature wall in dark warm clay/plaster with finely textured matte surface. The exact wording 'THE LANE' appears as elegant dimensional opaque dark bronze metal lettering, all text fully visible with clear margins. Only warm2700K REAR halo illumination behind each letter, softly grazing the wall; letter faces opaque dark bronze and unlit. Balance the sign with full lounge dining setting: comfortable banquette under the wall, a tasteful set dining table in the foreground, dark wood, a few warm ambient pendant lights to one side, restrained architectural decor. The sign is dominant but part of a convincing commercially designed dining interior. Rich tactile materials, controlled highlights, straight verticals, realistic shadows and depth, professional commercial architecture photography. No people, no watermark, no interface, no extra text. No glowing letter faces, no white acrylic face, no beige reception counter, no office reception, no AVEN lettering. New balanced composition, complete sign and enough setting, no forced cropping.\n"
+  }
+]

@@ -2,15 +2,16 @@
 
 The overview opens with a wide architectural sign scene and a concise project CTA. There is no in-page category menu. The global Products link and its independent category disclosure remain available. Seven alternating image/text sections explain the six product families, separating lightbox and neon effects. Primary scene images now show designed logos, supporting lettering, material depth and lighting in context.
 
-All six product detail pages include three construction considerations, a large featured design concept and an explained gallery. There are 25 concepts: five halo-lit directions and four for every other family. Gallery entries explain the appearance, intended setting, design characteristics and information needed to adapt the idea. Four-scene pages end with a wide composition; mobile layouts use one column. Images can be enlarged using the existing accessible modal. Repeated full-scene photos were removed from metal and acrylic construction details.
+All six product pages now place a named design gallery directly after the hero and before technical explanations. Each has four cases in a two-column desktop/single-column phone grid. Cards show the case title, setting and light/material characteristics, with View Design and Request a Similar Look actions. The same24 cases are available in the Projects library; the card resolves its published record by projectSlug. Existing image enlargement is retained. Long explanations live in case details instead of repeating beside every image.
 
-Every scene links to an authenticated enquiry with the product and concept ID preserved. Valid combined-product variants are also retained. The form resolves known concept IDs within the chosen product and pre-fills an editable note. This continues through existing enquiry storage and WhatsApp summaries; no new database fields or migration are needed. Contact requirements, authentication and private uploads remain in place.
+Every scene enquiry retains product, concept ID and project slug, plus a valid variant where applicable. Customer sign-in preserves the complete return path. The existing form recognises the case and saves its project relation through the existing schema. Migration0013 adds the published case records; no enquiry schema or authentication changes are needed. Contact requirements and private uploads remain intact.
 
 Each family has six FAQs and three specific technical explanations. Configuration, materials, exposure, mounting and destination requirements remain subject to project confirmation. Generated imagery is explicitly labelled as design concepts, with fabrication references kept separately; no generated scene is presented as a delivered customer project.
 
 ## Image deliverables
 
-- 16 selected images: one overview hero and 15 new sign compositions, generated with the built-in image_gen tool.
+- Original product-depth asset set:16 selected images, including the overview hero and15 sign compositions.
+- Gallery expansion adds five compositions generated with built-in image_gen: dedicated library hero, clinic front-lit sign, unlit architecture entrance, teal reception halo sign and dining halo sign. WebP masters and400/800/1200px variants are in assets/gallery-v2 and assets/responsive/gallery-v2. Source PNGs are archived outside the public repository under design-assets/gallery-v2-sources. See gallery-v2-assets.json for provenance, dimensions, hashes and prompt briefs.
 - Optimised WebP masters in `public/assets/product-depth/` and 400/800/1200px responsive versions in `public/assets/responsive/product-depth/`.
 - [Generation prompts](product-depth-prompts.json), including the reference approach.
 - [Asset provenance, dimensions and hashes](product-depth-assets.json).
