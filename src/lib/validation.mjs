@@ -1,5 +1,6 @@
 import {CONTACT_METHODS,DRAWING_STATES,FILE_COUNT_LIMIT,internationalPhone,attachmentId} from './enquiry-fields.mjs';
 import {campaignSource,acquisition} from './acquisition.mjs';
+import {PROJECT_KEYS,ROLES,projectErrors} from './enquiry-project.mjs';
 export class HttpError extends Error { constructor(status,message,fields={}) { super(message);this.status=status;this.fields=fields; } }
 export const USES=['Shop or storefront','Office or reception','Other commercial space','Multiple locations or projects','Other or not sure'];
 export const COUNTRIES=['United States','Canada','United Kingdom','France','Germany','Italy','Spain','Netherlands','Singapore','Malaysia','Thailand','Philippines','Indonesia','Vietnam','Australia','Other / discuss destination'];
@@ -16,7 +17,11 @@ export function validateEnquiry(raw,styles){
  if(Object.keys(fields).length)throw new HttpError(422,'Please check the highlighted fields.',fields);
  const style=raw.style||'not-sure';if(style!=='not-sure'&&!styles.includes(style))throw new HttpError(422,'Please select an available sign style.',{style:'Please select an available sign style.'});
  if(!/^[0-9a-f]{8}-[0-9a-f-]{27,36}$/i.test(raw.idempotencyKey||''))throw new HttpError(422,'Please reload the form and try again.');
- const role=raw.role||'';if(!['','business','trade','other','My own business','A customer’s project','Other or not sure'].includes(role))throw new HttpError(422,'Invalid enquiry role.');
+ const role=raw.role||'';if(!['',...ROLES.map(([key])=>key),'My own business','A customer’s project','Other or not sure'].includes(role))throw new HttpError(422,'Invalid enquiry role.',{role:'Choose a customer type.'});
+ const projectFields=Object.fromEntries(PROJECT_KEYS.filter(key=>raw[key]!==undefined).map(key=>[key,raw[key]]));
+ const projectProblems=projectErrors({...projectFields,role},false);delete projectProblems.role;
+ if(Object.keys(projectProblems).length)throw new HttpError(422,'Please check your project details.',projectProblems);
+ for(const key of PROJECT_KEYS)if(projectFields[key]!==undefined)projectFields[key]=projectFields[key].trim();
  const contact={};
  if(raw.contactMethod!==undefined){if(!CONTACT_METHODS.some(([key])=>key===raw.contactMethod))throw new HttpError(422,'Choose WhatsApp or phone.',{contactMethod:'Choose how we can reach you.'});contact.contactMethod=raw.contactMethod;}
  if(raw.phone!==undefined){const phone=internationalPhone(raw.phone);if(!phone)throw new HttpError(422,'Enter a valid international number including + and the country code.',{phone:'Include the country code, for example +1, +44 or +60.'});contact.phone=phone;}
@@ -25,7 +30,7 @@ export function validateEnquiry(raw,styles){
  const source=campaignSource(raw.source);
  if(raw.website)throw new HttpError(422,'Unable to submit this form.');
  const attribution=acquisition(raw.acquisition);attribution.entryMode='form';
- return {...contact,role,style,use:raw.use,country:raw.country,stage:raw.stage,city:text(raw.city||'',80),timing:text(raw.timing||'',100),notes:text(raw.notes||'',300),entry:path(raw.entry==='contact'?'/contact/':raw.entry||''),project:raw.project?slug(raw.project):'',source,acquisition:attribution,idempotencyKey:raw.idempotencyKey};
+ return {...projectFields,...contact,role,style,use:raw.use,country:raw.country,stage:raw.stage,city:text(raw.city||'',80),timing:text(raw.timing||'',100),notes:text(raw.notes||'',300),entry:path(raw.entry==='contact'?'/contact/':raw.entry||''),project:raw.project?slug(raw.project):'',source,acquisition:attribution,idempotencyKey:raw.idempotencyKey};
 }
 export function validateContent(raw,type){
  if(!['product','project','landing','page'].includes(type))throw new HttpError(422,'Invalid content type.');
@@ -60,7 +65,7 @@ function validateFAQ(faq){if(!Array.isArray(faq)||faq.length>15)throw new HttpEr
 export function imageType(bytes){if(bytes[0]===0xff&&bytes[1]===0xd8&&bytes[2]===0xff)return ['jpg','image/jpeg'];if(bytes.slice(0,8).join(',')==='137,80,78,71,13,10,26,10')return ['png','image/png'];if(new TextDecoder().decode(bytes.slice(0,4))==='RIFF'&&new TextDecoder().decode(bytes.slice(8,12))==='WEBP')return ['webp','image/webp'];throw new HttpError(422,'Upload a JPEG, PNG or WebP image.');}
 
 export function requireEnquiryContact(details){
- const fields={};
+ const fields=projectErrors(details,true);
  if(!details.contactMethod)fields.contactMethod='Choose WhatsApp or phone.';
  if(!details.phone)fields.phone='A contact number with country code is required.';
  if(!details.drawings)fields.drawings='Tell us whether you have drawings.';

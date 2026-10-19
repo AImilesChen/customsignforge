@@ -1,6 +1,29 @@
 .quote-contact-help,.quote-file-help{font-size:16px;line-height:1.55;margin-top:10px}
 .quote-email-verified{display:inline-block;color:#296449;font-size:14px;font-weight:600;margin-top:8px}
 .quote-contact-email{overflow-wrap:anywhere;background:var(--paper);color:var(--ink)}
+.quote-wizard [hidden]{display:none!important}
+.quote-progress{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:0;margin:28px 0 40px}
+.quote-progress button{display:flex;align-items:center;gap:10px;padding:14px 0;border-bottom:2px solid var(--line);width:100%;font-size:17px;font-weight:600;text-align:left}
+.quote-progress button span{display:grid;place-items:center;flex:none;width:28px;height:28px;background:var(--paper);border-radius:50%;font-size:15px}
+.quote-progress button[aria-current=step]{color:var(--orange);border-color:var(--orange)}
+.quote-progress button[aria-current=step] span{background:var(--orange);color:white}
+.quote-progress button:disabled{cursor:default;opacity:.65}
+.quote-step-intro{margin:-12px 0 30px;font-size:18px}
+.quote-business{padding:20px;border:1px solid var(--line);margin:28px 0}
+.quote-business summary{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:18px;font-weight:600;min-height:30px}
+.quote-business summary::before{content:'+';color:var(--orange)}
+.quote-business[open] summary::before{content:'−'}
+.quote-business summary span{font-size:14px;color:var(--muted);font-weight:400}
+.quote-business .field{margin-top:24px;margin-bottom:0}
+.quote-wizard .field label.quote-check{display:flex;justify-content:flex-start;align-items:center;gap:12px;min-height:44px;margin:12px 0 0;font-weight:400;cursor:pointer}
+.quote-check input[type=checkbox]{width:20px;height:20px;min-height:20px;padding:0;margin:0;accent-color:var(--orange);flex:none}
+.quote-actions{display:flex;gap:16px;align-items:stretch;margin-top:32px}
+.quote-actions .submit{margin-top:0;flex:1;width:auto}
+.quote-direct{margin-top:24px;font-size:17px}
+.quote-wizard .form-heading h2:focus{outline:0}
+.quote-wizard .quote-files h3{margin-bottom:12px;font-size:23px}
+.quote-wizard .quote-files .field{margin-top:22px}
+@media(max-width:700px){.quote-progress{gap:8px;margin-bottom:28px}.quote-progress button{font-size:15px;gap:6px}.quote-progress button span{width:24px;height:24px;font-size:14px}.quote-actions{gap:10px}.quote-actions .button{padding:14px 16px;font-size:15px}.quote-layout aside figure,.quote-layout .quote-steps{display:none}.quote-layout aside h2{font-size:28px}.quote-layout aside p{font-size:17px}.quote-business{padding:16px}}
 .quote-files{margin-top:42px;padding-top:32px;border-top:1px solid var(--line)}
 .quote-files .form-heading{margin-bottom:28px;padding-bottom:0;border:0}
 .quote-files .field{margin-bottom:24px}

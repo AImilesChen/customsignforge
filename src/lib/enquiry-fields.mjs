@@ -1,5 +1,5 @@
 export const CONTACT_METHODS=[['whatsapp','WhatsApp'],['phone','Phone']];
-export const DRAWING_STATES=[['ready','Yes — upload files now'],['none','No — I need help with the design'],['later','I will provide files later']];
+export const DRAWING_STATES=[['ready','Yes — upload artwork, photos or drawings now'],['none','No — I need help with the design'],['later','I will provide files later']];
 export const DRAWING_LABELS={ready:'Files supplied',none:'No drawings yet',later:'Files to follow'};
 export const FILE_LIMIT=10*1024*1024;
 export const FILE_TOTAL_LIMIT=20*1024*1024;
