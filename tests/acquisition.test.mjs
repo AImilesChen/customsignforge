@@ -2,8 +2,9 @@ import {test} from 'node:test';import assert from 'node:assert/strict';
 import {fixture,request,enquiry,customerHeaders} from './helpers.mjs';import {handleAPI} from '../src/lib/api.mjs';
 import {campaignSource,publicPath} from '../src/lib/acquisition.mjs';import {maintenance} from '../src/lib/maintenance.mjs';
 import {structuredData,serializeStructuredData} from '../src/lib/structured-data.mjs';
+import {CONSENT_VERSION} from '../src/lib/analytics-consent.mjs';
 async function login(env){const response=await handleAPI(request('api/admin/login','POST',{password:env.LOCAL_ADMIN_PASSWORD}),env,'admin/login');const cookie=response.headers.get('set-cookie').split(';')[0];const session=await(await handleAPI(request('api/admin/session','GET',undefined,{cookie}),env,'admin/session')).json();return {cookie,'X-CSRF-Token':session.csrf};}
-const event=()=>({id:crypto.randomUUID(),name:'page_view',page:'/',consent:true,consentVersion:3,context:{currentSource:{utm_source:'search',utm_campaign:'launch'},firstSource:{utm_source:'social'},firstEntry:'/products/',entryMode:'form',cta:'header'}});
+const event=()=>({id:crypto.randomUUID(),name:'page_view',page:'/',consent:true,consentVersion:CONSENT_VERSION,context:{currentSource:{utm_source:'search',utm_campaign:'launch'},firstSource:{utm_source:'social'},firstEntry:'/products/',entryMode:'form',cta:'header'}});
 test('measurement requires consent and same origin, rejects private fields and paths, deduplicates retries',async()=>{
  const f=fixture();try{let data=event();assert.equal((await handleAPI(request('api/measurement','POST',{...data,consent:false}),f.env,'measurement')).status,422);assert.equal((await handleAPI(request('api/measurement','POST',data,{Origin:'https://other.test'}),f.env,'measurement')).status,403);
  for(const invalid of [{...data,notes:'private'},{...data,page:'/admin/'},{...data,page:'/does-not-exist/'},{...data,context:{notes:'private enquiry'}},{...data,name:'unknown'}])assert.equal((await handleAPI(request('api/measurement','POST',invalid),f.env,'measurement')).status,422);

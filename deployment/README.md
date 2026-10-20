@@ -31,7 +31,7 @@ The build checks production bindings, disables local password login, rejects loc
 
 ## Release status and verification
 
-`PUBLISH_READY=false` keeps pages out of search engines while business policy review is pending. This is an indexing setting, not access control: the deployed site is publicly reachable. Keep this distinction clear in launch reporting.
+The owner authorised public-page indexing on 20 October 2026. `PUBLISH_READY=true` enables eligible marketing pages, robots.txt and sitemap.xml. Account, sign-in, enquiry, administrator and review pages remain excluded. Policy drafts and individually non-indexable concepts remain noindex and outside the sitemap. Indexing eligibility is not a guarantee of search-engine inclusion.
 
 Check HTTPS, the www redirect, linked pages and assets, anonymous admin/API rejection, disabled development login and Turnstile rejection. A positive form test must pass the real Turnstile widget; do not put a test bypass in production. If Google credentials or an actual login round trip have not been tested, report that limitation explicitly.
 
@@ -42,7 +42,7 @@ GitHub holds source code. This deployment uses Wrangler; pushing a commit does n
 
 Migration 0006 adds first-party event storage. Events require an explicit analytics choice, have a strict payload allowlist, and contain no enquiry comments, contact fields, reference numbers or WhatsApp message URLs. Without consent, enquiry URL campaign tags can still be saved with the requested enquiry; no cross-page attribution storage or event requests are activated. First attribution is retained on the consenting device for up to 90 days; current campaign attribution uses tab session storage. Preferences are valid for 180 days. Withdrawal clears campaign storage and stops future events.
 
-The production Worker entry is `src/worker.ts`, using the official Astro handler plus a daily scheduled cleanup at 03:17 UTC. Cleanup expires 90-day events and expired authentication/rate-limit records; it never automatically deletes customer enquiries. Invocation payload logging is disabled; sampled Workers observability is enabled for runtime errors. Analytics are first-party; GA4, Meta, Clarity and visitor/session recordings remain disabled.
+The production Worker entry is `src/worker.ts`, using the official Astro handler plus a daily scheduled cleanup at 03:17 UTC. Cleanup expires 90-day events and expired authentication/rate-limit records; it never automatically deletes customer enquiries. Invocation payload logging is disabled; sampled Workers observability is enabled for runtime errors. First-party account-deduplicated analytics remain separate from the consent-gated GA4, Microsoft Clarity and Shipsolo/Plausible integration enabled on 20 October 2026. Meta and advertising trackers remain disabled. See `docs/ANALYTICS-SEARCH.md` for scope, exclusions and verification.
 
 Admin measurement separates consenting browser events from manually confirmed business results. Business results are grouped by lead creation dates and use follow-up history, excluding duplicate/spam records. These are not unique-visitor counts or proof that a WhatsApp message was received. Direct chat clicks are anonymous events, not fabricated saved enquiries; actual direct contacts can be manually entered with a required source/evidence note.
 
@@ -86,3 +86,8 @@ Google customers are not restricted to the administrator allowlist. Google-manag
 The local `send_email` binding simulates code delivery. Local browser QA may use the reserved `customer-qa@example.test` fixture and a controlled test challenge in the local database. That is not evidence of external email delivery and must never be copied to production. No production test-auth endpoint, dummy OTP or CAPTCHA bypass is included. The public release smoke script never sends emails or creates a customer account.
 
 Cookie/Privacy/Terms technical drafts now describe customer identity and login state; optional analytics exclude sign-in and account pages. Account retention/closure and other unresolved business-policy facts remain subject to review.
+
+
+## 20 October 2026 - External analytics and public indexing
+
+Public integration IDs are in `src/data/analytics.json`. Consent version 4 requires a fresh analytics choice before loading the three external collectors. GSC configuration was already handled by the owner and must not be replaced. No new Google permissions or DNS ownership tokens are added by this release.

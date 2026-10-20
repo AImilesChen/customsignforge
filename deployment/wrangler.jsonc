@@ -50,7 +50,7 @@
     "SITE_URL": "https://customsignforge.com",
     "AUTH_ORIGIN": "https://customsignforge.com",
     "LOCAL_ADMIN_ENABLED": "false",
-    "PUBLISH_READY": "false",
+    "PUBLISH_READY": "true",
     "MAIL_FROM": "hello@customsignforge.com",
     "TURNSTILE_SITE_KEY": "0x4AAAAAAFZ_8lQUiumgPxVg"
   },
