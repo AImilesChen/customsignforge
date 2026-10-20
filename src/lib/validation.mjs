@@ -70,7 +70,6 @@ export function requireEnquiryContact(details){
  if(!details.contactMethod)fields.contactMethod='Choose WhatsApp or phone.';
  if(!details.phone)fields.phone='A contact number with country code is required.';
  if(!details.drawings)fields.drawings='Tell us whether you have drawings.';
- if(details.drawings==='ready'&&!details.attachments?.length)fields.attachments='Upload at least one file, or choose to provide files later.';
  if(details.drawings!=='ready'&&details.attachments?.length)fields.attachments='Remove uploaded files before changing your drawing status.';
  if(Object.keys(fields).length)throw new HttpError(422,'Please check your contact details and drawing selection.',fields);
 }

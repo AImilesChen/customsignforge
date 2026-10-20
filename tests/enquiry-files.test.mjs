@@ -18,7 +18,6 @@ test('new quotes require an international phone or WhatsApp number; email snapsh
   }
   for(const contactMethod of ['', 'email'])assert.equal((await call(f,'enquiries','POST',{...enquiry(),contactMethod},h)).status,422);
   assert.equal((await call(f,'enquiries','POST',{...enquiry(),drawings:''},h)).status,422);
-  assert.equal((await call(f,'enquiries','POST',{...enquiry(),drawings:'ready'},h)).status,422);
   const raw={...enquiry(),phone:'00 44 (20) 7946-0123',contactEmail:'forged@example.test',emailVerified:false,phoneVerified:true};
   const r=await call(f,'enquiries','POST',raw,h);assert.equal(r.status,201);const saved=JSON.parse(f.sqlite.prepare('SELECT details_json FROM enquiries').get().details_json);
   assert.equal(saved.phone,'+442079460123');assert.equal(saved.contactEmail,'buyer@example.test');assert.equal(saved.emailVerified,true);assert.equal(saved.phoneVerified,false);
@@ -135,5 +134,23 @@ test('legacy contact-page entry values map to the correct context without accept
   const h=await customerHeaders(f.env);assert.equal((await call(f,'enquiries','POST',{...enquiry(),entry:'contact'},h)).status,201);
   assert.equal(JSON.parse(f.sqlite.prepare('SELECT details_json FROM enquiries').get().details_json).entry,'/contact/');
   assert.equal((await call(f,'enquiries','POST',{...enquiry(),entry:'https://other.example'},h)).status,422);
+ }finally{f.close()}
+});
+
+
+test('customers with drawings may submit without uploading; availability and zero attachments remain accurate',async()=>{
+ const f=fixture();try{
+  const h=await customerHeaders(f.env,'buyer@example.test');
+  const raw={...enquiry(),drawings:'ready',attachments:[]};
+  const response=await call(f,'enquiries','POST',raw,h);assert.equal(response.status,201);
+  const result=await response.json();assert.deepEqual(result.files,[]);
+  assert(result.message.includes('Drawings available; no files uploaded'));
+  assert(!result.message.includes('Files supplied with website enquiry'));
+  const saved=JSON.parse(f.sqlite.prepare('SELECT details_json FROM enquiries').get().details_json);
+  assert.equal(saved.drawings,'ready');assert.deepEqual(saved.attachments,[]);
+  assert.equal((await call(f,'enquiries','POST',raw,h)).status,200);
+  const a=await admin(f);const row=f.sqlite.prepare('SELECT id FROM enquiries').get();
+  const detail=await(await call(f,'admin/enquiries/'+row.id,'GET',undefined,a)).json();
+  assert.equal(detail.details.drawings,'ready');assert.deepEqual(detail.files,[]);
  }finally{f.close()}
 });
