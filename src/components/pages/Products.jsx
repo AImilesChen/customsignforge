@@ -1,6 +1,7 @@
 import {useSite} from '../site-context.jsx';
 import {Button,TextLink,Link,Eyebrow,quote} from '../shared.jsx';
 import Image from '../Image.jsx';
+import ProductOverviewBanner from '../ProductOverviewBanner.jsx';
 import {displayCaption,DESIGN_NOTE} from '../../lib/image-copy.mjs';
 import content from '../../data/product-overview.json';
 import presentations from '../../data/product-pages.json';
@@ -11,7 +12,7 @@ function Photo({photo,hero=false,className=''}){const caption=displayCaption(pho
 export default function Products(){
  const {products}=useSite(),sections=visibleDirections(content.sections,products),extra=products.filter(p=>!content.sections.some(s=>s.slug===p.slug));
  return <article className="product-overview">
-  <section className="overview-banner" aria-labelledby="overview-title"><Image className="overview-banner-image" src={content.hero.src} alt={content.hero.alt} loading="eager" fetchPriority="high" sizes="(max-width: 760px) 650px, 100vw"/><div className="overview-container overview-banner-inner"><div className="overview-banner-copy"><Eyebrow>YOUR BRAND, IN A NEW DIMENSION</Eyebrow><h1 id="overview-title"><span>Custom Signs.</span><span>Made for Your Space.</span></h1><p>{content.intro}</p><Button to={quote({entry:'/products/',cta:'content'})}>Share Your Project</Button></div></div></section>
+  <ProductOverviewBanner photo={content.hero} labelledBy="overview-title"><Eyebrow>YOUR BRAND, IN A NEW DIMENSION</Eyebrow><h1 id="overview-title"><span>Custom Signs.</span><span>Made for Your Space.</span></h1><p>{content.intro}</p><Button to={quote({entry:'/products/',cta:'content'})}>Share Your Project</Button></ProductOverviewBanner>
   <div className="overview-directions">{sections.map((s,index)=>{
    const p=products.find(item=>item.slug===s.slug),customImage=s.id!=='neon-style'&&p.img&&p.img!==presentations[s.slug]?.oldHero;
    const photo=customImage?{src:p.img,alt:p.imageAlt||p.title,caption:p.imageKind==='concept'?'AI-generated design concept':p.imageKind==='client_project'?'Client project':'Product photograph'}:s.image;

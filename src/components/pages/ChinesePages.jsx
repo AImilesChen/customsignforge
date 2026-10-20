@@ -1,9 +1,11 @@
 import {useRef,useState} from 'react';
+import {CaretDownIcon} from '@phosphor-icons/react';
 import {useSite} from '../site-context.jsx';
 import {Button,Link,TextLink,Eyebrow,CTA} from '../shared.jsx';
 import Image from '../Image.jsx';
 import HomeHero from './HomeHero.jsx';
 import HomePhoto from './HomePhoto.jsx';
+import ProductOverviewBanner from '../ProductOverviewBanner.jsx';
 import presentations from '../../data/product-pages.json';
 import overview from '../../data/product-overview.json';
 import home from '../../data/home-content.json';
@@ -16,6 +18,7 @@ import {chineseProducts,chineseSpace} from '../../lib/locale-content.mjs';
 import {isFabrication} from '../../lib/project-library.mjs';
 import {quote} from '../shared.jsx';
 import '../../styles/chinese.css';
+import '../../styles/chinese-products.css';
 
 const note='场景效果图用于设计灵感参考；材料、结构、灯光与交付范围以确认的项目方案为准。';
 const metricLabels={experience:'资深工匠从业经验',team:'生产团队',design:'设计与研发人员',equipment:'生产设备',space:'生产空间'};
@@ -41,7 +44,45 @@ function ChineseHome(){const [selected,setSelected]=useState(0),photo=home.team.
  <section className="zh-section home-container zh-split"><div><Eyebrow>开始之前</Eyebrow><h2>从您已有的信息开始。</h2><p>没有完整图纸或最终尺寸，也可以先讨论需求。</p></div><Faq items={faqs}/></section><section className="home-section home-final"><div className="home-container"><Eyebrow>聊聊您的标识项目</Eyebrow><h2>让您的想法，成为下一块标识。</h2><p>分享标志、大致尺寸与交付地点，我们一起完善细节。</p><Button>获取定制报价</Button></div></section>
  </div>}
 
-function ChineseProducts(){const {products}=useSite();return <article className="product-overview"><section className="overview-banner"><Image className="overview-banner-image" src={overview.hero.src} alt="不同材质与发光方式的商业标识" loading="eager" fetchPriority="high" sizes="100vw"/><div className="overview-container overview-banner-inner"><div className="overview-banner-copy"><Eyebrow>让品牌，多一份立体表达</Eyebrow><h1>定制标识。<br/>为您的空间而造。</h1><p>从明亮的正面发光，到柔和的背面光晕。比较材料、光效和安装条件，找到适合品牌的方向。</p><Button>分享您的项目</Button></div></div></section>{products.map((p,i)=>{const d=chineseProducts[p.slug];return <section id={p.slug} key={p.slug} className={'overview-direction'+(i%2?' overview-direction-reverse':'')}><div className="overview-container overview-direction-grid"><div><Photo src={presentations[p.slug]?.hero.src||p.img} alt={p.title+'空间效果'} caption="设计灵感"/></div><div className="overview-copy"><Eyebrow>0{i+1} / {d?.effect}</Eyebrow><h2>{p.title}</h2><p>{p.intro}</p><Options items={d?.features.slice(0,3)||[]}/><ul className="overview-use-tags">{d?.uses.map(use=><li key={use}>{use}</li>)}</ul><div className="overview-actions"><TextLink to={'/products/'+p.slug+'/'}>了解产品与展示</TextLink><TextLink to={quote({style:p.slug})}>咨询这个类型</TextLink></div></div></div></section>})}<section id="compare-sign-styles" className="zh-section overview-container"><Heading kicker="快速比较" title="先选效果，再确定制作细节。"/><div className="overview-table-scroll"><table><caption>标识类型与适用方向</caption><thead><tr><th>产品类型</th><th>视觉特点</th><th>适用方向</th><th>重点确认</th></tr></thead><tbody>{products.map(p=>{const d=chineseProducts[p.slug];return <tr key={p.slug}><th><Link to={'/products/'+p.slug+'/'}>{p.title}</Link></th><td>{d?.effect}</td><td>{d?.uses.join('、')}</td><td>{d?.features.at(-1)[1]}</td></tr>})}</tbody></table></div><p className="zh-note">{note}</p></section><CTA title="还不确定选择哪种效果？" text="带上您的标志、空间照片和大致尺寸，我们一起比较。"/></article>}
+function ChineseProducts(){
+ const {products}=useSite(),items=products.map(p=>({p,d:chineseProducts[p.slug]}));
+ return <article className="product-overview zh-products">
+  <ProductOverviewBanner photo={{...overview.hero,alt:'商业店面入口的发光标识设计灵感'}} labelledBy="zh-overview-title">
+   <Eyebrow>让品牌，多一份立体表达</Eyebrow><h1 id="zh-overview-title">定制标识。<br/>为您的空间而造。</h1>
+   <p>比较材料、光效与安装方式，为您的品牌找到合适方向。</p>
+   <Button to={quote({entry:'/products/',cta:'content'})}>分享您的项目</Button>
+  </ProductOverviewBanner>
+  <div className="overview-directions">{items.map(({p,d},i)=><section id={p.slug} key={p.slug} className={'overview-direction'+(i%2?' overview-direction-reverse':'')} aria-labelledby={'zh-title-'+p.slug}>
+   <div className="overview-container overview-direction-grid">
+    <div className="overview-visuals"><Photo src={presentations[p.slug]?.hero.src||p.img} alt={p.title+'空间效果'} caption="设计灵感 · 点击图片放大查看"/></div>
+    <div className="overview-copy"><Eyebrow>0{i+1} / {d?.effect}</Eyebrow><h2 id={'zh-title-'+p.slug}>{p.title}</h2><p className="overview-description">{p.intro}</p>
+     <Options items={d?.features.slice(0,3)||[]}/>
+     <ul className="overview-use-tags" aria-label="适用空间">{d?.uses.map(use=><li key={use}>{use}</li>)}</ul>
+     <div className="overview-actions"><TextLink to={'/products/'+p.slug+'/'}>了解产品与展示</TextLink><TextLink to={quote({style:p.slug,entry:'/products/'})}>咨询这个类型</TextLink></div>
+    </div>
+   </div>
+  </section>)}</div>
+  <section id="compare-sign-styles" className="zh-section zh-comparison">
+   <div className="overview-container">
+    <div className="zh-section-heading"><div><Eyebrow>快速比较</Eyebrow><h2 id="zh-compare-title">先选效果，再确定制作细节。</h2><p>比较视觉特点与适用空间，找到合适方向，再讨论您的具体需求。</p></div></div>
+    <div className="overview-table-scroll zh-comparison-table" role="region" tabIndex={0} aria-labelledby="zh-compare-title">
+     <table><caption>六类标识的特点、适用方向与选型要点</caption><thead><tr><th scope="col">产品类型</th><th scope="col">视觉特点</th><th scope="col">适用方向</th><th scope="col">重点确认</th></tr></thead>
+      <tbody>{items.map(({p,d})=><tr key={p.slug}><th scope="row"><Link to={'/products/'+p.slug+'/'}>{p.title}</Link></th><td>{d?.effect}</td><td>{d?.uses.join('、')}</td><td>{d?.features.at(-1)?.[1]}</td></tr>)}</tbody>
+     </table>
+    </div>
+    <div className="zh-comparison-cards" aria-label="标识类型对比"><p className="zh-comparison-hint">点击产品类型，展开查看适用空间与选型要点。</p>
+     {items.map(({p,d})=><details className="zh-compare-card" key={p.slug}><summary><span><strong>{p.title}</strong><small>{d?.effect}</small></span><CaretDownIcon size={20} aria-hidden="true"/></summary>
+      <div className="zh-compare-card-body"><dl><div><dt>适用方向</dt><dd>{d?.uses.join('、')}</dd></div><div><dt>重点确认</dt><dd>{d?.features.at(-1)?.[1]}</dd></div></dl>
+       <div className="overview-actions"><TextLink to={'/products/'+p.slug+'/'}>查看产品详情</TextLink><TextLink to={quote({style:p.slug,entry:'/products/'})}>咨询这个类型</TextLink></div>
+      </div>
+     </details>)}
+    </div>
+    <p className="zh-note">{note}</p>
+   </div>
+  </section>
+  <CTA title="还不确定选择哪种效果？" text="带上您的标志、空间照片和大致尺寸，我们一起比较。"/>
+ </article>;
+}
 
 function ChineseProduct({p}){const {works}=useSite(),d=chineseProducts[p.slug],c=presentations[p.slug],examples=works.filter(w=>w.productSlug===p.slug&&!isFabrication(w)),hero=p.img&&p.img!==c?.oldHero?{src:p.img}:c?.hero;return <article className="product-redesign">
  <section className="product-container product-hero"><div className="product-breadcrumb"><Link to="/products/">全部产品</Link><span>/</span><span>{p.title}</span></div><div className="product-hero-heading"><Eyebrow>{p.title}</Eyebrow><h1>{(d?.headline||p.title).split('，').map((line,i)=><span key={line}>{line}{i===0&&d?.headline.includes('，')?'，':''}</span>)}</h1></div><div className="product-hero-photo"><Photo src={hero?.src||p.img} alt={p.title+'整体效果'} eager caption={p.imageKind==='concept'?'设计灵感':'产品展示'}/></div><div className="product-hero-summary"><p className="product-intro">{p.intro}</p><ul className="product-benefits">{d?.uses.map(use=><li key={use}>{use}</li>)}</ul><Button to={quote({style:p.slug})}>咨询这个类型</Button></div></section>
