@@ -7,14 +7,15 @@ import {structuredData,serializeStructuredData} from '../lib/structured-data.mjs
 import '../styles/site.css';
 import headingFont from '@fontsource/manrope/files/manrope-latin-700-normal.woff2?url';
 import bodyFont from '@fontsource/source-sans-3/files/source-sans-3-latin-400-normal.woff2?url';
-import {customerActor,customerMailConfigured,customerNext} from '../lib/customer-auth.mjs';
+import {customerMailConfigured,customerNext} from '../lib/customer-auth.mjs';
+import {siteIdentity} from '../lib/site-identity.mjs';
 const path=Astro.url.pathname==='/'?'/':Astro.url.pathname.replace(/\/?$/,'/');
 if(path==='/legal-notice/')return Astro.redirect('/contact/#company-information',301);
 const site=await publicData(env);
-let customer=null;try{customer=await customerActor(Astro.request,env);}catch{}
+const {customer,canManage}=await siteIdentity(Astro.request,env);
 if(['/get-a-quote/','/account/'].includes(path)&&!customer)return Astro.redirect('/sign-in/?'+new URLSearchParams({next:customerNext(path+Astro.url.search)}),303);
 if(path==='/sign-in/'&&customer)return Astro.redirect(customerNext(Astro.url.searchParams.get('next')),303);
-const customerSite={...site,customer:customer?{id:customer.id,email:customer.email}:null,settings:{...site.settings,customerGoogleEnabled:!!(env.GOOGLE_CLIENT_ID&&env.GOOGLE_CLIENT_SECRET),customerEmailEnabled:customerMailConfigured(env)}};
+const customerSite={...site,canManage,customer:customer?{id:customer.id,email:customer.email}:null,settings:{...site.settings,customerGoogleEnabled:!!(env.GOOGLE_CLIENT_ID&&env.GOOGLE_CLIENT_SECRET),customerEmailEnabled:customerMailConfigured(env)}};
 const item=site.products.find((p:{slug:string;seoTitle?:string;seoDescription?:string;title:string;intro:string;indexable?:boolean})=>path===`/products/${p.slug}/`)||site.works.find((p:{slug:string;seoTitle?:string;seoDescription?:string;title:string;intro:string;indexable?:boolean})=>path===`/projects/${p.slug}/`)||site.pages.find((p:{slug:string;seoTitle?:string;seoDescription?:string;title:string;intro:string;indexable?:boolean})=>path===`/${p.slug}/`)||site.landings.find((p:{slug:string;seoTitle?:string;seoDescription?:string;title:string;intro:string;indexable?:boolean})=>path===`/landing/${p.slug}/`);
 const policy=copy.policies.find(p=>p.route===path);
 const fixed:Record<string,[string,string]>={

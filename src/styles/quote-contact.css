@@ -45,3 +45,5 @@
 .quote-saved-files li,.customer-enquiry-files li{padding:10px 0;overflow-wrap:anywhere}
 .quote-saved-files a,.customer-enquiry-files a{text-decoration:underline;text-underline-offset:3px;font-size:17px;display:inline-flex;align-items:center;min-height:44px}
 @media(max-width:700px){.quote-files{margin-top:32px;padding-top:28px}.quote-project-heading{margin-top:32px}.quote-file-picker{padding:18px}.quote-file-list li{gap:12px}.quote-contact-help,.quote-file-help{font-size:16px}.quote-file-list span,.quote-file-list a{font-size:16px}}
+
+.customer-admin-entry{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:28px;margin-bottom:40px;background:var(--paper);border:1px solid var(--line);border-radius:8px}.customer-admin-entry h2{font-size:25px;letter-spacing:0}.customer-admin-entry p{margin-top:8px}.customer-admin-entry .button{flex-shrink:0}@media(max-width:600px){.customer-admin-entry{align-items:stretch;flex-direction:column;padding:22px}}
