@@ -1,3 +1,4 @@
+import {basePath} from './locale.mjs';
 import {HttpError,slug} from './validation.mjs';
 import {sameOrigin} from './auth.mjs';
 import {rateLimit,fingerprint} from './db.mjs';
@@ -23,6 +24,7 @@ export async function recordMeasurement(request,env,raw){
  return {ok:true,recorded:true};
 }
 async function knownPage(env,page){
+ page=basePath(page);
  if(['/','/products/','/projects/','/get-a-quote/','/privacy/','/terms/','/cookies/','/cancellations-returns/','/shipping-installation/','/legal-notice/'].includes(page))return true;
  const match=page.match(/^\/(products|projects|landing)\/([a-z0-9-]+)\/$/);const type=match?{products:'product',projects:'project',landing:'landing'}[match[1]]:'page';
  return !!await env.DB.prepare("SELECT id FROM content_items WHERE type=? AND slug=? AND status='published'").bind(type,match?match[2]:page.slice(1,-1)).first();

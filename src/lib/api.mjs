@@ -1,3 +1,5 @@
+import {chineseProducts} from './locale-content.mjs';
+import {enquirySummary as summary} from './enquiry-summary.mjs';
 import {LABELS_SQL,CLIENT_LABELS,enquiryLabels,saveEnquiryLabels} from './enquiry-labels.mjs';
 import {archiveEnquiry} from './enquiry-archive.mjs';
 import {uploadEnquiryFile,removePendingFile,downloadEnquiryFile,enquiryFiles,assertPendingFiles,deleteEnquiryFiles,pendingEnquiryFiles} from './enquiry-files.mjs';
@@ -8,14 +10,10 @@ import { actor,csrfToken,verifyCSRF,localLogin,sameOrigin,cookie,localMode } fro
 import { published,siteSettings,contentItem,syncMedia,rateLimit,fingerprint,whatsapp } from './db.mjs';
 import {customerActor,customerCSRF,verifyCustomerCSRF,customerEmailStart,customerEmailVerify,CUSTOMER_SESSION_SECONDS} from './customer-auth.mjs';
 import {verifyTurnstile} from './security.mjs';
-import {PROJECT_KEYS,PROJECT_LABELS,ROLES,projectValue} from './enquiry-project.mjs';
+import {PROJECT_KEYS,ROLES} from './enquiry-project.mjs';
 export const json=(value,status=200,headers={})=>new Response(JSON.stringify(value),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...headers}});
 async function limitedBody(request,max=24000){const reader=request.body?.getReader();if(!reader)return new Uint8Array();let parts=[],size=0;while(true){const {done,value}=await reader.read();if(done)break;size+=value.length;if(size>max){await reader.cancel();throw new HttpError(413,'The request is too large.');}parts.push(value);}const out=new Uint8Array(size);let offset=0;for(const p of parts){out.set(p,offset);offset+=p.length;}return out;}
 async function readJSON(request,max=24000){if(!request.headers.get('content-type')?.startsWith('application/json'))throw new HttpError(415,'Use JSON for this request.');try{return JSON.parse(new TextDecoder().decode(await limitedBody(request,max)));}catch(e){if(e instanceof HttpError)throw e;throw new HttpError(400,'Invalid JSON.');}}
-function summary(details,reference,products){
- const project=[...PROJECT_KEYS,'role','city','timing'].filter(key=>details[key]).map(key=>(PROJECT_LABELS[key]||({city:'Delivery City',timing:'Preferred Timing',notes:'Notes'}[key]))+': '+projectValue(key,details[key])).join('\n');
- return `Hi, I'd like a quote for a custom sign.\nStyle: ${products.find(p=>p.slug===details.style)?.title||'Not sure yet'}\nUse: ${details.use}\nDelivery country: ${details.country}\nProject stage: ${details.stage}\n${project?project+'\n':''}${details.contactEmail?'Contact email: '+details.contactEmail+'\n':''}${details.phone?(details.contactMethod==='whatsapp'?'WhatsApp: ':'Phone: ')+details.phone+' (not verified)\n':''}${details.drawings?'Drawings: '+({ready:details.attachments?.length?'Files supplied with website enquiry':'Drawings available; no files uploaded',none:'No drawings yet',later:'Files to follow'}[details.drawings]||details.drawings)+'\n':''}${details.project?'Reference project: '+details.project+'\n':''}Enquiry ID: ${reference}`;
-}
 async function createEnquiry(request,env){
  sameOrigin(request);const customer=await customerActor(request,env);await verifyCustomerCSRF(request,env,customer);const raw=await readJSON(request);const products=await published(env,'product');const submitted=validateEnquiry(raw,products.map(p=>p.slug));
  if(submitted.project&&!(await published(env,'project')).some(p=>p.slug===submitted.project))throw new HttpError(422,'This project reference is no longer available.');
@@ -23,6 +21,7 @@ async function createEnquiry(request,env){
  if(row&&row.customer_id!==customer.id)throw new HttpError(409,'Start a new enquiry before submitting again.');
  const saved=row?JSON.parse(row.details_json):null;
  const details={...submitted,contactEmail:saved?.contactEmail||customer.email,emailVerified:true,phoneVerified:false};
+ if(saved){if(Object.hasOwn(saved,'locale'))details.locale=saved.locale;else delete details.locale;}
  const hash=await fingerprint(details),replay=!!row;
  if(row){
   const previousFormat={...submitted};delete previousFormat.acquisition;
@@ -40,7 +39,7 @@ async function createEnquiry(request,env){
   row=await env.DB.prepare('SELECT id,reference,payload_hash,customer_id,details_json FROM enquiries WHERE idempotency_key=?').bind(details.idempotencyKey).first();
   if(!row||row.customer_id!==customer.id||row.payload_hash!==hash)throw new HttpError(409,'This submission conflicts with an earlier attempt. Please check your files and try again.');
  }
- const settings=await siteSettings(env),message=summary(JSON.parse(row.details_json),row.reference,products);
+ const settings=await siteSettings(env),message=summary(JSON.parse(row.details_json),row.reference,products,raw.locale==='zh'?'zh':raw.locale==='en'?'en':undefined);
  return json({reference:row.reference,message,whatsappURL:whatsapp(settings,message),email:settings.email||null,recordStatus:'web_recorded',files:await enquiryFiles(env,row.id,customer.id)},replay?200:201);
 }
 async function customerAPI(request,env,route){
@@ -56,10 +55,11 @@ async function customerAPI(request,env,route){
  if(route.startsWith('attachments/')&&method==='DELETE')return json(await removePendingFile(env,user,route.slice(12)));
  if(route==='logout'&&method==='POST'){await env.DB.prepare('DELETE FROM customer_sessions WHERE id=? AND customer_id=?').bind(user.sessionId,user.id).run();return json({ok:true},200,{'Set-Cookie':cookie(request,'csf_customer','',0,'Lax')});}
  if((route==='enquiries'||/^enquiries\/CSF-[A-F0-9]{20}$/.test(route))&&method==='GET'){
+  const requestedLocale=new URL(request.url).searchParams.get('locale');
   const reference=route==='enquiries'?null:route.slice(10);const offset=Math.max(0,Math.min(100000,Math.floor(Number(new URL(request.url).searchParams.get('offset'))||0)));
   const rows=reference?{results:[await env.DB.prepare('SELECT id,reference,created_at,details_json FROM enquiries WHERE customer_id=? AND reference=?').bind(user.id,reference).first()].filter(Boolean)}:await env.DB.prepare('SELECT id,reference,created_at,details_json FROM enquiries WHERE customer_id=? ORDER BY created_at DESC,id DESC LIMIT 25 OFFSET ?').bind(user.id,offset).all();
   if(reference&&!rows.results.length)throw new HttpError(404,'Enquiry not found.');
-  const products=await published(env,'product'),settings=await siteSettings(env);const items=await Promise.all(rows.results.map(async row=>{const d=JSON.parse(row.details_json);const details=Object.fromEntries([...PROJECT_KEYS,'role','style','use','country','city','stage','timing','notes','contactEmail','contactMethod','phone','drawings'].map(k=>[k,d[k]||'']));const message=summary(d,row.reference,products);return {reference:row.reference,createdAt:row.created_at,details,styleName:products.find(p=>p.slug===d.style)?.title||'Not sure yet',message,whatsappURL:whatsapp(settings,message),files:await enquiryFiles(env,row.id,user.id)};}));
+  const products=await published(env,'product'),settings=await siteSettings(env);const items=await Promise.all(rows.results.map(async row=>{const d=JSON.parse(row.details_json);const details=Object.fromEntries([...PROJECT_KEYS,'role','style','use','country','city','stage','timing','notes','contactEmail','contactMethod','phone','drawings','locale'].map(k=>[k,d[k]||'']));const message=summary(d,row.reference,products,requestedLocale==='zh'?'zh':requestedLocale==='en'?'en':d.locale||'en');return {reference:row.reference,createdAt:row.created_at,details,styleName:requestedLocale==='zh'?(chineseProducts[d.style]?.title||'暂不确定'):products.find(p=>p.slug===d.style)?.title||'Not sure yet',message,whatsappURL:whatsapp(settings,message),files:await enquiryFiles(env,row.id,user.id)};}));
   const total=reference?1:(await env.DB.prepare('SELECT count(*) total FROM enquiries WHERE customer_id=?').bind(user.id).first()).total;
   return json({items,total,offset});
  }

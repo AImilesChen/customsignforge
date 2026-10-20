@@ -1,16 +1,17 @@
+import {useLocale} from './use-locale.jsx';
 import {useEffect,useRef,useState} from 'react';
 import {WhatsappLogoIcon,ChatCircleDotsIcon,XIcon,ArrowUpRightIcon,ArrowRightIcon} from '@phosphor-icons/react';
 import {useSite} from './site-context.jsx';
 import {quote} from './shared.jsx';
 import '../styles/floating-contact.css';
 
-export default function FloatingContact(){
- const {settings,path}=useSite();
+export default function FloatingContact(){const {t:tr,href:localHref}=useLocale();
+ const {settings,path,locale}=useSite();
  const [open,setOpen]=useState(false),[bottom,setBottom]=useState(24);
  const root=useRef(null),trigger=useRef(null),close=useRef(null);
  const number=String(settings.whatsapp||'');
  const valid=/^[1-9]\d{6,14}$/.test(number);
- const href=valid?'https://wa.me/'+number+'?text='+encodeURIComponent('Hello Custom Sign Forge, I’d like to discuss a custom sign for my project.'):null;
+ const href=valid?'https://wa.me/'+number+'?text='+encodeURIComponent(locale==='zh'?'您好，Custom Sign Forge，我想咨询一个定制标识项目。':'Hello Custom Sign Forge, I’d like to discuss a custom sign for my project.'):null;
  const dismiss=()=>{setOpen(false);trigger.current?.focus()};
 
  // Keep the controls above consent choices and the local preview ribbon.
@@ -38,15 +39,15 @@ export default function FloatingContact(){
   return()=>{document.removeEventListener('keydown',key);document.removeEventListener('pointerdown',outside)};
  },[open]);
  if(!valid)return null;
- return <aside ref={root} className="floating-contact" style={{'--contact-bottom':bottom+'px'}} aria-label="Quick contact">
-  {open&&<section id="quick-contact-panel" className="floating-contact-panel" aria-labelledby="quick-contact-title">
-   <div className="floating-contact-heading"><div><span>CUSTOM SIGN FORGE</span><h2 id="quick-contact-title">Let’s talk about your sign.</h2></div><button type="button" ref={close} onClick={dismiss} aria-label="Close contact window"><XIcon size={22} aria-hidden="true"/></button></div>
-   <div className="floating-contact-body"><p>Have a logo, drawing or an idea? Share it with us on WhatsApp.</p>
-    <a className="floating-contact-whatsapp" href={href} target="_blank" rel="noopener noreferrer"><WhatsappLogoIcon size={25} aria-hidden="true"/><span>Chat on WhatsApp</span><ArrowUpRightIcon size={20} aria-hidden="true"/></a>
-    <span className="floating-contact-number">+{number}</span>
-    <div className="floating-contact-brief"><strong>Ready to share your project?</strong><p>Send dimensions, requirements and drawings through our enquiry form.</p><a href={quote({entry:path,cta:'content'})}>Request a Quote <ArrowRightIcon size={18} aria-hidden="true"/></a></div>
+ return <aside ref={root} className="floating-contact" style={{'--contact-bottom':bottom+'px'}} aria-label={tr("Quick contact")}>
+  {tr(open&&<section id="quick-contact-panel" className="floating-contact-panel" aria-labelledby="quick-contact-title">
+   <div className="floating-contact-heading"><div><span>{tr("CUSTOM SIGN FORGE")}</span><h2 id="quick-contact-title">{tr("Let’s talk about your sign.")}</h2></div><button type="button" ref={close} onClick={dismiss} aria-label={tr("Close contact window")}><XIcon size={22} aria-hidden="true"/></button></div>
+   <div className="floating-contact-body"><p>{tr("Have a logo, drawing or an idea? Share it with us on WhatsApp.")}</p>
+    <a className="floating-contact-whatsapp" href={localHref(href)} target="_blank" rel="noopener noreferrer"><WhatsappLogoIcon size={25} aria-hidden="true"/><span>{tr("Chat on WhatsApp")}</span><ArrowUpRightIcon size={20} aria-hidden="true"/></a>
+    <span className="floating-contact-number">{tr("+")}{tr(number)}</span>
+    <div className="floating-contact-brief"><strong>{tr("Ready to share your project?")}</strong><p>{tr("Send dimensions, requirements and drawings through our enquiry form.")}</p><a href={localHref(quote({entry:path,cta:'content'}))}>{tr("Request a Quote ")}<ArrowRightIcon size={18} aria-hidden="true"/></a></div>
    </div>
-  </section>}
-  <div className="floating-contact-controls"><a className="floating-contact-button floating-contact-direct" href={href} target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp (opens in a new tab)"><WhatsappLogoIcon size={30} aria-hidden="true"/><span className="floating-contact-tooltip">Chat on WhatsApp</span></a><button type="button" ref={trigger} className="floating-contact-button floating-contact-toggle" aria-label={open?'Close contact options':'Open contact options'} aria-expanded={open} aria-controls={open?'quick-contact-panel':undefined} onClick={()=>open?dismiss():setOpen(true)}>{open?<XIcon size={27} aria-hidden="true"/>:<ChatCircleDotsIcon size={28} aria-hidden="true"/>}<span className="floating-contact-tooltip">{open?'Close':'Contact us'}</span></button></div>
+  </section>)}
+  <div className="floating-contact-controls"><a className="floating-contact-button floating-contact-direct" href={localHref(href)} target="_blank" rel="noopener noreferrer" aria-label={tr("Contact us on WhatsApp (opens in a new tab)")}><WhatsappLogoIcon size={30} aria-hidden="true"/><span className="floating-contact-tooltip">{tr("Chat on WhatsApp")}</span></a><button type="button" ref={trigger} className="floating-contact-button floating-contact-toggle" aria-label={tr(open?'Close contact options':'Open contact options')} aria-expanded={open} aria-controls={open?'quick-contact-panel':undefined} onClick={()=>open?dismiss():setOpen(true)}>{tr(open?<XIcon size={27} aria-hidden="true"/>:<ChatCircleDotsIcon size={28} aria-hidden="true"/>)}<span className="floating-contact-tooltip">{tr(open?'Close':'Contact us')}</span></button></div>
  </aside>;
 }

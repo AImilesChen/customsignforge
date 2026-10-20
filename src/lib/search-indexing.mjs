@@ -1,7 +1,9 @@
+import {basePath} from './locale.mjs';
 const FIXED=['/','/products/','/projects/','/contact/'];
 const PRIVATE=/^\/(admin|api|auth|account|sign-in|get-a-quote|media|design-kit|review)(\/|$)/;
 export const publishingEnabled=env=>env.APP_ENV==='production'&&env.PUBLISH_READY==='true';
 export function indexablePage(env,{path,found=true,policy=false,item=null}){
+ path=basePath(path);
  if(!publishingEnabled(env)||!found||policy||PRIVATE.test(path))return false;
  return item?item.indexable!==false:FIXED.includes(path);
 }

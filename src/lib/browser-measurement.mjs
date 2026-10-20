@@ -1,3 +1,4 @@
+import {basePath} from './locale.mjs';
 import {campaignSource,acquisition,publicPath,UTM_KEYS} from './acquisition.mjs';
 const CHOICE='csf-cookie-preferences',FIRST='csf-first-source',CURRENT='csf-current-source';
 import {CONSENT_VERSION} from './analytics-consent.mjs';
@@ -12,23 +13,23 @@ export function captureAttribution(){
   const saved=JSON.parse(localStorage.getItem(FIRST)||'null');if(saved&&Date.now()-saved.at<90*86400000)first={source:campaignSource(saved.source),entry:publicPath(saved.entry)};else localStorage.setItem(FIRST,JSON.stringify({...first,at:Date.now()}));
   if(Object.keys(current).length)sessionStorage.setItem(CURRENT,JSON.stringify(current));else source=campaignSource(JSON.parse(sessionStorage.getItem(CURRENT)||'{}'));
  }catch{}
- return acquisition({firstSource:first.source,currentSource:source,firstEntry:first.entry,entryMode:'form',cta:params.get('cta'),landing:params.get('landing')||(location.pathname.match(/^\/landing\/([^/]+)\//)?.[1]||'')});
+ return acquisition({firstSource:first.source,currentSource:source,firstEntry:first.entry,entryMode:'form',cta:params.get('cta'),landing:params.get('landing')||(basePath(location.pathname).match(/^\/landing\/([^/]+)\//)?.[1]||'')});
 }
 export function forgetAttribution(){try{localStorage.removeItem(FIRST);sessionStorage.removeItem(CURRENT)}catch{}}
 export function measure(name,context={}){
  if(!hasAnalyticsConsent()||!publicPath(location.pathname))return;
- const params=new URLSearchParams(location.search);const product=location.pathname.match(/^\/products\/([^/]+)\/$/)?.[1]||params.get('style');const project=location.pathname.match(/^\/projects\/([^/]+)\/$/)?.[1]||params.get('project');const data={id:crypto.randomUUID(),name,page:location.pathname,consent:true,consentVersion:CONSENT_VERSION,context:{...captureAttribution(),...(product&&product!=='not-sure'?{product}:{}),...(project?{project}:{}),...context}};
+ const params=new URLSearchParams(location.search);const product=basePath(location.pathname).match(/^\/products\/([^/]+)\/$/)?.[1]||params.get('style');const project=basePath(location.pathname).match(/^\/projects\/([^/]+)\/$/)?.[1]||params.get('project');const data={id:crypto.randomUUID(),name,page:location.pathname,consent:true,consentVersion:CONSENT_VERSION,context:{...captureAttribution(),...(product&&product!=='not-sure'?{product}:{}),...(project?{project}:{}),...context}};
  fetch('/api/measurement',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),keepalive:true}).catch(()=>{});
 }
 export function startMeasurement(){
  if(!publicPath(location.pathname))return()=>{};
  if(!hasAnalyticsConsent())forgetAttribution();
- let viewed=false;const page=()=>{if(hasAnalyticsConsent()&&!viewed){viewed=true;measure('page_view');if(location.pathname==='/get-a-quote/')measure('quote_form_open')}};
+ let viewed=false;const page=()=>{if(hasAnalyticsConsent()&&!viewed){viewed=true;measure('page_view');if(basePath(location.pathname)==='/get-a-quote/')measure('quote_form_open')}};
  page();const choices=()=>{if(!hasAnalyticsConsent()){forgetAttribution();viewed=false}else page()};window.addEventListener('csf-consent-change',choices);
  const click=event=>{
   const link=event.target?.closest?.('a');if(!link)return;let url;try{url=new URL(link.href)}catch{return}
-  const cta=link.closest('header')?'header':link.closest('footer')?'footer':location.pathname.startsWith('/products/')?'product':location.pathname.startsWith('/projects/')?'project':location.pathname.startsWith('/landing/')?'landing':'content';
-  if(url.origin===location.origin&&url.pathname==='/get-a-quote/'){
+  const cta=link.closest('header')?'header':link.closest('footer')?'footer':basePath(location.pathname).startsWith('/products/')?'product':basePath(location.pathname).startsWith('/projects/')?'project':basePath(location.pathname).startsWith('/landing/')?'landing':'content';
+  if(url.origin===location.origin&&basePath(url.pathname)==='/get-a-quote/'){
    const attribution=captureAttribution();url.searchParams.set('entry',publicPath(location.pathname)||'/');url.searchParams.set('cta',cta);
    for(const [k,v] of Object.entries(attribution.currentSource))url.searchParams.set(k,v);
    if(attribution.landing)url.searchParams.set('landing',attribution.landing);link.href=url.toString();

@@ -1,7 +1,8 @@
+import {basePath} from './locale.mjs';
 import {hasAnalyticsConsent} from './browser-measurement.mjs';
 import {campaignSource,publicPath} from './acquisition.mjs';
 
-const PRIVATE=/^\/(admin|api|auth|account|sign-in|get-a-quote|media|design-kit|review)(\/|$)/;
+const PRIVATE=/^\/(?:zh\/)?(admin|api|auth|account|sign-in|get-a-quote|media|design-kit|review)(\/|$)/;
 export const externalAnalyticsEnabled=({environment,path,found=true,policy=false,canManage=false})=>environment==='production'&&found&&!policy&&!canManage&&!PRIVATE.test(path);
 export function analyticsVisitAllowed(href,referrer=''){
  try{
@@ -40,7 +41,7 @@ export function startExternalAnalytics(config,{win=window,doc=document,consent=h
    win.gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
    win.gtag('consent','update',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
    win.gtag('js',new Date());
-   win.gtag('config',config.ga4,{page_location:win.location.origin+win.location.pathname,page_referrer:doc.referrer?new URL(doc.referrer).origin:'',allow_google_signals:false,allow_ad_personalization_signals:false,send_page_view:true});
+   win.gtag('config',config.ga4,{page_location:win.location.origin+win.location.pathname,page_referrer:doc.referrer?new URL(doc.referrer).origin:'',allow_google_signals:false,allow_ad_personalization_signals:false,send_page_view:true,language:config.language||'en'});
    load('csf-ga4','https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(config.ga4));
    win.clarity=win.clarity||function(){(win.clarity.q=win.clarity.q||[]).push(arguments)};
    win.clarity('consentv2',{analytics_Storage:'granted',ad_Storage:'denied'});
@@ -60,7 +61,7 @@ export function startExternalAnalytics(config,{win=window,doc=document,consent=h
   if(!started||!consent()||!eligible())return;
   const link=event.target?.closest?.('a');if(!link)return;
   let url;try{url=new URL(link.href,win.location.href)}catch{return;}
-  const name=url.hostname==='wa.me'?'whatsapp_click':url.origin===win.location.origin&&url.pathname==='/get-a-quote/'?'request_quote':null;
+  const name=url.hostname==='wa.me'?'whatsapp_click':url.origin===win.location.origin&&basePath(url.pathname)==='/get-a-quote/'?'request_quote':null;
   // Never pass link URLs, text, email addresses, customer IDs or enquiry references.
   if(name)win.gtag?.('event',name,{page_location:win.location.origin+win.location.pathname});
  };

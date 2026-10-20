@@ -1,3 +1,4 @@
+import {localePath,routeLocale} from './locale.mjs';
 import {SignJWT,jwtVerify,createRemoteJWKSet} from 'jose';
 import {HttpError,text} from './validation.mjs';
 import {key,cookie,getCookie,allowedEmail,issueSession,sameOrigin} from './auth.mjs';
@@ -41,7 +42,7 @@ export async function googleCallback(request,env){
 export async function googleFailureRedirect(request,env,startingCustomer=false){
  const url=new URL(request.url),state=url.searchParams.get('state');let next=customerNext(url.searchParams.get('next'));
  try{const {payload}=await jwtVerify(getCookie(request,'csf_customer_oauth')||'',key(env),{issuer:'csf',audience:'google-customer-state',algorithms:['HS256']});if(payload.state===state){startingCustomer=true;next=customerNext(payload.next)}}catch{}
- return startingCustomer||state?.startsWith('customer.')?'/sign-in/?'+new URLSearchParams({error:'google',next}):'/admin/login/?error=google';
+ return startingCustomer||state?.startsWith('customer.')?localePath('/sign-in/',routeLocale(next))+'?'+new URLSearchParams({error:'google',next}):'/admin/login/?error=google';
 }
 export async function emailStart(request,env,raw,send=sendEmail){
  sameOrigin(request);origin(request,env);key(env);if(!emailConfigured(env))throw new HttpError(503,'Email sign-in is not configured yet.');

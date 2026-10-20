@@ -5,7 +5,7 @@ import {projectValue} from '../lib/enquiry-project.mjs';
 export function EnquiryContact({record}){
  const c=enquiryContact(record);
  return <section className="admin-panel admin-contact-summary" aria-label="客户联系资料"><h3>客户联系资料</h3><dl>
-  <div><dt>联系人姓名</dt><dd>{c.name||'未填写（旧记录可能未收集）'}</dd></div>
+  <div><dt>询价语言</dt><dd>{record.details.locale==='zh'?'简体中文':record.details.locale==='en'?'English':'英文 / 旧记录'}</dd></div><div><dt>联系人姓名</dt><dd>{c.name||'未填写（旧记录可能未收集）'}</dd></div>
   <div><dt>公司 / 店铺名称</dt><dd>{c.company||'未填写'}</dd></div>
   <div><dt>邮箱</dt><dd>{c.emailURL?<a href={c.emailURL}>{c.email}</a>:c.email||'旧记录未收集邮箱'}</dd></div>
   <div><dt>{c.method}号码</dt><dd>{c.phoneURL?<a href={c.phoneURL} target={c.method==='WhatsApp'?'_blank':undefined} rel="noreferrer">{c.phone}</a>:c.phone||'旧记录未收集号码'}{c.phone&&<small>客户填写，未经短信验证</small>}</dd></div>
@@ -21,7 +21,7 @@ export function EnquiryTable({items,open,records,stages,quality,checked=[],setCh
    <td><strong>{c.name||'姓名未填写'}</strong><div>{c.company||'公司未填写'}</div>{d.role&&<div className="small">{projectValue('role',d.role)}</div>}</td>
    <td className="admin-enquiry-contact"><span>邮箱</span><div>{c.emailURL?<a href={c.emailURL}>{c.email}</a>:c.email||'旧记录未收集'}</div><span>{c.method}</span><div>{c.phoneURL?<a href={c.phoneURL} target={c.method==='WhatsApp'?'_blank':undefined} rel="noreferrer">{c.phone}</a>:c.phone||'旧记录未收集'}</div>{c.manual&&<div>补录：{c.manual}</div>}</td>
    <td>{d.style}<div>{[d.country,d.city].filter(Boolean).join(' · ')}</div>{d.quantity&&<div>数量：{projectValue('quantity',d.quantity)}</div>}{d.dimensionsStatus==='approximate'&&<div>{d.width} × {d.height} {d.dimensionUnit}</div>}{d.deliveryWindow&&<div>{projectValue('deliveryWindow',d.deliveryWindow)}</div>}{d.targetDate&&<div>目标日期：{d.targetDate}</div>}{d.budget&&<div>预算：{d.budget}</div>}</td>
-   <td><ClientLabelControl record={r} save={saveLabels} disabled={disabled}/><details className="client-followup-details"><summary>详细跟进</summary><div>{d.acquisition?.entryMode==='manual'&&r.record_status==='web_recorded'?'人工补录，待核实':records[r.record_status]}</div><div>{stages[r.business_stage]}</div><div>{quality[r.quality]}</div></details></td><td>{d.source?.utm_source||'直接访问或未知'}</td>
+   <td><ClientLabelControl record={r} save={saveLabels} disabled={disabled}/><details className="client-followup-details"><summary>详细跟进</summary><div>{d.acquisition?.entryMode==='manual'&&r.record_status==='web_recorded'?'人工补录，待核实':records[r.record_status]}</div><div>{stages[r.business_stage]}</div><div>{quality[r.quality]}</div></details></td><td>{d.source?.utm_source||'直接访问或未知'}<div className="small">{d.locale==='zh'?'简体中文':d.locale==='en'?'English':'英文 / 旧记录'}</div></td>
    </tr>;
  })}</tbody></table></div>;
 }
