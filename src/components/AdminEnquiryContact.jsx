@@ -13,10 +13,10 @@ export function EnquiryContact({record}){
  </dl></section>;
 }
 
-export function EnquiryTable({items,open,records,stages,quality}){
- return <div className="admin-table-wrap"><table className="admin-table admin-enquiry-table"><thead><tr><th>咨询编号 / 提交时间</th><th>客户姓名与公司</th><th>客户联系方式</th><th>项目需求</th><th>跟进状态</th><th>来源</th></tr></thead><tbody>{items.map(r=>{
+export function EnquiryTable({items,open,records,stages,quality,checked=[],setChecked=()=>{},disabled=false,trash=false,move=()=>{}}){
+ return <div className="admin-table-wrap"><table className="admin-table admin-enquiry-table"><thead><tr><th><input type="checkbox" aria-label="选择本页全部询价" disabled={disabled||!items.length} checked={!!items.length&&checked.length===items.length} onChange={e=>setChecked(e.target.checked?items.map(r=>r.id):[])}/></th><th>咨询编号 / 提交时间</th><th>客户姓名与公司</th><th>客户联系方式</th><th>项目需求</th><th>跟进状态</th><th>来源</th></tr></thead><tbody>{items.map(r=>{
   const c=enquiryContact(r),d=r.details;
-  return <tr key={r.id}><td><button className="inline-link" onClick={()=>open(r)}>{r.reference}</button><div className="small">{r.created_at} UTC</div><button className="button secondary" onClick={()=>open(r)}>查看完整询价</button></td>
+  return <tr key={r.id}><td><input type="checkbox" aria-label={'选择询价 '+r.reference} disabled={disabled} checked={checked.includes(r.id)} onChange={e=>setChecked(e.target.checked?[...checked,r.id]:checked.filter(id=>id!==r.id))}/></td><td><button className="inline-link" onClick={()=>open(r)}>{r.reference}</button><div className="small">{r.created_at} UTC</div><button className="button secondary" onClick={()=>open(r)}>查看完整询价</button><button className="admin-archive-action" disabled={disabled} onClick={()=>move([r],!trash)}>{trash?'恢复询价':'移入回收站'}</button></td>
    <td><strong>{c.name||'姓名未填写'}</strong><div>{c.company||'公司未填写'}</div>{d.role&&<div className="small">{projectValue('role',d.role)}</div>}</td>
    <td className="admin-enquiry-contact"><span>邮箱</span><div>{c.emailURL?<a href={c.emailURL}>{c.email}</a>:c.email||'旧记录未收集'}</div><span>{c.method}</span><div>{c.phoneURL?<a href={c.phoneURL} target={c.method==='WhatsApp'?'_blank':undefined} rel="noreferrer">{c.phone}</a>:c.phone||'旧记录未收集'}</div>{c.manual&&<div>补录：{c.manual}</div>}</td>
    <td>{d.style}<div>{[d.country,d.city].filter(Boolean).join(' · ')}</div>{d.quantity&&<div>数量：{projectValue('quantity',d.quantity)}</div>}{d.dimensionsStatus==='approximate'&&<div>{d.width} × {d.height} {d.dimensionUnit}</div>}{d.deliveryWindow&&<div>{projectValue('deliveryWindow',d.deliveryWindow)}</div>}{d.targetDate&&<div>目标日期：{d.targetDate}</div>}{d.budget&&<div>预算：{d.budget}</div>}</td>

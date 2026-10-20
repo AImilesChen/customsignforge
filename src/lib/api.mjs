@@ -1,3 +1,4 @@
+import {archiveEnquiry} from './enquiry-archive.mjs';
 import {uploadEnquiryFile,removePendingFile,downloadEnquiryFile,enquiryFiles,assertPendingFiles,deleteEnquiryFiles,pendingEnquiryFiles} from './enquiry-files.mjs';
 import {emailStart,emailVerify} from './sign-in.mjs';
 import {recordMeasurement,measurementReport,sqlDateRange} from './measurement.mjs';
@@ -109,14 +110,25 @@ async function adminAPI(request,env,route){
   ]);return json({id,reference},201);
  }
  if(route==='enquiries'&&method==='GET'){
-  let where=[],args=[];for(const [key,column,options] of [['record','record_status',RECORD_STATES],['stage','business_stage',BUSINESS_STAGES],['quality','quality',QUALITY]]){const v=url.searchParams.get(key);if(v){if(!options.includes(v))throw new HttpError(422,'Invalid filter.');where.push(column+'=?');args.push(v);}}
+  const view=url.searchParams.get('view')||'active';if(!['active','trash'].includes(view))throw new HttpError(422,'Invalid list view.');
+  let where=[view==='trash'?'archived_at IS NOT NULL':'archived_at IS NULL'],args=[];for(const [key,column,options] of [['record','record_status',RECORD_STATES],['stage','business_stage',BUSINESS_STAGES],['quality','quality',QUALITY]]){const v=url.searchParams.get(key);if(v){if(!options.includes(v))throw new HttpError(422,'Invalid filter.');where.push(column+'=?');args.push(v);}}
   const search=text(url.searchParams.get('q')||'',80);if(search){where.push("instr(lower(reference||' '||COALESCE(json_extract(details_json,'$.contactName'),'')||' '||COALESCE(json_extract(details_json,'$.businessName'),'')||' '||COALESCE(json_extract(details_json,'$.contactEmail'),'')||' '||COALESCE(json_extract(details_json,'$.phone'),'')||' '||COALESCE(json_extract(details_json,'$.contact'),'')||' '||COALESCE((SELECT email FROM customers WHERE id=customer_id),'')),?)>0");args.push(search.toLowerCase());}const source=text(url.searchParams.get('source')||'',80);if(source){where.push("json_extract(details_json,'$.source.utm_source')=?");args.push(source);}
   const style=text(url.searchParams.get('style')||'',90);if(style){where.push("json_extract(details_json,'$.style')=?");args.push(style);}
   for(const [key,options] of [['role',ROLES.map(([id])=>id)],['projectStage',['Ready to discuss a quote','Comparing options','Exploring an idea']],['deliveryWindow',['within-month','one-three-months','later','not-sure']]]){const value=url.searchParams.get(key);if(value){if(!options.includes(value))throw new HttpError(422,'Invalid project filter.');where.push("json_extract(details_json,'$."+(key==='projectStage'?'stage':key)+"')=?");args.push(value);}}
   const dates=sqlDateRange(url.searchParams);where.push(...dates.where);args.push(...dates.args);
-  const sql=where.length?' WHERE '+where.join(' AND '):'';const offset=Math.max(0,Math.min(100000,Number(url.searchParams.get('offset'))||0));const total=await env.DB.prepare('SELECT count(*) total FROM enquiries'+sql).bind(...args).first();
-  const rows=await env.DB.prepare('SELECT enquiries.*,(SELECT email FROM customers WHERE id=customer_id) customer_email FROM enquiries'+sql+' ORDER BY created_at DESC,id DESC LIMIT 25 OFFSET ?').bind(...args,offset).all();return json({total:total.total,offset,items:rows.results.map(r=>({...r,details:JSON.parse(r.details_json),details_json:undefined,payload_hash:undefined,idempotency_key:undefined}))});
+  const countryWhere=where.join(' AND '),countryArgs=[...args];
+  const country=text(url.searchParams.get('country')||'',100);if(country){where.push("COALESCE(json_extract(details_json,'$.country'),'')=?");args.push(country);}
+  const sql=' WHERE '+where.join(' AND ');
+  const limit=Number(url.searchParams.get('limit')||25);if(![10,25,50].includes(limit))throw new HttpError(422,'Use 10, 25 or 50 records per page.');
+  const sort=url.searchParams.get('sort')||'newest';if(!['newest','oldest'].includes(sort))throw new HttpError(422,'Invalid date sort.');
+  const requestedOffset=Math.max(0,Math.min(100000,Math.floor(Number(url.searchParams.get('offset'))||0)));
+  const total=await env.DB.prepare('SELECT count(*) total FROM enquiries'+sql).bind(...args).first();
+  const offset=Math.min(requestedOffset,Math.max(0,Math.floor((total.total-1)/limit)*limit));
+  const countries=await env.DB.prepare("SELECT COALESCE(json_extract(details_json,'$.country'),'') country,count(*) count FROM enquiries WHERE "+countryWhere+" GROUP BY country ORDER BY country").bind(...countryArgs).all();
+  const rows=await env.DB.prepare('SELECT enquiries.*,(SELECT email FROM customers WHERE id=customer_id) customer_email FROM enquiries'+sql+' ORDER BY created_at '+(sort==='oldest'?'ASC':'DESC')+',id '+(sort==='oldest'?'ASC':'DESC')+' LIMIT ? OFFSET ?').bind(...args,limit,offset).all();return json({total:total.total,offset,limit,sort,view,countries:countries.results,items:rows.results.map(r=>({...r,details:JSON.parse(r.details_json),details_json:undefined,payload_hash:undefined,idempotency_key:undefined}))});
  }
+ const archiveRoute=route.match(/^enquiries\/([^/]+)\/archive$/);
+ if(archiveRoute&&method==='PATCH')return json(await archiveEnquiry(env,user,archiveRoute[1],await readJSON(request)));
  if(route.startsWith('enquiries/')&&method==='GET'){
   const id=route.slice(10);const row=await env.DB.prepare('SELECT enquiries.*,(SELECT email FROM customers WHERE id=customer_id) customer_email FROM enquiries WHERE id=?').bind(id).first();if(!row)throw new HttpError(404,'Enquiry not found.');const logs=await env.DB.prepare('SELECT * FROM followup_logs WHERE enquiry_id=? ORDER BY created_at,id').bind(id).all();return json({...row,details:JSON.parse(row.details_json),details_json:undefined,payload_hash:undefined,idempotency_key:undefined,files:await enquiryFiles(env,row.id),logs:logs.results.map(l=>({...l,change:JSON.parse(l.change_json),change_json:undefined}))});
  }
