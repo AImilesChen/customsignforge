@@ -19,6 +19,7 @@ import {isFabrication} from '../../lib/project-library.mjs';
 import {quote} from '../shared.jsx';
 import '../../styles/chinese.css';
 import '../../styles/chinese-products.css';
+import '../../styles/chinese-about.css';
 
 const note='场景效果图用于设计灵感参考；材料、结构、灯光与交付范围以确认的项目方案为准。';
 const metricLabels={experience:'资深工匠从业经验',team:'生产团队',design:'设计与研发人员',equipment:'生产设备',space:'生产空间'};
@@ -100,11 +101,39 @@ function ChineseProject({w}){const {products,works}=useSite(),p=products.find(p=
  ['墙面与固定','提供正面现场照片、墙体材料和可安装尺寸，与当地安装商确认固定方式和承重条件。'],['电源与布线','发光产品需确认当地供电、出线位置、电源放置与检修通道。'],['尺寸与识别','结合观看距离、标志比例和周围照明，确认最终文字大小与安装高度。']
  ]}/><TextLink to="/shipping-installation/">查看运输与安装说明</TextLink><p className="zh-note">{sample?'样品用于讨论工艺，具体材料、尺寸和质量要求在订单中确认。':note}</p></section>{related.length>0&&<section className="zh-section zh-soft"><div className="projects-container"><Heading kicker="继续探索" title="同类型的更多设计。"/><Cards items={related}/></div></section>}<CTA title="将这个方向，变成您的品牌标识。" text="询价时会带上当前参考，便于沟通您喜欢的效果。" to={request}/></article>}
 
-function ChineseAbout(){return <article className="about-page"><section className="zh-section about-container zh-split"><div><Eyebrow>关于 Custom Sign Forge</Eyebrow><h1>以团队为基础。<br/>以细节见工艺。</h1><p className="lead">设计、加工与检查人员协同工作，为商业空间制作定制标识。</p><p>从您的图纸出发，讨论材料、结构与灯光，再把确认的方案落实到制作细节中。</p><Button>讨论您的项目</Button></div><Photo src={about.hero.src} alt="标识生产车间与制作团队" eager caption="生产车间与团队"/></section><section className="zh-soft"><div className="about-container"><Metrics keys={profile.aboutMetrics}/></div></section><section id="our-team" className="zh-section about-container zh-split"><Photo src={about.team.src} alt="制作人员加工标识组件" caption="经验来自对每一道工序的关注。"/><div><Eyebrow>专业分工，协同制作</Eyebrow><h2>每一个细节，<br/>都有团队在背后。</h2><Options items={[
- ['设计与研发','10+ 位设计与研发人员，围绕标志、比例、结构和制作方式提供项目支持。'],['经验丰富的制作人员','资深工匠拥有 10 年以上从业经验，处理切割、成型、焊接、打磨与装配细节。'],['生产与检查协作','100+ 人生产团队配合 30+ 台生产设备，覆盖从加工到成品检查与包装的流程。']
- ]}/></div></section><section className="zh-section zh-soft"><div className="about-container"><Heading kicker="从材料到成品" title="工艺，让设计落地。"/><div className="zh-product-grid">{about.capabilities.map((v,i)=><article key={v.src}><Photo src={v.src} alt={['材料切割与成型','金属加工与表面处理','标识组装与灯光细节'][i%3]} caption="制作工艺"/><h3>{['切割与成型','焊接与打磨','表面与组装'][i%3]}</h3><p>{['按确认的轮廓和尺寸加工材料，关注边缘与配合精度。','处理接缝、转角和表面，为最终质感打好基础。','结合颜色、材料与灯光，检查装配及整体效果。'][i%3]}</p></article>)}</div></div></section><section className="zh-section about-container zh-split"><div><Eyebrow>出厂前的细节</Eyebrow><h2>认真检查。<br/>妥善保护。</h2><Options items={[
- ['尺寸与表面','对照确认的图纸，检查文字轮廓、尺寸、表面及装配。'],['结构与灯光','发光产品按约定检查光效、组装与电气相关细节。'],['包装与运输','根据产品结构和运输安排讨论保护包装，关注字面和边角保护。']
- ]}/><TextLink to="/how-it-works/">了解我们的制作流程</TextLink></div><div className="zh-detail-grid"><Photo src={about.check.src} alt="工作人员检查成品细节" caption="成品检查"/><Photo src={about.packing.src} alt="标识成品保护包装" caption="运输前的保护包装"/></div></section><CTA title="让您的品牌，成为我们的下一个制作项目。" text="分享想法、图纸与需求，我们一起完善制作方案。"/></article>}
+function ChineseAbout(){
+ const metricUnits={experience:'年',team:'人',design:'人',equipment:'台'};
+ const crafts=[
+  {image:about.capabilities[0],title:'切割与成型',alt:'标识材料切割设备与加工台面',text:'按确认的轮廓与尺寸切割材料，关注边缘、形状与配合精度。'},
+  {image:about.capabilities[1],title:'结构与表面',alt:'金属字折边结构与拉丝表面细节',text:'处理字壳、折边与连接细节，让结构与表面呈现符合设计要求。'},
+  {image:about.capabilities[2],title:'灯光与组装',alt:'金属字内部的 LED 排布与装配细节',text:'结合字面、字壳与灯光进行装配，检查结构配合和发光效果。'}
+ ];
+ return <article className="about-page zh-about">
+  <section className="zh-section about-container zh-split zh-about-hero">
+   <div><Eyebrow>关于 Custom Sign Forge</Eyebrow><h1>为您的品牌，<br/>制作有质感的标识。</h1><p className="lead">设计、加工与检查团队协同工作，为商业空间制作定制标识。</p><p>从您的标志、参考图或想法出发，一起确定材料、结构与灯光，把设计落实到每一处制作细节。</p><Button>讨论您的项目</Button></div>
+   <Photo src={about.hero.src} alt="制作团队在车间加工金属标识组件" eager caption="生产车间 · 金属字加工与组装"/>
+  </section>
+  <section className="zh-about-strengths" aria-label="团队与生产实力"><div className="about-container"><dl className="zh-about-metrics">{['experience',...profile.aboutMetrics].map(key=><div key={key}><dt>{metricLabels[key]}</dt><dd>{profile.metrics[key].value}{metricUnits[key]&&<small>{metricUnits[key]}</small>}</dd></div>)}</dl></div></section>
+  <section id="our-team" className="zh-section about-container zh-split zh-about-team">
+   <Photo src={about.team.src} alt="设计与项目人员在工作站处理图纸和制作资料" caption="设计与研发团队 · 图纸与制作细节沟通"/>
+   <div><Eyebrow>专业分工，协同制作</Eyebrow><h2>专业分工，让想法落地。</h2><p className="zh-about-team-intro">资深工匠拥有 <strong>10 年以上从业经验</strong>，与设计研发、生产和检查人员共同完成每一个项目。</p><Options items={[
+    ['设计与研发','围绕您的标志、比例与使用空间，讨论材料、结构和适合的制作方式。'],
+    ['加工与制作','切割、成型、焊接、打磨与装配相互配合，把确认的方案做成实物。'],
+    ['检查与项目沟通','从制作细节到成品检查、包装与发货准备，保持各环节的信息衔接。']
+   ]}/></div>
+  </section>
+  <section className="zh-section zh-soft zh-about-craft"><div className="about-container"><Heading kicker="从材料到成品" title="工艺，让设计落地。" text="从加工轮廓到灯光装配，关注每一道工序的配合。"/><div className="zh-about-craft-grid">{crafts.map(({image,title,alt,text},i)=><article key={image.src}><Photo src={image.src} alt={alt}/><div className="zh-about-craft-copy"><span className="zh-about-step" aria-hidden="true">0{i+1}</span><h3>{title}</h3><p>{text}</p></div></article>)}</div></div></section>
+  <section className="zh-section about-container zh-split zh-about-quality">
+   <div><Eyebrow>出厂前的细节</Eyebrow><h2>认真检查，妥善保护。</h2><Options items={[
+    ['尺寸与表面','对照确认的图纸，检查文字轮廓、尺寸、表面及装配。'],
+    ['结构与灯光','发光产品按约定检查灯光效果、组装与电气相关细节。'],
+    ['包装与运输','结合产品结构与运输安排做好保护，关注字面、边角与装箱固定。']
+   ]}/><TextLink to="/how-it-works/">了解我们的制作流程</TextLink></div>
+   <div className="zh-about-quality-photos"><Photo src={about.check.src} alt="制作人员检查标识成品的表面与组件" caption="成品检查 · 表面与装配细节"/><Photo src={about.packing.src} alt="制作人员为标识成品准备保护包装" caption="装箱保护 · 包装准备与固定"/></div>
+  </section>
+  <section className="zh-about-closing"><div className="about-container"><div><Eyebrow>聊聊您的标识项目</Eyebrow><h2>把您的想法，做成标识。</h2><p>分享标志、参考图或大致需求，我们一起完善制作方案。</p></div><Button>获取定制报价</Button></div></section>
+ </article>
+}
 
 function ChineseProcess(){const photos=[process.brief,process.specification,process.production[0],process.packing];return <article className="process-page"><section className="zh-section process-container zh-split"><div><Eyebrow>您的定制标识，如何成型</Eyebrow><h1>从您的想法。<br/>到可制作的方案。</h1><p className="lead">您不需要一开始就准备好所有答案。从参考图与用途开始，我们逐步确认设计、报价、制作与交付细节。</p><Button>开始您的项目</Button></div><Photo src={process.hero.src} alt="标识制作流程与工艺" caption="从需求到制作" eager/></section>{steps.map(([title,text],i)=><section id={process.stages[i].id} className={'zh-section'+(i%2?' zh-soft':'')} key={title}><div className={'process-container zh-split'+(i%2?' zh-split-reverse':'')}><Photo src={photos[i].src} alt={title+'参考图片'} caption={['标志、现场照片与尺寸参考','确认设计与制作规格','按约定检查成品','包装保护与交付准备'][i]}/><div><Eyebrow>0{i+1} / 定制流程</Eyebrow><h2>{title}</h2><p>{text}</p><Options items={[
  ['您提供',[
