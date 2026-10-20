@@ -1,0 +1,29 @@
+{
+  "generator": "Built-in image_gen",
+  "purpose": "Chinese About native-aspect craft and packing illustrations",
+  "assets": [
+    {
+      "name": "cut",
+      "reference": "public/assets/supplier/supplier-cutting-bed.webp",
+      "prompt": "Use case: precise-object-edit. Edit this sign-cutting-machine workshop photograph into a native LANDSCAPE 4:3 photograph (1536x1152). Preserve the existing cutting bed, gantry, control unit, materials and workshop identity; extend the image naturally above and below as needed rather than cropping, stretching, adding borders or letterboxing. Keep the whole machine composition. Match natural neutral workshop lighting and existing colors. This is a technical process reference for a website, no people, no invented logos, text, numbers, certificates, UI or collage. Fill the entire 4:3 canvas edge to edge with a continuous photographic scene. Do not add graphic backgrounds.",
+      "classification": "AI-generated process illustration"
+    },
+    {
+      "name": "metal",
+      "reference": "public/assets/supplier/letter-return-detail.webp",
+      "prompt": "Use case: precise-object-edit. Edit the attached brushed stainless steel sign-letter return detail photograph into native LANDSCAPE 4:3 format (1536x1152). Preserve the actual formed metal edge geometry, brushed texture and central composition. Expand the photographed pale work surface/background naturally at top and bottom to achieve 4:3; DO NOT crop, stretch, change the object, add borders, letterbox bars, or use any collage. Neutral soft daylight, photographic technical detail. Entire 4:3 canvas edge to edge is one continuous photograph. No people, logos, overlays or labels.",
+      "classification": "AI-generated process illustration"
+    },
+    {
+      "name": "led",
+      "reference": "public/assets/supplier/led-layout-reference.webp",
+      "prompt": "Use case: product-mockup. Create a native LANDSCAPE 4:3 image, 1536x1152, to replace a narrow portrait LED assembly reference on a custom sign website. Input is a subject/material reference. Recompose into ONE continuous clean tabletop photograph: a whole open-backed curved C-shaped silver metal channel letter lies flat on a dark gray fabrication workbench, complete outline visible with clear margins. Show realistic small LED modules/wiring neatly arranged inside the letter, cyan/blue light softly illuminating its inner surface as in the reference. Camera gentle top-down three-quarter view, entire C letter occupies about 70 percent of wide image, edges safely inside canvas. Correct physical metal returns and LED construction. Calm industrial photography, no people or factory claims. Fill the whole native 4:3 canvas with the real tabletop scene; absolutely no portrait panel in middle, no borders, letterboxing, split images, collage, overlay text, watermark or brand logo. This is a generic lighting-and-assembly illustration.",
+      "classification": "AI-generated process illustration"
+    },
+    {
+      "name": "packing",
+      "prompt": "Use case: product-mockup. Create ONE portrait product-packing photograph, native 8:11 aspect ratio, ideally 1024x1408, for a custom sign website packaging illustration. Scene: one open pale plywood shipping crate on a neutral gray packing bench. Inside, two unbranded dimensional brushed-metal sign-letter components individually protected by white EPE foam separators and soft protective wrap; visible foam corner protection and tidy crate construction. Camera looks down at a natural diagonal angle with the ENTIRE crate inside the composition, clear margins around all edges. Tight editorial framing, crate and protective materials dominate the image. Soft neutral daylight, realistic tactile wood grain, white foam and satin silver metal, a modest clean industrial background. No people, hands, readable words, logo, address, labels, certificate, order paperwork, shipping claims, staged staff, collage, panels, seams, duplicate scenes, borders, watermark or UI. One continuous photograph from edge to edge, not multiple pictures joined together. This is a generic protective packing illustration, not evidence of a real factory shipment.",
+      "classification": "AI-generated process illustration"
+    }
+  ]
+}

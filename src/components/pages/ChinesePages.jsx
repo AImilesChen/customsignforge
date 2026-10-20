@@ -104,9 +104,9 @@ function ChineseProject({w}){const {products,works}=useSite(),p=products.find(p=
 function ChineseAbout(){
  const metricUnits={experience:'年',team:'人',design:'人',equipment:'台'};
  const crafts=[
-  {image:about.capabilities[0],title:'切割与成型',alt:'标识材料切割设备与加工台面',text:'按确认的轮廓与尺寸切割材料，关注边缘、形状与配合精度。'},
-  {image:about.capabilities[1],title:'结构与表面',alt:'金属字折边结构与拉丝表面细节',text:'处理字壳、折边与连接细节，让结构与表面呈现符合设计要求。'},
-  {image:about.capabilities[2],title:'灯光与组装',alt:'金属字内部的 LED 排布与装配细节',text:'结合字面、字壳与灯光进行装配，检查结构配合和发光效果。'}
+  {image:{src:'/assets/about-v3/cut-shape.webp'},title:'切割与成型',alt:'材料切割设备与加工台面的工艺示意',text:'按确认的轮廓与尺寸切割材料，关注边缘、形状与配合精度。'},
+  {image:{src:'/assets/about-v3/metal-structure.webp'},title:'结构与表面',alt:'金属字折边结构与拉丝表面的工艺示意',text:'处理字壳、折边与连接细节，让结构与表面呈现符合设计要求。'},
+  {image:{src:'/assets/about-v3/led-assembly.webp'},title:'灯光与组装',alt:'横版金属字 LED 排布与组装示意',text:'结合字面、字壳与灯光进行装配，检查结构配合和发光效果。'}
  ];
  return <article className="about-page zh-about">
   <section className="zh-section about-container zh-split zh-about-hero">
@@ -122,14 +122,14 @@ function ChineseAbout(){
     ['检查与项目沟通','从制作细节到成品检查、包装与发货准备，保持各环节的信息衔接。']
    ]}/></div>
   </section>
-  <section className="zh-section zh-soft zh-about-craft"><div className="about-container"><Heading kicker="从材料到成品" title="工艺，让设计落地。" text="从加工轮廓到灯光装配，关注每一道工序的配合。"/><div className="zh-about-craft-grid">{crafts.map(({image,title,alt,text},i)=><article key={image.src}><Photo src={image.src} alt={alt}/><div className="zh-about-craft-copy"><span className="zh-about-step" aria-hidden="true">0{i+1}</span><h3>{title}</h3><p>{text}</p></div></article>)}</div></div></section>
+  <section className="zh-section zh-soft zh-about-craft"><div className="about-container"><Heading kicker="从材料到成品" title="工艺，让设计落地。" text="通过工艺示意，了解从加工轮廓到灯光装配的关键细节。"/><div className="zh-about-craft-grid">{crafts.map(({image,title,alt,text},i)=><article key={image.src}><Photo src={image.src} alt={alt}/><div className="zh-about-craft-copy"><span className="zh-about-step" aria-hidden="true">0{i+1}</span><h3>{title}</h3><p>{text}</p></div></article>)}</div></div></section>
   <section className="zh-section about-container zh-split zh-about-quality">
    <div><Eyebrow>出厂前的细节</Eyebrow><h2>认真检查，妥善保护。</h2><Options items={[
     ['尺寸与表面','对照确认的图纸，检查文字轮廓、尺寸、表面及装配。'],
     ['结构与灯光','发光产品按约定检查灯光效果、组装与电气相关细节。'],
     ['包装与运输','结合产品结构与运输安排做好保护，关注字面、边角与装箱固定。']
    ]}/><TextLink to="/how-it-works/">了解我们的制作流程</TextLink></div>
-   <div className="zh-about-quality-photos"><Photo src={about.check.src} alt="制作人员检查标识成品的表面与组件" caption="成品检查 · 表面与装配细节"/><Photo src={about.packing.src} alt="制作人员为标识成品准备保护包装" caption="装箱保护 · 包装准备与固定"/></div>
+   <div className="zh-about-quality-photos"><Photo src={about.check.src} alt="制作人员检查标识成品的表面与组件" caption="成品检查 · 表面与装配细节"/><Photo src="/assets/about-v3/protective-packing.webp" alt="金属字在木箱内使用泡棉隔离保护的包装示意" caption="装箱保护 · 包装示意"/></div>
   </section>
   <section className="zh-about-closing"><div className="about-container"><div><Eyebrow>聊聊您的标识项目</Eyebrow><h2>把您的想法，做成标识。</h2><p>分享标志、参考图或大致需求，我们一起完善制作方案。</p></div><Button>获取定制报价</Button></div></section>
  </article>

@@ -1234,5 +1234,73 @@
         "width": 1200
       }
     ]
+  },
+  "/assets/about-v3/cut-shape.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/about-v3/cut-shape-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/about-v3/cut-shape-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/about-v3/cut-shape-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/about-v3/metal-structure.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/about-v3/metal-structure-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/about-v3/metal-structure-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/about-v3/metal-structure-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/about-v3/led-assembly.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/responsive/about-v3/led-assembly-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/about-v3/led-assembly-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/responsive/about-v3/led-assembly-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/about-v3/protective-packing.webp": {
+    "width": 1070,
+    "height": 1470,
+    "variants": [
+      {
+        "src": "/assets/responsive/about-v3/protective-packing-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/responsive/about-v3/protective-packing-800.webp",
+        "width": 800
+      }
+    ]
   }
 }
