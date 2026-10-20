@@ -1,6 +1,7 @@
 import {campaignSource,acquisition,publicPath,UTM_KEYS} from './acquisition.mjs';
 const CHOICE='csf-cookie-preferences',FIRST='csf-first-source',CURRENT='csf-current-source';
-export const CONSENT_VERSION=2;
+import {CONSENT_VERSION} from './analytics-consent.mjs';
+export {CONSENT_VERSION};
 export function hasPrivacyChoice(){try{const choice=JSON.parse(localStorage.getItem(CHOICE)||'null');return choice?.version===CONSENT_VERSION&&Number.isFinite(Date.parse(choice.savedAt))&&Date.now()-Date.parse(choice.savedAt)<180*86400000}catch{return false}}
 export function savePrivacyChoice(analytics=false){try{localStorage.setItem(CHOICE,JSON.stringify({necessary:true,analytics,advertising:false,version:CONSENT_VERSION,savedAt:new Date().toISOString()}))}catch{}if(!analytics)forgetAttribution();window.dispatchEvent(new Event('csf-consent-change'))}
 export function hasAnalyticsConsent(){try{const choice=JSON.parse(localStorage.getItem(CHOICE)||'null');return choice?.version===CONSENT_VERSION&&choice.analytics===true&&Date.now()-Date.parse(choice.savedAt)<180*86400000}catch{return false}}
@@ -16,7 +17,7 @@ export function captureAttribution(){
 export function forgetAttribution(){try{localStorage.removeItem(FIRST);sessionStorage.removeItem(CURRENT)}catch{}}
 export function measure(name,context={}){
  if(!hasAnalyticsConsent()||!publicPath(location.pathname))return;
- const params=new URLSearchParams(location.search);const product=location.pathname.match(/^\/products\/([^/]+)\/$/)?.[1]||params.get('style');const project=location.pathname.match(/^\/projects\/([^/]+)\/$/)?.[1]||params.get('project');const data={id:crypto.randomUUID(),name,page:location.pathname,consent:true,context:{...captureAttribution(),...(product&&product!=='not-sure'?{product}:{}),...(project?{project}:{}),...context}};
+ const params=new URLSearchParams(location.search);const product=location.pathname.match(/^\/products\/([^/]+)\/$/)?.[1]||params.get('style');const project=location.pathname.match(/^\/projects\/([^/]+)\/$/)?.[1]||params.get('project');const data={id:crypto.randomUUID(),name,page:location.pathname,consent:true,consentVersion:CONSENT_VERSION,context:{...captureAttribution(),...(product&&product!=='not-sure'?{product}:{}),...(project?{project}:{}),...context}};
  fetch('/api/measurement',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data),keepalive:true}).catch(()=>{});
 }
 export function startMeasurement(){
