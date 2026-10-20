@@ -29,4 +29,10 @@ All three external collectors retain consent version 4 and production-only activ
 
 ## Verification
 
+### Chinese product details (2026-10-20)
+
+The six Chinese detail routes use scoped `chinese-product-page.css` and `zh/product-detail-content.json`. Every route retains four design concepts in complete 4:3 frames and presents two clearly captioned construction illustrations. New native-aspect assets and their responsive variants live under `/assets/product-pages-zh/`; generation/edit prompts and provenance are recorded in `docs/chinese-product-image-prompts.json`. Backlit detail photographs retain their matching wide native ratio. Generated illustrations are not represented as completed customer projects or factory evidence.
+
+Hero enquiry actions precede imagery on phones; section containers share the site gutter and maximum width. Product-specific descriptions, FAQs, material/installation notes and enquiry context replace repeated generic copy. Existing English detail pages, customer enquiries, authentication and analytics remain on their shared implementations.
+
 `npm test`, `npm run check`, `npm run build:production`. Locale tests cover redirect safety, private-path bypass protection, schema language, draft isolation/expiry/cleanup, shared enquiry data, original text, language-only retries, optional uploads and localized browser-bound email login. Browser QA should include desktop/mobile, product galleries, language-switching drafts, optional drawings, saved-enquiry summaries and account access. No real customer or production test enquiries are required.

@@ -1302,5 +1302,239 @@
         "width": 800
       }
     ]
+  },
+  "/assets/product-pages-zh/front-face.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/product-pages-zh/front-face-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/product-pages-zh/front-face-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/product-pages-zh/front-face-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-pages-zh/front-led.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/product-pages-zh/front-led-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/product-pages-zh/front-led-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/product-pages-zh/front-led-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-pages-zh/metal-finish.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/product-pages-zh/metal-finish-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/product-pages-zh/metal-finish-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/product-pages-zh/metal-finish-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-pages-zh/metal-return.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/product-pages-zh/metal-return-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/product-pages-zh/metal-return-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/product-pages-zh/metal-return-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-pages-zh/neon-backing.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/product-pages-zh/neon-backing-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/product-pages-zh/neon-backing-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/product-pages-zh/neon-backing-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-pages-zh/marquee-detail.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/product-pages-zh/marquee-detail-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/product-pages-zh/marquee-detail-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/product-pages-zh/marquee-detail-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-pages-zh/exposed-led.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/product-pages-zh/exposed-led-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/product-pages-zh/exposed-led-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/product-pages-zh/exposed-led-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-pages-zh/acrylic-material.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/product-pages-zh/acrylic-material-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/product-pages-zh/acrylic-material-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/product-pages-zh/acrylic-material-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-pages-zh/lightbox-frame.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/product-pages-zh/lightbox-frame-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/product-pages-zh/lightbox-frame-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/product-pages-zh/lightbox-frame-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-pages-zh/case-acrylic-scene.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/product-pages-zh/case-acrylic-scene-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/product-pages-zh/case-acrylic-scene-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/product-pages-zh/case-acrylic-scene-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-pages-zh/case-lightbox-scene.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/product-pages-zh/case-lightbox-scene-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/product-pages-zh/case-lightbox-scene-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/product-pages-zh/case-lightbox-scene-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-pages-zh/case-neon-scene.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/product-pages-zh/case-neon-scene-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/product-pages-zh/case-neon-scene-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/product-pages-zh/case-neon-scene-1200.webp",
+        "width": 1200
+      }
+    ]
+  },
+  "/assets/product-pages-zh/case-marquee-scene.webp": {
+    "width": 1448,
+    "height": 1086,
+    "variants": [
+      {
+        "src": "/assets/product-pages-zh/case-marquee-scene-400.webp",
+        "width": 400
+      },
+      {
+        "src": "/assets/product-pages-zh/case-marquee-scene-800.webp",
+        "width": 800
+      },
+      {
+        "src": "/assets/product-pages-zh/case-marquee-scene-1200.webp",
+        "width": 1200
+      }
+    ]
   }
 }

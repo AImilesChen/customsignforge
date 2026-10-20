@@ -1,0 +1,203 @@
+{
+  "products": {
+    "led-channel-letters": {
+      "summary": "字面明亮、轮廓清晰。按您的标志与现场条件，定制适合店面和商业空间的正面发光字。",
+      "detailTitle": "从透光字面，到内部灯光。",
+      "details": [
+        {
+          "src": "/assets/product-pages-zh/front-face.webp",
+          "title": "字面与字壳",
+          "text": "透光字面与金属围边共同组成文字轮廓，材料、配色与字厚围绕标志确定。"
+        },
+        {
+          "src": "/assets/product-pages-zh/front-led.webp",
+          "title": "LED 排布与装配",
+          "text": "灯光布置需要结合笔画、字厚与字面材料评估，同时提前安排出线与检修位置。"
+        }
+      ],
+      "faqs": [
+        [
+          "细笔画或很小的文字，也能做正面发光吗？",
+          "需要结合最小笔画、整体尺寸、字厚和材料透光性评估。提供矢量标志与大致尺寸后，我们会讨论适合的制作方向。"
+        ],
+        [
+          "如何选择光色，避免字面明暗不均？",
+          "光色需结合品牌颜色与现场照明选择；均匀度还与字厚、字面材料及 LED 布置有关，重要效果可在报价中讨论样品确认。"
+        ]
+      ],
+      "headline": "让品牌清晰可见。"
+    },
+    "backlit-letters": {
+      "summary": "让柔和光晕衬托金属质感。围绕品牌、墙面和空间照明，讨论适合您的背光标识。",
+      "detailTitle": "近看字面，比较背后的光晕。",
+      "wideDetails": true,
+      "details": [
+        {
+          "src": "/assets/products-v2/halo-face.webp",
+          "title": "金属表面与轮廓",
+          "text": "不透光的字面呈现金属或喷涂质感，背面光线衬托标志的形状。"
+        },
+        {
+          "src": "/assets/products-v2/halo-edge.webp",
+          "title": "离墙距离与光晕",
+          "text": "墙面纹理、环境照明和离墙距离会改变光晕宽度，需结合实际安装位置确认。"
+        }
+      ],
+      "faqs": [
+        [
+          "什么样的墙面更适合做背光字？",
+          "墙面的颜色、纹理和反光程度都会影响光晕。建议提供正面现场照片，并说明墙体材料及周围照明情况。"
+        ],
+        [
+          "背光字可以选择暖光或冷白光吗？",
+          "可以讨论不同光色方向。应结合品牌风格、字面表面与室内照明对比，具体光色和效果在项目规格中确认。"
+        ]
+      ],
+      "headline": "以光晕衬托品牌。"
+    },
+    "metal-letters": {
+      "summary": "用材料、表面与立体层次呈现品牌。比较拉丝、金属色和喷涂效果，选择适合空间的表达。",
+      "detailTitle": "材料的质感，结构的细节。",
+      "details": [
+        {
+          "src": "/assets/product-pages-zh/metal-finish.webp",
+          "title": "表面与色彩",
+          "text": "拉丝、金属色与喷涂形成不同的反光和触感，可结合现场光线与色样选择。"
+        },
+        {
+          "src": "/assets/product-pages-zh/metal-return.webp",
+          "title": "字厚、围边与固定",
+          "text": "字厚和围边结构决定立体感，也会影响重量、固定方式与安装准备。"
+        }
+      ],
+      "faqs": [
+        [
+          "实心切割字和围边立体字有什么区别？",
+          "实心切割主要由板材厚度形成层次；围边立体结构可增加字厚。两者在重量、外观与固定方式上不同，需结合尺寸和安装位置选择。"
+        ],
+        [
+          "户外金属字应该选择什么材料和表面？",
+          "需结合气候、盐雾或潮湿环境、墙体及维护条件评估。提供安装地点后，再讨论合适的金属、涂层与固定方案。"
+        ]
+      ],
+      "headline": "用质感呈现品牌。"
+    },
+    "acrylic-letters": {
+      "summary": "以色彩、厚度与叠层表现您的标志。适合接待墙、零售展示和富有创意的商业空间。",
+      "detailTitle": "看清边缘，也看清材料。",
+      "details": [
+        {
+          "src": "/assets/products-v2/acrylic-edge.webp",
+          "title": "轮廓与厚度",
+          "text": "材料厚度、边缘加工与离墙距离共同形成清晰的立体层次。"
+        },
+        {
+          "src": "/assets/product-pages-zh/acrylic-material.webp",
+          "title": "实色、透明与叠层",
+          "text": "比较实色、透明和组合材料的视觉差异，按品牌配色与使用环境确定方案。"
+        }
+      ],
+      "faqs": [
+        [
+          "亚克力标志可以做多层或透明效果吗？",
+          "可以讨论实色、透明、磨砂及叠层方向。层数、连接和安装方式需结合图形细节、厚度与使用环境确认。"
+        ],
+        [
+          "品牌颜色可以直接照屏幕上的颜色制作吗？",
+          "屏幕、照片和实物会有色差。重要品牌颜色应提供明确色值或参考色样，并在生产前确认材料和表面要求。"
+        ]
+      ],
+      "headline": "用色彩表达品牌。"
+    },
+    "lightbox-neon": {
+      "summary": "灯箱承载品牌图案，线条灯光营造氛围。比较两种方向，选择适合店面或室内空间的效果。",
+      "detailTitle": "两种光效，两种结构。",
+      "details": [
+        {
+          "src": "/assets/product-pages-zh/lightbox-frame.webp",
+          "title": "灯箱的面板与箱体",
+          "anchor": "lightbox",
+          "text": "透光面板、金属边框与固定结构相互配合，按图案、尺寸与安装方向确认细节。"
+        },
+        {
+          "src": "/assets/product-pages-zh/neon-backing.webp",
+          "title": "线条光源与背板",
+          "anchor": "neon-style",
+          "text": "柔性光源沿图形固定在背板上，曲线、线宽、背板形状和出线位置需要一起考虑。"
+        }
+      ],
+      "faqs": [
+        [
+          "灯箱和霓虹风格标识，应该怎么选？",
+          "需要承载完整品牌图案或较大透光面板时，可先看灯箱；希望突出手写线条与氛围时，可讨论霓虹风格。也可结合现场照片比较。"
+        ],
+        [
+          "室内款可以直接装在户外吗？",
+          "需要重新评估。户外环境涉及防护、固定、布线与维护条件，应在报价前明确使用位置和当地安装要求。"
+        ]
+      ],
+      "headline": "让品牌与氛围发光。"
+    },
+    "specialty-signs": {
+      "summary": "从灯泡字到外露光源与组合工艺，围绕您的特殊造型，讨论可制作的结构与灯光方案。",
+      "detailTitle": "不同光源，呈现不同个性。",
+      "details": [
+        {
+          "src": "/assets/product-pages-zh/marquee-detail.webp",
+          "title": "灯泡与剧院风格字",
+          "anchor": "marquee",
+          "text": "可见的灯泡与立体金属结构形成复古层次，需提前考虑光源布置及后续维护。"
+        },
+        {
+          "src": "/assets/product-pages-zh/exposed-led.webp",
+          "title": "外露光源字",
+          "anchor": "exposed-light",
+          "text": "点状光源沿字形排列，笔画、观看距离和光点布置共同影响整体识别效果。"
+        }
+      ],
+      "faqs": [
+        [
+          "特殊字体或复杂造型，只有一张参考图也能沟通吗？",
+          "可以先分享参考图、用途和大致尺寸。我们会一起梳理材料、光源与结构，复杂效果可在报价中讨论样品或关键细节确认。"
+        ],
+        [
+          "灯泡字或外露光源字，需要预留哪些维护条件？",
+          "需结合安装高度和位置讨论光源更换、电源放置、出线及检修通道。具体维护方式应在结构与安装方案中确认。"
+        ]
+      ],
+      "headline": "为独特想法而定制。"
+    }
+  },
+  "caseImages": {
+    "acrylic-reception-concept": "/assets/product-pages-zh/case-acrylic-scene.webp",
+    "projecting-lightbox-design": "/assets/product-pages-zh/case-lightbox-scene.webp",
+    "cafe-neon-concept": "/assets/product-pages-zh/case-neon-scene.webp",
+    "marquee-entrance-concept": "/assets/product-pages-zh/case-marquee-scene.webp"
+  },
+  "cases": {
+    "office-logo-concept": "深色字面与中性白光晕相互衬托，适合对比深色墙面的轮廓效果。",
+    "wellness-halo-design": "暖光沿花瓣标志与文字背后展开，突出浅色石材和细致的品牌造型。",
+    "corporate-halo-design": "冷白光与拉丝金属形成清晰对比，可参考办公室现场光线选择光色。",
+    "hospitality-halo-design": "暖色光晕融入餐饮空间，兼顾金属表面与夜间氛围。",
+    "storefront-concept": "图形与文字共同发亮，比较品牌标志在完整店面立面中的识别效果。",
+    "food-front-design": "绿色字面与餐厅门头形成鲜明对比，关注图形、字距与观看距离。",
+    "retail-front-design": "蓝色发光字带来更鲜明的零售识别，可结合品牌配色讨论字面材料。",
+    "bakery-front-design": "夜间亮面字与橱窗暖光相互配合，适合比较门头与室内照明的关系。",
+    "hospitality-metal-concept": "暖金属表面与酒店入口相协调，以字厚、光影和材质呈现品牌。",
+    "studio-metal-design": "黑色金属标志与浅墙形成对比，完整展示图形、文字与入口的比例。",
+    "architectural-metal-design": "非发光字依靠轮廓和表面识别，适合关注自然光下的品牌呈现。",
+    "interior-metal-design": "拉丝金属与室内墙面搭配，可参考字厚与离墙阴影形成的层次。",
+    "acrylic-reception-concept": "橙色实色字成为接待墙焦点，以配色和立体厚度呼应明亮空间。",
+    "layered-acrylic-design": "多层图形与彩色材料组合，为创意空间带来更丰富的标志层次。",
+    "salon-acrylic-design": "手写体轮廓与柔和室内材质搭配，需关注细笔画的加工与安装。",
+    "office-acrylic-design": "简洁立体标志融入办公接待区，比较墙面、标志大小与整体比例。",
+    "cafe-neon-concept": "线条字悬挂在橱窗前，暖光与室内照明共同形成店面的氛围。",
+    "dental-lightbox-design": "灯箱承载完整品牌标志，适合讨论图案、透光面板和入口识别。",
+    "projecting-lightbox-design": "圆形侧挂灯箱面向街道，需结合安装方向、支架和现场条件确定结构。",
+    "cafe-neon-design": "图形与线条灯光组合，适合作为咖啡店内的品牌焦点与空间装饰。",
+    "marquee-entrance-concept": "外露灯泡勾勒立体文字，复古光点与入口材质共同形成视觉焦点。",
+    "cinema-special-design": "剧院风格文字与娱乐场所立面结合，突出夜间识别与光源节奏。",
+    "social-special-design": "立体造型与灯光围绕娱乐场景表达，复杂笔画与结构需先评估。",
+    "restaurant-special-design": "组合材料与餐厅入口相呼应，可讨论金属、表面和灯光之间的搭配。"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "tool": "built-in image_gen",
+  "date": "2026-10-20",
+  "purpose": "Chinese product page construction illustrations and uncropped design concepts; not completed client project evidence.",
+  "images": [
+    {
+      "name": "front-face",
+      "prompt": "Use case: product-mockup. A single premium photographic technical illustration for a custom commercial sign product page. NATIVE landscape 4:3 canvas, ideally 1448x1086. One continuous edge-to-edge photograph, natural neutral daylight, quiet charcoal/pale-grey workbench, physically plausible materials and components. Show entire subject with comfortable margins and clear details at thumbnail size. No collage, borders, letterboxing, labels, text overlays, brand, person, hands, certificates, diagrams, arrows, claims, watermark or UI. Generic construction illustration, not evidence of a real customer order. A three-quarter tabletop photograph of a single capital R front-lit channel letter sample: satin dark bronze metal returns and an opal-white acrylic face. Its removable matching face rests beside the shallow metal letter case, showing how the two parts fit, with tidy edges and several small fixing details. The R components are the complete subject; no word or logo. Unlit, crisp close product photography.",
+      "generatedFile": "exec-56d1084a-77f3-4771-b8a2-6f5d877d6cf1.png",
+      "output": "/assets/product-pages-zh/front-face.webp"
+    },
+    {
+      "name": "front-led",
+      "prompt": "Use case: product-mockup. A single premium photographic technical illustration for a custom commercial sign product page. NATIVE landscape 4:3 canvas, ideally 1448x1086. One continuous edge-to-edge photograph, natural neutral daylight, quiet charcoal/pale-grey workbench, physically plausible materials and components. Show entire subject with comfortable margins and clear details at thumbnail size. No collage, borders, letterboxing, labels, text overlays, brand, person, hands, certificates, diagrams, arrows, claims, watermark or UI. Generic construction illustration, not evidence of a real customer order. A complete capital R shaped open metal channel-letter case viewed from slightly above, showing small neutral-white LED modules neatly distributed inside on the rear plate and tidy low-voltage wiring. Soft white illumination, no cyan glow. Dark grey returns and pale internal backing, realistic modest spacing. Camera wide enough that all edges of the R are inside frame. This demonstrates internal LED layout only, without exact specifications or electronics diagrams.",
+      "generatedFile": "exec-b7761d01-cb1e-4fb2-81e8-d6ef26915b2d.png",
+      "output": "/assets/product-pages-zh/front-led.webp"
+    },
+    {
+      "name": "metal-finish",
+      "prompt": "Use case: product-mockup. A single premium photographic technical illustration for a custom commercial sign product page. NATIVE landscape 4:3 canvas, ideally 1448x1086. One continuous edge-to-edge photograph, natural neutral daylight, quiet charcoal/pale-grey workbench, physically plausible materials and components. Show entire subject with comfortable margins and clear details at thumbnail size. No collage, borders, letterboxing, labels, text overlays, brand, person, hands, certificates, diagrams, arrows, claims, watermark or UI. Generic construction illustration, not evidence of a real customer order. Three separate substantial unlit dimensional metal letter samples, I, O and L, on a pale grey tabletop: brushed stainless silver, softly brushed warm bronze and matte black painted metal. Show actual face texture, neat returns and shadows. No complete word, no logo. Different surfaces clearly distinguishable, balanced close composition with all sample outlines complete.",
+      "generatedFile": "exec-6195fa6f-3653-4d1f-be44-57b3f94092d5.png",
+      "output": "/assets/product-pages-zh/metal-finish.webp"
+    },
+    {
+      "name": "metal-return",
+      "prompt": "Use case: product-mockup. A single premium photographic technical illustration for a custom commercial sign product page. NATIVE landscape 4:3 canvas, ideally 1448x1086. One continuous edge-to-edge photograph, natural neutral daylight, quiet charcoal/pale-grey workbench, physically plausible materials and components. Show entire subject with comfortable margins and clear details at thumbnail size. No collage, borders, letterboxing, labels, text overlays, brand, person, hands, certificates, diagrams, arrows, claims, watermark or UI. Generic construction illustration, not evidence of a real customer order. A close three-quarter photograph of a single unlit brushed stainless steel dimensional capital L letter case lying on a pale workbench, with its return edge, a clean corner seam and two rear fixing studs visible. Precise natural brushed texture, softly rounded reflections and physically coherent metal construction. Entire L inside canvas, camera close enough to show depth and the corner junction.",
+      "generatedFile": "exec-c02447fa-0abe-40fb-afb4-fd395aa9cd97.png",
+      "output": "/assets/product-pages-zh/metal-return.webp"
+    },
+    {
+      "name": "neon-backing",
+      "prompt": "Use case: product-mockup. A single premium photographic technical illustration for a custom commercial sign product page. NATIVE landscape 4:3 canvas, ideally 1448x1086. One continuous edge-to-edge photograph, natural neutral daylight, quiet charcoal/pale-grey workbench, physically plausible materials and components. Show entire subject with comfortable margins and clear details at thumbnail size. No collage, borders, letterboxing, labels, text overlays, brand, person, hands, certificates, diagrams, arrows, claims, watermark or UI. Generic construction illustration, not evidence of a real customer order. Close oblique view of a single simple loop of warm-white flexible LED neon tubing neatly mounted on a clear acrylic backing panel with tidy transparent clips and one discreet power lead exiting the lower edge. The entire clear panel and smooth continuous loop are visible on a neutral grey tabletop. Show tube profile and the clear backing thickness, soft restrained warm light. Not a neon word, not glass tubing, no sign scene or storefront.",
+      "generatedFile": "exec-fdf5ee94-0ea4-47ac-92db-ed85a8a49cad.png",
+      "output": "/assets/product-pages-zh/neon-backing.webp"
+    },
+    {
+      "name": "marquee-detail",
+      "prompt": "Use case: product-mockup. A single premium photographic technical illustration for a custom commercial sign product page. NATIVE landscape 4:3 canvas, ideally 1448x1086. One continuous edge-to-edge photograph, natural neutral daylight, quiet charcoal/pale-grey workbench, physically plausible materials and components. Show entire subject with comfortable margins and clear details at thumbnail size. No collage, borders, letterboxing, labels, text overlays, brand, person, hands, certificates, diagrams, arrows, claims, watermark or UI. Generic construction illustration, not evidence of a real customer order. A complete single metal capital E marquee-style letter lying on a neutral charcoal workbench. Satin dark metal face and returns, a tidy row of small round warm-white bulbs along each stroke, realistic sockets and dimensional depth. Three-quarter view, entire E and all bulbs within canvas, understated fabrication-detail photograph. No word, no brand, no theatrical scene.",
+      "generatedFile": "exec-b8f24d41-ef08-4033-a236-95d9d4366739.png",
+      "output": "/assets/product-pages-zh/marquee-detail.webp"
+    },
+    {
+      "name": "exposed-led",
+      "prompt": "Use case: product-mockup. A single premium photographic technical illustration for a custom commercial sign product page. NATIVE landscape 4:3 canvas, ideally 1448x1086. One continuous edge-to-edge photograph, natural neutral daylight, quiet charcoal/pale-grey workbench, physically plausible materials and components. Show entire subject with comfortable margins and clear details at thumbnail size. No collage, borders, letterboxing, labels, text overlays, brand, person, hands, certificates, diagrams, arrows, claims, watermark or UI. Generic construction illustration, not evidence of a real customer order. A complete single flat brushed-metal capital A sign letter with many small evenly spaced exposed red LED points following the strokes. View from a gentle oblique angle on a quiet pale-grey workbench to show the face, edge and light-point spacing. Restrained red glow, physically coherent build, no Chinese glyph, no complete word, no facade or factory background. All edges of A inside frame.",
+      "generatedFile": "exec-d3cf8c02-4275-4f69-8be5-dcae689925a0.png",
+      "output": "/assets/product-pages-zh/exposed-led.webp"
+    },
+    {
+      "name": "acrylic-material",
+      "ref": "G:/Website Project/CustomSignForge/website/public/assets/products-v2/acrylic-material.webp",
+      "prompt": "Use case: precise-object-edit. Expand the attached acrylic material-sample photograph naturally LEFT and RIGHT into a native landscape 4:3 canvas, ideally1448x1086. Preserve the orange, ivory and clear acrylic samples and the existing neutral stone surface, light and shadows. Do not crop or stretch the samples. Extend stone work surface to the sides, keeping all samples complete and legible. One continuous photographic image to the edges; no borders, letterboxing, collage, labels, people, logos or overlays. This is an acrylic materials illustration.",
+      "generatedFile": "exec-8e87adad-619a-4d5d-b024-454bc6f04a99.png",
+      "output": "/assets/product-pages-zh/acrylic-material.webp"
+    },
+    {
+      "name": "lightbox-frame",
+      "ref": "G:/Website Project/CustomSignForge/website/public/assets/products-v2/lightbox-detail.webp",
+      "prompt": "Use case: precise-object-edit. Expand the attached illuminated lightbox frame detail naturally LEFT and RIGHT into native landscape 4:3 format, ideally1448x1086. Preserve its dark metal frame, opal luminous panel, mounting bracket and warm stone wall; continue the real wall and panel scene at the sides. Maintain the existing corner detail without cropping or stretching. One continuous photograph to all edges. No borders, blank bars, collage, labels, people, text, logos or invented certification. Generic frame and bracket illustration.",
+      "generatedFile": "exec-addb4547-55d9-4248-8f30-8a1ebe0a6fd8.png",
+      "output": "/assets/product-pages-zh/lightbox-frame.webp"
+    },
+    {
+      "name": "case-acrylic-scene",
+      "ref": "G:/Website Project/CustomSignForge/website/public/assets/products-v2/acrylic-scene.webp",
+      "prompt": "Use case: precise-object-edit. Extend this existing sign-design concept photograph into native landscape 4:3 format, ideally1448x1086, by adding a small amount of plausible photographed space at TOP AND BOTTOM. Preserve the sign, exact existing lettering, architecture, colors, light, camera direction and entire existing horizontal composition. No cropping, stretching, added borders, empty bars or collage. Extend real architectural surfaces naturally. Keep readable sign lettering exactly as provided. One continuous edge-to-edge scene. Do not add people, new branding, labels, watermarks or overlays. This remains a design concept, not evidence of a completed client project.",
+      "generatedFile": "exec-9861c545-d983-4ff8-8ae2-f43c269c27ed.png",
+      "output": "/assets/product-pages-zh/case-acrylic-scene.webp"
+    },
+    {
+      "name": "case-lightbox-scene",
+      "ref": "G:/Website Project/CustomSignForge/website/public/assets/products-v2/lightbox-scene.webp",
+      "prompt": "Use case: precise-object-edit. Extend this existing sign-design concept photograph into native landscape 4:3 format, ideally1448x1086, by adding a small amount of plausible photographed space at TOP AND BOTTOM. Preserve the sign, exact existing lettering, architecture, colors, light, camera direction and entire existing horizontal composition. No cropping, stretching, added borders, empty bars or collage. Extend real architectural surfaces naturally. Keep readable sign lettering exactly as provided. One continuous edge-to-edge scene. Do not add people, new branding, labels, watermarks or overlays. This remains a design concept, not evidence of a completed client project.",
+      "generatedFile": "exec-13a3b32a-0438-4bf2-acb7-d5b69b44a101.png",
+      "output": "/assets/product-pages-zh/case-lightbox-scene.webp"
+    },
+    {
+      "name": "case-neon-scene",
+      "ref": "G:/Website Project/CustomSignForge/website/public/assets/products-v2/neon-scene.webp",
+      "prompt": "Use case: precise-object-edit. Extend this existing sign-design concept photograph into native landscape 4:3 format, ideally1448x1086, by adding a small amount of plausible photographed space at TOP AND BOTTOM. Preserve the sign, exact existing lettering, architecture, colors, light, camera direction and entire existing horizontal composition. No cropping, stretching, added borders, empty bars or collage. Extend real architectural surfaces naturally. Keep readable sign lettering exactly as provided. One continuous edge-to-edge scene. Do not add people, new branding, labels, watermarks or overlays. This remains a design concept, not evidence of a completed client project.",
+      "generatedFile": "exec-6ed72c87-053e-4a37-8bfd-258c90fe3123.png",
+      "output": "/assets/product-pages-zh/case-neon-scene.webp"
+    },
+    {
+      "name": "case-marquee-scene",
+      "ref": "G:/Website Project/CustomSignForge/website/public/assets/products-v2/marquee-scene.webp",
+      "prompt": "Use case: precise-object-edit. Extend this existing sign-design concept photograph into native landscape 4:3 format, ideally1448x1086, by adding a small amount of plausible photographed space at TOP AND BOTTOM. Preserve the sign, exact existing lettering, architecture, colors, light, camera direction and entire existing horizontal composition. No cropping, stretching, added borders, empty bars or collage. Extend real architectural surfaces naturally. Keep readable sign lettering exactly as provided. One continuous edge-to-edge scene. Do not add people, new branding, labels, watermarks or overlays. This remains a design concept, not evidence of a completed client project.",
+      "generatedFile": "exec-d6dc75ef-6722-4989-a56b-f1c7bbca47fd.png",
+      "output": "/assets/product-pages-zh/case-marquee-scene.webp"
+    }
+  ]
+}
