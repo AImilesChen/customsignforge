@@ -6,11 +6,9 @@ import {useSite} from '../site-context.jsx';
 import content from '../../data/home-content.json';
 import profile from '../../data/manufacturing-profile.json';
 import HomeHero from './HomeHero.jsx';
+import HomePhoto from './HomePhoto.jsx';
 import {DESIGN_NOTE} from '../../lib/image-copy.mjs';
 import '../../styles/home.css';
-
-const asset=name=>name.startsWith('/')?name:'/assets/home-v2/'+name;
-function HomePhoto({image,alt,className=''}){return <div className={'home-photo '+className}><Image src={asset(image)} alt={alt} loading="lazy"/></div>;}
 
 // Server-rendered content stays visible. Only off-screen items opt into motion.
 function useHomeReveal(root){useEffect(()=>{

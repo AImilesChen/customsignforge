@@ -23,7 +23,7 @@ export default function HomeHero(){const {t:tr,locale}=useLocale();
   <div className="home-immersive-stage"><div className="home-container home-hero-inner">
    <div className="home-immersive-copy">
     <p className="home-immersive-eyebrow">{tr("PRECISION CRAFT. MADE FOR YOUR BRAND.")}</p>
-    <h1 id="home-hero-title">{tr("Custom Signs.")}<br/>{tr(' ')}{tr("Built to Make")}<br/>{tr(' ')}<em>{tr("Your Brand ")}<span>{tr("Stand Out.")}</span></em></h1>
+    <h1 id="home-hero-title">{locale==='zh'?<><span className="zh-hero-line">定制标识。</span><span className="zh-hero-line">让您的品牌</span><em className="zh-hero-line">脱颖而出。</em></>:<>{tr("Custom Signs.")}<br/>{tr(' ')}{tr("Built to Make")}<br/>{tr(' ')}<em>{tr("Your Brand ")}<span>{tr("Stand Out.")}</span></em></>}</h1>
     <p className="home-immersive-intro">{tr("Bring your logo to life with custom lettering, lighting and finishes. Made for your storefront, reception or hospitality space.")}</p>
     <div className="home-immersive-actions"><Link className="button" to={quote({source:'homepage-hero',entry:'/',cta:'content'})}>{tr("Get a Custom Quote ")}<ArrowRightIcon size={20} aria-hidden="true"/></Link><Link className="button secondary" to="/products/">{tr("Explore Sign Styles ")}<ArrowRightIcon size={19} aria-hidden="true"/></Link></div>
     <p className="home-immersive-helper">{tr("Start with a logo, a drawing or simply an idea.")}</p>
