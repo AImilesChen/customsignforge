@@ -1,0 +1,6 @@
+import {useLocale} from './use-locale.jsx';
+import zh from '../data/zh/site.json';
+import detail from '../data/zh/product-detail-content.json';
+import {publicCopy} from '../lib/malay-content.mjs';
+const resources={zh:{site:zh,detail},ms:publicCopy};
+export function usePublicCopy(){const {locale,t}=useLocale(),data=resources[locale]||resources.zh;return {t,siteCopy:data.site,chineseProducts:data.site.products,chineseSpace:value=>data.site.settings[value]||value,productDetails:data.detail};}

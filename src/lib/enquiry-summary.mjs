@@ -1,7 +1,13 @@
 import {PROJECT_KEYS,PROJECT_LABELS,projectValue} from './enquiry-project.mjs';
 import {translate} from './translate.mjs';
 import {chineseProducts} from './locale-content.mjs';
+import {publicCopy} from './malay-content.mjs';
 export function enquirySummary(details,reference,products,locale=details.locale||'en'){
+ if(locale==='ms'){
+  const controlled=['dimensionsStatus','environment','deliveryWindow','role'];
+  const project=[...PROJECT_KEYS,'role','city','timing'].filter(k=>details[k]).map(k=>translate(PROJECT_LABELS[k]||({city:'Delivery City',timing:'Preferred Timing'}[k]),'ms')+': '+(controlled.includes(k)||k==='quantity'&&details[k]==='not-sure'?translate(projectValue(k,details[k]),'ms'):details[k])).join('\n');
+  return `Hai, saya ingin meminta sebut harga papan tanda khas.\nJenis: ${publicCopy.site.products[details.style]?.title||'Belum pasti'}\nKegunaan: ${translate(details.use,'ms')}\nNegara penghantaran: ${translate(details.country,'ms')}\nPeringkat projek: ${translate(details.stage,'ms')}\n${project?project+'\n':''}${details.contactEmail?'E-mel hubungan: '+details.contactEmail+'\n':''}${details.phone?(details.contactMethod==='whatsapp'?'WhatsApp: ':'Telefon: ')+details.phone+' (belum disahkan)\n':''}${details.drawings?'Lukisan: '+({ready:details.attachments?.length?'Fail disertakan bersama pertanyaan':'Lukisan tersedia; tiada fail dimuat naik',none:'Belum ada lukisan',later:'Fail akan menyusul'}[details.drawings]||details.drawings)+'\n':''}${details.project?'Rujukan projek: '+details.project+'\n':''}Rujukan pertanyaan: ${reference}`;
+ }
  if(locale==='zh'){
   const controlled=['dimensionsStatus','environment','deliveryWindow','role'];
   const project=[...PROJECT_KEYS,'role','city','timing'].filter(k=>details[k]).map(k=>translate(PROJECT_LABELS[k]||({city:'Delivery City',timing:'Preferred Timing'}[k]),'zh')+'：'+(controlled.includes(k)||k==='quantity'&&details[k]==='not-sure'?translate(projectValue(k,details[k]),'zh'):details[k])).join('\n');

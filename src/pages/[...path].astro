@@ -12,7 +12,7 @@ import {siteIdentity} from '../lib/site-identity.mjs';
 import analytics from '../data/analytics.json';
 import {indexablePage} from '../lib/search-indexing.mjs';
 import {externalAnalyticsEnabled} from '../lib/external-analytics.mjs';
-import {basePath,routeLocale,localePath,htmlLanguage} from '../lib/locale.mjs';
+import {basePath,routeLocale,localePath,htmlLanguage,localeCodes} from '../lib/locale.mjs';
 import {localeMetadata,localizedItem} from '../lib/locale-content.mjs';
 const localizedPath=Astro.url.pathname==='/'?'/':Astro.url.pathname.replace(/\/?$/,'/');
 const locale=routeLocale(localizedPath),path=basePath(localizedPath);
@@ -50,11 +50,11 @@ const schema=structuredData({base,path:localizedPath,title,description,settings:
 <!doctype html><html lang={htmlLanguage(locale)}><head>
  <meta charset="UTF-8"/><link rel="preload" href={headingFont} as="font" type="font/woff2" crossorigin="anonymous"/><link rel="preload" href={bodyFont} as="font" type="font/woff2" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
  <title>{title}</title><meta name="description" content={description}/><meta name="robots" content={indexable?'index,follow':'noindex,follow'}/>
- <link rel="canonical" href={canonical}/>{indexable&&<><link rel="alternate" hreflang="en" href={base+localePath(path,'en')}/><link rel="alternate" hreflang="zh-Hans" href={base+localePath(path,'zh')}/><link rel="alternate" hreflang="x-default" href={base+localePath(path,'en')}/></>}<link rel="icon" type="image/svg+xml" href="/brand/icon.svg"/><link rel="icon" href="/brand/favicon.ico"/><link rel="apple-touch-icon" href="/brand/apple-touch-icon.png"/><link rel="manifest" href="/brand/site.webmanifest"/>
+ <link rel="canonical" href={canonical}/>{indexable&&<>{localeCodes.map(code=><link rel="alternate" hreflang={htmlLanguage(code)} href={base+localePath(path,code)}/>)}<link rel="alternate" hreflang="x-default" href={base+localePath(path,'en')}/></>}<link rel="icon" type="image/svg+xml" href="/brand/icon.svg"/><link rel="icon" href="/brand/favicon.ico"/><link rel="apple-touch-icon" href="/brand/apple-touch-icon.png"/><link rel="manifest" href="/brand/site.webmanifest"/>
  <meta name="theme-color" content="#20272d"/><meta property="og:title" content={title}/><meta property="og:description" content={description}/><meta property="og:type" content="website"/><meta property="og:url" content={canonical}/><meta property="og:image" content={base+'/brand/og-image.png'}/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta name="twitter:card" content="summary_large_image"/>
 <script type="application/ld+json" set:html={schema?serializeStructuredData(schema):'null'}></script>
 <script id="csf-analytics-config" type="application/json" set:html={JSON.stringify({...analytics,language:htmlLanguage(locale),enabled:analyticsEnabled})}></script>
-</head><body><noscript><style>.quote-layout form,.customer-login-card form{display:none}</style><p style="padding:20px;text-align:center">{locale==='zh'?'请启用 JavaScript 以登录和提交询价，或使用下方的商务联系方式。':'Enable JavaScript to sign in and submit your enquiry, or use the business contact details below.'}</p></noscript><App site={customerSite} path={found?localizedPath:localePath('/not-found/',locale)} query={Astro.url.search} client:load/>
+</head><body><noscript><style>.quote-layout form,.customer-login-card form{display:none}</style><p style="padding:20px;text-align:center">{locale==='ms'?'Aktifkan JavaScript untuk log masuk dan menghantar pertanyaan, atau gunakan maklumat hubungan di bawah.':locale==='zh'?'请启用 JavaScript 以登录和提交询价，或使用下方的商务联系方式。':'Enable JavaScript to sign in and submit your enquiry, or use the business contact details below.'}</p></noscript><App site={customerSite} path={found?localizedPath:localePath('/not-found/',locale)} query={Astro.url.search} client:load/>
 <script>
  import {startMeasurement} from '../lib/browser-measurement.mjs';
  import {startExternalAnalytics} from '../lib/external-analytics.mjs';

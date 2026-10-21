@@ -2,7 +2,7 @@ import {basePath} from './locale.mjs';
 import {hasAnalyticsConsent} from './browser-measurement.mjs';
 import {campaignSource,publicPath} from './acquisition.mjs';
 
-const PRIVATE=/^\/(?:zh\/)?(admin|api|auth|account|sign-in|get-a-quote|media|design-kit|review)(\/|$)/;
+const PRIVATE=/^\/(?:(?:zh|ms)\/)?(admin|api|auth|account|sign-in|get-a-quote|media|design-kit|review)(\/|$)/;
 export const externalAnalyticsEnabled=({environment,path,found=true,policy=false,canManage=false})=>environment==='production'&&found&&!policy&&!canManage&&!PRIVATE.test(path);
 export function analyticsVisitAllowed(href,referrer=''){
  try{

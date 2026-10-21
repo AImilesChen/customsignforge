@@ -1,3 +1,4 @@
+import {validLocale} from './locale.mjs';
 import {SignJWT,jwtVerify} from 'jose';
 import {HttpError,text} from './validation.mjs';
 import {key,cookie,getCookie,sameOrigin} from './auth.mjs';
@@ -41,7 +42,7 @@ export async function customerEmailStart(request,env,raw,send=sendCustomerEmail)
  const id=crypto.randomUUID(),browser=crypto.randomUUID();const random=new Uint32Array(1);do{crypto.getRandomValues(random)}while(random[0]>=4200000000);const code=String(random[0]%100000000).padStart(8,'0');
  await env.DB.prepare('DELETE FROM customer_email_challenges WHERE expires_at<?').bind(now()).run();
  await env.DB.prepare('INSERT INTO customer_email_challenges(id,email,code_hash,browser_hash,expires_at) VALUES(?,?,?,?,?)').bind(id,email,await fingerprint([env.SESSION_SECRET,'customer',id,code]),await fingerprint(browser),now()+600).run();
- try{await send(env,email,code,raw.locale==='zh'?'zh':'en');}catch{await env.DB.prepare('DELETE FROM customer_email_challenges WHERE id=?').bind(id).run();throw new HttpError(503,'The sign-in email could not be sent. Please try again later.');}
+ try{await send(env,email,code,validLocale(raw.locale)?raw.locale:'en');}catch{await env.DB.prepare('DELETE FROM customer_email_challenges WHERE id=?').bind(id).run();throw new HttpError(503,'The sign-in email could not be sent. Please try again later.');}
  return {challenge:id,cookie:cookie(request,'csf_customer_email',browser,600)};
 }
 export async function customerEmailVerify(request,env,raw){
@@ -52,7 +53,7 @@ export async function customerEmailVerify(request,env,raw){
  const customer=await verifiedCustomer(env,row.email);return issueCustomerSession(env,customer,'email');
 }
 async function sendCustomerEmail(env,email,code,locale='en'){
- const message={from:env.MAIL_FROM,to:[email],subject:locale==='zh'?'您的 Custom Sign Forge 登录验证码':'Your Custom Sign Forge sign-in code',text:locale==='zh'?`您的 Custom Sign Forge 客户登录验证码是 ${code}，10 分钟内有效。请仅在 customsignforge.com 输入。如非本人请求，请忽略此邮件。`:`Your Custom Sign Forge customer sign-in code is ${code}. It expires in 10 minutes. Enter it only on customsignforge.com. If you did not request this code, ignore this email.`};
+ const message={from:env.MAIL_FROM,to:[email],subject:locale==='ms'?'Kod log masuk Custom Sign Forge anda':locale==='zh'?'您的 Custom Sign Forge 登录验证码':'Your Custom Sign Forge sign-in code',text:locale==='ms'?`Kod log masuk pelanggan Custom Sign Forge anda ialah ${code}. Kod sah selama 10 minit. Masukkan hanya di customsignforge.com. Abaikan e-mel ini jika anda tidak memintanya.`:locale==='zh'?`您的 Custom Sign Forge 客户登录验证码是 ${code}，10 分钟内有效。请仅在 customsignforge.com 输入。如非本人请求，请忽略此邮件。`:`Your Custom Sign Forge customer sign-in code is ${code}. It expires in 10 minutes. Enter it only on customsignforge.com. If you did not request this code, ignore this email.`};
  if(typeof env.LOGIN_EMAIL?.send==='function'){await env.LOGIN_EMAIL.send(message);return;}
  const r=await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:'Bearer '+env.MAIL_API_KEY,'Content-Type':'application/json'},body:JSON.stringify(message),signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error('Email delivery rejected');
 }

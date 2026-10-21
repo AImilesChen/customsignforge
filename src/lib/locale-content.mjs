@@ -1,4 +1,6 @@
 import zh from '../data/zh/site.json' with {type:'json'};
+import {publicCopy} from './malay-content.mjs';
+import msProjects from '../data/ms/projects.json' with {type:'json'};
 export const chineseProducts=zh.products;
 export const chineseSpace=value=>zh.settings[value]||value;
 const projects={
@@ -11,12 +13,19 @@ const projects={
  'front-lit-letter-reference':'发光字字面与围边结构','halo-letter-reference':'背光字制作结构','metal-letter-reference':'金属围边字工艺','acrylic-letter-reference':'亚克力叠层字工艺','neon-style-reference':'霓虹风格线条工艺','exposed-light-reference':'外露光源字工艺'
 };
 export function localizedItem(item,locale='en') {
+ if(item&&locale==='ms'){
+  const data=publicCopy.site,p=data.products[item.slug]||data.products[item.product],project=!!(item.type==='project'||item.product);
+  if(p&&!project)return {...item,title:p.title,intro:p.intro,seoTitle:p.title+' Tempahan Khas',seoDescription:p.intro,cardDescription:p.effect,imageAlt:p.title+' — inspirasi reka bentuk'};
+  if(project){const title=msProjects[item.slug]||p?.title||'Papan tanda khas',intro=publicCopy.detail.cases[item.slug]||'Rujukan bahan, struktur dan pembuatan. Spesifikasi sebenar disahkan mengikut projek.';return {...item,title,intro,seoTitle:title,seoDescription:intro,imageAlt:title+' · '+(item.imageKind==='concept'?'inspirasi reka bentuk':'rujukan pembuatan')};}
+  const meta=data.pages['/'+item.slug+'/']||data.pages['/landing/'+item.slug+'/'];return meta?{...item,title:meta[0],intro:meta[1],seoTitle:meta[0],seoDescription:meta[1]}:item;
+ }
  if(!item||locale!=='zh')return item;
  if(item.type==='product'||chineseProducts[item.slug]&&!item.product){const p=chineseProducts[item.slug];if(p)return {...item,title:p.title,intro:p.intro,seoTitle:p.title+'定制',seoDescription:p.intro,cardDescription:p.effect,imageAlt:p.title+' · 标识效果展示'};}
  if(item.type==='project'||item.product){const p=chineseProducts[item.product];return {...item,title:projects[item.slug]||((p?.title||'定制标识')+' · '+chineseSpace(item.setting)),intro:(p?.effect||'定制材料与造型')+'，应用于'+chineseSpace(item.setting)+'。了解设计方向、制作方式与现场安装要点。',seoTitle:projects[item.slug]||p?.title,seoDescription:(p?.intro||'定制商业标识的设计与工艺参考。'),imageAlt:(projects[item.slug]||p?.title)+' · '+(item.imageKind==='concept'?'设计灵感效果图':'制作工艺参考')};}
  const meta=zh.pages['/'+item.slug+'/']||zh.pages['/landing/'+item.slug+'/'];return meta?{...item,title:meta[0],intro:meta[1],seoTitle:meta[0],seoDescription:meta[1]}:item;
 }
 export function localeMetadata(path,item,policy,locale='en') {
+ if(locale==='ms'){const data=publicCopy.site,localized=localizedItem(item,locale),fixed=data.pages[path];return {title:localized?.seoTitle||localized?.title||data.policies[policy?.route]||fixed?.[0]||'Halaman tidak ditemui',description:localized?.seoDescription||localized?.intro||fixed?.[1]||'Maklumat papan tanda komersial Custom Sign Forge.'};}
  if(locale!=='zh')return null;
  const localized=localizedItem(item,locale),fixed=zh.pages[path];
  return {title:localized?.seoTitle||localized?.title||zh.policies[policy?.route]||fixed?.[0]||'页面未找到',description:localized?.seoDescription||localized?.intro||fixed?.[1]||'Custom Sign Forge 商业标识信息。'};

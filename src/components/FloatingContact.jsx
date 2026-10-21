@@ -11,7 +11,7 @@ export default function FloatingContact(){const {t:tr,href:localHref}=useLocale(
  const root=useRef(null),trigger=useRef(null),close=useRef(null);
  const number=String(settings.whatsapp||'');
  const valid=/^[1-9]\d{6,14}$/.test(number);
- const href=valid?'https://wa.me/'+number+'?text='+encodeURIComponent(locale==='zh'?'您好，Custom Sign Forge，我想咨询一个定制标识项目。':'Hello Custom Sign Forge, I’d like to discuss a custom sign for my project.'):null;
+ const href=valid?'https://wa.me/'+number+'?text='+encodeURIComponent(locale==='ms'?'Hai Custom Sign Forge, saya ingin membincangkan papan tanda khas untuk projek saya.':locale==='zh'?'您好，Custom Sign Forge，我想咨询一个定制标识项目。':'Hello Custom Sign Forge, I’d like to discuss a custom sign for my project.'):null;
  const dismiss=()=>{setOpen(false);trigger.current?.focus()};
 
  // Keep the controls above consent choices and the local preview ribbon.

@@ -1,3 +1,5 @@
+import {validLocale} from './locale.mjs';
+import {publicCopy} from './malay-content.mjs';
 import {chineseProducts} from './locale-content.mjs';
 import {enquirySummary as summary} from './enquiry-summary.mjs';
 import {LABELS_SQL,CLIENT_LABELS,enquiryLabels,saveEnquiryLabels} from './enquiry-labels.mjs';
@@ -39,7 +41,7 @@ async function createEnquiry(request,env){
   row=await env.DB.prepare('SELECT id,reference,payload_hash,customer_id,details_json FROM enquiries WHERE idempotency_key=?').bind(details.idempotencyKey).first();
   if(!row||row.customer_id!==customer.id||row.payload_hash!==hash)throw new HttpError(409,'This submission conflicts with an earlier attempt. Please check your files and try again.');
  }
- const settings=await siteSettings(env),message=summary(JSON.parse(row.details_json),row.reference,products,raw.locale==='zh'?'zh':raw.locale==='en'?'en':undefined);
+ const settings=await siteSettings(env),message=summary(JSON.parse(row.details_json),row.reference,products,validLocale(raw.locale)?raw.locale:undefined);
  return json({reference:row.reference,message,whatsappURL:whatsapp(settings,message),email:settings.email||null,recordStatus:'web_recorded',files:await enquiryFiles(env,row.id,customer.id)},replay?200:201);
 }
 async function customerAPI(request,env,route){
@@ -59,7 +61,7 @@ async function customerAPI(request,env,route){
   const reference=route==='enquiries'?null:route.slice(10);const offset=Math.max(0,Math.min(100000,Math.floor(Number(new URL(request.url).searchParams.get('offset'))||0)));
   const rows=reference?{results:[await env.DB.prepare('SELECT id,reference,created_at,details_json FROM enquiries WHERE customer_id=? AND reference=?').bind(user.id,reference).first()].filter(Boolean)}:await env.DB.prepare('SELECT id,reference,created_at,details_json FROM enquiries WHERE customer_id=? ORDER BY created_at DESC,id DESC LIMIT 25 OFFSET ?').bind(user.id,offset).all();
   if(reference&&!rows.results.length)throw new HttpError(404,'Enquiry not found.');
-  const products=await published(env,'product'),settings=await siteSettings(env);const items=await Promise.all(rows.results.map(async row=>{const d=JSON.parse(row.details_json);const details=Object.fromEntries([...PROJECT_KEYS,'role','style','use','country','city','stage','timing','notes','contactEmail','contactMethod','phone','drawings','locale'].map(k=>[k,d[k]||'']));const message=summary(d,row.reference,products,requestedLocale==='zh'?'zh':requestedLocale==='en'?'en':d.locale||'en');return {reference:row.reference,createdAt:row.created_at,details,styleName:requestedLocale==='zh'?(chineseProducts[d.style]?.title||'暂不确定'):products.find(p=>p.slug===d.style)?.title||'Not sure yet',message,whatsappURL:whatsapp(settings,message),files:await enquiryFiles(env,row.id,user.id)};}));
+  const products=await published(env,'product'),settings=await siteSettings(env);const items=await Promise.all(rows.results.map(async row=>{const d=JSON.parse(row.details_json);const details=Object.fromEntries([...PROJECT_KEYS,'role','style','use','country','city','stage','timing','notes','contactEmail','contactMethod','phone','drawings','locale'].map(k=>[k,d[k]||'']));const message=summary(d,row.reference,products,validLocale(requestedLocale)?requestedLocale:d.locale||'en');return {reference:row.reference,createdAt:row.created_at,details,styleName:requestedLocale==='ms'?(publicCopy.site.products[d.style]?.title||'Belum pasti'):requestedLocale==='zh'?(chineseProducts[d.style]?.title||'暂不确定'):products.find(p=>p.slug===d.style)?.title||'Not sure yet',message,whatsappURL:whatsapp(settings,message),files:await enquiryFiles(env,row.id,user.id)};}));
   const total=reference?1:(await env.DB.prepare('SELECT count(*) total FROM enquiries WHERE customer_id=?').bind(user.id).first()).total;
   return json({items,total,offset});
  }
