@@ -3,7 +3,14 @@ import {translate} from './translate.mjs';
 import {chineseProducts} from './locale-content.mjs';
 import {publicCopy} from './malay-content.mjs';
 import {thaiPublicCopy} from './thai-content.mjs';
+import {germanPublicCopy} from './german-content.mjs';
 export function enquirySummary(details,reference,products,locale=details.locale||'en'){
+ if(locale==='de'){
+  const controlled=['dimensionsStatus','environment','deliveryWindow','role'];
+  const project=[...PROJECT_KEYS,'role','city','timing'].filter(key=>details[key]).map(key=>translate(PROJECT_LABELS[key]||({city:'Delivery City',timing:'Preferred Timing'}[key]),'de')+': '+(controlled.includes(key)||key==='quantity'&&details[key]==='not-sure'?translate(projectValue(key,details[key]),'de'):details[key])).join('\n');
+  const drawing={ready:details.attachments?.length?'Dateien mit der Anfrage hochgeladen':'Zeichnungen vorhanden, aber keine Datei hochgeladen',none:'Noch keine Zeichnungen',later:'Dateien werden später nachgereicht'}[details.drawings]||details.drawings;
+  return `Guten Tag, ich möchte ein Angebot für ein individuelles Werbeschild anfordern.\nProdukt: ${germanPublicCopy.site.products[details.style]?.title||'Noch nicht sicher'}\nVerwendung: ${translate(details.use,'de')}\nLieferland: ${translate(details.country,'de')}\nProjektstand: ${translate(details.stage,'de')}\n${project?project+'\n':''}${details.contactEmail?'Kontakt-E-Mail: '+details.contactEmail+'\n':''}${details.phone?(details.contactMethod==='whatsapp'?'WhatsApp: ':'Telefon: ')+details.phone+' (nicht verifiziert)\n':''}${details.drawings?'Zeichnungen: '+drawing+'\n':''}${details.project?'Referenzprojekt: '+details.project+'\n':''}Anfragenummer: ${reference}`;
+ }
  if(locale==='th'){
   const controlled=['dimensionsStatus','environment','deliveryWindow','role'];
   const project=[...PROJECT_KEYS,'role','city','timing'].filter(key=>details[key]).map(key=>translate(PROJECT_LABELS[key]||({city:'Delivery City',timing:'Preferred Timing'}[key]),'th')+': '+(controlled.includes(key)||key==='quantity'&&details[key]==='not-sure'?translate(projectValue(key,details[key]),'th'):details[key])).join('\n');

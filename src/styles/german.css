@@ -1,0 +1,16 @@
+html[lang="de-DE"]{--font-heading:"Manrope",Arial,sans-serif;--font-body:"Source Sans 3",Arial,sans-serif;}
+html[lang="de-DE"] h1,html[lang="de-DE"] h2,html[lang="de-DE"] h3{hyphens:auto;overflow-wrap:break-word;text-wrap:balance;}
+html[lang="de-DE"] .button{white-space:normal;text-align:center;line-height:1.35;}
+html[lang="de-DE"] .home-immersive-copy h1{font-size:clamp(38px,3.65vw,58px);line-height:1.15;}
+html[lang="de-DE"] .home-immersive-actions{flex-wrap:wrap;}
+html[lang="de-DE"] .zh-products .overview-banner h1{font-size:clamp(38px,3.6vw,56px);}
+html[lang="de-DE"] .zh-product-page h1{font-size:clamp(32px,3vw,46px);}
+html[lang="de-DE"] .zh-product-page h2{font-size:clamp(27px,2.5vw,36px);}
+html[lang="de-DE"] .zh-about h1{font-size:clamp(36px,3.5vw,52px);}
+html[lang="de-DE"] .zh-options>div{grid-template-columns:minmax(0,1fr);gap:8px;}
+html[lang="de-DE"] .zh-options dt,html[lang="de-DE"] .zh-options dd{overflow-wrap:anywhere;}
+html[lang="de-DE"] .zh-product-filter button{max-width:100%;}
+html[lang="de-DE"] .projects-intro-grid>div>.button,html[lang="de-DE"] .process-page .zh-split>div>.button,html[lang="de-DE"] .trade-page .zh-split>div>.button,html[lang="de-DE"] .zh-about .zh-split>div>.button{margin-top:28px;}
+@media(min-width:1361px) and (max-width:1700px){html[lang="de-DE"] header.header.site-header .wordmark img{width:185px;}html[lang="de-DE"] header.header.site-header .nav{gap:10px;font-size:13px;}html[lang="de-DE"] header.header.site-header .header-actions{gap:8px;}html[lang="de-DE"] header.header.site-header .header-actions>.button{font-size:13px;padding-inline:13px;}html[lang="de-DE"] header.header.site-header .customer-nav{font-size:13px;}}
+@media(max-width:760px){html[lang="de-DE"] .home-immersive-copy h1{font-size:clamp(33px,8vw,42px);}html[lang="de-DE"] .zh-product-page h1{font-size:32px;}html[lang="de-DE"] .zh-product-page h2,html[lang="de-DE"] .zh-about h2{font-size:28px;}html[lang="de-DE"] .zh-about h1{font-size:36px;}html[lang="de-DE"] .zh-section-heading{align-items:flex-start;flex-direction:column;gap:12px;}html[lang="de-DE"] .zh-metrics{grid-template-columns:repeat(2,minmax(0,1fr));}html[lang="de-DE"] .zh-pdp-actions{gap:8px 18px;}html[lang="de-DE"] header.header.site-header .header-actions{gap:8px;}html[lang="de-DE"] header.header.site-header{gap:5px;}html[lang="de-DE"] header.header.site-header .wordmark img{width:112px;}html[lang="de-DE"] .zh-options dd{font-size:17px;}}
+@media(max-width:380px){html[lang="de-DE"] header.header.site-header{gap:4px;padding-inline:12px;}html[lang="de-DE"] header.header.site-header .wordmark img{width:136px;}}
