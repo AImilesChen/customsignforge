@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 const base=process.env.TEST_ORIGIN||'https://customsignforge.com';
 const headers={'User-Agent':'CustomSignForge-Customer-Release-Verification/1.0'};
 const get=path=>fetch(base+path,{redirect:'manual',headers});
-let r=await get('/');assert.equal(r.status,200);assert((await r.text()).includes('class="customer-nav"'));console.log('PASS public header has a customer account entry');
+let r=await get('/');assert.equal(r.status,200);assert((await r.text()).includes('class="desktop-account-entry customer-nav"'));console.log('PASS public header has a customer account entry');
 const next='/get-a-quote/?style=metal-letters&utm_source=release-check';r=await get(next);assert.equal(r.status,303);const signIn=new URL(r.headers.get('location'),base);assert.equal(signIn.pathname,'/sign-in/');assert.equal(signIn.searchParams.get('next'),next);console.log('PASS anonymous quote form redirects to customer sign-in, retaining product/source');
 r=await get('/sign-in/?next='+encodeURIComponent(next));assert.equal(r.status,200);let html=await r.text();assert(html.includes('Sign In to Request Your Quote'));assert(html.includes('/auth/customer/google?'));assert(!html.includes('name="notes"'));console.log('PASS customer sign-in page exposes Google entry and no quote fields');
 r=await get('/account/');assert.equal(r.status,303);assert(new URL(r.headers.get('location'),base).pathname==='/sign-in/');
