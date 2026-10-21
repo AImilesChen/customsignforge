@@ -2,7 +2,14 @@ import {PROJECT_KEYS,PROJECT_LABELS,projectValue} from './enquiry-project.mjs';
 import {translate} from './translate.mjs';
 import {chineseProducts} from './locale-content.mjs';
 import {publicCopy} from './malay-content.mjs';
+import {thaiPublicCopy} from './thai-content.mjs';
 export function enquirySummary(details,reference,products,locale=details.locale||'en'){
+ if(locale==='th'){
+  const controlled=['dimensionsStatus','environment','deliveryWindow','role'];
+  const project=[...PROJECT_KEYS,'role','city','timing'].filter(key=>details[key]).map(key=>translate(PROJECT_LABELS[key]||({city:'Delivery City',timing:'Preferred Timing'}[key]),'th')+': '+(controlled.includes(key)||key==='quantity'&&details[key]==='not-sure'?translate(projectValue(key,details[key]),'th'):details[key])).join('\n');
+  const drawing={ready:details.attachments?.length?'แนบไฟล์ในแบบฟอร์มแล้ว':'มีแบบ แต่ยังไม่ได้อัปโหลด',none:'ยังไม่มีแบบ',later:'จะส่งไฟล์ภายหลัง'}[details.drawings]||details.drawings;
+  return `สวัสดี ฉันต้องการขอใบเสนอราคาป้ายสั่งทำ\nประเภท: ${thaiPublicCopy.site.products[details.style]?.title||'ยังไม่แน่ใจ'}\nการใช้งาน: ${translate(details.use,'th')}\nประเทศที่จัดส่ง: ${translate(details.country,'th')}\nขั้นตอนโครงการ: ${translate(details.stage,'th')}\n${project?project+'\n':''}${details.contactEmail?'อีเมลติดต่อ: '+details.contactEmail+'\n':''}${details.phone?(details.contactMethod==='whatsapp'?'WhatsApp: ':'โทรศัพท์: ')+details.phone+' (ยังไม่ได้ยืนยัน)\n':''}${details.drawings?'แบบ: '+drawing+'\n':''}${details.project?'โครงการอ้างอิง: '+details.project+'\n':''}เลขที่คำขอ: ${reference}`;
+ }
  if(locale==='ms'){
   const controlled=['dimensionsStatus','environment','deliveryWindow','role'];
   const project=[...PROJECT_KEYS,'role','city','timing'].filter(k=>details[k]).map(k=>translate(PROJECT_LABELS[k]||({city:'Delivery City',timing:'Preferred Timing'}[k]),'ms')+': '+(controlled.includes(k)||k==='quantity'&&details[k]==='not-sure'?translate(projectValue(k,details[k]),'ms'):details[k])).join('\n');

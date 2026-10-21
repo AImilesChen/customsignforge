@@ -1,0 +1,22 @@
+html[lang="th-TH"]{--font-heading:"Noto Sans Thai","Leelawadee UI",Tahoma,sans-serif;--font-body:"Noto Sans Thai","Leelawadee UI",Tahoma,sans-serif;}
+html[lang="th-TH"] body{font-family:var(--font-body);}
+html[lang="th-TH"] h1,html[lang="th-TH"] h2,html[lang="th-TH"] h3{font-family:var(--font-heading);line-height:1.38;letter-spacing:0;word-break:normal;overflow-wrap:break-word;text-wrap:balance;}
+html[lang="th-TH"] p,html[lang="th-TH"] dd,html[lang="th-TH"] li{line-height:1.75;}
+html[lang="th-TH"] .eyebrow{letter-spacing:0;line-height:1.6;}
+html[lang="th-TH"] .button{white-space:normal;text-align:center;line-height:1.45;}
+html[lang="th-TH"] .zh-product-page h1{font-size:clamp(32px,3.1vw,46px);}
+html[lang="th-TH"] .zh-product-page h2{font-size:clamp(27px,2.6vw,36px);}
+html[lang="th-TH"] .zh-about h1{font-size:clamp(36px,3.6vw,52px);}
+html[lang="th-TH"] .zh-about h2{font-size:clamp(28px,2.8vw,38px);}
+html[lang="th-TH"] .home-immersive-copy h1{font-size:clamp(38px,4vw,58px);line-height:1.3;}
+html[lang="th-TH"] .home-immersive-actions{flex-wrap:wrap;}
+html[lang="th-TH"] .home-immersive-actions .button{padding-inline:20px;}
+html[lang="th-TH"] .home-hero-scene-title{font-size:26px;}
+html[lang="th-TH"] .zh-products .overview-banner h1{font-size:clamp(38px,4vw,58px);}
+html[lang="th-TH"] .zh-options>div{grid-template-columns:1fr;gap:8px;}
+html[lang="th-TH"] .zh-options dt{line-height:1.5;}
+html[lang="th-TH"] .zh-metrics dd small{margin-inline-start:.25em;}
+@media(min-width:1361px) and (max-width:1700px){html[lang="th-TH"] header.header.site-header .wordmark img{width:200px;}html[lang="th-TH"] header.header.site-header .nav{gap:12px;font-size:14px;}html[lang="th-TH"] header.header.site-header .header-actions{gap:10px;}html[lang="th-TH"] header.header.site-header .header-actions>.button{font-size:14px;padding-inline:16px;}html[lang="th-TH"] header.header.site-header .customer-nav{font-size:14px;}}
+@media(min-width:1361px) and (max-width:1500px){html[lang="th-TH"] header.header.site-header{gap:14px;}html[lang="th-TH"] header.header.site-header .wordmark img{width:180px;}html[lang="th-TH"] header.header.site-header .nav{gap:9px;font-size:13px;}html[lang="th-TH"] header.header.site-header .header-actions{gap:8px;}html[lang="th-TH"] header.header.site-header .customer-nav{font-size:13px;}html[lang="th-TH"] header.header.site-header .header-actions>.button{font-size:13px;padding-inline:13px;}}
+@media(max-width:760px){html[lang="th-TH"] .home-immersive-copy h1{font-size:36px;}html[lang="th-TH"] .zh-product-page h1{font-size:32px;}html[lang="th-TH"] .zh-product-page h2,html[lang="th-TH"] .zh-about h2{font-size:28px;}html[lang="th-TH"] .zh-about h1{font-size:36px;}html[lang="th-TH"] .zh-section-heading{align-items:flex-start;flex-direction:column;gap:12px;}html[lang="th-TH"] .home-hero-strength span{font-size:12px;}html[lang="th-TH"] .zh-metrics{grid-template-columns:repeat(2,minmax(0,1fr));}html[lang="th-TH"] .zh-pdp-actions{gap:8px 18px;}html[lang="th-TH"] header.header.site-header .header-actions{gap:8px;}html[lang="th-TH"] header.header.site-header{gap:5px;}html[lang="th-TH"] header.header.site-header .wordmark img{width:112px;}html[lang="th-TH"] .zh-options dd{font-size:17px;}}
+@media(max-width:380px){html[lang="th-TH"] header.header.site-header{gap:4px;padding-inline:12px;}html[lang="th-TH"] header.header.site-header .wordmark img{width:136px;}}
