@@ -73,18 +73,27 @@ header.header.site-header .product-nav-help{display:flex;align-items:center;just
 }
 @media(prefers-reduced-motion:reduce){.product-nav-trigger svg{transition:none}}
 
-/* Customer access remains visible; management is a separate owner-only action. */
-header.header.site-header .admin-nav{display:inline-flex;align-items:center;min-height:48px;padding-left:16px;border-left:1px solid var(--line);font-size:15px;font-weight:600;white-space:nowrap}
-header.header.site-header .admin-nav:hover{color:var(--orange)}
-header.header.site-header .nav>.mobile-admin-link{display:none}
-header.header.site-header.has-management .wordmark img{width:200px}
-header.header.site-header.has-management .nav{gap:14px}
-header.header.site-header.has-management .header-actions{gap:12px}
-header.header.site-header.home-immersive-header .admin-nav{border-left-color:#ffffff40}
-header.header.site-header.home-immersive-header .admin-nav:hover{color:#f0ac83}
+/* Account controls keep the administrator link inside the signed-in menu. */
+header.header.site-header .mobile-account-entry{display:none}
+header.header.site-header .account-menu{position:relative;flex-shrink:0}
+header.header.site-header .account-menu>summary{display:flex;align-items:center;gap:7px;list-style:none;cursor:pointer}
+header.header.site-header .account-menu>summary::-webkit-details-marker{display:none}
+header.header.site-header .account-menu[open]>summary svg{transform:rotate(180deg)}
+header.header.site-header .account-menu-panel{position:absolute;right:0;top:calc(100% + 6px);z-index:45;min-width:188px;padding:7px;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:8px;box-shadow:0 14px 32px #10182024}
+header.header.site-header .account-menu-panel a{display:block;padding:12px 14px;border-radius:5px;font-size:15px;line-height:1.4;white-space:nowrap}
+header.header.site-header .account-menu-panel a:hover,header.header.site-header .account-menu-panel a:focus-visible,header.header.site-header .account-menu-panel a[aria-current=page]{background:var(--paper);color:var(--orange)}
+/* Language stays at the far right, with reliable SVG flags on all platforms. */
+header.header.site-header .language-switcher{position:relative;flex-shrink:0}
+header.header.site-header .language-trigger{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:44px;padding:8px 10px;border:1px solid #b8c0c6;border-radius:6px;font-size:13px;font-weight:600;white-space:nowrap}
+header.header.site-header .language-trigger img,header.header.site-header .language-options img{width:22px;height:15px;flex:none;object-fit:cover;border:1px solid #d9dde0;border-radius:2px}
+header.header.site-header .language-trigger svg{flex:none;transition:transform .15s}
+header.header.site-header .language-trigger[aria-expanded=true] svg{transform:rotate(180deg)}
+header.header.site-header .language-options{position:absolute;right:0;top:calc(100% + 7px);z-index:46;min-width:180px;padding:6px;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:8px;box-shadow:0 14px 32px #10182024}
+header.header.site-header .language-options button{display:flex;align-items:center;gap:10px;width:100%;min-height:44px;padding:9px 10px;border-radius:5px;text-align:left;font-size:14px;white-space:nowrap}
+header.header.site-header .language-options button:hover,header.header.site-header .language-options button:focus-visible,header.header.site-header .language-options button[aria-current=true]{background:var(--paper);color:var(--orange)}
+header.header.site-header.home-immersive-header .language-trigger{border-color:#ffffff65;background:#ffffff0d;color:#fff}
+header.header.site-header :is(.language-trigger,.account-menu>summary):focus-visible{outline:2px solid var(--orange);outline-offset:3px}
 @media(max-width:1360px){
- header.header.site-header .header-actions>.admin-nav{display:none}
- header.header.site-header .nav>.mobile-admin-link{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);margin-top:12px;padding-top:18px}
  header.header.site-header.home-immersive-header .nav{background:#111c22;color:#fff;border-top-color:#ffffff24}
  header.header.site-header.home-immersive-header.is-menu-open{background:#111c22}
  .home-immersive-header .product-nav-panel{color:#fff}
@@ -92,4 +101,21 @@ header.header.site-header.home-immersive-header .admin-nav:hover{color:#f0ac83}
  .home-immersive-header .product-nav-item:hover,.home-immersive-header .product-nav-item:focus-visible{background:#ffffff12}
  .home-immersive-header .product-nav-heading a,.home-immersive-header .product-nav-help,header.header.site-header.home-immersive-header .nav>.mobile-quote-link{color:#f3b28d}
 }
-@media(max-width:700px){header.header.site-header.has-management .wordmark img{width:160px}}
+@media(max-width:1000px){header.header.site-header .header-actions>.button{display:none}}
+@media(max-width:700px){
+ header.header.site-header .desktop-account-entry{display:none}
+ header.header.site-header .nav>.mobile-account-entry{display:block;width:100%;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+ header.header.site-header .nav>a.mobile-account-entry{padding-block:12px}
+ header.header.site-header .mobile-account-entry>summary{min-height:48px;font-size:17px;justify-content:space-between}
+ header.header.site-header .mobile-account-entry .account-menu-panel{position:static;min-width:0;margin:2px 0 10px;padding:0 0 0 12px;background:transparent;color:inherit;border:0;border-left:2px solid var(--line);border-radius:0;box-shadow:none}
+ header.header.site-header .mobile-account-entry .account-menu-panel a{min-height:44px;padding:11px 12px}
+ header.header.site-header .language-trigger{width:50px;justify-content:center;gap:5px;padding-inline:5px}
+ header.header.site-header .language-current{display:none}
+ header.header.site-header .language-trigger img{width:21px;height:15px}
+ header.header.site-header .language-trigger svg{width:12px}
+ header.header.site-header .language-switcher{order:1}
+ header.header.site-header .menu{order:0}
+ header.header.site-header .nav>.mobile-quote-link{margin-top:4px}
+}
+@media(max-width:380px){header.header.site-header .wordmark img{width:136px}header.header.site-header .header-actions{gap:7px}}
+@media(prefers-reduced-motion:reduce){header.header.site-header .language-trigger svg{transition:none}}

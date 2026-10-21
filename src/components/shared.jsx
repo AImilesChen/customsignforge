@@ -23,13 +23,28 @@ export const Figure=({src,alt,caption='Design inspiration',className=''})=>{cons
 export const blocks=md=>md.split(/\n\n+/).map(s=>s.trim()).filter(Boolean);
 export const mdHeadings=md=>blocks(md).slice(2).join('\n\n').replace(/^.*(?:实施说明|按钮|六类卡片沿用|仅展示已核实).*$/gm,'').replace(/\*\*([^*\n]*[\u4e00-\u9fff][^*\n]*)\*\*：(.+)/g,(_,label,text)=>label.includes('标题')?'### '+text:text).replace(/^\*\*([^*\n]+)\*\*$/gm,'### $1').replace(/^### .*?[\u4e00-\u9fff].*$/gm,'');
 export const Markdown=({text})=>{const {t:tr}=useLocale();return (<div className="prose"><ReactMarkdown remarkPlugins={[remarkGfm]} skipHtml components={{img:({src,alt})=>/^\/(assets|media)\//.test(src||'')?<Image src={src} alt={tr(alt||'')} loading="lazy"/>:<span>{tr(alt)}</span>,h2:({children})=><h2 id={String(children).toLowerCase().replace(/[^a-z0-9]+/g,'-')}>{tr(children)}</h2>}}>{tr(text.replace(/<h2 id="[^"]+">([^<]+)<\/h2>/g,'## $1').replace(/<aside class="review-note">([\s\S]*?)<\/aside>/g,'> $1'))}</ReactMarkdown></div>);};
+function AccountMenu({mobile=false}){
+ const {t:tr}=useLocale();const {site,path}=useSite();const root=useRef(null);
+ useEffect(()=>{
+  const dismiss=e=>{if(root.current&&!root.current.contains(e.target))root.current.open=false};
+  const escape=e=>{if(e.key==='Escape'&&root.current?.open){root.current.open=false;root.current.querySelector('summary')?.focus()}};
+  document.addEventListener('pointerdown',dismiss);document.addEventListener('keydown',escape);
+  return()=>{document.removeEventListener('pointerdown',dismiss);document.removeEventListener('keydown',escape)};
+ },[]);
+ const className=mobile?'mobile-account-entry':'desktop-account-entry';
+ if(!site.customer&&!site.canManage)return <Link to="/sign-in/" className={`${className} customer-nav`} aria-current={path==='/sign-in/'?'page':undefined}>{tr('Sign In')}</Link>;
+ return <details className={`${className} account-menu`} ref={root}>
+  <summary className="customer-nav" aria-current={path==='/account/'?'page':undefined}>{tr('My Account')}<CaretDown size={15} aria-hidden="true"/></summary>
+  <div className="account-menu-panel"><Link to={site.customer?'/account/':'/sign-in/'} aria-current={path==='/account/'?'page':undefined}>{tr(site.customer?'My Account':'Sign In')}</Link>{site.canManage&&<Link to="/admin/">{tr('管理后台')}</Link>}</div>
+ </details>;
+}
 export function Header({home=false}){const {t:tr,href}=useLocale();
- const {path,site,products}=useSite();const[open,setOpen]=useState(false),[productOpen,setProductOpen]=useState(false);
+ const {path,products}=useSite();const[open,setOpen]=useState(false),[productOpen,setProductOpen]=useState(false);
  const immersive=home&&path==='/';
  const header=useRef(null),productTrigger=useRef(null),menuTrigger=useRef(null);
  useEffect(()=>{const dismiss=e=>{if(!header.current?.contains(e.target)){setOpen(false);setProductOpen(false)}};document.addEventListener('pointerdown',dismiss);return()=>document.removeEventListener('pointerdown',dismiss)},[]);
  function escape(e){if(e.key!=='Escape')return;if(productOpen){setProductOpen(false);productTrigger.current?.focus()}else if(open){setOpen(false);menuTrigger.current?.focus()}}
- return <><a className="skip" href={href("#main")}>{tr("Skip to content")}</a><header ref={header} onKeyDown={escape} className={'header site-header'+(home?' home-header':'')+(immersive?' home-immersive-header':'')+(open?' is-menu-open':'')+(site.canManage?' has-management':'')}>
+ return <><a className="skip" href={href("#main")}>{tr("Skip to content")}</a><header ref={header} onKeyDown={escape} className={'header site-header'+(home?' home-header':'')+(immersive?' home-immersive-header':'')+(open?' is-menu-open':'')}>
   <Link to="/" className="wordmark"><Image src={immersive?'/brand/horizontal-white.svg':'/brand/horizontal-graphite.svg'} alt={tr("Custom Sign Forge")} width="437" height="64"/></Link>
   <nav id="primary-navigation" className={open?'nav open':'nav'} aria-label={tr("Main navigation")}>
    <div className="product-navigation"><div className="product-nav-entry"><Link className="product-nav-link" to="/products/" aria-current={path==='/products/'?'page':undefined}><span className="desktop-products-label">{tr("Products")}</span><span className="mobile-products-label">{tr("All Products")}</span></Link><button type="button" ref={productTrigger} className="product-nav-trigger" aria-label={tr(productOpen?'Hide product categories':'Show product categories')} aria-expanded={productOpen} aria-controls="product-navigation-panel" onClick={()=>setProductOpen(!productOpen)}><CaretDown size={18} aria-hidden="true"/></button></div>
@@ -40,10 +55,10 @@ export function Header({home=false}){const {t:tr,href}=useLocale();
     </div>
    </div>
    {tr(nav.filter(([,u])=>u!=='/products/').map(([t,u])=><Link key={u} to={u} aria-current={path===u?'page':undefined}>{tr(t)}</Link>))}
-   {tr(site.canManage&&<Link className="mobile-admin-link" to="/admin/">{tr("管理后台 ")}<ArrowRight size={18}/></Link>)}
+   <AccountMenu mobile/>
    <Link className="mobile-quote-link" to="/get-a-quote/">{tr("Request a Quote ")}<ArrowRight size={18}/></Link>
   </nav>
-  <div className="header-actions"><LanguageSwitcher/><Link to={site.customer?'/account/':'/sign-in/'} className="customer-nav" aria-current={['/account/','/sign-in/'].includes(path)?'page':undefined}>{site.customer?'My Account':'Sign In'}</Link>{tr(site.canManage&&<Link to="/admin/" className="admin-nav">{tr("管理后台")}</Link>)}<Button to={path==='/for-sign-companies/'?quote({entry:path,cta:'header'}):'/get-a-quote/'}>{tr("Request a Quote")}</Button><button type="button" ref={menuTrigger} className="menu" onClick={()=>{setOpen(!open);setProductOpen(false)}} aria-controls="primary-navigation" aria-expanded={open} aria-label={tr(open?'Close menu':'Open menu')}>{tr(open?<X size={25}/>:<List size={25}/>)}</button></div>
+  <div className="header-actions"><AccountMenu/><Button to={path==='/for-sign-companies/'?quote({entry:path,cta:'header'}):'/get-a-quote/'}>{tr("Request a Quote")}</Button><button type="button" ref={menuTrigger} className="menu" onClick={()=>{setOpen(!open);setProductOpen(false)}} aria-controls="primary-navigation" aria-expanded={open} aria-label={tr(open?'Close menu':'Open menu')}>{tr(open?<X size={25}/>:<List size={25}/>)}</button><LanguageSwitcher/></div>
  </header></>;
 }
 export function Footer({settings:openSettings}){const {t:tr,href}=useLocale();const {settings,copy,path,locale}=useSite();return <footer className={path==='/'?'home-footer':undefined}><div className="container footer-top"><div><Link className="wordmark" to="/"><Image src="/brand/horizontal-white.svg" alt={tr("Custom Sign Forge")} width="437" height="64"/></Link>{settings.operatorName&&<p className="small">{tr("Operated by ")}{settings.operatorName}</p>}<p>{tr(locale==='ms'?'Papan tanda komersial, huruf bercahaya dan huruf timbul dibuat mengikut spesifikasi projek anda. Hubungi kami untuk membincangkan bahan, struktur dan penghantaran.':locale==='zh'?'按您的项目规格制作商业标识、发光字与立体字。欢迎联系讨论材料、结构与交付安排。':settings.businessDescription||'Custom business signs, illuminated letters and dimensional lettering, made to your project specifications. We welcome enquiries from Southeast Asia, Europe and North America. Pricing and delivery are confirmed for each order.')}</p></div><div><h3>{tr("Explore")}</h3>{tr(nav.map(([t,l])=><Link key={l} to={l}>{tr(t)}</Link>))}</div><div><h3>{tr("Your project")}</h3><Link to="/account/">{tr("My Account")}</Link><Link to="/get-a-quote/">{tr("Get a Custom Quote")}</Link><Link to="/shipping-installation/">{tr("Shipping & Installation")}</Link>{tr(settings.whatsapp&&<a href={href('https://wa.me/'+settings.whatsapp)}>{tr("WhatsApp: +")}{tr(settings.whatsapp)}</a>)}<p className="small">{settings.email?<a href={href('mailto:'+settings.email)}>{tr(settings.email)}</a>:'Contact details will be available here.'}</p></div></div><div className="container footer-bottom"><span>{tr("© 2026 Custom Sign Forge")}</span><div>{tr(copy.policies.filter(p=>!['/shipping-installation/','/legal-notice/'].includes(p.route)).map(p=><Link key={p.route} to={p.route}>{tr(p.title)}</Link>))}<button onClick={openSettings}>{tr("Cookie Settings")}</button></div></div></footer>}

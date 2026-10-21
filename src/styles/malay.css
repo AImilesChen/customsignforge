@@ -13,11 +13,8 @@ html[lang="ms-MY"] .home-hero-scene-title{font-size:26px;}
 html[lang="ms-MY"] .zh-products .overview-banner h1{font-size:clamp(38px,4vw,58px);}
 html[lang="ms-MY"] .zh-options>div{grid-template-columns:1fr;gap:8px;}
 html[lang="ms-MY"] .zh-options dt{line-height:1.5;}
-html[lang="ms-MY"] .language-switcher select{width:132px;}
-.language-short{display:none;}
 @media(min-width:1361px) and (max-width:1700px){html[lang="ms-MY"] header.header.site-header .wordmark img{width:200px;}html[lang="ms-MY"] header.header.site-header .nav{gap:12px;font-size:14px;}html[lang="ms-MY"] header.header.site-header .header-actions{gap:10px;}html[lang="ms-MY"] header.header.site-header .header-actions>.button{font-size:14px;padding-inline:16px;}html[lang="ms-MY"] header.header.site-header .customer-nav{font-size:14px;}}
-@media(min-width:1361px) and (max-width:1500px){html[lang="ms-MY"] header.header.site-header{gap:14px;}html[lang="ms-MY"] header.header.site-header .wordmark img{width:180px;}html[lang="ms-MY"] header.header.site-header .nav{gap:9px;font-size:13px;}html[lang="ms-MY"] header.header.site-header .header-actions{gap:8px;}html[lang="ms-MY"] header.header.site-header .language-switcher select{width:120px;}html[lang="ms-MY"] header.header.site-header .customer-nav,html[lang="ms-MY"] header.header.site-header .admin-nav{font-size:13px;}html[lang="ms-MY"] header.header.site-header .admin-nav{padding-left:8px;}html[lang="ms-MY"] header.header.site-header .header-actions>.button{font-size:13px;padding-inline:13px;}}
-@media(min-width:1361px) and (max-width:1500px){html[lang="ms-MY"] header.header.site-header.has-management .wordmark img{width:150px;}html[lang="ms-MY"] header.header.site-header.has-management .nav{gap:7px;font-size:12.5px;}html[lang="ms-MY"] header.header.site-header.has-management .language-switcher select{width:110px;}html[lang="ms-MY"] header.header.site-header.has-management .header-actions{gap:6px;}html[lang="ms-MY"] header.header.site-header.has-management .header-actions>.button{padding-inline:11px;}}
+@media(min-width:1361px) and (max-width:1500px){html[lang="ms-MY"] header.header.site-header{gap:14px;}html[lang="ms-MY"] header.header.site-header .wordmark img{width:180px;}html[lang="ms-MY"] header.header.site-header .nav{gap:9px;font-size:13px;}html[lang="ms-MY"] header.header.site-header .header-actions{gap:8px;}html[lang="ms-MY"] header.header.site-header .customer-nav{font-size:13px;}html[lang="ms-MY"] header.header.site-header .header-actions>.button{font-size:13px;padding-inline:13px;}}
 @media(max-width:760px){
  html[lang="ms-MY"] .home-immersive-copy h1{font-size:38px;}
  html[lang="ms-MY"] .zh-product-page h1{font-size:32px;}
@@ -27,10 +24,9 @@ html[lang="ms-MY"] .language-switcher select{width:132px;}
  html[lang="ms-MY"] .home-hero-strength span{font-size:12px;}
  html[lang="ms-MY"] .zh-metrics{grid-template-columns:repeat(2,minmax(0,1fr));}
  html[lang="ms-MY"] .zh-pdp-actions{gap:8px 18px;}
- html[lang="ms-MY"] .language-switcher select{width:106px;font-size:11px;padding-inline:8px 22px;}
  html[lang="ms-MY"] header.header.site-header .header-actions{gap:8px;}
  html[lang="ms-MY"] header.header.site-header{gap:5px;}
  html[lang="ms-MY"] header.header.site-header .wordmark img{width:112px;}
  html[lang="ms-MY"] .zh-options dd{font-size:17px;}
 }
-@media(max-width:380px){html[lang="ms-MY"] header.header.site-header{gap:4px;padding-inline:12px;}html[lang="ms-MY"] header.header.site-header .wordmark img{width:112px;}html[lang="ms-MY"] header.header.site-header .customer-nav{font-size:11px;}html[lang="ms-MY"] .language-switcher select{width:50px;color:transparent;}html[lang="ms-MY"] .language-switcher option{color:var(--ink);}html[lang="ms-MY"] .language-short{display:block;position:absolute;left:8px;pointer-events:none;font-size:11px;color:var(--ink);}html[lang="ms-MY"] .home-immersive-header .language-short{color:#fff;}}
+@media(max-width:380px){html[lang="ms-MY"] header.header.site-header{gap:4px;padding-inline:12px;}html[lang="ms-MY"] header.header.site-header .wordmark img{width:136px;}}
