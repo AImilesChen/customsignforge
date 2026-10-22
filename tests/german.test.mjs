@@ -55,18 +55,22 @@ test('German content covers every source key and all six products and 24 cases',
  assert.equal(germanPublicCopy.detail.products['led-channel-letters'].details[0].src,'/assets/product-pages-zh/front-face.webp');
  assert.equal(germanPublicCopy.detail.products['backlit-letters'].wideDetails,true);
  const expected={
-  'led-channel-letters':'Frontleuchtende LED-Buchstaben',
-  'backlit-letters':'Rückleuchtende Buchstaben mit Halo-Effekt',
+  'led-channel-letters':'LED-Leuchtbuchstaben (Frontleuchter)',
+  'backlit-letters':'LED-Leuchtbuchstaben (Rückleuchter)',
   'metal-letters':'3D-Metallbuchstaben',
   'acrylic-letters':'Acrylglasbuchstaben und Logos',
-  'lightbox-neon':'LED-Leuchtkästen und Schilder in Neon-Optik',
-  'specialty-signs':'Individuelle Sonderanfertigungen'
+  'lightbox-neon':'LED-Leuchtkästen und LED-Neonschilder',
+  'specialty-signs':'Sonderanfertigungen für Werbeschilder'
  };
  for(const [slug,title] of Object.entries(expected)){
   assert.equal(germanPublicCopy.site.products[slug].title,title);
   const product=localizedItem({type:'product',slug,image:'/assets/sample.webp'},'de');
   assert(product.seoTitle.startsWith(title));assert.equal(product.image,'/assets/sample.webp');
  }
+ assert.match(localeMetadata('/products/',undefined,undefined,'de').description,/rückleuchtende LED-Buchstaben/);
+ assert.match(germanPublicCopy.site.products['backlit-letters'].intro,/Schattenschrift/);
+ assert.match(germanPublicCopy.site.products['acrylic-letters'].intro,/Acrylbuchstaben/);
+ assert.match(germanPublicCopy.site.products['lightbox-neon'].intro,/LED-Technik/);
  assert.match(localeMetadata('/contact/',undefined,undefined,'de').title,/Kontakt/);
  assert.match(translate('Have a Sign in Mind?','de'),/Schild/);
 });
@@ -82,7 +86,7 @@ test('German enquiry preserves optional drawings, saved identity and customer te
   const raw=JSON.parse(f.sqlite.prepare('SELECT details_json FROM enquiries').get().details_json);
   assert.equal(raw.locale,'de');assert.equal(raw.notes,payload.notes);
   const account=await(await call(f.env,'account/enquiries','GET',undefined,headers,'?locale=de')).json();
-  assert.match(account.items[0].styleName,/Halo/);assert.equal(account.items[0].details.notes,payload.notes);
+  assert.match(account.items[0].styleName,/Rückleuchter/);assert.equal(account.items[0].details.notes,payload.notes);
   assert.equal((await call(f.env,'account/enquiries/'+saved.reference,'GET',undefined,other,'?locale=de')).status,404);
  }finally{f.close()}
 });
