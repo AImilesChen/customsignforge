@@ -54,15 +54,15 @@ const frenchSeoDescriptions={
  '/products/specialty-signs/':'Enseignes spéciales sur mesure : typographies particulières, matériaux combinés, lettres à ampoules et structures étudiées selon vos plans.'
 };
 const koreanProductSeoTitles={
- 'led-channel-letters':'맞춤 제작 LED 채널간판 · 전면 발광 채널',
+ 'led-channel-letters':'전면 발광 LED 채널간판 제작',
  'backlit-letters':'맞춤 제작 LED 후광 채널간판',
  'metal-letters':'맞춤 제작 금속 입체문자',
  'acrylic-letters':'맞춤 제작 아크릴 입체문자와 로고',
- 'lightbox-neon':'맞춤 제작 LED 라이트박스와 네온사인',
+ 'lightbox-neon':'LED 라이트박스 간판·네온사인 제작',
  'specialty-signs':'맞춤형 특수 간판 제작'
 };
 const koreanSeoPageTitles={
- '/':'맞춤형 비즈니스 간판 및 LED 채널간판',
+ '/':'맞춤 간판 제작 · LED 채널간판과 입체문자',
  '/products/':'맞춤형 간판 종류 · LED 채널간판부터 입체문자까지',
  '/projects/':'맞춤형 간판 디자인 사례',
  '/about/':'Custom Sign Forge 소개 · 간판 제작 공정',
@@ -71,7 +71,7 @@ const koreanSeoPageTitles={
  '/contact/':'맞춤형 간판 상담 및 견적 문의'
 };
 const koreanSeoDescriptions={
- '/':'매장, 사무실, 호텔을 위한 맞춤형 비즈니스 간판을 제작합니다. LED 채널간판, 금속 입체문자, 아크릴 로고의 소재와 조명 옵션을 살펴보세요.',
+ '/':'매장, 사무실, 호텔을 위한 맞춤 간판을 제작합니다. LED 채널간판, 금속 입체문자, 아크릴 로고의 소재와 조명 옵션을 살펴보세요.',
  '/products/':'LED 채널간판, 후광 채널간판, 금속·아크릴 입체문자, LED 라이트박스와 네온사인을 비교하고 프로젝트에 맞는 제작 방식을 상담하세요.',
  '/projects/':'매장, 리셉션, 호텔 등 다양한 공간의 맞춤형 간판 디자인 예시와 제작 참고 자료를 살펴보세요. 실제 사양은 프로젝트별로 확인합니다.',
  '/about/':'Custom Sign Forge의 제작팀과 작업 공정을 소개합니다. 도면 확인부터 소재 가공, 조립, 품질 검사와 포장까지 확인하세요.',
@@ -84,7 +84,7 @@ const koreanSeoDescriptions={
  '/products/backlit-letters/':'문자 뒤에서 은은한 빛이 퍼지는 맞춤형 LED 후광 채널간판. 리셉션 벽면, 매장 외벽과 호텔 입구에 어울립니다.',
  '/products/metal-letters/':'스테인리스와 알루미늄으로 제작하는 금속 입체문자. 마감, 두께와 고정 방식을 프로젝트에 맞게 검토합니다.',
  '/products/acrylic-letters/':'색상과 레이어를 조합하는 맞춤형 아크릴 입체문자와 로고. 리셉션, 매장 및 실내 브랜드 공간에 활용할 수 있습니다.',
- '/products/lightbox-neon/':'매장과 카페를 위한 맞춤형 LED 라이트박스와 LED 네온사인. 조명 방식과 설치 환경에 맞는 제작 옵션을 비교하세요.',
+ '/products/lightbox-neon/':'매장과 카페를 위한 맞춤형 LED 라이트박스 간판과 LED 네온사인. 조명 방식과 설치 환경에 맞는 제작 옵션을 비교하세요.',
  '/products/specialty-signs/':'복합 소재, 독특한 형태와 조명을 결합하는 맞춤형 특수 간판. 도면과 설치 조건에 따라 제작 사양을 검토합니다.'
 };
 export function localizedItem(item,locale='en') {
@@ -105,9 +105,10 @@ export function localizedItem(item,locale='en') {
  const meta=zh.pages['/'+item.slug+'/']||zh.pages['/landing/'+item.slug+'/'];return meta?{...item,title:meta[0],intro:meta[1],seoTitle:meta[0],seoDescription:meta[1]}:item;
 }
 export function localeMetadata(path,item,policy,locale='en') {
- if(locale==='ko'){const data=koreanPublicCopy.site,localized=localizedItem(item,locale),fixed=data.pages[path];return {title:koreanSeoPageTitles[path]||localized?.seoTitle||localized?.title||data.policies[policy?.route]||fixed?.[0]||'페이지를 찾을 수 없습니다',description:koreanSeoDescriptions[path]||localized?.seoDescription||localized?.intro||fixed?.[1]||'Custom Sign Forge의 맞춤형 비즈니스 간판 제작 정보를 확인하세요.'};}
+ if(locale==='ko'){const data=koreanPublicCopy.site,localized=localizedItem(item,locale),fixed=data.pages[path];return {title:koreanSeoPageTitles[path]||localized?.seoTitle||localized?.title||data.policies[policy?.route]||fixed?.[0]||'페이지를 찾을 수 없습니다',description:koreanSeoDescriptions[path]||localized?.seoDescription||localized?.intro||fixed?.[1]||'Custom Sign Forge의 맞춤 간판 제작 정보를 확인하세요.'};}
  if(['ms','th','de','fr'].includes(locale)){const data=(locale==='th'?thaiPublicCopy:locale==='de'?germanPublicCopy:locale==='fr'?frenchPublicCopy:publicCopy).site,localized=localizedItem(item,locale),fixed=data.pages[path];return {title:(locale==='fr'&&frenchSeoPageTitles[path])||localized?.seoTitle||localized?.title||data.policies[policy?.route]||fixed?.[0]||(locale==='fr'?'Page introuvable':locale==='de'?'Seite nicht gefunden':locale==='th'?'ไม่พบหน้าเว็บ':'Halaman tidak ditemui'),description:(locale==='fr'&&frenchSeoDescriptions[path])||localized?.seoDescription||localized?.intro||fixed?.[1]||(locale==='fr'?'Enseignes sur mesure par Custom Sign Forge.':locale==='de'?'Individuelle Werbeschilder von Custom Sign Forge.':locale==='th'?'ข้อมูลป้ายธุรกิจสั่งทำจาก Custom Sign Forge':'Maklumat papan tanda komersial Custom Sign Forge.')};}
  if(locale!=='zh')return null;
  const localized=localizedItem(item,locale),fixed=zh.pages[path];
  return {title:localized?.seoTitle||localized?.title||zh.policies[policy?.route]||fixed?.[0]||'页面未找到',description:localized?.seoDescription||localized?.intro||fixed?.[1]||'Custom Sign Forge 商业标识信息。'};
 }
+
