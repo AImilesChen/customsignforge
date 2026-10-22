@@ -68,6 +68,18 @@ test('Portuguese content covers all public copy, product types and project refer
  assert.match(translate('Sign installer','pt-br'),/Instalador de letreiros/);
 });
 
+test('Portuguese corrections preserve the meaning of policy and enquiry copy',()=>{
+ const cancellation='如需变更或取消，请尽快联系并提供订单编号及具体要求。以书面确认结果为准；能否变更取决于实际制作阶段、约定条款与适用规则，不默认任何比例不可退。';
+ const delivery='在合理可行时检查包装、数量和外观，发现损坏或缺件及时保留证据并联系。此建议不缩短强制性索赔权利。';
+ assert.match(translate(cancellation,'pt-br'),/não se presume nenhum percentual não reembolsável/);
+ assert.doesNotMatch(translate(cancellation,'pt-br'),/não serão aceitos reembolsos parciais/);
+ assert.match(translate(delivery,'pt-br'),/entre em contato conosco/);
+ assert.doesNotMatch(translate(delivery,'pt-br'),/autoridades competentes/);
+ assert.equal(translate('Your Sign Enquiries','pt-br'),'Suas solicitações de orçamento');
+ assert.match(translate('Sign text, logo details, different sizes, installation needs or other requirements.','pt-br'),/^Texto do letreiro/);
+ assert.equal(translate('适用方向','pt-br'),'Aplicações indicadas');
+});
+
 test('Portuguese enquiry and sign-in preserve customer data and account privacy',async()=>{
  const f=fixture();try{
   const headers=await customerHeaders(f.env,'br-buyer@example.test'),other=await customerHeaders(f.env,'br-other@example.test');
