@@ -4,7 +4,14 @@ import {chineseProducts} from './locale-content.mjs';
 import {publicCopy} from './malay-content.mjs';
 import {thaiPublicCopy} from './thai-content.mjs';
 import {germanPublicCopy} from './german-content.mjs';
+import {frenchPublicCopy} from './french-content.mjs';
 export function enquirySummary(details,reference,products,locale=details.locale||'en'){
+ if(locale==='fr'){
+  const controlled=['dimensionsStatus','environment','deliveryWindow','role'];
+  const project=[...PROJECT_KEYS,'role','city','timing'].filter(key=>details[key]).map(key=>translate(PROJECT_LABELS[key]||({city:'Delivery City',timing:'Preferred Timing'}[key]),'fr')+' : '+(controlled.includes(key)||key==='quantity'&&details[key]==='not-sure'?translate(projectValue(key,details[key]),'fr'):details[key])).join('\n');
+  const drawing={ready:details.attachments?.length?'Fichiers joints à la demande':'Plans disponibles, sans fichier téléversé',none:'Pas encore de plans',later:'Fichiers à transmettre plus tard'}[details.drawings]||details.drawings;
+  return `Bonjour, je souhaite demander un devis pour une enseigne sur mesure.\nProduit : ${frenchPublicCopy.site.products[details.style]?.title||'À définir'}\nUtilisation : ${translate(details.use,'fr')}\nPays de livraison : ${translate(details.country,'fr')}\nAvancement du projet : ${translate(details.stage,'fr')}\n${project?project+'\n':''}${details.contactEmail?'E-mail de contact : '+details.contactEmail+'\n':''}${details.phone?(details.contactMethod==='whatsapp'?'WhatsApp : ':'Téléphone : ')+details.phone+' (non vérifié)\n':''}${details.drawings?'Plans : '+drawing+'\n':''}${details.project?'Projet de référence : '+details.project+'\n':''}Référence de la demande : ${reference}`;
+ }
  if(locale==='de'){
   const controlled=['dimensionsStatus','environment','deliveryWindow','role'];
   const project=[...PROJECT_KEYS,'role','city','timing'].filter(key=>details[key]).map(key=>translate(PROJECT_LABELS[key]||({city:'Delivery City',timing:'Preferred Timing'}[key]),'de')+': '+(controlled.includes(key)||key==='quantity'&&details[key]==='not-sure'?translate(projectValue(key,details[key]),'de'):details[key])).join('\n');

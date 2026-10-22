@@ -7,7 +7,10 @@ import thaiOverrides from '../data/th/overrides.json' with {type:'json'};
 import publicGerman from '../data/de/public.json' with {type:'json'};
 import german from '../data/de/messages.json' with {type:'json'};
 import germanOverrides from '../data/de/overrides.json' with {type:'json'};
-const dictionaries={zh:messages,ms:{...publicMalay,...malay},th:{...publicThai,...thai,...thaiOverrides},de:{...publicGerman,...german,...germanOverrides}};
+import publicFrench from '../data/fr/public.json' with {type:'json'};
+import french from '../data/fr/messages.json' with {type:'json'};
+import frenchOverrides from '../data/fr/overrides.json' with {type:'json'};
+const dictionaries={zh:messages,ms:{...publicMalay,...malay},th:{...publicThai,...thai,...thaiOverrides},de:{...publicGerman,...german,...germanOverrides},fr:{...publicFrench,...french,...frenchOverrides}};
 // Only explicit language-resource entries are translated. Stored customer text is never passed here.
 export function translate(value,locale='en') {
  if(typeof value!=='string'||!dictionaries[locale])return value;

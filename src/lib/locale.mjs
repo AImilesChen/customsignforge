@@ -1,5 +1,5 @@
 // One registry drives paths, validation, language choices and search alternates.
-export const LOCALES={en:{label:'English',html:'en',prefix:''},zh:{label:'简体中文',html:'zh-Hans',prefix:'/zh'},ms:{label:'Bahasa Melayu',html:'ms-MY',prefix:'/ms'},th:{label:'ไทย',html:'th-TH',prefix:'/th'},de:{label:'Deutsch',html:'de-DE',prefix:'/de'}};
+export const LOCALES={en:{label:'English',html:'en',prefix:''},zh:{label:'简体中文',html:'zh-Hans',prefix:'/zh'},ms:{label:'Bahasa Melayu',html:'ms-MY',prefix:'/ms'},th:{label:'ไทย',html:'th-TH',prefix:'/th'},de:{label:'Deutsch',html:'de-DE',prefix:'/de'},fr:{label:'Français',html:'fr',prefix:'/fr'}};
 export const localeCodes=Object.keys(LOCALES);
 export const validLocale=value=>Object.hasOwn(LOCALES,value);
 export function routeLocale(path='/') {return localeCodes.find(code=>LOCALES[code].prefix&&(path===LOCALES[code].prefix||path.startsWith(LOCALES[code].prefix+'/')))||'en';}

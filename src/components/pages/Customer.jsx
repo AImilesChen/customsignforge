@@ -18,7 +18,7 @@ export function CustomerSignIn(){const {t:tr,href}=useLocale();
  useEffect(()=>{if(challenge)codeInput.current?.focus()},[challenge]);
  useEffect(()=>{
   if(!settings.turnstileSiteKey||challenge)return;let cancelled=false;
-  const mount=()=>{if(!cancelled&&widget.current&&typeof window.turnstile?.render==='function'&&widgetId.current===null)widgetId.current=window.turnstile.render(widget.current,{sitekey:settings.turnstileSiteKey,action:'customer-login',language:locale==='zh'?'zh-CN':locale==='ms'?'ms':locale==='th'?'th':locale==='de'?'de':'en',callback:value=>{token.current=value},'expired-callback':()=>{token.current=''},'error-callback':()=>{token.current=''}})};
+  const mount=()=>{if(!cancelled&&widget.current&&typeof window.turnstile?.render==='function'&&widgetId.current===null)widgetId.current=window.turnstile.render(widget.current,{sitekey:settings.turnstileSiteKey,action:'customer-login',language:locale==='zh'?'zh-CN':locale==='ms'?'ms':locale==='th'?'th':locale==='de'?'de':locale==='fr'?'fr':'en',callback:value=>{token.current=value},'expired-callback':()=>{token.current=''},'error-callback':()=>{token.current=''}})};
   let script=document.querySelector('script[data-csf-turnstile]');if(!script){script=document.createElement('script');script.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';script.dataset.csfTurnstile='true';script.async=true;document.head.appendChild(script)}script.addEventListener('load',mount);mount();
   return()=>{cancelled=true;script.removeEventListener('load',mount);if(widgetId.current!==null&&typeof window.turnstile?.remove==='function'){window.turnstile.remove(widgetId.current);widgetId.current=null;}token.current=''};
  },[settings.turnstileSiteKey,challenge]);

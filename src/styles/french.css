@@ -1,0 +1,16 @@
+html[lang="fr"]{--font-heading:"Manrope",Arial,sans-serif;--font-body:"Source Sans 3",Arial,sans-serif;}
+html[lang="fr"] h1,html[lang="fr"] h2,html[lang="fr"] h3{hyphens:auto;overflow-wrap:break-word;text-wrap:balance;}
+html[lang="fr"] .button{white-space:normal;text-align:center;line-height:1.35;}
+html[lang="fr"] .home-immersive-copy h1{font-size:clamp(38px,3.65vw,58px);line-height:1.15;}
+html[lang="fr"] .home-immersive-actions{flex-wrap:wrap;}
+html[lang="fr"] .zh-products .overview-banner h1{font-size:clamp(38px,3.6vw,56px);}
+html[lang="fr"] .zh-product-page h1{font-size:clamp(32px,3vw,46px);}
+html[lang="fr"] .zh-product-page h2{font-size:clamp(27px,2.5vw,36px);}
+html[lang="fr"] .zh-about h1{font-size:clamp(36px,3.5vw,52px);}
+html[lang="fr"] .zh-options>div{grid-template-columns:minmax(0,1fr);gap:8px;}
+html[lang="fr"] .zh-options dt,html[lang="fr"] .zh-options dd{overflow-wrap:anywhere;}
+html[lang="fr"] .zh-product-filter button{max-width:100%;}
+html[lang="fr"] .projects-intro-grid>div>.button,html[lang="fr"] .process-page .zh-split>div>.button,html[lang="fr"] .trade-page .zh-split>div>.button,html[lang="fr"] .zh-about .zh-split>div>.button{margin-top:28px;}
+@media(min-width:1361px) and (max-width:1700px){html[lang="fr"] header.header.site-header .wordmark img{width:185px;}html[lang="fr"] header.header.site-header .nav{gap:10px;font-size:13px;}html[lang="fr"] header.header.site-header .header-actions{gap:8px;}html[lang="fr"] header.header.site-header .header-actions>.button{font-size:13px;padding-inline:13px;}html[lang="fr"] header.header.site-header .customer-nav{font-size:13px;}}
+@media(max-width:760px){html[lang="fr"] .home-immersive-copy h1{font-size:clamp(32px,7.6vw,42px);}html[lang="fr"] .zh-product-page h1{font-size:clamp(25px,7vw,30px);hyphens:none;overflow-wrap:break-word;}html[lang="fr"] .zh-product-page h2,html[lang="fr"] .zh-about h2{font-size:28px;}html[lang="fr"] .zh-about h1{font-size:36px;}html[lang="fr"] .zh-section-heading{align-items:flex-start;flex-direction:column;gap:12px;}html[lang="fr"] .zh-metrics{grid-template-columns:repeat(2,minmax(0,1fr));}html[lang="fr"] .zh-pdp-actions{gap:8px 18px;}html[lang="fr"] header.header.site-header .header-actions{gap:8px;}html[lang="fr"] header.header.site-header{gap:5px;}html[lang="fr"] header.header.site-header .wordmark img{width:112px;}html[lang="fr"] .zh-options dd{font-size:17px;}}
+@media(max-width:380px){html[lang="fr"] header.header.site-header{gap:4px;padding-inline:12px;}html[lang="fr"] header.header.site-header .wordmark img{width:136px;}}

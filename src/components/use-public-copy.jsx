@@ -4,5 +4,6 @@ import detail from '../data/zh/product-detail-content.json';
 import {publicCopy} from '../lib/malay-content.mjs';
 import {thaiPublicCopy} from '../lib/thai-content.mjs';
 import {germanPublicCopy} from '../lib/german-content.mjs';
-const resources={zh:{site:zh,detail},ms:publicCopy,th:thaiPublicCopy,de:germanPublicCopy};
+import {frenchPublicCopy} from '../lib/french-content.mjs';
+const resources={zh:{site:zh,detail},ms:publicCopy,th:thaiPublicCopy,de:germanPublicCopy,fr:frenchPublicCopy};
 export function usePublicCopy(){const {locale,t}=useLocale(),data=resources[locale]||resources.zh;return {t,siteCopy:data.site,chineseProducts:data.site.products,chineseSpace:value=>data.site.settings[value]||value,productDetails:data.detail};}
