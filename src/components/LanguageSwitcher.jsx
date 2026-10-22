@@ -2,8 +2,8 @@ import {useEffect,useRef,useState} from 'react';
 import {useSite} from './site-context.jsx';
 import {switchLanguage,LOCALES} from '../lib/locale.mjs';
 
-const FLAGS={en:'/brand/flag-gb.svg',zh:'/brand/flag-cn.svg',ms:'/brand/flag-my.svg',th:'/brand/flag-th.svg',de:'/brand/flag-de.svg',fr:'/brand/flag-fr.svg'};
-const LABELS={en:'Website language',zh:'网站语言',ms:'Bahasa laman web',th:'ภาษาของเว็บไซต์',de:'Sprache der Website',fr:'Langue du site'};
+const FLAGS={en:'/brand/flag-gb.svg',zh:'/brand/flag-cn.svg',ms:'/brand/flag-my.svg',th:'/brand/flag-th.svg',de:'/brand/flag-de.svg',fr:'/brand/flag-fr.svg',ko:'/brand/flag-kr.svg'};
+const LABELS={en:'Website language',zh:'网站语言',ms:'Bahasa laman web',th:'ภาษาของเว็บไซต์',de:'Sprache der Website',fr:'Langue du site',ko:'웹사이트 언어'};
 
 export default function LanguageSwitcher(){
  const {locale}=useSite();

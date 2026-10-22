@@ -5,7 +5,14 @@ import {publicCopy} from './malay-content.mjs';
 import {thaiPublicCopy} from './thai-content.mjs';
 import {germanPublicCopy} from './german-content.mjs';
 import {frenchPublicCopy} from './french-content.mjs';
+import {koreanPublicCopy} from './korean-content.mjs';
 export function enquirySummary(details,reference,products,locale=details.locale||'en'){
+ if(locale==='ko'){
+  const controlled=['dimensionsStatus','environment','deliveryWindow','role'];
+  const project=[...PROJECT_KEYS,'role','city','timing'].filter(key=>details[key]).map(key=>translate(PROJECT_LABELS[key]||({city:'배송 도시',timing:'희망 일정'}[key]),'ko')+': '+(controlled.includes(key)||key==='quantity'&&details[key]==='not-sure'?translate(projectValue(key,details[key]),'ko'):details[key])).join('\n');
+  const drawing={ready:details.attachments?.length?'문의서에 파일 첨부됨':'도면 있음, 파일은 업로드하지 않음',none:'도면 없음',later:'나중에 파일 전달 예정'}[details.drawings]||details.drawings;
+  return `안녕하세요. 맞춤형 간판 견적을 요청합니다.\n제품: ${koreanPublicCopy.site.products[details.style]?.title||'미정'}\n용도: ${translate(details.use,'ko')}\n배송 국가: ${translate(details.country,'ko')}\n프로젝트 단계: ${translate(details.stage,'ko')}\n${project?project+'\n':''}${details.contactEmail?'연락 이메일: '+details.contactEmail+'\n':''}${details.phone?(details.contactMethod==='whatsapp'?'WhatsApp: ':'전화번호: ')+details.phone+' (미인증)\n':''}${details.drawings?'도면: '+drawing+'\n':''}${details.project?'참고 프로젝트: '+details.project+'\n':''}문의 번호: ${reference}`;
+ }
  if(locale==='fr'){
   const controlled=['dimensionsStatus','environment','deliveryWindow','role'];
   const project=[...PROJECT_KEYS,'role','city','timing'].filter(key=>details[key]).map(key=>translate(PROJECT_LABELS[key]||({city:'Delivery City',timing:'Preferred Timing'}[key]),'fr')+' : '+(controlled.includes(key)||key==='quantity'&&details[key]==='not-sure'?translate(projectValue(key,details[key]),'fr'):details[key])).join('\n');
