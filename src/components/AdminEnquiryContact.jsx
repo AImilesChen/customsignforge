@@ -5,7 +5,7 @@ import {projectValue} from '../lib/enquiry-project.mjs';
 export function EnquiryContact({record}){
  const c=enquiryContact(record);
  return <section className="admin-panel admin-contact-summary" aria-label="客户联系资料"><h3>客户联系资料</h3><dl>
-  <div><dt>询价语言</dt><dd>{record.details.locale==='ko'?'韩语':record.details.locale==='fr'?'法语':record.details.locale==='de'?'德语':record.details.locale==='th'?'泰语':record.details.locale==='ms'?'马来语':record.details.locale==='zh'?'简体中文':record.details.locale==='en'?'English':'英文 / 旧记录'}</dd></div><div><dt>联系人姓名</dt><dd>{c.name||'未填写（旧记录可能未收集）'}</dd></div>
+  <div><dt>询价语言</dt><dd>{record.details.locale==='pt-br'?'巴西葡语':record.details.locale==='ko'?'韩语':record.details.locale==='fr'?'法语':record.details.locale==='de'?'德语':record.details.locale==='th'?'泰语':record.details.locale==='ms'?'马来语':record.details.locale==='zh'?'简体中文':record.details.locale==='en'?'English':'英文 / 旧记录'}</dd></div><div><dt>联系人姓名</dt><dd>{c.name||'未填写（旧记录可能未收集）'}</dd></div>
   <div><dt>公司 / 店铺名称</dt><dd>{c.company||'未填写'}</dd></div>
   <div><dt>邮箱</dt><dd>{c.emailURL?<a href={c.emailURL}>{c.email}</a>:c.email||'旧记录未收集邮箱'}</dd></div>
   <div><dt>{c.method}号码</dt><dd>{c.phoneURL?<a href={c.phoneURL} target={c.method==='WhatsApp'?'_blank':undefined} rel="noreferrer">{c.phone}</a>:c.phone||'旧记录未收集号码'}{c.phone&&<small>客户填写，未经短信验证</small>}</dd></div>

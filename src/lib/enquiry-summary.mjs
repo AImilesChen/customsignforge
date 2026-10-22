@@ -6,7 +6,14 @@ import {thaiPublicCopy} from './thai-content.mjs';
 import {germanPublicCopy} from './german-content.mjs';
 import {frenchPublicCopy} from './french-content.mjs';
 import {koreanPublicCopy} from './korean-content.mjs';
+import {portuguesePublicCopy} from './portuguese-content.mjs';
 export function enquirySummary(details,reference,products,locale=details.locale||'en'){
+ if(locale==='pt-br'){
+  const controlled=['dimensionsStatus','environment','deliveryWindow','role'];
+  const project=[...PROJECT_KEYS,'role','city','timing'].filter(key=>details[key]).map(key=>translate(PROJECT_LABELS[key]||({city:'Delivery City',timing:'Preferred Timing'}[key]),'pt-br')+': '+(controlled.includes(key)||key==='quantity'&&details[key]==='not-sure'?translate(projectValue(key,details[key]),'pt-br'):details[key])).join('\n');
+  const drawing={ready:details.attachments?.length?'Arquivos anexados à solicitação':'Tenho desenhos, mas não enviei arquivos',none:'Ainda não tenho desenhos',later:'Enviarei os arquivos mais tarde'}[details.drawings]||details.drawings;
+  return `Olá, gostaria de solicitar um orçamento de letreiro personalizado.\nProduto: ${portuguesePublicCopy.site.products[details.style]?.title||'Ainda não definido'}\nUso: ${translate(details.use,'pt-br')}\nPaís de entrega: ${translate(details.country,'pt-br')}\nEtapa do projeto: ${translate(details.stage,'pt-br')}\n${project?project+'\n':''}${details.contactEmail?'E-mail de contato: '+details.contactEmail+'\n':''}${details.phone?(details.contactMethod==='whatsapp'?'WhatsApp: ':'Telefone: ')+details.phone+' (não verificado)\n':''}${details.drawings?'Desenhos: '+drawing+'\n':''}${details.project?'Projeto de referência: '+details.project+'\n':''}Número da solicitação: ${reference}`;
+ }
  if(locale==='ko'){
   const controlled=['dimensionsStatus','environment','deliveryWindow','role'];
   const project=[...PROJECT_KEYS,'role','city','timing'].filter(key=>details[key]).map(key=>translate(PROJECT_LABELS[key]||({city:'배송 도시',timing:'희망 일정'}[key]),'ko')+': '+(controlled.includes(key)||key==='quantity'&&details[key]==='not-sure'?translate(projectValue(key,details[key]),'ko'):details[key])).join('\n');

@@ -51,7 +51,7 @@ test('Korean content covers six products and the full public source corpus',()=>
  assert.equal(Object.keys(koreanPublicCopy.detail.cases).length,24);
  assert.equal(Object.keys(koProjects).length,30);
  for(const slug of Object.keys(msProjects))assert(koProjects[slug],'Missing project title '+slug);
- for(const [slug,title] of Object.entries({'led-channel-letters':'LED 채널간판 · 전면 발광','backlit-letters':'LED 후광 채널간판','metal-letters':'금속 입체문자','acrylic-letters':'아크릴 입체문자와 로고','lightbox-neon':'LED 라이트박스와 LED 네온사인','specialty-signs':'맞춤형 특수 간판'})){
+ for(const [slug,title] of Object.entries({'led-channel-letters':'전면 발광 LED 채널간판','backlit-letters':'LED 후광 채널간판','metal-letters':'금속 입체문자','acrylic-letters':'아크릴 입체문자와 로고','lightbox-neon':'LED 라이트박스 간판과 LED 네온사인','specialty-signs':'맞춤형 특수 간판'})){
   assert.equal(koreanPublicCopy.site.products[slug].title,title);
   const item=localizedItem({type:'product',slug,image:'/assets/sample.webp'},'ko');
   assert.equal(item.image,'/assets/sample.webp');assert.match(item.seoTitle,/간판|입체문자|로고|라이트박스|네온사인/);

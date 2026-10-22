@@ -6,5 +6,6 @@ import {thaiPublicCopy} from '../lib/thai-content.mjs';
 import {germanPublicCopy} from '../lib/german-content.mjs';
 import {frenchPublicCopy} from '../lib/french-content.mjs';
 import {koreanPublicCopy} from '../lib/korean-content.mjs';
-const resources={zh:{site:zh,detail},ms:publicCopy,th:thaiPublicCopy,de:germanPublicCopy,fr:frenchPublicCopy,ko:koreanPublicCopy};
+import {portuguesePublicCopy} from '../lib/portuguese-content.mjs';
+const resources={zh:{site:zh,detail},ms:publicCopy,th:thaiPublicCopy,de:germanPublicCopy,fr:frenchPublicCopy,ko:koreanPublicCopy,'pt-br':portuguesePublicCopy};
 export function usePublicCopy(){const {locale,t}=useLocale(),data=resources[locale]||resources.zh;return {t,siteCopy:data.site,chineseProducts:data.site.products,chineseSpace:value=>data.site.settings[value]||value,productDetails:data.detail};}

@@ -9,6 +9,8 @@ import {frenchPublicCopy} from './french-content.mjs';
 import frProjects from '../data/fr/projects.json' with {type:'json'};
 import {koreanPublicCopy} from './korean-content.mjs';
 import koProjects from '../data/ko/projects.json' with {type:'json'};
+import {portuguesePublicCopy} from './portuguese-content.mjs';
+import ptProjects from '../data/pt-br/projects.json' with {type:'json'};
 export const chineseProducts=zh.products;
 export const chineseSpace=value=>zh.settings[value]||value;
 const projects={
@@ -87,8 +89,48 @@ const koreanSeoDescriptions={
  '/products/lightbox-neon/':'매장과 카페를 위한 맞춤형 LED 라이트박스 간판과 LED 네온사인. 조명 방식과 설치 환경에 맞는 제작 옵션을 비교하세요.',
  '/products/specialty-signs/':'복합 소재, 독특한 형태와 조명을 결합하는 맞춤형 특수 간판. 도면과 설치 조건에 따라 제작 사양을 검토합니다.'
 };
+const portugueseProductSeoTitles={
+ 'led-channel-letters':'Letras caixa com iluminação frontal em LED',
+ 'backlit-letters':'Letras caixa retroiluminadas com efeito halo',
+ 'metal-letters':'Letras caixa de metal e letras em relevo',
+ 'acrylic-letters':'Letras e logotipos em acrílico sob medida',
+ 'lightbox-neon':'Caixas de luz e letreiros em neon LED',
+ 'specialty-signs':'Letreiros especiais sob medida'
+};
+const portugueseSeoPageTitles={
+ '/':'Letreiros personalizados e letras caixa em LED',
+ '/products/':'Letreiros e letras caixa sob medida',
+ '/projects/':'Projetos de letreiros para fachadas e interiores',
+ '/about/':'Fabricação de letreiros sob medida',
+ '/how-it-works/':'Como fabricamos seu letreiro personalizado',
+ '/for-sign-companies/':'Fabricação para empresas de comunicação visual',
+ '/contact/':'Contato e orçamento de letreiros personalizados'
+};
+const portugueseSeoDescriptions={
+ '/':'Letreiros personalizados para lojas, escritórios e hotéis: letras caixa em LED, letras metálicas, logotipos em acrílico e soluções sob medida.',
+ '/products/':'Compare letras caixa com iluminação frontal, letras retroiluminadas, letras metálicas, acrílico, caixas de luz e neon LED para seu projeto.',
+ '/projects/':'Explore exemplos de letreiros para fachadas, recepções e espaços comerciais, com referências de materiais, iluminação e acabamento.',
+ '/about/':'Conheça a equipe, os materiais e a fabricação de letreiros da Custom Sign Forge, do corte e da montagem à inspeção e embalagem.',
+ '/how-it-works/':'Do logotipo à entrega: compartilhamento do projeto, confirmação dos materiais, fabricação, inspeção e embalagem do seu letreiro.',
+ '/for-sign-companies/':'Fabricação de letras caixa e letreiros sob medida para empresas de comunicação visual e instaladores, conforme desenhos e especificações.',
+ '/contact/':'Envie seu projeto de letreiro personalizado por formulário, e-mail ou WhatsApp e converse sobre materiais, medidas e orçamento.',
+ '/landing/custom-logo-signs/':'Transforme seu logotipo em um letreiro personalizado. Avalie dimensões, materiais, acabamentos e iluminação para o seu espaço.',
+ '/landing/sign-fabrication/':'Solicite a fabricação de letreiros conforme seus desenhos. Informe quantidades, materiais e destino para receber um orçamento.',
+ '/products/led-channel-letters/':'Letras caixa com iluminação frontal em LED para fachadas e espaços comerciais. Defina face, tamanho, cor e condições de instalação.',
+ '/products/backlit-letters/':'Letras caixa retroiluminadas em LED criam um efeito halo atrás do logotipo. Ideais para fachadas, recepções e entradas.',
+ '/products/metal-letters/':'Letras caixa de metal e letras em relevo sob medida. Compare aço inox, alumínio, acabamentos e métodos de fixação.',
+ '/products/acrylic-letters/':'Letras e logotipos em acrílico sob medida, com cor, recorte e camadas para recepções, vitrines e ambientes comerciais.',
+ '/products/lightbox-neon/':'Caixas de luz e letreiros em neon LED para fachadas, vitrines e restaurantes. Compare os efeitos e as opções de instalação.',
+ '/products/specialty-signs/':'Letreiros especiais sob medida com materiais combinados, formas exclusivas e iluminação planejada conforme seu projeto.'
+};
 export function localizedItem(item,locale='en') {
- if(item&&['ms','th','de','fr','ko'].includes(locale)){
+ if(item&&['ms','th','de','fr','ko','pt-br'].includes(locale)){
+  if(locale==='pt-br'){
+   const source=portuguesePublicCopy,p=source.site.products[item.slug]||source.site.products[item.product],project=!!(item.type==='project'||item.product);
+   if(p&&!project)return {...item,title:p.title,intro:p.intro,seoTitle:portugueseProductSeoTitles[item.slug]||p.title,seoDescription:portugueseSeoDescriptions['/products/'+item.slug+'/']||p.intro,cardDescription:p.effect,imageAlt:p.title+' · exemplo de design'};
+   if(project){const title=ptProjects[item.slug]||p?.title||'Letreiro personalizado',intro=source.detail.cases[item.slug]||'Referência de materiais e fabricação; as especificações finais são confirmadas para cada projeto.';return {...item,title,intro,seoTitle:title,seoDescription:intro,imageAlt:title+' · '+(item.imageKind==='concept'?'conceito visual gerado por IA':'referência de fabricação')};}
+   const meta=source.site.pages['/'+item.slug+'/']||source.site.pages['/landing/'+item.slug+'/'];return meta?{...item,title:meta[0],intro:meta[1],seoTitle:meta[0],seoDescription:meta[1]}:item;
+  }
   const isThai=locale==='th',isGerman=locale==='de',isFrench=locale==='fr',isKorean=locale==='ko',source=isKorean?koreanPublicCopy:isThai?thaiPublicCopy:isGerman?germanPublicCopy:isFrench?frenchPublicCopy:publicCopy,data=source.site,p=data.products[item.slug]||data.products[item.product],project=!!(item.type==='project'||item.product);
   if(isKorean){
    if(p&&!project)return {...item,title:p.title,intro:p.intro,seoTitle:koreanProductSeoTitles[item.slug]||p.title,seoDescription:koreanSeoDescriptions['/products/'+item.slug+'/']||p.intro,cardDescription:p.effect,imageAlt:p.title+' · 디자인 예시'};
@@ -105,6 +147,7 @@ export function localizedItem(item,locale='en') {
  const meta=zh.pages['/'+item.slug+'/']||zh.pages['/landing/'+item.slug+'/'];return meta?{...item,title:meta[0],intro:meta[1],seoTitle:meta[0],seoDescription:meta[1]}:item;
 }
 export function localeMetadata(path,item,policy,locale='en') {
+ if(locale==='pt-br'){const data=portuguesePublicCopy.site,localized=localizedItem(item,locale),fixed=data.pages[path];return {title:portugueseSeoPageTitles[path]||localized?.seoTitle||localized?.title||data.policies[policy?.route]||fixed?.[0]||'Página não encontrada',description:portugueseSeoDescriptions[path]||localized?.seoDescription||localized?.intro||fixed?.[1]||'Conheça os letreiros personalizados da Custom Sign Forge.'};}
  if(locale==='ko'){const data=koreanPublicCopy.site,localized=localizedItem(item,locale),fixed=data.pages[path];return {title:koreanSeoPageTitles[path]||localized?.seoTitle||localized?.title||data.policies[policy?.route]||fixed?.[0]||'페이지를 찾을 수 없습니다',description:koreanSeoDescriptions[path]||localized?.seoDescription||localized?.intro||fixed?.[1]||'Custom Sign Forge의 맞춤 간판 제작 정보를 확인하세요.'};}
  if(['ms','th','de','fr'].includes(locale)){const data=(locale==='th'?thaiPublicCopy:locale==='de'?germanPublicCopy:locale==='fr'?frenchPublicCopy:publicCopy).site,localized=localizedItem(item,locale),fixed=data.pages[path];return {title:(locale==='fr'&&frenchSeoPageTitles[path])||localized?.seoTitle||localized?.title||data.policies[policy?.route]||fixed?.[0]||(locale==='fr'?'Page introuvable':locale==='de'?'Seite nicht gefunden':locale==='th'?'ไม่พบหน้าเว็บ':'Halaman tidak ditemui'),description:(locale==='fr'&&frenchSeoDescriptions[path])||localized?.seoDescription||localized?.intro||fixed?.[1]||(locale==='fr'?'Enseignes sur mesure par Custom Sign Forge.':locale==='de'?'Individuelle Werbeschilder von Custom Sign Forge.':locale==='th'?'ข้อมูลป้ายธุรกิจสั่งทำจาก Custom Sign Forge':'Maklumat papan tanda komersial Custom Sign Forge.')};}
  if(locale!=='zh')return null;

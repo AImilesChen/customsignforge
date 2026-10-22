@@ -1,0 +1,14 @@
+html[lang="pt-BR"]{--font-heading:Manrope,Arial,sans-serif;--font-body:"Source Sans 3",Arial,sans-serif;}
+html[lang="pt-BR"] h1,html[lang="pt-BR"] h2,html[lang="pt-BR"] h3{overflow-wrap:break-word;text-wrap:balance;line-height:1.2;}
+html[lang="pt-BR"] p,html[lang="pt-BR"] dd,html[lang="pt-BR"] li{overflow-wrap:break-word;line-height:1.6;}
+html[lang="pt-BR"] .button{white-space:normal;text-align:center;line-height:1.35;}
+html[lang="pt-BR"] .home-immersive-copy h1{font-size:clamp(38px,3.8vw,59px);line-height:1.1;}
+html[lang="pt-BR"] .home-immersive-actions{flex-wrap:wrap;}
+html[lang="pt-BR"] .zh-products .overview-banner h1{font-size:clamp(38px,3.8vw,56px);}
+html[lang="pt-BR"] .zh-product-page h1{font-size:clamp(34px,3.4vw,48px);}
+html[lang="pt-BR"] .zh-product-page h2{font-size:clamp(27px,2.5vw,36px);}
+html[lang="pt-BR"] .zh-options>div{grid-template-columns:minmax(0,1fr);gap:8px;}
+html[lang="pt-BR"] .zh-options dt,html[lang="pt-BR"] .zh-options dd{overflow-wrap:anywhere;}
+@media(min-width:1361px) and (max-width:1700px){html[lang="pt-BR"] header.header.site-header .wordmark img{width:190px;}html[lang="pt-BR"] header.header.site-header .nav{gap:12px;font-size:13px;}html[lang="pt-BR"] header.header.site-header .header-actions{gap:8px;}html[lang="pt-BR"] header.header.site-header .header-actions>.button{font-size:13px;padding-inline:13px;}}
+@media(max-width:760px){html[lang="pt-BR"] .home-immersive-copy h1{font-size:clamp(31px,7.6vw,44px);}html[lang="pt-BR"] .zh-product-page h1{font-size:clamp(27px,7vw,32px);}html[lang="pt-BR"] .zh-product-page h2{font-size:28px;}html[lang="pt-BR"] .zh-section-heading{align-items:flex-start;flex-direction:column;gap:12px;}html[lang="pt-BR"] .zh-metrics{grid-template-columns:repeat(2,minmax(0,1fr));}html[lang="pt-BR"] .zh-pdp-actions{gap:8px 18px;}}
+@media(max-width:700px){html[lang="pt-BR"] body:has(.privacy-choice) .floating-contact{display:none;}}
