@@ -2,7 +2,7 @@ import {useEffect,useRef,useState} from 'react';
 import {useSite} from './site-context.jsx';
 import {switchLanguage,LOCALES} from '../lib/locale.mjs';
 
-const FLAGS={en:'/brand/flag-gb.svg',zh:'/brand/flag-cn.svg',ms:'/brand/flag-my.svg',th:'/brand/flag-th.svg',de:'/brand/flag-de.svg',fr:'/brand/flag-fr.svg',ko:'/brand/flag-kr.svg'};
+const FLAGS={en:'/brand/flag-gb.svg',zh:'/brand/flag-cn.svg',ms:'/brand/flag-my.svg',th:'/brand/flag-th.svg',de:'/brand/flag-de.svg',fr:'/brand/flag-fr.svg',ko:'/brand/flag-kr.svg?v=2'};
 const LABELS={en:'Website language',zh:'网站语言',ms:'Bahasa laman web',th:'ภาษาของเว็บไซต์',de:'Sprache der Website',fr:'Langue du site',ko:'웹사이트 언어'};
 
 export default function LanguageSwitcher(){
@@ -29,3 +29,4 @@ export default function LanguageSwitcher(){
   {open&&<div id="language-options" className="language-options" aria-label={LABELS[locale]}>{Object.entries(LOCALES).map(([code,item])=><button key={code} type="button" lang={item.html} aria-current={code===locale?'true':undefined} onClick={()=>change(code)}><img src={FLAGS[code]} alt="" aria-hidden="true" width="22" height="15"/><span>{item.label}</span></button>)}</div>}
  </div>;
 }
+
