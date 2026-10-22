@@ -69,6 +69,17 @@ test('Arabic dictionaries cover existing public text and correct core product te
  assert.equal(translate('Sign company / reseller','ar'),'شركة لافتات / موزع');
  assert.equal(translate('No Final Drawings','ar'),'لا تحتاج إلى رسومات نهائية');
  assert.equal(translate('Saudi Arabia','ar'),'المملكة العربية السعودية');
+ assert.equal(translate('管理后台','ar'),'لوحة الإدارة');
+ assert.equal(translate('管理后台入口','ar'),'الدخول إلى لوحة الإدارة');
+ assert.equal(translate('进入管理后台','ar'),'افتح لوحة الإدارة');
+ assert.equal(translate('字面与字壳','ar'),'واجهة الحروف وهيكلها');
+ assert.equal(translate('聊聊您的','ar'),'لنتحدث عن');
+ assert.equal(translate('标识项目。','ar'),'مشروع لافتتك.');
+ assert(!translate('需要结合最小笔画、整体尺寸、字厚和材料透光性评估。提供矢量标志与大致尺寸后，我们会讨论适合的制作方向。','ar').includes('السكتة الدماغية'));
+ for(const name of ['messages','public','overrides','projects']){
+  const dictionary=JSON.parse(readFileSync(new URL(`ar/${name}.json`,root),'utf8'));
+  for(const value of Object.values(dictionary))assert(!/[\u3400-\u9fff]/.test(value),`Untranslated ${name} value: ${value}`);
+ }
  assert(ARABIC_COUNTRIES.every(country=>COUNTRIES.includes(country)));
 });
 
