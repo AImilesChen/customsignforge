@@ -6,7 +6,8 @@ export function campaignSource(raw){
  for(const key of UTM_KEYS){const value=raw?.[key];if(typeof value==='string'&&/^[a-zA-Z0-9_ .~\-]{1,80}$/.test(value)&&!/[0-9]{7,}/.test(value))result[key]=value;}
  return result;
 }
-export function publicPath(value){return typeof value==='string'&&value.length<=200&&/^\/(?:[a-z0-9]+(?:-[a-z0-9]+)*\/)*$/.test(value)&&!/^\/(?:(?:zh|ms|th|de|fr|ko|pt-br|ar)\/)?(?:admin|api|auth|account|sign-in|media|design-kit|review)(?:\/|$)/.test(value)?value:'';}
+import {basePath} from './locale.mjs';
+export function publicPath(value){return typeof value==='string'&&value.length<=200&&/^\/(?:[a-z0-9]+(?:-[a-z0-9]+)*\/)*$/.test(value)&&!/^\/(?:admin|api|auth|account|sign-in|media|design-kit|review)(?:\/|$)/.test(basePath(value))?value:'';}
 export function acquisition(raw={}){
  return {firstSource:campaignSource(raw.firstSource),currentSource:campaignSource(raw.currentSource),firstEntry:publicPath(raw.firstEntry),entryMode:['form','direct_chat','manual'].includes(raw.entryMode)?raw.entryMode:'form',cta:CTA_POSITIONS.includes(raw.cta)?raw.cta:'content',landing:/^(custom-logo-signs|sign-fabrication)$/.test(raw.landing||'')?raw.landing:''};
 }

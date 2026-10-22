@@ -8,7 +8,14 @@ import {frenchPublicCopy} from './french-content.mjs';
 import {koreanPublicCopy} from './korean-content.mjs';
 import {portuguesePublicCopy} from './portuguese-content.mjs';
 import {arabicPublicCopy} from './arabic-content.mjs';
+import {spanishPublicCopy} from './spanish-content.mjs';
 export function enquirySummary(details,reference,products,locale=details.locale||'en'){
+ if(locale==='es'){
+  const controlled=['dimensionsStatus','environment','deliveryWindow','role'];
+  const project=[...PROJECT_KEYS,'role','city','timing'].filter(key=>details[key]).map(key=>translate(PROJECT_LABELS[key]||({city:'Delivery City',timing:'Preferred Timing'}[key]),'es')+': '+(controlled.includes(key)||key==='quantity'&&details[key]==='not-sure'?translate(projectValue(key,details[key]),'es'):details[key])).join('\n');
+  const drawing={ready:details.attachments?.length?'Archivos adjuntos a la solicitud':'Tengo planos, pero no he subido archivos',none:'Aún no tengo planos',later:'Enviaré los archivos después'}[details.drawings]||details.drawings;
+  return `Hola, me gustaría solicitar un presupuesto para un rótulo a medida.\nProducto: ${spanishPublicCopy.site.products[details.style]?.title||'Aún no lo sé'}\nUso: ${translate(details.use,'es')}\nPaís de entrega: ${translate(details.country,'es')}\nFase del proyecto: ${translate(details.stage,'es')}\n${project?project+'\n':''}${details.contactEmail?'Correo de contacto: '+details.contactEmail+'\n':''}${details.phone?(details.contactMethod==='whatsapp'?'WhatsApp: ':'Teléfono: ')+details.phone+' (sin verificar)\n':''}${details.drawings?'Planos: '+drawing+'\n':''}${details.project?'Proyecto de referencia: '+details.project+'\n':''}Referencia de la solicitud: ${reference}`;
+ }
  if(locale==='ar'){
   const controlled=['dimensionsStatus','environment','deliveryWindow','role'];
   const project=[...PROJECT_KEYS,'role','city','timing'].filter(key=>details[key]).map(key=>translate(PROJECT_LABELS[key]||({city:'مدينة التسليم',timing:'الموعد المفضل'}[key]),'ar')+': '+(controlled.includes(key)||key==='quantity'&&details[key]==='not-sure'?translate(projectValue(key,details[key]),'ar'):details[key])).join('\n');

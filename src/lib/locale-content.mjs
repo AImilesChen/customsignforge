@@ -13,6 +13,8 @@ import {portuguesePublicCopy} from './portuguese-content.mjs';
 import ptProjects from '../data/pt-br/projects.json' with {type:'json'};
 import {arabicPublicCopy} from './arabic-content.mjs';
 import arProjects from '../data/ar/projects.json' with {type:'json'};
+import {spanishPublicCopy} from './spanish-content.mjs';
+import esProjects from '../data/es/projects.json' with {type:'json'};
 export const chineseProducts=zh.products;
 export const chineseSpace=value=>zh.settings[value]||value;
 const projects={
@@ -23,6 +25,42 @@ const projects={
  'cafe-neon-concept':'Open · 橱窗线条灯光字','dental-lightbox-design':'Dental Studio · 店面灯箱','projecting-lightbox-design':'Lume · 圆形侧挂灯箱','cafe-neon-design':'Good Company · 咖啡店霓虹图形',
  'marquee-entrance-concept':'Echo · 外露光源入口字','cinema-special-design':'Cinema · 剧院风格字','social-special-design':'Play · 立体娱乐场所标志','restaurant-special-design':'Fire & Grain · 组合材料招牌',
  'front-lit-letter-reference':'发光字字面与围边结构','halo-letter-reference':'背光字制作结构','metal-letter-reference':'金属围边字工艺','acrylic-letter-reference':'亚克力叠层字工艺','neon-style-reference':'霓虹风格线条工艺','exposed-light-reference':'外露光源字工艺'
+};
+const spanishProductSeoTitles={
+ 'led-channel-letters':'Letras corpóreas LED con iluminación frontal a medida',
+ 'backlit-letters':'Letras retroiluminadas LED con efecto halo',
+ 'metal-letters':'Letras corpóreas metálicas a medida',
+ 'acrylic-letters':'Letras y logotipos de acrílico a medida',
+ 'lightbox-neon':'Cajas de luz y rótulos de neón LED',
+ 'specialty-signs':'Rótulos especiales a medida'
+};
+const spanishSeoPageTitles={
+ '/':'Rótulos comerciales a medida y letras LED',
+ '/products/':'Rótulos a medida y letras corpóreas',
+ '/projects/':'Ideas y ejemplos de rótulos comerciales',
+ '/about/':'Fabricación de rótulos a medida',
+ '/how-it-works/':'Cómo fabricamos un rótulo a medida',
+ '/for-sign-companies/':'Fabricación para rotulistas e instaladores',
+ '/contact/':'Contacto y presupuesto de rótulos a medida',
+ '/landing/custom-logo-signs/':'Logotipos convertidos en rótulos a medida',
+ '/landing/sign-fabrication/':'Fabricación de rótulos según planos'
+};
+const spanishSeoDescriptions={
+ '/':'Rótulos comerciales a medida para tiendas, oficinas y hoteles: letras LED, letras metálicas y logotipos de acrílico. Cuéntanos tu proyecto.',
+ '/products/':'Compara letras LED iluminadas de frente, letras con efecto halo, letras metálicas o de acrílico, cajas de luz y neón LED.',
+ '/projects/':'Explora ideas y referencias de fabricación de rótulos: materiales, iluminación, acabados y aplicaciones comerciales.',
+ '/about/':'Conoce el equipo de Custom Sign Forge y su proceso de corte, montaje, inspección y embalaje de rótulos a medida.',
+ '/how-it-works/':'Del logotipo a la entrega: revisamos el proyecto, confirmamos planos y materiales, fabricamos e inspeccionamos tu rótulo.',
+ '/for-sign-companies/':'Fabricación de rótulos según plano para rotulistas e instaladores: letras LED, metal, acrílico y soluciones especiales.',
+ '/contact/':'Envía tu proyecto de rótulo a Custom Sign Forge por formulario, correo o WhatsApp para consultar materiales y presupuesto.',
+ '/landing/custom-logo-signs/':'Convierte tu logotipo en un rótulo a medida. Define dimensiones, materiales, acabados e iluminación para tu espacio.',
+ '/landing/sign-fabrication/':'Fabricamos rótulos según tus planos. Indica cantidades, materiales y destino para consultar una solución a medida.',
+ '/products/led-channel-letters/':'Letras corpóreas LED con iluminación frontal para fachadas y espacios comerciales. Define tamaño, color y montaje según tu marca.',
+ '/products/backlit-letters/':'Letras corpóreas retroiluminadas LED que crean un halo suave detrás del logotipo. Ideales para fachadas y recepciones.',
+ '/products/metal-letters/':'Letras corpóreas metálicas a medida en acero inoxidable o aluminio. Compara acabados, grosor y formas de fijación.',
+ '/products/acrylic-letters/':'Letras y logotipos de acrílico a medida: color, corte y volumen para recepciones y espacios comerciales.',
+ '/products/lightbox-neon/':'Cajas de luz y rótulos de neón LED para fachadas, escaparates y restaurantes. Compara efectos y opciones de instalación.',
+ '/products/specialty-signs/':'Rótulos especiales a medida con materiales combinados, formas singulares e iluminación estudiada según tus planos.'
 };
 const frenchProductSeoTitles={
  'led-channel-letters':'Lettres boîtiers lumineuses LED sur mesure',
@@ -158,7 +196,13 @@ const arabicSeoDescriptions={
  '/products/specialty-signs/':'لافتات خاصة حسب الطلب تجمع مواد وأشكالاً وإضاءة مختلفة وفق رسومات مشروعك وشروط التركيب.'
 };
 export function localizedItem(item,locale='en') {
- if(item&&['ms','th','de','fr','ko','pt-br','ar'].includes(locale)){
+ if(item&&['ms','th','de','fr','ko','pt-br','ar','es'].includes(locale)){
+  if(locale==='es'){
+   const source=spanishPublicCopy,p=source.site.products[item.slug]||source.site.products[item.product],project=!!(item.type==='project'||item.product);
+   if(p&&!project)return {...item,title:p.title,intro:p.intro,seoTitle:spanishProductSeoTitles[item.slug]||p.title,seoDescription:spanishSeoDescriptions['/products/'+item.slug+'/']||p.intro,cardDescription:p.effect,imageAlt:p.title+' · ejemplo de diseño'};
+   if(project){const title=esProjects[item.slug]||p?.title||'Rótulo a medida',intro=source.detail.cases[item.slug]||'Referencia de materiales y fabricación; las especificaciones finales se confirman para cada proyecto.';return {...item,title,intro,seoTitle:title,seoDescription:intro,imageAlt:title+' · '+(item.imageKind==='concept'?'concepto visual generado por IA':'referencia de fabricación')};}
+   const meta=source.site.pages['/'+item.slug+'/']||source.site.pages['/landing/'+item.slug+'/'];return meta?{...item,title:meta[0],intro:meta[1],seoTitle:meta[0],seoDescription:meta[1]}:item;
+  }
   if(locale==='ar'){
    const source=arabicPublicCopy,p=source.site.products[item.slug]||source.site.products[item.product],project=!!(item.type==='project'||item.product);
    if(p&&!project)return {...item,title:p.title,intro:p.intro,seoTitle:arabicProductSeoTitles[item.slug]||p.title,seoDescription:arabicSeoDescriptions['/products/'+item.slug+'/']||p.intro,cardDescription:p.effect,imageAlt:p.title+' · نموذج تصميم'};
@@ -187,6 +231,7 @@ export function localizedItem(item,locale='en') {
  const meta=zh.pages['/'+item.slug+'/']||zh.pages['/landing/'+item.slug+'/'];return meta?{...item,title:meta[0],intro:meta[1],seoTitle:meta[0],seoDescription:meta[1]}:item;
 }
 export function localeMetadata(path,item,policy,locale='en') {
+ if(locale==='es'){const data=spanishPublicCopy.site,localized=localizedItem(item,locale),fixed=data.pages[path];return {title:spanishSeoPageTitles[path]||localized?.seoTitle||localized?.title||data.policies[policy?.route]||fixed?.[0]||'Página no encontrada',description:spanishSeoDescriptions[path]||localized?.seoDescription||localized?.intro||fixed?.[1]||'Conoce los rótulos comerciales a medida de Custom Sign Forge.'};}
  if(locale==='ar'){const data=arabicPublicCopy.site,localized=localizedItem(item,locale),fixed=data.pages[path];return {title:arabicSeoPageTitles[path]||localized?.seoTitle||localized?.title||data.policies[policy?.route]||fixed?.[0]||'الصفحة غير موجودة',description:arabicSeoDescriptions[path]||localized?.seoDescription||localized?.intro||fixed?.[1]||'تعرف على اللافتات التجارية المخصصة من Custom Sign Forge.'};}
  if(locale==='pt-br'){const data=portuguesePublicCopy.site,localized=localizedItem(item,locale),fixed=data.pages[path];return {title:portugueseSeoPageTitles[path]||localized?.seoTitle||localized?.title||data.policies[policy?.route]||fixed?.[0]||'Página não encontrada',description:portugueseSeoDescriptions[path]||localized?.seoDescription||localized?.intro||fixed?.[1]||'Conheça os letreiros personalizados da Custom Sign Forge.'};}
  if(locale==='ko'){const data=koreanPublicCopy.site,localized=localizedItem(item,locale),fixed=data.pages[path];return {title:koreanSeoPageTitles[path]||localized?.seoTitle||localized?.title||data.policies[policy?.route]||fixed?.[0]||'페이지를 찾을 수 없습니다',description:koreanSeoDescriptions[path]||localized?.seoDescription||localized?.intro||fixed?.[1]||'Custom Sign Forge의 맞춤 간판 제작 정보를 확인하세요.'};}

@@ -8,5 +8,6 @@ import {frenchPublicCopy} from '../lib/french-content.mjs';
 import {koreanPublicCopy} from '../lib/korean-content.mjs';
 import {portuguesePublicCopy} from '../lib/portuguese-content.mjs';
 import {arabicPublicCopy} from '../lib/arabic-content.mjs';
-const resources={zh:{site:zh,detail},ms:publicCopy,th:thaiPublicCopy,de:germanPublicCopy,fr:frenchPublicCopy,ko:koreanPublicCopy,'pt-br':portuguesePublicCopy,ar:arabicPublicCopy};
+import {spanishPublicCopy} from '../lib/spanish-content.mjs';
+const resources={zh:{site:zh,detail},ms:publicCopy,th:thaiPublicCopy,de:germanPublicCopy,fr:frenchPublicCopy,ko:koreanPublicCopy,'pt-br':portuguesePublicCopy,ar:arabicPublicCopy,es:spanishPublicCopy};
 export function usePublicCopy(){const {locale,t}=useLocale(),data=resources[locale]||resources.zh;return {t,siteCopy:data.site,chineseProducts:data.site.products,chineseSpace:value=>data.site.settings[value]||value,productDetails:data.detail};}

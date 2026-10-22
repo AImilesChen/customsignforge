@@ -1,0 +1,68 @@
+{
+  "products": {
+    "led-channel-letters": {
+      "title": "Letras corpóreas LED con iluminación frontal",
+      "headline": "Haz que tu marca destaque desde la calle.",
+      "intro": "La luz atraviesa la cara de cada letra y define un contorno nítido. Se fabrican a medida para fachadas, edificios y espacios comerciales según tu logotipo, las dimensiones y las condiciones del lugar.",
+      "effect": "Frente iluminado · Contorno definido",
+      "uses": ["Fachadas comerciales", "Edificios comerciales", "Cadenas de tiendas", "Paredes interiores de marca"],
+      "features": [["Tipo de iluminación", "Los módulos LED internos iluminan la cara translúcida para que las letras y el logotipo destaquen."], ["Materiales y acabados", "Podemos estudiar caras de acrílico, laterales metálicos, pintura y colores; la estructura final se confirma con los planos."], ["Instalación", "Según la pared, valoramos montaje individual, panel trasero o canal de montaje, con espacio para cableado y mantenimiento."], ["Criterios de elección", "La distancia de lectura, el color de la cara y la luz ambiental influyen en el resultado. Los trazos finos y tamaños pequeños requieren una evaluación específica."]]
+    },
+    "backlit-letters": {
+      "title": "Letras retroiluminadas con efecto halo",
+      "headline": "Una luz suave que realza tu marca.",
+      "intro": "La luz se proyecta desde la parte posterior de las letras hacia la pared y crea un halo suave. Ideal para marcas que quieren destacar el material, el volumen y el ambiente del espacio.",
+      "effect": "Luz posterior · Halo suave",
+      "uses": ["Recepciones de oficinas", "Tiendas de diseño", "Entradas de hoteles", "Restaurantes"],
+      "features": [["Tipo de iluminación", "Una cara opaca y una fuente de luz trasera crean un halo que dibuja el contorno de cada letra sobre la pared."], ["Materiales y acabados", "Podemos estudiar acabados cepillados, pulidos, metálicos o pintados según el logotipo y el espacio."], ["Pared y separación", "El color y la textura de la pared, así como la distancia entre la letra y la superficie, afectan la anchura y uniformidad del halo."], ["Planificación del montaje", "Conviene confirmar salidas de cable, ubicación de fuentes de alimentación, fijaciones y acceso de mantenimiento antes de fabricar."]]
+    },
+    "metal-letters": {
+      "title": "Letras corpóreas metálicas",
+      "headline": "La fuerza de tu marca en cada detalle.",
+      "intro": "Las superficies metálicas, el grosor y las sombras aportan volumen al rótulo. Sin iluminación integrada, las letras mantienen una presencia clara en entradas, recepciones y fachadas.",
+      "effect": "Acabado metálico · Volumen definido",
+      "uses": ["Recepciones corporativas", "Fachadas", "Señalética de hoteles", "Espacios de marca"],
+      "features": [["Materiales", "Elegimos entre acero inoxidable, aluminio y otros materiales aptos según el entorno, tamaño y presupuesto."], ["Acabados", "El cepillado, el pulido, la pintura y los tonos metálicos ofrecen resultados diferentes. La muestra de color se confirma con el pedido."], ["Estructura tridimensional", "El corte macizo, los laterales y el grosor cambian la sombra, el peso y las necesidades de instalación."], ["Uso previsto", "Para exteriores evaluamos el clima, el soporte, las fijaciones y el mantenimiento."]]
+    },
+    "acrylic-letters": {
+      "title": "Letras y logotipos de acrílico",
+      "headline": "Color y volumen para expresar tu identidad.",
+      "intro": "Combinamos formas, colores y capas para crear rótulos adecuados para recepciones, espacios comerciales y marcas con personalidad.",
+      "effect": "Color · Corte y superposición",
+      "uses": ["Paredes de recepción", "Expositores comerciales", "Logotipos de marca", "Señalética interior"],
+      "features": [["Formas a medida", "A partir de un logotipo vectorial evaluamos contornos, trazos mínimos y detalles para preservar su identidad."], ["Color y superficie", "Podemos estudiar acabados opacos, transparentes, esmerilados o en varias capas. Los colores se confirman antes de fabricar."], ["Grosor y profundidad", "El grosor del material, las capas y la separación de la pared determinan el efecto tridimensional."], ["Opciones de iluminación", "Es posible estudiar versiones sin luz o combinadas con iluminación, según la transmisión de luz del material y la estructura."]]
+    },
+    "lightbox-neon": {
+      "title": "Cajas de luz y rótulos de neón LED",
+      "headline": "Una luz memorable para tu espacio.",
+      "intro": "Desde cajas de luz con una superficie iluminada hasta rótulos de neón LED de líneas definidas, ofrecemos distintas soluciones para tiendas, restaurantes y espacios de marca.",
+      "effect": "Superficie luminosa · Líneas de luz",
+      "uses": ["Fachadas de tiendas", "Cafeterías y restaurantes", "Escaparates", "Decoración interior"],
+      "features": [["Caja de luz", "Un panel translúcido y una estructura alojan el texto o gráfico. Se estudian opciones de una o dos caras y su orientación de montaje."], ["Estilo neón", "Una fuente de luz flexible dibuja letras y formas, ideal para líneas expresivas y ambientes concretos."], ["Estructura y mantenimiento", "Las dimensiones, el panel, el cableado, la alimentación y el acceso de servicio determinan la estructura."], ["Interior o exterior", "Las necesidades de protección y montaje cambian según el entorno. Un diseño interior no debe instalarse fuera sin una nueva evaluación."]]
+    },
+    "specialty-signs": {
+      "title": "Rótulos especiales a medida",
+      "headline": "Convierte una idea singular en una solución realizable.",
+      "intro": "Para tipografías especiales, materiales combinados y estructuras complejas, evaluamos primero los planos y la técnica de fabricación antes de definir la solución.",
+      "effect": "Materiales combinados · Formas especiales",
+      "uses": ["Identidades de marca", "Espacios comerciales creativos", "Señalización arquitectónica", "Exposiciones a medida"],
+      "features": [["Empezar con los planos", "Comparte el logotipo, referencias y medidas para estudiar los detalles clave y la viabilidad de fabricación."], ["Técnicas combinadas", "Según el diseño, estudiamos corte, conformado, soldadura, pulido, acabados y montaje."], ["Muestras y detalles", "Para efectos complejos, podemos acordar muestras, colores y puntos de aprobación al preparar el presupuesto."], ["Alcance del proyecto", "Confirmamos materiales, estructura, cantidades, instalación y entrega antes de programar la producción."]]
+    }
+  },
+  "pages": {
+    "/": ["Rótulos comerciales a medida para destacar tu marca", "Custom Sign Forge fabrica letras LED, letras metálicas, logotipos de acrílico y rótulos comerciales a medida, desde la revisión del diseño hasta la entrega."],
+    "/products/": ["Rótulos y letras corpóreas a medida", "Compara letras LED con iluminación frontal, letras retroiluminadas, letras metálicas y de acrílico, cajas de luz y rótulos especiales."],
+    "/projects/": ["Ideas de diseño para rótulos comerciales", "Explora ejemplos de rótulos y referencias de fabricación para comparar materiales, iluminación, aplicaciones y detalles de montaje."],
+    "/about/": ["Nuestro equipo y capacidad de fabricación", "Conoce al equipo de Custom Sign Forge, nuestras máquinas y el proceso de corte, montaje, inspección y embalaje."],
+    "/how-it-works/": ["Cómo fabricamos tu rótulo a medida", "Del primer boceto a la entrega: requisitos, confirmación de planos, fabricación, inspección y preparación del envío."],
+    "/for-sign-companies/": ["Fabricación para rotulistas e instaladores", "Fabricación de rótulos según plano para rotulistas, instaladores y compradores profesionales, con apoyo en materiales y procesos."],
+    "/contact/": ["Contacto y presupuesto de rótulos", "Contacta con Custom Sign Forge por correo, WhatsApp o formulario para comentar tu proyecto de rotulación."],
+    "/sign-in/": ["Acceso de clientes", "Accede con Google o con un código enviado por correo para guardar y consultar tus solicitudes de presupuesto."],
+    "/account/": ["Mis solicitudes de presupuesto", "Consulta tus proyectos enviados, datos de contacto, planos y solicitudes de presupuesto."],
+    "/get-a-quote/": ["Solicita un presupuesto para tu rótulo", "Indica tus datos, requisitos y plan de entrega; adjunta planos o referencias para recibir un presupuesto personalizado."],
+    "/landing/custom-logo-signs/": ["Rótulos con tu logotipo a medida", "Partimos de tu logotipo para definir dimensiones, materiales, iluminación y aplicación."],
+    "/landing/sign-fabrication/": ["Fabricación de rótulos según plano", "Comparte planos, cantidades y requisitos de entrega para estudiar la fabricación de tus rótulos."]
+  },
+  "settings": {"Office":"Oficinas y recepciones", "Storefront":"Fachadas comerciales", "Hospitality":"Hoteles y espacios de recepción", "Dining":"Cafeterías y restaurantes", "Other":"Otros espacios comerciales"},
+  "policies": {"/privacy/":"Aviso de privacidad", "/terms/":"Términos de uso", "/cookies/":"Aviso de cookies", "/cancellations-returns/":"Cancelaciones y devoluciones", "/shipping-installation/":"Envío e instalación", "/legal-notice/":"Información de la empresa"}
+}

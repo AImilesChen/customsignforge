@@ -2,16 +2,17 @@ import {basePath} from './locale.mjs';
 import {hasAnalyticsConsent} from './browser-measurement.mjs';
 import {campaignSource,publicPath} from './acquisition.mjs';
 
-const PRIVATE=/^\/(?:(?:zh|ms|th|de|fr|ko|pt-br|ar)\/)?(admin|api|auth|account|sign-in|get-a-quote|media|design-kit|review)(\/|$)/;
-export const externalAnalyticsEnabled=({environment,path,found=true,policy=false,canManage=false})=>environment==='production'&&found&&!policy&&!canManage&&!PRIVATE.test(path);
+const PRIVATE=/^\/(admin|api|auth|account|sign-in|get-a-quote|media|design-kit|review)(\/|$)/;
+const privatePath=path=>PRIVATE.test(basePath(path));
+export const externalAnalyticsEnabled=({environment,path,found=true,policy=false,canManage=false})=>environment==='production'&&found&&!policy&&!canManage&&!privatePath(path);
 export function analyticsVisitAllowed(href,referrer=''){
  try{
   const url=new URL(href);
-  if(url.origin!=='https://customsignforge.com'||!publicPath(url.pathname)||PRIVATE.test(url.pathname))return false;
+  if(url.origin!=='https://customsignforge.com'||!publicPath(url.pathname)||privatePath(url.pathname))return false;
   // The supplied collectors read the current URL. Never load them on URLs carrying form data.
   if(url.hash&&!/^#[a-z0-9-]{1,100}$/.test(url.hash))return false;
   for(const [key,value] of url.searchParams)if(campaignSource({[key]:value})[key]!==value)return false;
-  if(referrer){const source=new URL(referrer);if(source.search||source.hash||PRIVATE.test(source.pathname))return false;}
+  if(referrer){const source=new URL(referrer);if(source.search||source.hash||privatePath(source.pathname))return false;}
   return true;
  }catch{return false;}
 }

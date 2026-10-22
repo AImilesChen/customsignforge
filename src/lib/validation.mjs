@@ -6,7 +6,8 @@ import {PROJECT_KEYS,ROLES,projectErrors} from './enquiry-project.mjs';
 export class HttpError extends Error { constructor(status,message,fields={}) { super(message);this.status=status;this.fields=fields; } }
 export const USES=['Shop or storefront','Office or reception','Other commercial space','Multiple locations or projects','Other or not sure'];
 export const ARABIC_COUNTRIES=['Saudi Arabia','United Arab Emirates','Qatar','Kuwait','Bahrain','Oman','Egypt','Jordan','Morocco','Algeria'];
-export const COUNTRIES=['United States','Canada','United Kingdom','France','Germany','Italy','Spain','Netherlands','Singapore','Malaysia','Thailand','Philippines','Indonesia','Vietnam','Australia',...ARABIC_COUNTRIES,'Other / discuss destination'];
+export const SPANISH_COUNTRIES=['Spain','Mexico','Colombia','Argentina','Chile','Peru','Ecuador','Uruguay','Costa Rica','Panama','Dominican Republic'];
+export const COUNTRIES=['United States','Canada','United Kingdom','France','Germany','Italy',...SPANISH_COUNTRIES,'Netherlands','Singapore','Malaysia','Thailand','Philippines','Indonesia','Vietnam','Australia',...ARABIC_COUNTRIES,'Other / discuss destination'];
 export const STAGES=['Ready to discuss a quote','Comparing options','Exploring an idea'];
 export const RECORD_STATES=['web_recorded','chat_confirmed','duplicate_or_spam'];
 export const BUSINESS_STAGES=['needs_details','evaluating','ready_to_quote','quoted','negotiating','won','lost','on_hold'];
