@@ -58,7 +58,7 @@ const koreanProductSeoTitles={
  'backlit-letters':'맞춤 제작 LED 후광 채널간판',
  'metal-letters':'맞춤 제작 금속 입체문자',
  'acrylic-letters':'맞춤 제작 아크릴 입체문자와 로고',
- 'lightbox-neon':'LED 라이트박스 간판·네온사인 제작',
+ 'lightbox-neon':'LED 라이트박스 간판·LED 네온사인 제작',
  'specialty-signs':'맞춤형 특수 간판 제작'
 };
 const koreanSeoPageTitles={
