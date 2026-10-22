@@ -11,6 +11,8 @@ import {koreanPublicCopy} from './korean-content.mjs';
 import koProjects from '../data/ko/projects.json' with {type:'json'};
 import {portuguesePublicCopy} from './portuguese-content.mjs';
 import ptProjects from '../data/pt-br/projects.json' with {type:'json'};
+import {arabicPublicCopy} from './arabic-content.mjs';
+import arProjects from '../data/ar/projects.json' with {type:'json'};
 export const chineseProducts=zh.products;
 export const chineseSpace=value=>zh.settings[value]||value;
 const projects={
@@ -123,8 +125,46 @@ const portugueseSeoDescriptions={
  '/products/lightbox-neon/':'Caixas de luz e letreiros em neon LED para fachadas, vitrines e restaurantes. Compare os efeitos e as opções de instalação.',
  '/products/specialty-signs/':'Letreiros especiais sob medida com materiais combinados, formas exclusivas e iluminação planejada conforme seu projeto.'
 };
+const arabicProductSeoTitles={
+ 'led-channel-letters':'حروف بارزة مضيئة من الأمام بتقنية LED',
+ 'backlit-letters':'حروف بارزة مضاءة خلفياً بتأثير هالة ضوئية',
+ 'metal-letters':'حروف معدنية بارزة حسب الطلب',
+ 'acrylic-letters':'حروف وشعارات أكريليك حسب الطلب',
+ 'lightbox-neon':'صناديق إضاءة ولافتات نيون LED',
+ 'specialty-signs':'لافتات خاصة حسب الطلب'
+};
+const arabicSeoPageTitles={
+ '/':'لافتات تجارية مخصصة وحروف مضيئة LED',
+ '/products/':'أنواع اللافتات والحروف البارزة حسب الطلب',
+ '/projects/':'أفكار وتصاميم لافتات تجارية مخصصة',
+ '/about/':'تصنيع اللافتات المخصصة وفريق العمل',
+ '/how-it-works/':'مراحل تصنيع اللافتات حسب الطلب',
+ '/for-sign-companies/':'تصنيع اللافتات لشركات اللافتات والتركيب',
+ '/contact/':'تواصل معنا لطلب عرض سعر للافتة مخصصة'
+};
+const arabicSeoDescriptions={
+ '/':'تصنيع لافتات تجارية مخصصة للمتاجر والمكاتب والفنادق، بما في ذلك الحروف المضيئة LED والحروف المعدنية وشعارات الأكريليك. ناقش متطلبات مشروعك معنا.',
+ '/products/':'قارن بين الحروف المضيئة من الأمام، والحروف المضاءة خلفياً، والحروف المعدنية والأكريليك، وصناديق الإضاءة والنيون LED.',
+ '/projects/':'تصفح أمثلة تصميم اللافتات للمحلات ومناطق الاستقبال والمساحات التجارية، مع مراجع للمواد والإضاءة والتشطيبات.',
+ '/about/':'تعرف على فريق Custom Sign Forge ومراحل تصنيع اللافتات من قطع المواد والتجميع إلى الفحص والتغليف.',
+ '/how-it-works/':'من الشعار إلى التسليم: نراجع متطلبات المشروع والمواد والمقاسات، ثم ننتقل إلى التصنيع والفحص والتغليف.',
+ '/for-sign-companies/':'تصنيع حروف بارزة ولافتات مخصصة لشركات اللافتات وفرق التركيب وفق الرسومات والمواصفات المتفق عليها.',
+ '/contact/':'أرسل تفاصيل مشروع اللافتة عبر النموذج أو البريد الإلكتروني أو WhatsApp لمناقشة المواد والمقاسات وطلب عرض سعر.',
+ '/products/led-channel-letters/':'حروف بارزة مضيئة من الأمام بتقنية LED للواجهات والمساحات التجارية، تصنع حسب الشعار والمقاسات وظروف التركيب.',
+ '/products/backlit-letters/':'حروف بارزة مضاءة خلفياً بتقنية LED تمنح الشعار هالة ضوئية ناعمة على واجهات المحلات وجدران الاستقبال.',
+ '/products/metal-letters/':'حروف معدنية بارزة حسب الطلب من الفولاذ المقاوم للصدأ أو الألومنيوم؛ ناقش التشطيبات والسماكة وطريقة التثبيت.',
+ '/products/acrylic-letters/':'حروف وشعارات أكريليك حسب الطلب بألوان وقصات وطبقات مناسبة للاستقبال والمتاجر والمساحات التجارية الداخلية.',
+ '/products/lightbox-neon/':'صناديق إضاءة ولافتات نيون LED مخصصة للواجهات والواجهات الزجاجية والمطاعم؛ قارن تأثيرات الإضاءة والتركيب.',
+ '/products/specialty-signs/':'لافتات خاصة حسب الطلب تجمع مواد وأشكالاً وإضاءة مختلفة وفق رسومات مشروعك وشروط التركيب.'
+};
 export function localizedItem(item,locale='en') {
- if(item&&['ms','th','de','fr','ko','pt-br'].includes(locale)){
+ if(item&&['ms','th','de','fr','ko','pt-br','ar'].includes(locale)){
+  if(locale==='ar'){
+   const source=arabicPublicCopy,p=source.site.products[item.slug]||source.site.products[item.product],project=!!(item.type==='project'||item.product);
+   if(p&&!project)return {...item,title:p.title,intro:p.intro,seoTitle:arabicProductSeoTitles[item.slug]||p.title,seoDescription:arabicSeoDescriptions['/products/'+item.slug+'/']||p.intro,cardDescription:p.effect,imageAlt:p.title+' · نموذج تصميم'};
+   if(project){const title=arProjects[item.slug]||p?.title||'لافتة مخصصة',intro=source.detail.cases[item.slug]||'مرجع للمواد والتصنيع؛ تؤكد المواصفات النهائية لكل مشروع.';return {...item,title,intro,seoTitle:title,seoDescription:intro,imageAlt:title+' · '+(item.imageKind==='concept'?'تصور تصميمي':'مرجع تصنيع')};}
+   const meta=source.site.pages['/'+item.slug+'/']||source.site.pages['/landing/'+item.slug+'/'];return meta?{...item,title:meta[0],intro:meta[1],seoTitle:meta[0],seoDescription:meta[1]}:item;
+  }
   if(locale==='pt-br'){
    const source=portuguesePublicCopy,p=source.site.products[item.slug]||source.site.products[item.product],project=!!(item.type==='project'||item.product);
    if(p&&!project)return {...item,title:p.title,intro:p.intro,seoTitle:portugueseProductSeoTitles[item.slug]||p.title,seoDescription:portugueseSeoDescriptions['/products/'+item.slug+'/']||p.intro,cardDescription:p.effect,imageAlt:p.title+' · exemplo de design'};
@@ -147,6 +187,7 @@ export function localizedItem(item,locale='en') {
  const meta=zh.pages['/'+item.slug+'/']||zh.pages['/landing/'+item.slug+'/'];return meta?{...item,title:meta[0],intro:meta[1],seoTitle:meta[0],seoDescription:meta[1]}:item;
 }
 export function localeMetadata(path,item,policy,locale='en') {
+ if(locale==='ar'){const data=arabicPublicCopy.site,localized=localizedItem(item,locale),fixed=data.pages[path];return {title:arabicSeoPageTitles[path]||localized?.seoTitle||localized?.title||data.policies[policy?.route]||fixed?.[0]||'الصفحة غير موجودة',description:arabicSeoDescriptions[path]||localized?.seoDescription||localized?.intro||fixed?.[1]||'تعرف على اللافتات التجارية المخصصة من Custom Sign Forge.'};}
  if(locale==='pt-br'){const data=portuguesePublicCopy.site,localized=localizedItem(item,locale),fixed=data.pages[path];return {title:portugueseSeoPageTitles[path]||localized?.seoTitle||localized?.title||data.policies[policy?.route]||fixed?.[0]||'Página não encontrada',description:portugueseSeoDescriptions[path]||localized?.seoDescription||localized?.intro||fixed?.[1]||'Conheça os letreiros personalizados da Custom Sign Forge.'};}
  if(locale==='ko'){const data=koreanPublicCopy.site,localized=localizedItem(item,locale),fixed=data.pages[path];return {title:koreanSeoPageTitles[path]||localized?.seoTitle||localized?.title||data.policies[policy?.route]||fixed?.[0]||'페이지를 찾을 수 없습니다',description:koreanSeoDescriptions[path]||localized?.seoDescription||localized?.intro||fixed?.[1]||'Custom Sign Forge의 맞춤 간판 제작 정보를 확인하세요.'};}
  if(['ms','th','de','fr'].includes(locale)){const data=(locale==='th'?thaiPublicCopy:locale==='de'?germanPublicCopy:locale==='fr'?frenchPublicCopy:publicCopy).site,localized=localizedItem(item,locale),fixed=data.pages[path];return {title:(locale==='fr'&&frenchSeoPageTitles[path])||localized?.seoTitle||localized?.title||data.policies[policy?.route]||fixed?.[0]||(locale==='fr'?'Page introuvable':locale==='de'?'Seite nicht gefunden':locale==='th'?'ไม่พบหน้าเว็บ':'Halaman tidak ditemui'),description:(locale==='fr'&&frenchSeoDescriptions[path])||localized?.seoDescription||localized?.intro||fixed?.[1]||(locale==='fr'?'Enseignes sur mesure par Custom Sign Forge.':locale==='de'?'Individuelle Werbeschilder von Custom Sign Forge.':locale==='th'?'ข้อมูลป้ายธุรกิจสั่งทำจาก Custom Sign Forge':'Maklumat papan tanda komersial Custom Sign Forge.')};}

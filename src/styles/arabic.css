@@ -1,0 +1,28 @@
+html[lang="ar"]{--font-heading:Tahoma,"Noto Sans Arabic","Segoe UI",Arial,sans-serif;--font-body:Tahoma,"Noto Sans Arabic","Segoe UI",Arial,sans-serif;word-break:normal;}
+html[lang="ar"] body{text-align:start;}
+html[lang="ar"] h1,html[lang="ar"] h2,html[lang="ar"] h3{font-family:var(--font-heading)!important;letter-spacing:0;line-height:1.35;overflow-wrap:break-word;text-wrap:balance;}
+html[lang="ar"] p,html[lang="ar"] dd,html[lang="ar"] li{line-height:1.8;overflow-wrap:break-word;}
+html[lang="ar"] .eyebrow{letter-spacing:0;text-transform:none;}
+html[lang="ar"] .button{white-space:normal;line-height:1.5;}
+html[lang="ar"] .home-immersive-copy h1{font-size:clamp(38px,3.6vw,58px);line-height:1.4;}
+html[lang="ar"] .home-immersive-actions,html[lang="ar"] .zh-pdp-actions{flex-wrap:wrap;}
+html[lang="ar"] .zh-products .overview-banner h1{font-size:clamp(36px,3.5vw,54px);}
+html[lang="ar"] .zh-product-page h1{font-size:clamp(34px,3.2vw,46px);}
+html[lang="ar"] .zh-product-page h2{font-size:clamp(27px,2.4vw,35px);}
+html[lang="ar"] .zh-about h1{font-size:clamp(36px,3.4vw,50px);}
+html[lang="ar"] .zh-options>div{grid-template-columns:minmax(0,1fr);gap:8px;}
+html[lang="ar"] .zh-options dt,html[lang="ar"] .zh-options dd{overflow-wrap:anywhere;}
+html[lang="ar"] .home-hero-category{left:auto;right:20px;}
+html[lang="ar"] .inline-note{border-left:0;border-right:3px solid var(--muted);}
+html[lang="ar"] .steps>div{border-left:0;border-right:1px solid #cdd2d5;padding-left:0;padding-right:26px;}
+html[lang="ar"] .steps>div:first-child{border-right:0;padding-right:0;}
+html[lang="ar"] .faqs details p{padding-right:0;padding-left:28px;}
+html[lang="ar"] .customer-benefits{padding-left:0;padding-right:24px;}
+html[lang="ar"] .skip{left:auto;right:20px;}
+html[lang="ar"] .hero{padding-left:0;padding-right:max(80px,calc((100vw - 1303px)/2));}
+html[lang="ar"] :is(input[type="email"],input[type="tel"],input[type="url"],input[inputmode="email"],input[inputmode="tel"],input[inputmode="url"]){direction:ltr;text-align:left;unicode-bidi:isolate;}
+html[lang="ar"] :is(a[href^="mailto:"],a[href^="tel:"],a[href^="https://wa.me/"],code,pre,time,.ref strong){direction:ltr;unicode-bidi:isolate;}
+html[lang="ar"] .language-options{inset-inline-end:0;inset-inline-start:auto;}
+@media(min-width:1361px) and (max-width:1700px){html[lang="ar"] header.header.site-header .wordmark img{width:190px;}html[lang="ar"] header.header.site-header .nav{gap:12px;font-size:13px;}html[lang="ar"] header.header.site-header .header-actions{gap:8px;}html[lang="ar"] header.header.site-header .header-actions>.button{font-size:13px;padding-inline:13px;}}
+@media(max-width:1200px){html[lang="ar"] .hero{padding-left:0;padding-right:48px;}}
+@media(max-width:760px){html[lang="ar"] .home-immersive-copy h1{font-size:clamp(31px,7.2vw,43px);}html[lang="ar"] .zh-product-page h1{font-size:clamp(27px,7vw,32px);}html[lang="ar"] .zh-product-page h2,html[lang="ar"] .zh-about h2{font-size:27px;}html[lang="ar"] .zh-about h1{font-size:35px;}html[lang="ar"] .zh-section-heading{align-items:flex-start;flex-direction:column;gap:12px;}html[lang="ar"] .zh-metrics{grid-template-columns:repeat(2,minmax(0,1fr));}html[lang="ar"] .steps>div,html[lang="ar"] .steps>div:first-child{border-right:0;padding-right:0;}html[lang="ar"] .hero{padding:54px 20px 28px;}html[lang="ar"] .home-hero-category{right:14px;}}

@@ -16,7 +16,10 @@ import koreanOverrides from '../data/ko/overrides.json' with {type:'json'};
 import publicPortuguese from '../data/pt-br/public.json' with {type:'json'};
 import portuguese from '../data/pt-br/messages.json' with {type:'json'};
 import portugueseOverrides from '../data/pt-br/overrides.json' with {type:'json'};
-const dictionaries={zh:messages,ms:{...publicMalay,...malay},th:{...publicThai,...thai,...thaiOverrides},de:{...publicGerman,...german,...germanOverrides},fr:{...publicFrench,...french,...frenchOverrides},ko:{...publicKorean,...korean,...koreanOverrides},'pt-br':{...publicPortuguese,...portuguese,...portugueseOverrides}};
+import publicArabic from '../data/ar/public.json' with {type:'json'};
+import arabic from '../data/ar/messages.json' with {type:'json'};
+import arabicOverrides from '../data/ar/overrides.json' with {type:'json'};
+const dictionaries={zh:messages,ms:{...publicMalay,...malay},th:{...publicThai,...thai,...thaiOverrides},de:{...publicGerman,...german,...germanOverrides},fr:{...publicFrench,...french,...frenchOverrides},ko:{...publicKorean,...korean,...koreanOverrides},'pt-br':{...publicPortuguese,...portuguese,...portugueseOverrides},ar:{...publicArabic,...arabic,...arabicOverrides}};
 // Only explicit language-resource entries are translated. Stored customer text is never passed here.
 export function translate(value,locale='en') {
  if(typeof value!=='string'||!dictionaries[locale])return value;

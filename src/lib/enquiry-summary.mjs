@@ -7,7 +7,14 @@ import {germanPublicCopy} from './german-content.mjs';
 import {frenchPublicCopy} from './french-content.mjs';
 import {koreanPublicCopy} from './korean-content.mjs';
 import {portuguesePublicCopy} from './portuguese-content.mjs';
+import {arabicPublicCopy} from './arabic-content.mjs';
 export function enquirySummary(details,reference,products,locale=details.locale||'en'){
+ if(locale==='ar'){
+  const controlled=['dimensionsStatus','environment','deliveryWindow','role'];
+  const project=[...PROJECT_KEYS,'role','city','timing'].filter(key=>details[key]).map(key=>translate(PROJECT_LABELS[key]||({city:'مدينة التسليم',timing:'الموعد المفضل'}[key]),'ar')+': '+(controlled.includes(key)||key==='quantity'&&details[key]==='not-sure'?translate(projectValue(key,details[key]),'ar'):details[key])).join('\n');
+  const drawing={ready:details.attachments?.length?'الملفات مرفقة بالطلب':'توجد رسومات، لكن لم ترفع ملفات',none:'لا توجد رسومات حالياً',later:'سترسل الملفات لاحقاً'}[details.drawings]||details.drawings;
+  return `مرحباً، أود طلب عرض سعر للافتة مخصصة.\nالمنتج: ${arabicPublicCopy.site.products[details.style]?.title||'لم يحدد بعد'}\nالاستخدام: ${translate(details.use,'ar')}\nبلد التسليم: ${translate(details.country,'ar')}\nمرحلة المشروع: ${translate(details.stage,'ar')}\n${project?project+'\n':''}${details.contactEmail?'البريد الإلكتروني: '+details.contactEmail+'\n':''}${details.phone?(details.contactMethod==='whatsapp'?'WhatsApp: ':'الهاتف: ')+details.phone+' (لم يتم التحقق منه)\n':''}${details.drawings?'الرسومات: '+drawing+'\n':''}${details.project?'المشروع المرجعي: '+details.project+'\n':''}رقم الطلب: ${reference}`;
+ }
  if(locale==='pt-br'){
   const controlled=['dimensionsStatus','environment','deliveryWindow','role'];
   const project=[...PROJECT_KEYS,'role','city','timing'].filter(key=>details[key]).map(key=>translate(PROJECT_LABELS[key]||({city:'Delivery City',timing:'Preferred Timing'}[key]),'pt-br')+': '+(controlled.includes(key)||key==='quantity'&&details[key]==='not-sure'?translate(projectValue(key,details[key]),'pt-br'):details[key])).join('\n');

@@ -94,7 +94,7 @@ function ChineseProduct({ p }) {
     return <article className="product-redesign zh-product-page">
   <section className="product-container zh-pdp-hero">
    <nav className="zh-pdp-breadcrumb" aria-label={tr("面包屑导航")}><Link to="/products/">{tr("全部产品")}</Link><span aria-hidden="true">/</span><span>{tr(p.title)}</span></nav>
-   <div className="zh-pdp-hero-copy"><Eyebrow>{['de','fr','ko','pt-br'].includes(locale) ? tr(copy.headline) : tr(p.title)}</Eyebrow><h1>{['de','fr','ko','pt-br'].includes(locale) ? p.title : tr(copy.headline)}</h1><p className="zh-pdp-intro">{tr(copy.summary)}</p><div className="zh-pdp-actions"><Button to={quote({ style: p.slug })}>{tr("咨询这个类型")}</Button><TextLink to="#product-design-gallery">{tr("查看设计展示")}</TextLink></div><ul className="zh-pdp-uses" aria-label={tr("适用空间")}>{d?.uses.map(use => <li key={use}>{tr(use)}</li>)}</ul></div>
+   <div className="zh-pdp-hero-copy"><Eyebrow>{['de','fr','ko','pt-br','ar'].includes(locale) ? tr(copy.headline) : tr(p.title)}</Eyebrow><h1>{['de','fr','ko','pt-br','ar'].includes(locale) ? p.title : tr(copy.headline)}</h1><p className="zh-pdp-intro">{tr(copy.summary)}</p><div className="zh-pdp-actions"><Button to={quote({ style: p.slug })}>{tr("咨询这个类型")}</Button><TextLink to="#product-design-gallery">{tr("查看设计展示")}</TextLink></div><ul className="zh-pdp-uses" aria-label={tr("适用空间")}>{d?.uses.map(use => <li key={use}>{tr(use)}</li>)}</ul></div>
    <div className="zh-pdp-hero-media"><Photo src={hero?.src || p.img} alt={p.title + tr("整体效果")} eager caption={tr("设计灵感 \u00B7 点击图片查看完整效果")}/></div>
   </section>
   <section className="zh-section zh-soft"><div className="product-container"><Heading kicker={tr("产品特点")} title={tr("先了解这种效果。")}/><Options items={d?.features || []}/></div></section>
