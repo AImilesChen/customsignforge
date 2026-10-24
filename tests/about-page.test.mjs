@@ -4,7 +4,9 @@ import {DatabaseSync} from 'node:sqlite';
 import {readFileSync,existsSync} from 'node:fs';
 import {aboutPresentation} from '../src/lib/about-page.mjs';
 const read=path=>JSON.parse(readFileSync(new URL(path,import.meta.url),'utf8'));
-const content=read('../src/data/about-content.json'),defaults=read('../src/data/about-defaults.json'),old=read('../src/data/trade-content.json').about,profile=read('../src/data/manufacturing-profile.json');
+const content=read('../src/data/about-content.json'),defaults=read('../src/data/about-defaults.json'),profile=read('../src/data/manufacturing-profile.json');
+const old={...read('../src/data/trade-content.json').about};
+old.body=old.body.replace('Send your full project details and optional files without creating an account, then discuss the specification and quote with us.','Sign in to send your project details and files, then discuss the specification and quote with us.');
 const migration=readFileSync(new URL('../migrations/0012_about_page.sql',import.meta.url),'utf8');
 function db(){const d=new DatabaseSync(':memory:');d.exec(readFileSync(new URL('../migrations/0001_initial.sql',import.meta.url),'utf8'));return d}
 function insert(d,draft,published=draft,status='published'){d.prepare('INSERT INTO content_items(id,type,slug,status,draft_json,published_json) VALUES(?,?,?,?,?,?)').run('about','page','about',status,JSON.stringify(draft),JSON.stringify(published))}

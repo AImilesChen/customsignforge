@@ -18,38 +18,41 @@ import { HttpError,text,slug,validateEnquiry,validateContent,validateSettings,im
 import { actor,csrfToken,verifyCSRF,localLogin,sameOrigin,cookie,localMode } from './auth.mjs';
 import { published,siteSettings,contentItem,syncMedia,rateLimit,fingerprint,whatsapp } from './db.mjs';
 import {customerActor,customerCSRF,verifyCustomerCSRF,customerEmailStart,customerEmailVerify,CUSTOMER_SESSION_SECONDS} from './customer-auth.mjs';
+import {guestActor,guestSession,verifyGuestCSRF,guestClaimCode,guestClaimHash} from './guest-enquiry.mjs';
 import {verifyTurnstile} from './security.mjs';
 import {PROJECT_KEYS,ROLES} from './enquiry-project.mjs';
 export const json=(value,status=200,headers={})=>new Response(JSON.stringify(value),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff',...headers}});
 async function limitedBody(request,max=24000){const reader=request.body?.getReader();if(!reader)return new Uint8Array();let parts=[],size=0;while(true){const {done,value}=await reader.read();if(done)break;size+=value.length;if(size>max){await reader.cancel();throw new HttpError(413,'The request is too large.');}parts.push(value);}const out=new Uint8Array(size);let offset=0;for(const p of parts){out.set(p,offset);offset+=p.length;}return out;}
 async function readJSON(request,max=24000){if(!request.headers.get('content-type')?.startsWith('application/json'))throw new HttpError(415,'Use JSON for this request.');try{return JSON.parse(new TextDecoder().decode(await limitedBody(request,max)));}catch(e){if(e instanceof HttpError)throw e;throw new HttpError(400,'Invalid JSON.');}}
 async function createEnquiry(request,env){
- sameOrigin(request);const customer=await customerActor(request,env);await verifyCustomerCSRF(request,env,customer);const raw=await readJSON(request);const products=await published(env,'product');const submitted=validateEnquiry(raw,products.map(p=>p.slug));
+ sameOrigin(request);let customer=null;try{customer=await customerActor(request,env)}catch(e){if(e.status!==401)throw e}const guest=customer?null:await guestActor(request,env);if(customer)await verifyCustomerCSRF(request,env,customer);else await verifyGuestCSRF(request,env,guest);const ownerId=customer?.id||guest.id,ownerCol=customer?'customer_id':'guest_id';const raw=await readJSON(request);const products=await published(env,'product');const submitted=validateEnquiry(raw,products.map(p=>p.slug));
  if(submitted.project&&!(await published(env,'project')).some(p=>p.slug===submitted.project))throw new HttpError(422,'This project reference is no longer available.');
- let row=await env.DB.prepare('SELECT id,reference,payload_hash,customer_id,details_json FROM enquiries WHERE idempotency_key=?').bind(submitted.idempotencyKey).first();
- if(row&&row.customer_id!==customer.id)throw new HttpError(409,'Start a new enquiry before submitting again.');
+ let row=await env.DB.prepare('SELECT id,reference,payload_hash,customer_id,guest_id,details_json FROM enquiries WHERE idempotency_key=?').bind(submitted.idempotencyKey).first();
+ if(row&&row[ownerCol]!==ownerId)throw new HttpError(409,'Start a new enquiry before submitting again.');
  const saved=row?JSON.parse(row.details_json):null;
- const details={...submitted,contactEmail:saved?.contactEmail||customer.email,emailVerified:true,phoneVerified:false};
+ if(!customer&&!submitted.contactEmail)throw new HttpError(422,'Enter a contact email address.',{contactEmail:'Enter a contact email address.'});
+ const details={...submitted,contactEmail:customer?(saved?.contactEmail||customer.email):submitted.contactEmail,emailVerified:!!customer,phoneVerified:false};
  if(saved){if(Object.hasOwn(saved,'locale'))details.locale=saved.locale;else delete details.locale;}
  const hash=await fingerprint(details),replay=!!row;
  if(row){
   const previousFormat={...submitted};delete previousFormat.acquisition;
-  const legacyAllowed=!saved.contactEmail&&(row.payload_hash===await fingerprint(submitted)||row.payload_hash===await fingerprint(previousFormat));
+  const legacyAllowed=!!customer&&!saved.contactEmail&&(row.payload_hash===await fingerprint(submitted)||row.payload_hash===await fingerprint(previousFormat));
   if(row.payload_hash!==hash&&!legacyAllowed)throw new HttpError(409,'These details changed. Start a new enquiry before submitting again.');
  }else{
-  requireEnquiryContact(details);const ids=details.attachments||[];await assertPendingFiles(env,ids,customer.id);
-  await rateLimit(env,request,'enquiry');await rateLimit(env,request,'customer-enquiry',12,customer.id);await verifyTurnstile(env,request,raw.turnstileToken);
+  requireEnquiryContact(details);const ids=details.attachments||[];await assertPendingFiles(env,ids,ownerId,!!guest);
+  await rateLimit(env,request,'enquiry');await rateLimit(env,request,guest?'guest-enquiry':'customer-enquiry',12,ownerId);await verifyTurnstile(env,request,raw.turnstileToken);
   const reference='CSF-'+[...crypto.getRandomValues(new Uint8Array(10))].map(b=>b.toString(16).padStart(2,'0')).join('').toUpperCase();
-  const validFiles=ids.length?" WHERE (SELECT count(*) FROM enquiry_files WHERE id IN ("+ids.map(()=>'?').join(',')+") AND customer_id=? AND enquiry_id IS NULL AND state='ready' AND expires_at>?)=?":'';
-  const insert=env.DB.prepare('INSERT INTO enquiries(id,reference,idempotency_key,payload_hash,details_json,customer_id) SELECT ?,?,?,?,?,?'+validFiles+' ON CONFLICT(idempotency_key) DO NOTHING').bind(crypto.randomUUID(),reference,details.idempotencyKey,hash,JSON.stringify(details),customer.id,...(ids.length?[...ids,customer.id,Math.floor(Date.now()/1000),ids.length]:[]));
+  const validFiles=ids.length?" WHERE (SELECT count(*) FROM enquiry_files WHERE id IN ("+ids.map(()=>'?').join(',')+`) AND ${ownerCol}=? AND enquiry_id IS NULL AND state='ready' AND expires_at>?)=?`:'';
+  const claimHash=guest?await guestClaimHash(env,reference,await guestClaimCode(env,guest.id,reference)):null;
+  const insert=env.DB.prepare('INSERT INTO enquiries(id,reference,idempotency_key,payload_hash,details_json,customer_id,guest_id,claim_hash) SELECT ?,?,?,?,?,?,?,?'+validFiles+' ON CONFLICT(idempotency_key) DO NOTHING').bind(crypto.randomUUID(),reference,details.idempotencyKey,hash,JSON.stringify(details),customer?.id||null,guest?.id||null,claimHash,...(ids.length?[...ids,ownerId,Math.floor(Date.now()/1000),ids.length]:[]));
   const batch=[insert];
-  if(ids.length)batch.push(env.DB.prepare("UPDATE enquiry_files SET enquiry_id=(SELECT id FROM enquiries WHERE idempotency_key=? AND customer_id=? AND payload_hash=?),expires_at=NULL WHERE id IN ("+ids.map(()=>'?').join(',')+") AND customer_id=? AND enquiry_id IS NULL AND state='ready' AND EXISTS(SELECT 1 FROM enquiries WHERE idempotency_key=? AND customer_id=? AND payload_hash=?)").bind(details.idempotencyKey,customer.id,hash,...ids,customer.id,details.idempotencyKey,customer.id,hash));
+  if(ids.length)batch.push(env.DB.prepare(`UPDATE enquiry_files SET enquiry_id=(SELECT id FROM enquiries WHERE idempotency_key=? AND ${ownerCol}=? AND payload_hash=?),expires_at=NULL WHERE id IN (`+ids.map(()=>'?').join(',')+`) AND ${ownerCol}=? AND enquiry_id IS NULL AND state='ready' AND EXISTS(SELECT 1 FROM enquiries WHERE idempotency_key=? AND ${ownerCol}=? AND payload_hash=?)`).bind(details.idempotencyKey,ownerId,hash,...ids,ownerId,details.idempotencyKey,ownerId,hash));
   await env.DB.batch(batch);
-  row=await env.DB.prepare('SELECT id,reference,payload_hash,customer_id,details_json FROM enquiries WHERE idempotency_key=?').bind(details.idempotencyKey).first();
-  if(!row||row.customer_id!==customer.id||row.payload_hash!==hash)throw new HttpError(409,'This submission conflicts with an earlier attempt. Please check your files and try again.');
+  row=await env.DB.prepare('SELECT id,reference,payload_hash,customer_id,guest_id,details_json FROM enquiries WHERE idempotency_key=?').bind(details.idempotencyKey).first();
+  if(!row||row[ownerCol]!==ownerId||row.payload_hash!==hash)throw new HttpError(409,'This submission conflicts with an earlier attempt. Please check your files and try again.');
  }
  const settings=await siteSettings(env),message=summary(JSON.parse(row.details_json),row.reference,products,validLocale(raw.locale)?raw.locale:undefined);
- return json({reference:row.reference,message,whatsappURL:whatsapp(settings,message),email:settings.email||null,recordStatus:'web_recorded',files:await enquiryFiles(env,row.id,customer.id)},replay?200:201);
+ return json({reference:row.reference,message,whatsappURL:whatsapp(settings,message),email:settings.email||null,recordStatus:'web_recorded',files:await enquiryFiles(env,row.id,customer?.id||null),...(guest?{claimCode:await guestClaimCode(env,guest.id,row.reference)}:{})},replay?200:201);
 }
 async function customerAPI(request,env,route){
  const method=request.method;
@@ -62,6 +65,19 @@ async function customerAPI(request,env,route){
  if(route==='attachments'&&method==='GET')return json({files:await pendingEnquiryFiles(env,user.id)});
  if(route==='attachments'&&method==='POST')return json(await uploadEnquiryFile(request,env,user,limitedBody),201);
  if(route.startsWith('attachments/')&&method==='DELETE')return json(await removePendingFile(env,user,route.slice(12)));
+ if(route==='claim'&&method==='POST'){
+  await rateLimit(env,request,'enquiry-claim',10,user.id);
+  const raw=await readJSON(request,4000),reference=text(raw.reference||'',30).toUpperCase(),code=text(raw.claimCode||'',40).toUpperCase();
+  if(!/^CSF-[A-F0-9]{20}$/.test(reference)||!/^[A-F0-9]{32}$/.test(code))throw new HttpError(422,'Enter the enquiry reference and claim code.');
+  const hash=await guestClaimHash(env,reference,code),row=await env.DB.prepare('SELECT id,details_json FROM enquiries WHERE reference=? AND customer_id IS NULL AND claim_hash=?').bind(reference,hash).first();
+  if(!row||JSON.parse(row.details_json).contactEmail?.toLowerCase()!==user.email.toLowerCase())throw new HttpError(404,'No matching enquiry was found for this account and claim code.');
+  const changes=await env.DB.batch([
+   env.DB.prepare('UPDATE enquiries SET customer_id=?,guest_id=NULL,claim_hash=NULL WHERE id=? AND customer_id IS NULL AND claim_hash=?').bind(user.id,row.id,hash),
+   env.DB.prepare('UPDATE enquiry_files SET customer_id=?,guest_id=NULL WHERE enquiry_id=? AND guest_id IS NOT NULL AND EXISTS(SELECT 1 FROM enquiries WHERE id=? AND customer_id=?)').bind(user.id,row.id,row.id,user.id)
+  ]);
+  if(!changes[0].meta.changes)throw new HttpError(409,'This enquiry has already been claimed.');
+  return json({ok:true,reference});
+ }
  if(route==='logout'&&method==='POST'){await env.DB.prepare('DELETE FROM customer_sessions WHERE id=? AND customer_id=?').bind(user.sessionId,user.id).run();return json({ok:true},200,{'Set-Cookie':cookie(request,'csf_customer','',0,'Lax')});}
  if((route==='enquiries'||/^enquiries\/CSF-[A-F0-9]{20}$/.test(route))&&method==='GET'){
   const requestedLocale=new URL(request.url).searchParams.get('locale');
@@ -73,6 +89,24 @@ async function customerAPI(request,env,route){
   return json({items,total,offset});
  }
  throw new HttpError(404,'Account route not found.');
+}
+async function guestAPI(request,env,route){
+ const method=request.method;
+ if(route==='session'&&method==='GET'){const session=await guestSession(request,env);return json({csrf:session.csrf},200,session.setCookie?{'Set-Cookie':session.setCookie}:{});}
+ const guest=await guestActor(request,env);
+ if(route.startsWith('attachments/')&&method==='GET')return downloadEnquiryFile(env,route.slice(12),guest);
+ if(method!=='GET')await verifyGuestCSRF(request,env,guest);
+ if(route==='attachments'&&method==='GET')return json({files:await pendingEnquiryFiles(env,guest.id,true)});
+ if(route==='attachments'&&method==='POST')return json(await uploadEnquiryFile(request,env,guest,limitedBody),201);
+ if(route.startsWith('attachments/')&&method==='DELETE')return json(await removePendingFile(env,guest,route.slice(12)));
+ if(/^enquiries\/CSF-[A-F0-9]{20}$/.test(route)&&method==='GET'){
+  const row=await env.DB.prepare('SELECT id,reference,details_json FROM enquiries WHERE reference=? AND guest_id=?').bind(route.slice(10),guest.id).first();
+  if(!row)throw new HttpError(404,'Enquiry not found.');
+  const details=JSON.parse(row.details_json),products=await published(env,'product'),settings=await siteSettings(env),locale=new URL(request.url).searchParams.get('locale');
+  const message=summary(details,row.reference,products,validLocale(locale)?locale:details.locale||'en');
+  return json({reference:row.reference,message,whatsappURL:whatsapp(settings,message),files:await enquiryFiles(env,row.id),claimCode:await guestClaimCode(env,guest.id,row.reference)});
+ }
+ throw new HttpError(404,'Guest route not found.');
 }
 async function adminAPI(request,env,route){
  const user=await actor(request,env);const method=request.method;const url=new URL(request.url);
@@ -170,6 +204,7 @@ async function adminAPI(request,env,route){
 }
 export async function handleAPI(request,env,route){
  try{
+  if(route.startsWith('guest/'))return await guestAPI(request,env,route.slice(6));
   if(route.startsWith('account/'))return await customerAPI(request,env,route.slice(8));
   if(route==='auth/email/start'&&request.method==='POST'){const r=await emailStart(request,env,await readJSON(request));return json({challenge:r.challenge,message:'If this email is authorised, a sign-in code has been sent.'},202,{'Set-Cookie':r.cookie});}
   if(route==='auth/email/verify'&&request.method==='POST'){const token=await emailVerify(request,env,await readJSON(request));const headers={'Set-Cookie':cookie(request,'csf_admin',token,28800)};return json({ok:true},200,headers);}

@@ -23,9 +23,10 @@ import publicSpanish from '../data/es/public.json' with {type:'json'};
 import spanish from '../data/es/messages.json' with {type:'json'};
 import spanishOverrides from '../data/es/overrides.json' with {type:'json'};
 import {spanishContentDictionary} from './spanish-content.mjs';
+import {guestQuoteCopy} from './guest-quote-copy.mjs';
 const dictionaries={zh:messages,ms:{...publicMalay,...malay},th:{...publicThai,...thai,...thaiOverrides},de:{...publicGerman,...german,...germanOverrides},fr:{...publicFrench,...french,...frenchOverrides},ko:{...publicKorean,...korean,...koreanOverrides},'pt-br':{...publicPortuguese,...portuguese,...portugueseOverrides},ar:{...publicArabic,...arabic,...arabicOverrides},es:{...spanishContentDictionary,...publicSpanish,...spanish,...spanishOverrides}};
 // Only explicit language-resource entries are translated. Stored customer text is never passed here.
 export function translate(value,locale='en') {
  if(typeof value!=='string'||!dictionaries[locale])return value;
- const key=value.trim(),dictionary=dictionaries[locale];return Object.hasOwn(dictionary,key)?value.replace(key,dictionary[key]):value;
+ const key=value.trim(),dictionary=dictionaries[locale];return Object.hasOwn(guestQuoteCopy[locale]||{},key)?value.replace(key,guestQuoteCopy[locale][key]):Object.hasOwn(dictionary,key)?value.replace(key,dictionary[key]):value;
 }

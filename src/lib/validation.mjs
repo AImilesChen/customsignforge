@@ -27,6 +27,7 @@ export function validateEnquiry(raw,styles){
  if(Object.keys(projectProblems).length)throw new HttpError(422,'Please check your project details.',projectProblems);
  for(const key of PROJECT_KEYS)if(projectFields[key]!==undefined)projectFields[key]=projectFields[key].trim();
  const contact={};
+ if(raw.contactEmail!==undefined){const email=text(raw.contactEmail,150).toLowerCase();if(email&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))throw new HttpError(422,'Enter a valid contact email address.',{contactEmail:'Enter a valid contact email address.'});contact.contactEmail=email;}
  if(raw.locale!==undefined){if(!validLocale(raw.locale))throw new HttpError(422,'Invalid language.');contact.locale=raw.locale;}
  if(raw.contactMethod!==undefined){if(!CONTACT_METHODS.some(([key])=>key===raw.contactMethod))throw new HttpError(422,'Choose WhatsApp or phone.',{contactMethod:'Choose how we can reach you.'});contact.contactMethod=raw.contactMethod;}
  if(raw.phone!==undefined){const phone=internationalPhone(raw.phone);if(!phone)throw new HttpError(422,'Enter a valid international number including + and the country code.',{phone:'Include the country code, for example +1, +44 or +60.'});contact.phone=phone;}

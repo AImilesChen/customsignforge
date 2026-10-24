@@ -4,7 +4,10 @@ import {DatabaseSync} from 'node:sqlite';
 import {readFileSync,existsSync} from 'node:fs';
 const catalog=JSON.parse(readFileSync(new URL('../scripts/content-catalog.json',import.meta.url),'utf8'));
 const trade=JSON.parse(readFileSync(new URL('../src/data/trade-content.json',import.meta.url),'utf8'));
+const oldTradeBody=trade.body.replace('Share your artwork, approximate dimensions, quantity, delivery destination and target date without signing in.','Sign in to share your artwork, approximate dimensions, quantity, delivery destination and target date.');
+const oldAboutBody=trade.about.body.replace('Send your full project details and optional files without creating an account, then discuss the specification and quote with us.','Sign in to send your project details and files, then discuss the specification and quote with us.');
 const migration=readFileSync(new URL('../migrations/0009_trade_manufacturing_copy.sql',import.meta.url),'utf8');
+const guestCopyMigration=readFileSync(new URL('../migrations/0018_guest_enquiry_copy.sql',import.meta.url),'utf8');
 function database(){const db=new DatabaseSync(':memory:');db.exec(readFileSync(new URL('../migrations/0001_initial.sql',import.meta.url),'utf8'));return db}
 function insertPage(db,slug,draft,published=draft){db.prepare('INSERT INTO content_items(id,type,slug,status,draft_json,published_json) VALUES(?,?,?,?,?,?)').run(slug,'page',slug,'published',JSON.stringify(draft),JSON.stringify(published))}
 
@@ -16,10 +19,25 @@ test('trade marketing migration upgrades known defaults, preserves contact ident
   db.exec(migration.replace(/\r?\n/g,'\r\n'));
   const about=JSON.parse(db.prepare("SELECT published_json FROM content_items WHERE slug='about'").get().published_json);
   const page=JSON.parse(db.prepare("SELECT published_json FROM content_items WHERE slug='for-sign-companies'").get().published_json);
-  assert.equal(page.body,trade.body);assert.equal(page.title,trade.title);assert.equal(page.image,trade.hero.src);assert.equal(page.imageKind,'sample');assert.equal(about.body,trade.about.body);
+  assert.equal(page.body,oldTradeBody);assert.equal(page.title,trade.title);assert.equal(page.image,trade.hero.src);assert.equal(page.imageKind,'sample');assert.equal(about.body,oldAboutBody);
   const settings=JSON.parse(db.prepare('SELECT value_json FROM site_settings').get().value_json);assert.equal(settings.businessDescription,trade.businessDescription);
   for(const key of ['email','whatsapp','operatorName'])assert.equal(settings[key],original[key]);
   const before=db.prepare('SELECT id,version,draft_json,published_json FROM content_items ORDER BY id').all();db.exec(migration);assert.deepEqual(db.prepare('SELECT id,version,draft_json,published_json FROM content_items ORDER BY id').all(),before);
+ }finally{db.close()}
+});
+
+test('guest enquiry copy migration updates only former login instructions and is repeatable',()=>{
+ const db=database();try{
+  insertPage(db,'about',{...catalog.about,body:oldAboutBody});
+  insertPage(db,'for-sign-companies',{...catalog['for-sign-companies'],body:oldTradeBody});
+  const custom={...catalog['for-sign-companies'],body:'Operator-defined trade copy'};
+  insertPage(db,'custom',custom);
+  db.exec(guestCopyMigration);
+  const about=JSON.parse(db.prepare("SELECT published_json FROM content_items WHERE slug='about'").get().published_json);
+  const tradePage=JSON.parse(db.prepare("SELECT published_json FROM content_items WHERE slug='for-sign-companies'").get().published_json);
+  const untouched=JSON.parse(db.prepare("SELECT published_json FROM content_items WHERE slug='custom'").get().published_json);
+  assert.equal(about.body,trade.about.body);assert.equal(tradePage.body,trade.body);assert.equal(untouched.body,custom.body);
+  const before=db.prepare('SELECT id,version,draft_json,published_json FROM content_items ORDER BY id').all();db.exec(guestCopyMigration);assert.deepEqual(db.prepare('SELECT id,version,draft_json,published_json FROM content_items ORDER BY id').all(),before);
  }finally{db.close()}
 });
 
