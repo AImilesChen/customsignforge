@@ -23,12 +23,14 @@ test('external collectors only run on authorised production public pages and rej
  assert(!analyticsVisitAllowed('https://customsignforge.com/','https://other.test/?email=private'));
  for(const extra of [{environment:'development'},{canManage:true},{found:false},{policy:true}])assert(!externalAnalyticsEnabled({environment:'production',path:'/',...extra}));
 });
-test('collectors remain blocked until fresh permission, then load all three once with analytics-only consent',()=>{
+test('collectors remain blocked until fresh permission, then load all four once with analytics-only consent',()=>{
  const f=fixture();const stop=startExternalAnalytics(config,f);assert.equal(f.scripts.length,0);
- f.allow(true);assert.equal(f.scripts.length,3);f.allow(true);f.win.fire('pageshow');assert.equal(f.scripts.length,3);
+ f.allow(true);assert.equal(f.scripts.length,4);f.allow(true);f.win.fire('pageshow');assert.equal(f.scripts.length,4);
  assert(f.scripts.some(s=>s.src==='https://www.googletagmanager.com/gtag/js?id=G-SH4NV0GRN0'));
  assert(f.scripts.some(s=>s.src==='https://www.clarity.ms/tag/z0hfn4bak2'));
  assert.equal(f.scripts.find(s=>s.id==='csf-plausible').attrs['data-domain'],'customsignforge.com');
+ assert.equal(f.scripts.find(s=>s.id==='csf-ahrefs').src,'https://analytics.ahrefs.com/analytics.js');
+ assert.equal(f.scripts.find(s=>s.id==='csf-ahrefs').attrs['data-key'],config.ahrefs);
  const events=f.win.dataLayer.map(v=>Array.from(v));
  assert.deepEqual(events[0].slice(0,2),['consent','default']);
  assert.equal(events[1][2].analytics_storage,'granted');assert.equal(events[1][2].ad_user_data,'denied');
@@ -58,5 +60,5 @@ test('search sitemap includes exactly eligible public routes while preview, poli
  for(const item of items.filter(i=>!i.slug.includes('&'))){const prefix={product:'/products/',page:'/',project:'/projects/',landing:'/landing/'}[item.type];const path=prefix+item.slug+'/';assert.equal(paths.includes(path),indexablePage(env,{path,item}));}
  assert(!indexablePage(env,{path:'/privacy/',policy:true}));assert(!indexablePage(env,{path:'/not-found/',found:false}));
  for(const extra of [{APP_ENV:'development'},{PUBLISH_READY:'false'}]){assert.deepEqual(sitemapPaths({...env,...extra},items),[]);assert(!indexablePage({...env,...extra},{path:'/'}));}
- assert(CONSENT_VERSION>3);
+ assert(CONSENT_VERSION>4);
 });

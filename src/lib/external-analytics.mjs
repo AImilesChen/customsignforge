@@ -48,6 +48,7 @@ export function startExternalAnalytics(config,{win=window,doc=document,consent=h
    win.clarity('consentv2',{analytics_Storage:'granted',ad_Storage:'denied'});
    load('csf-clarity','https://www.clarity.ms/tag/'+encodeURIComponent(config.clarity));
    load('csf-plausible',config.plausibleScript,{'data-domain':config.plausibleDomain,'defer':''});
+   load('csf-ahrefs','https://analytics.ahrefs.com/analytics.js',{'data-key':config.ahrefs});
   }else if(started){
    win['ga-disable-'+config.ga4]=true;
    win.gtag?.('consent','update',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
